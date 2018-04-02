@@ -1,0 +1,266 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<link href="../css/static.css" rel="stylesheet" type="text/css">
+
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script>
+var time_inteval = 8000;
+var xmlDoc;
+sys="0";
+function RefurbishTextDis_2()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc,'CurRunData');
+	
+	var arr=nAlarm.split("|");
+	var array=new Array();
+	
+	
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	
+	for(var i in array)
+	{
+		if(i>=8262 && i<=8275)
+		{	
+			if(i==8263 || i==8264)
+			{
+				//var val=array[i].split(".");
+				array[i]=parseInt(array[i]);
+			}
+			 setSpan(i,array[i]);
+		}else if(i>=80031 && i<=88199)
+		{
+			Setimg(i,array[i]);
+		}
+		
+	}
+	
+
+	
+}
+
+
+
+function Gett(str)
+{
+	var i,nMsk,nStatus;
+     var agent = navigator.userAgent.toLowerCase();
+	
+	if(agent.indexOf("chrome") > -1)
+	{
+		//alert("chrome browser!");
+		try{
+               var xmlhttp = new window.XMLHttpRequest();
+			   var ret = xmlhttp.open("GET","31_1.xml",false);
+        		xmlhttp.send(null);
+				if(xmlhttp.readyState == 4)
+				{
+					xmlDoc = xmlhttp.responseXML.documentElement;
+					RefurbishTextDis_2();
+				}
+
+            }
+			catch(e)
+			{
+            	//alert("your chrome browser do not surport present!");
+			}
+	}
+	else
+	{
+		xmlDoc = GetMsXml();
+	
+	
+		if(xmlDoc == null)
+		{
+			alert("Sorry, xml Error!");
+			return;
+		}
+		xmlDoc.async= false;
+	
+		if ((xmlDoc.load("31_1.xml") == true) )
+		{
+			RefurbishTextDis_2();
+		}
+	
+	}
+
+    extupid_2=setTimeout(function(){Gett()},time_inteval);
+}
+// JavaScript Document
+
+ var XMLDOM = ["MSXML4.DOMDocument", "MSXML3.DOMDocument", "MSXML2.DOMDocument", "MSXML.DOMDocument", "Microsoft.XmlDom"];
+
+// funcAsync: 回调函数. function onload(xmlDoc, isError){ ... }
+function GetMsXml()
+{
+    var mGetData = null;
+   // 创建XML对象
+    for(var i=0; i < XMLDOM.length; i++)
+	{
+		if(window.ActiveXObject)
+		{
+			//alert("window!");
+			try
+			{
+				mGetData = new ActiveXObject("Microsoft.XmlDom");    // Support IE
+				mGetData.async = true;
+				break;
+			}catch(ex){}
+			
+		}
+		else
+		{
+			//alert("not window!");
+			try
+			{
+				// Support Firefox, Mozilla, Opera, etc
+				mGetData = document.implementation.createDocument("", "", null);    // 创建一个空的 XML 文档对象。
+				break;
+			}catch(ex){}
+		}
+	}
+    return mGetData;
+}
+
+function GetXmlTextByTagName(xml,id)
+{
+	var Obj, szTxt = "";
+	try
+	{
+		Obj = xml.getElementsByTagName(id);
+		
+		if (typeof(Obj) == "undefined")
+		{
+			return szTxt;
+		}
+		else if ((Obj = Obj.item(0)) == null)
+		{
+			return szTxt;
+		}
+		else
+		{
+			
+				if(window.ActiveXObject)
+			{
+				szTxt = Obj.text;
+			}
+			else
+			{
+				szTxt = Obj.textContent;
+			}
+		}
+	}
+	catch (objException)
+	{
+	}
+	
+	return szTxt;
+}
+
+
+
+$(function(){
+	$('.Alert_close,.guanbi').click(function(){
+		$('.dl_alert_out').hide().remove();
+		$('.dl_alert_in').hide().remove();
+
+	})
+	// data_update();
+});
+
+
+</script>
+<style>
+.D_DLY{ height:374px;  margin-left:auto; margin-top:10px; margin-right:auto; background:#f9f9f9; width:1105px; border:#d8d8d8 solid 1px; padding:30px 45px 0 60px; text-align:left;}
+.D_dlytab{ float:right; width:800px;}
+.D_dlytab1{ border:#d8d8d8 solid 1px;border-collapse:collapse}
+.D_dlytab2{ margin-top:15px;}
+.D_dlytab1 tr td{ border-bottom:#d8d8d8 solid 1px; height:45px; font-size:15px; text-align:left;border-collapse:collapse; padding:0;}
+.D_dlytab1 tr td span{ color:#07b207}
+.D_dlytab1 tr td span.red{ color:#f00}
+.D_dlytab1 tr td.D_dlytit{ text-align:left; padding-left:30px; width:150px; border-top:#d8d8d8 solid 1px;}
+.D_dlytab1 tr td.D_bg{ background:#fff;}
+.D_dlytab1 tr td.d_lline{ border-left:#d8d8d8 solid 1px;}
+.D_dlytab1 tr td.d_rline{ border-right:#d8d8d8 solid 1px;}
+.D_img{  width:240px; padding-top:10px; margin-left:0; margin-right:auto;}
+.D_imgtit{ font-size:16px;}
+</style>
+</head>
+
+<body>
+<div class="AlertUps">
+<!--动力系统顶部开始-->
+<a href="javascript:void(0);" class="Alert_close"></a>
+<!--左右移动层开始-->
+<div class="dl_content_info">
+	<ul>
+		<!-- 
+        	<li class="cur"></li>
+         --->
+        <li>
+<div class="D_DLY">
+<!--表格开始-->
+<div class="D_dlytab">
+<table class="D_dlytab1">
+  <tbody><tr>
+   </tr><tr>    	 <td class="D_dlytit">CT:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8262">1</span><span></span></td>
+      	 <td class="D_dlytit">通讯地址:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8263">28.05</span><span></span></td>
+      	 <td class="D_dlytit">波特率:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8264">38.05</span><span>bps </span></td>
+  </tr><tr>    	 <td class="D_dlytit">电流:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8265">28.05</span><span>A</span></td>
+      	 <td class="D_dlytit">电压:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8266">410.00</span><span>V</span></td>
+      	 <td class="D_dlytit">有功功率:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8267">28.05</span><span>W</span></td>
+  </tr><tr>    	 <td class="D_dlytit">无功功率:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8268">26.85</span><span>Var</span></td>
+      	 <td class="D_dlytit">功率因数:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8269">28.05</span><span></span></td>
+      	 <td class="D_dlytit">频率:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8270">58.00</span><span>HZ</span></td>
+  </tr><tr>    	 <td class="D_dlytit">总有功电能:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8271">27.05</span><span>KWH</span></td>
+      	 <td class="D_dlytit">输入有功电能:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8272">21.05</span><span>KWH</span></td>
+      	 <td class="D_dlytit">输出有功电能:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8273">22.02</span><span>KWH</span></td>
+  </tr><tr>    	 <td class="D_dlytit">视在功率:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><span id="8275">27.05</span><span>VA</span></td>
+   <td></td><td></td><td></td><td></td>
+  </tr>
+</tbody></table>
+
+<table class="D_dlytab1 D_dlytab2">
+  <tbody><tr>
+   </tr><tr>     	 <td class="D_dlytit">电流状态:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><img id="88197" src="../images/ico_gre.png"></td>
+       	 <td class="D_dlytit">电压状态:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><img id="88198" src="../images/ico_gre.png"></td>
+  </tr><tr>     	 <td class="D_dlytit">频率状态:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><img id="88199" src="../images/ico_gre.png"></td>
+       	 <td class="D_dlytit">通讯状态:</td>
+   		 <td style="border-top:#d8d8d8 solid 1px;"><img id="80031" src="../images/ico_gre.png"></td>
+    </tr>
+</tbody></table>
+
+</div>
+<!--表格结束-->
+<!--图片开始-->
+<div class="D_img" style="text-align:center"><img style="width:250px" src="../images/sz_dxpd.gif"><div class="D_imgtit">单相配电</div></div>
+<!--图片结束-->
+</div>
+
+</li>
+	</ul>
+</div></div>
+
+
+</body></html>

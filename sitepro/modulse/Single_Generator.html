@@ -1,0 +1,395 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<link href="../css/fdj.css" rel="stylesheet">
+<script src="../js/jquery.js"></script>
+<script>
+var time_inteval = 8000;
+var xmlDoc;
+sys="0";
+function RefurbishTextDis_2()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc,'CurRunData');
+	
+	var arr=nAlarm.split("|");
+	var array=new Array();
+	
+	
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	
+	for(var i in array)
+	{
+		if(i>=16385 && i<=16416)
+		{
+			 setSpan(i,array[i]);
+		}else if(i>=96384 && i<=96449)
+		{
+			if(i>=96441 && i<=96442)
+			{
+				array[i]==1 ? $("#"+i).html("异常").css("color","red") :  $("#"+i).html("正常").css("color","#00b91c");
+			}else if(i>=96443 && i<=96446)
+			{
+				array[i]==1 ? $("#"+i).html("停止").css("color","red") :  $("#"+i).html("运行").css("color","#00b91c");
+			}else if(i>=96447 && i<=96448)
+			{
+				array[i]==0 ? $("#"+i).html("开闸").css("color","red") :  $("#"+i).html("合闸").css("color","#00b91c");
+			}
+			else
+			{
+			 	Setimg(i,array[i]);
+			}
+		}else
+			{
+			 	Setimg(i,array[i]);
+			}
+		
+	}
+	
+
+	
+}
+
+
+
+function Gett(str)
+{
+	var i,nMsk,nStatus;
+     var agent = navigator.userAgent.toLowerCase();
+	
+	if(agent.indexOf("chrome") > -1)
+	{
+		//alert("chrome browser!");
+		try{
+               var xmlhttp = new window.XMLHttpRequest();
+			   var ret = xmlhttp.open("GET","2_7.xml",false);
+        		xmlhttp.send(null);
+				if(xmlhttp.readyState == 4)
+				{
+					xmlDoc = xmlhttp.responseXML.documentElement;
+					RefurbishTextDis_2();
+				}
+
+            }
+			catch(e)
+			{
+            	//alert("your chrome browser do not surport present!");
+			}
+	}
+	else
+	{
+		xmlDoc = GetMsXml();
+	
+	
+		if(xmlDoc == null)
+		{
+			alert("Sorry, xml Error!");
+			return;
+		}
+		xmlDoc.async= false;
+	
+		if ((xmlDoc.load("2_7.xml") == true) )
+		{
+			RefurbishTextDis_2();
+		}
+	
+	}
+
+    extupid_2=setTimeout(function(){Gett()},time_inteval);
+}
+// JavaScript Document
+
+ var XMLDOM = ["MSXML4.DOMDocument", "MSXML3.DOMDocument", "MSXML2.DOMDocument", "MSXML.DOMDocument", "Microsoft.XmlDom"];
+
+// funcAsync: 回调函数. function onload(xmlDoc, isError){ ... }
+function GetMsXml()
+{
+    var mGetData = null;
+   // 创建XML对象
+    for(var i=0; i < XMLDOM.length; i++)
+	{
+		if(window.ActiveXObject)
+		{
+			//alert("window!");
+			try
+			{
+				mGetData = new ActiveXObject("Microsoft.XmlDom");    // Support IE
+				mGetData.async = true;
+				break;
+			}catch(ex){}
+			
+		}
+		else
+		{
+			//alert("not window!");
+			try
+			{
+				// Support Firefox, Mozilla, Opera, etc
+				mGetData = document.implementation.createDocument("", "", null);    // 创建一个空的 XML 文档对象。
+				break;
+			}catch(ex){}
+		}
+	}
+    return mGetData;
+}
+
+function GetXmlTextByTagName(xml,id)
+{
+	var Obj, szTxt = "";
+	try
+	{
+		Obj = xml.getElementsByTagName(id);
+		
+		if (typeof(Obj) == "undefined")
+		{
+			return szTxt;
+		}
+		else if ((Obj = Obj.item(0)) == null)
+		{
+			return szTxt;
+		}
+		else
+		{
+			
+				if(window.ActiveXObject)
+			{
+				szTxt = Obj.text;
+			}
+			else
+			{
+				szTxt = Obj.textContent;
+			}
+		}
+	}
+	catch (objException)
+	{
+	}
+	
+	return szTxt;
+}
+
+
+function MM_callJS(jsStr)
+{
+	return eval(jsStr);
+}
+
+
+function toBin(intNum) {
+          var answer = "";
+          if(!isNaN(intNum) && intNum>0) {
+            while(intNum != 0) {
+              answer = Math.abs(intNum%2)+answer;
+              intNum = parseInt(intNum/2);
+            }
+            if(answer.length == 0)
+              answer = "0";
+            return answer;
+          } else {
+            return 0;
+          }
+ }
+function setSpan(id,value)
+{
+	value==0 ? $("#"+id).html('0.00') : $("#"+id).html(value);
+}
+function Setimg(imgname,value)
+{
+	if(value==0)
+	{
+		$("#"+imgname).attr("src",'../images/ico_gre.png');
+	}else if(value==1)
+	{
+		$("#"+imgname).attr("src",'../images/ico_gre.png');
+	}else if(value!=undefined)
+	{
+		$("#"+imgname).attr("src",'../images/ico_hui.png');
+	}
+	
+}
+$(function(){
+	$('.Alert_close,.guanbi').click(function(){
+		$('.dl_alert_out').hide().remove();
+		$('.dl_alert_in').hide().remove();
+
+	})
+	// data_update();
+});
+
+//设备图标状态
+
+
+</script>
+</head>
+
+<body>
+<div class="AlertUps fixed">
+<!--动力系统顶部开始-->
+<a href="javascript:void(0);" class="Alert_close"></a>
+<!--左右移动层开始-->
+<div class="dl_content_info">
+	<ul>
+		<!-- 
+        	<li class="cur"></li>
+         --->
+        <li>
+<!--padding div开始-->
+<div class="padding_div">
+<div class="content">
+<!--内容开始-->
+<div class="sm_fdjinfo">
+<!--第一块开始-->
+<div class="sm_fdjp1 fixed">
+<!--右侧开始-->
+<div class="sm_fdjp1l">
+<h1 class="sm_fdjtit"><a onClick="parent.show_scs()" class="ttscs xd_next a_btn1" style=" background:url(../images/btn_bg.jpg) repeat-x;color:#fff; display:block; font-size:14px; color:#fff; margin-right:5%; height:31px; float:right; line-height:28px; text-align:center; width:80px;">设备信息</a>发电机状态</h1>
+<table class="sm_fdjtab1">
+  <tbody><tr>
+    <td><span><img id="80031" src="../images/ico_gre.png"></span>通讯状态:</td>
+  	    <td><span id="96441" style="color: rgb(0, 185, 28);">正常</span>市电状态:</td>
+ 	    <td><span id="96442" style="color: rgb(0, 185, 28);">正常</span>发电状态:</td>
+ 	</tr><tr>    <td><span id="96443" style="color: rgb(0, 185, 28);">运行</span>系统在试机模式:</td>
+ 	    <td><span id="96444" style="color: rgb(0, 185, 28);">运行</span>系统在自动模式:</td>
+ 	    <td><span id="96445" style="color: rgb(0, 185, 28);">运行</span>系统在手动模式:</td>
+ 	</tr><tr>    <td><span id="96446" style="color: rgb(0, 185, 28);">运行</span>系统在停机模式:</td>
+ 	    <td><span id="96447" style="color: red;">开闸</span>市电合闸:</td>
+ 	    <td><span id="96448" style="color: red;">开闸</span>发电合闸:</td>
+ 	     
+  </tr>
+</tbody></table>
+
+</div>
+<!--右侧结束-->
+<!--左侧开始--><div style="width:200px;" class="sm_fdjp1img">
+<img id="fdj_2_7" src="../images/sz_fdj.gif" style="height:200px;">发电机1</div>
+<!--左侧结束-->
+</div>
+<!--第一块结束-->
+<!--第二块开始-->
+<div class="sm_fdjp2">
+<h1 class="sm_fdjtit">发电机参数</h1>
+<table class="sm_fdjtab1 sm_fdjtab2">
+  <tbody><tr>
+    	</tr><tr>    <td><span id="16385">26.30</span>市电UAB&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16386">32.02</span>市电UBC&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16387">34.06</span>市电UCA&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16388">23.03</span>市电UA&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16389">36.40</span>市电UB&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16390">45.20</span>市电UC&nbsp;(V)&nbsp;:</td>
+ 	</tr><tr>    <td><span id="16391">28.00</span>发电UAB&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16392">45.10</span>发电UBC&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16393">23.20</span>发电UCA&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16394">42.10</span>发电UA&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16395">22.02</span>发电UB&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16396">33.02</span>发电UC&nbsp;(V)&nbsp;:</td>
+ 	</tr><tr>    <td><span id="16397">32.05</span>A相电流&nbsp;(A)&nbsp;:</td>
+ 	    <td><span id="16398">19.99</span>B相电流&nbsp;(A)&nbsp;:</td>
+ 	    <td><span id="16399">35.69</span>C相电流&nbsp;(A)&nbsp;:</td>
+ 	    <td><span id="16400">46.20</span>功率因数&nbsp;&nbsp;:</td>
+ 	    <td><span id="16401">28.60</span>水温/缸体温度值&nbsp;(°C)&nbsp;:</td>
+ 	    <td><span id="16402">33.22</span>机油压力值&nbsp;(kPa)&nbsp;:</td>
+ 	</tr><tr>    <td><span id="16403">45.05</span>燃油液位值&nbsp;(%)&nbsp;:</td>
+ 	    <td><span id="16404">28.00</span>电池电压&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16405">46.20</span>充电机电压&nbsp;(V)&nbsp;:</td>
+ 	    <td><span id="16406">39.20</span>市电频率&nbsp;(Hz)&nbsp;:</td>
+ 	    <td><span id="16407">42.22</span>发电频率&nbsp;(Hz)&nbsp;:</td>
+ 	    <td><span id="16408">29.90</span>A相有功功率&nbsp;(kW)&nbsp;:</td>
+ 	</tr><tr>    <td><span id="16409">39.02</span>B相有功功率&nbsp;(kW)&nbsp;:</td>
+ 	    <td><span id="16410">41.10</span>C相有功功率&nbsp;(kW)&nbsp;:</td>
+ 	    <td><span id="16411">23.80</span>总有功功率&nbsp;(kW)&nbsp;:</td>
+ 	    <td><span id="16412">35.69</span>A相视在功率&nbsp;(kVA)&nbsp;:</td>
+ 	    <td><span id="16413">41.00</span>B相视在功率&nbsp;(kVA)&nbsp;:</td>
+ 	    <td><span id="16414">56.10</span>C相视在功率&nbsp;(kVA)&nbsp;:</td>
+ 	</tr><tr>    <td><span id="16415">23.88</span>总视在功率&nbsp;(kVA)&nbsp;:</td>
+ 	    <td><span id="16416">35.69</span>发动机转速&nbsp;(RPM)&nbsp;:</td>
+ 	  </tr>
+</tbody></table>
+
+</div>
+<!--第二块结束-->
+
+<!--第三块开始-->
+<div class="sm_fdjp3">
+<h1 class="sm_fdjtit">发电机告警</h1>
+<table class="sm_fdjtab1 sm_fdjtab2">
+  <tbody><tr>
+   	</tr><tr>    <td><span><img id="96384" src="../images/ico_gre.png"></span>公共报警:</td>
+ 	    <td><span><img id="96385" src="../images/ico_gre.png"></span>公共停机报警:</td>
+ 	    <td><span><img id="96386" src="../images/ico_gre.png"></span>公共警告报警:</td>
+ 	    <td><span><img id="96387" src="../images/ico_gre.png"></span>公共电气跳闸报警:</td>
+ 	    <td><span><img id="96388" src="../images/ico_gre.png"></span>紧急停机报警:</td>
+ 	    <td><span><img id="96389" src="../images/ico_gre.png"></span>高水温报警停机:</td>
+ 	</tr><tr>    <td><span><img id="96390" src="../images/ico_gre.png"></span>低油压报警停机:</td>
+ 	    <td><span><img id="96391" src="../images/ico_gre.png"></span>发电超速报警停机:</td>
+ 	    <td><span><img id="96392" src="../images/ico_gre.png"></span>发电欠速停机:</td>
+ 	    <td><span><img id="96393" src="../images/ico_gre.png"></span>速度信号丢失报警:</td>
+ 	    <td><span><img id="96394" src="../images/ico_gre.png"></span>发电过频报警停机:</td>
+ 	    <td><span><img id="96395" src="../images/ico_gre.png"></span>发电欠频停机:</td>
+ 	</tr><tr>    <td><span><img id="96396" src="../images/ico_gre.png"></span>发电过压停机:</td>
+ 	    <td><span><img id="96397" src="../images/ico_gre.png"></span>发电欠压停机:</td>
+ 	    <td><span><img id="96398" src="../images/ico_gre.png"></span>发电过流停机:</td>
+ 	    <td><span><img id="96399" src="../images/ico_gre.png"></span>起动失败报警:</td>
+ 	    <td><span><img id="96400" src="../images/ico_gre.png"></span>油压传感器开路报警:</td>
+ 	    <td><span><img id="96401" src="../images/ico_gre.png"></span>输入口1停机:</td>
+ 	</tr><tr>    <td><span><img id="96402" src="../images/ico_gre.png"></span>输入口2停机:</td>
+ 	    <td><span><img id="96403" src="../images/ico_gre.png"></span>输入口3停机:</td>
+ 	    <td><span><img id="96404" src="../images/ico_gre.png"></span>输入口4停机:</td>
+ 	    <td><span><img id="96405" src="../images/ico_gre.png"></span>输入口5停机:</td>
+ 	    <td><span><img id="96406" src="../images/ico_gre.png"></span>输入口6停机:</td>
+ 	    <td><span><img id="96407" src="../images/ico_gre.png"></span>过流跳闸:</td>
+ 	</tr><tr>    <td><span><img id="96408" src="../images/ico_gre.png"></span>输入口1电气跳闸:</td>
+ 	    <td><span><img id="96409" src="../images/ico_gre.png"></span>输入口2电气跳闸:</td>
+ 	    <td><span><img id="96410" src="../images/ico_gre.png"></span>输入口3电气跳闸:</td>
+ 	    <td><span><img id="96411" src="../images/ico_gre.png"></span>输入口4电气跳闸:</td>
+ 	    <td><span><img id="96412" src="../images/ico_gre.png"></span>输入口5电气跳闸:</td>
+ 	    <td><span><img id="96413" src="../images/ico_gre.png"></span>输入口6电气跳闸:</td>
+ 	</tr><tr>    <td><span><img id="96414" src="../images/ico_gre.png"></span>高水温警告:</td>
+ 	    <td><span><img id="96415" src="../images/ico_gre.png"></span>低油压警告:</td>
+ 	    <td><span><img id="96416" src="../images/ico_gre.png"></span>发电超速警告:</td>
+ 	    <td><span><img id="96417" src="../images/ico_gre.png"></span>发电欠速警告:</td>
+ 	    <td><span><img id="96418" src="../images/ico_gre.png"></span>速度信号丢失警告:</td>
+ 	    <td><span><img id="96419" src="../images/ico_gre.png"></span>发电过频警告:</td>
+ 	</tr><tr>    <td><span><img id="96420" src="../images/ico_gre.png"></span>发电欠频警告:</td>
+ 	    <td><span><img id="96421" src="../images/ico_gre.png"></span>发电过压警告:</td>
+ 	    <td><span><img id="96422" src="../images/ico_gre.png"></span>发电欠压警告:</td>
+ 	    <td><span><img id="96423" src="../images/ico_gre.png"></span>发电过流警告:</td>
+ 	    <td><span><img id="96424" src="../images/ico_gre.png"></span>停机失败警告:</td>
+ 	    <td><span><img id="96425" src="../images/ico_gre.png"></span>燃油液位低警告:</td>
+ 	</tr><tr>    <td><span><img id="96426" src="../images/ico_gre.png"></span>充电失败警告:</td>
+ 	    <td><span><img id="96427" src="../images/ico_gre.png"></span>电池欠压警告:</td>
+ 	    <td><span><img id="96428" src="../images/ico_gre.png"></span>电池过压警告:</td>
+ 	    <td><span><img id="96429" src="../images/ico_gre.png"></span>输入口1警告:</td>
+ 	    <td><span><img id="96430" src="../images/ico_gre.png"></span>输入口2警告:</td>
+ 	    <td><span><img id="96431" src="../images/ico_gre.png"></span>输入口3警告:</td>
+ 	</tr><tr>    <td><span><img id="96432" src="../images/ico_gre.png"></span>输入口4警告:</td>
+ 	    <td><span><img id="96433" src="../images/ico_gre.png"></span>输入口5警告:</td>
+ 	    <td><span><img id="96434" src="../images/ico_gre.png"></span>输入口6警告:</td>
+ 	    <td><span><img id="96435" src="../images/ico_gre.png"></span>输入口1指示:</td>
+ 	    <td><span><img id="96436" src="../images/ico_gre.png"></span>输入口2指示:</td>
+ 	    <td><span><img id="96437" src="../images/ico_gre.png"></span>输入口3指示:</td>
+ 	</tr><tr>    <td><span><img id="96438" src="../images/ico_gre.png"></span>输入口4指示:</td>
+ 	    <td><span><img id="96439" src="../images/ico_gre.png"></span>输入口5指示:</td>
+ 	    <td><span><img id="96440" src="../images/ico_gre.png"></span>输入口6指示:</td>
+ 	  </tr> 
+ 
+ 
+</tbody></table>
+
+</div>
+<!--第三块结束-->
+</div>
+<!--内容结束-->
+</div>
+</div>
+
+<!--padding div结束-->
+</li>
+	</ul>
+</div></div>
+
+
+</body></html>

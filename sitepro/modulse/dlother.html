@@ -1,0 +1,201 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>无标题文档</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="../css/index.css" rel="stylesheet" type="text/css">
+<link href="../css/fdj.css" rel="stylesheet">
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/alarm_dev.js" type="text/javascript"></script>
+<style>
+body {
+	background: #fff;
+}
+</style>
+</head>
+
+<body>
+
+<!--内容开始-->
+<div class="dl_info">
+  <div class="fixed" style="padding-bottom:20px">
+    <div class="dldiv">
+      <div class="dl_p1" style="width:190px">
+        <div class="dl_p1_r" style="width:110px"> <span class="ms">零地电压1</span><br>
+          <a href="javascript:void(0)"><span id="84000"><font color="green">正常</font></span></a> <br>
+          数值：<span id="3969">3.66</span>V </div>
+        <div class="dl_p1_l"><img width="54" height="54" id="4001_3969" src="../images/device/lddy.png"></div>
+      </div>
+    </div>
+    <div class="last dldiv">
+      <div class="dl_p1" style="width:190px">
+        <div class="dl_p1_r" style="width:110px"> <span class="ms">零地电压1</span><br>
+          <a href="javascript:void(0)"><span id="84000"><font color="green">正常</font></span></a> <br>
+          数值：<span id="3969">3.66</span>V </div>
+        <div class="dl_p1_l"><img width="54" height="54" id="4001_3969" src="../images/device/lddy.png"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fixed" style="padding-bottom:20px">
+    <div class="dldiv">
+      <div class="dl_p1">
+        <div class="dl_p1_r"> <span class="ms">市电2</span><br>
+          <a href="javascript:void(0)"><span id="84004"><font color="green">正常</font></span></a> </div>
+        <div class="dl_p1_l"><img width="54" height="54" id="4001_3972" src="../images/device/shidian.png"></div>
+      </div>
+    </div>
+    <div class="last dldiv">
+      <div class="dl_p1">
+        <div class="dl_p1_r"> <span class="ms">市电2</span><br>
+          <a href="javascript:void(0)"><span id="84004"><font color="green">正常</font></span></a> </div>
+        <div class="dl_p1_l"><img width="54" height="54" id="4001_3972" src="../images/device/shidian.png"></div>
+      </div>
+    </div>
+  </div>
+  <div class="fixed" style="padding-bottom:20px">
+    <div class="dldiv">
+      <div class="dl_p1">
+        <div class="dl_p1_r"> <span class="ms">防雷检测</span><br>
+          <a href="javascript:void(0)"><span id="83971"><font color="green">正常</font></span></a> </div>
+        <div class="dl_p1_l"><img width="54" height="54" id="4001_83971" src="../images/device/flei.png"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--内容结束--> 
+
+<script language="javascript" type="text/javascript">
+var time_inteval = 8000;
+var xmlDoc;
+sys="";
+ver="";
+function RefurbishTextDis()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc,'CurRunData');
+	//alert(nAlarm);
+	var arr=nAlarm.split("|");
+
+	var array=new Array();
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		array[start[0].replace(/(^\s*)|(\s*$)/g, "")]=start[1];
+	}
+	for(var i in array)
+	{	
+			if(i==3969 || i==3970)
+			{
+				mnl_val=array[i];
+				$("#"+i).html(mnl_val);
+			}else
+			{
+			setSpan(i,array[i]);
+			}
+	}
+		
+}
+
+
+function Gett(str)
+{
+	var i,nMsk,nStatus;
+     var agent = navigator.userAgent.toLowerCase();
+	
+	if(agent.indexOf("chrome") > -1)
+	{
+		//alert("chrome browser!");
+		try{
+               var xmlhttp = new window.XMLHttpRequest();
+			   var ret = xmlhttp.open("GET","4001_1.xml",false);
+        		xmlhttp.send(null);
+				if(xmlhttp.readyState == 4)
+				{
+					xmlDoc = xmlhttp.responseXML.documentElement;
+				}
+       
+            }
+			catch(e)
+			{
+            	//alert("your chrome browser do not surport present!");
+			}
+	}
+	else
+	{
+		xmlDoc = GetMsXml();
+		if(xmlDoc == null)
+		{
+			alert("Sorry, xml Error!");
+			return;
+		}
+		xmlDoc.async= false;
+		if ((xmlDoc.load("4001_1.xml") != true))
+		{
+			return;
+		}
+	}
+	RefurbishTextDis();
+	
+   extupid=setTimeout(function(){Gett()},time_inteval);
+}
+
+
+function setSpan(id,value)
+{	
+	if(value==1)
+	{
+		$("#"+id).html('<font color=red>异常</font>');
+	}else
+	{
+		$("#"+id).html('<font color=green>正常</font>');
+	}
+}
+function AlertDiv(){
+		$('body').append($('<div class="dl_alert_out"></div>'));
+		$('body').append($('<div class="dl_alert_in"></div>'));
+	}
+function Onhref(val)
+{
+	AlertDiv();
+	$('.dl_alert_out').show().height($(window).outerHeight(true));
+	var array=val.split("_");
+	var url;
+	switch(array[0])
+	{
+		case "1":
+			url='Single_upsreal.html?val='+val;
+			break;
+		case "2":
+			url='Single_Generator.html?val='+val;
+			break;
+		case "10":
+			url='Single_three_UPS.html?val='+val;
+			break;
+		case "5":
+			url='Single_distribution.html?val='+val;
+			break;
+		case "30":
+			url='Single_jmpd.html?val='+val;
+			break;
+		case "31":
+			url='Single_three_distribution.html?val='+val;
+			break;
+		case "4020":
+			url='Single_circuit_switch.html?val='+val;
+			break;
+		default:
+			url='Single_upsreal.html?val='+val;
+			break;
+	}
+	var posY = $(document).scrollTop();
+	//根据滚动条设置弹出框位置
+	$('.dl_alert_in').css("top",posY+20);//posY+320
+	$('.dl_alert_in').load(url);
+	setTimeout(function(){$('.dl_alert_in').css({"display":"block","opacity":0});$('.dl_alert_in').animate({"opacity":1},500)},100)
+}
+
+</script>
+</body>
+</html>

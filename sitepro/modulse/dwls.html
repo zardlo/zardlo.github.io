@@ -1,0 +1,440 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script src="../js/jquery.js"></script>
+<script src="../js/move.js"></script>
+<link href="../css/dwls.css" rel="stylesheet">
+<title>无标题文档</title>
+<style>
+.fixed:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.fixed{display:block;}
+.fixed{min-height:1%;}
+* html .fixed{height:1%;}
+body,font,form,ul,li,p,h1,h2,h3,h4,h5,h6,input,select,span,table,tr,th,td,a,b{font-family:Verdana,'Microsoft YaHei',SimHei;margin:0;padding:0;font-size:12px; color:#787878}
+body,font{line-height:22px; text-align:center;}
+body a{outline:none;blr:expression(this.onFocus=this.blur());text-decoration:none;cursor:pointer;}
+input,select{line-height:16px;outline:none;}
+ul,li,span{list-style-type:none;}
+table{ width: 100%;  border-collapse:collapse;}
+img{border:0;}
+/*****************************************/
+.map_alert{ position:relative; margin:0 auto; background:#999; overflow:hidden; color:#fff;font-family:"微软雅黑"; font-size:15px;}
+.alert_title{position:absolute; right:5px; top:8px;;}
+.alert_title a{ border:0; height:25px;background:#d15a63; color:#fff; padding:5px 12px; border-radius:5px; margin:2px;}
+img#bgpic{height:450px;} 
+
+.tips{position:absolute; top:0px; left:0; width:200px;}  /*左侧移动块*/
+.tips .tip{ float:left; margin:2px;position: relative;}
+.pic{ text-align:left; }
+.tips .tip .del{ display:none;}
+.tip .del{ position:absolute; top:1px; right:1px; cursor:pointer; z-index:500}
+
+.tip{ background:url(../images/map/tips_tip.png); padding:2px 8px; padding-right:15px; text-align:left; border-radius:4px; position:absolute; }
+.tip span{ cursor:move; color:#fff}
+
+
+.tips{position:absolute; top:0px; left:0; width:200px;}  /*左侧移动块*/
+.tips .tip2{ float:left; margin:2px;position: relative;}
+.pic{ text-align:left; }
+.tips .tip2 .del{ display:none;}
+.tip2 .del{ position:absolute; top:1px; right:1px; cursor:pointer; z-index:500}
+
+.tip2{ background:url(../images/map/tips_tip.png); padding:2px 8px; padding-right:15px; text-align:left; border-radius:4px; position:absolute; }
+.tip2 span{ color:#fff}
+
+.red>span{background:url(../images/map/line-red.png) no-repeat center left; display:block; padding-left:30px; }
+.green>span{background:url(../images/map/line-green.png) no-repeat center left; display:block; padding-left:30px; }
+.Alert_close{display:block; width:29px; height:28px; background:url(../images/Alert_close.png) no-repeat; position:absolute; right:-2px; top:-20px;}
+.AlertUps{ width:100%; border-radius:4px; background:#fff; position:relative; color:#959595;height:680px;}
+
+
+.btn1{ height:31px; line-height:31px; width:80px; background:#0CF; border:0; color:#FFF; margin-left:5px; cursor:pointer;} 
+.panel,img#bgpic{height:450px;}  	 /*整块宽度调整*/
+.sys_input{padding:5px; width:190px;line-height:18px;}
+.btns{position:absolute; right:108px; top:8px; width:280px; z-index:100; text-align:right;}
+.btns a.savebtn{ padding:4px 8px; background:#d15a63; border-radius:5px; font-size:14px; color:#fff;}
+.btns a.savebtn2{ padding:4px 8px; background:#d15a63; border-radius:5px; font-size:14px; color:#fff;}
+.warp{ width:440px; background:#fff; position:absolute; right:0; display:none; top:25px;}
+.myform{ height:35px;text-align:center; padding:20px;}  
+.myform  #upload_img{ position:relative; top:0; left:-5555px; z-index:-5;}
+.map_area{ height:450px; text-align:left; position:relative; background:#999}
+.map_area span a.ctr_ico{ width:21px; height:13px; padding-top:8px; background:url(../images/map/line-green.png) center center no-repeat; position:absolute;left:5px;top:2px}
+.map_area span a.ico_gre{background:url(../images/map/line-red.png) center center no-repeat;}
+.map_area  span.map_namebg{ z-index:9; padding:3px 8px 3px 32px; line-height:18px; font-size:12px;letter-spacing:2px; color:#fff;  position:absolute; text-align:left; border-radius:5px; background:url(../images/map/tips_tip.png)}
+</style>
+<script>
+
+
+var time_inteval = 8000;
+var xmlDoc;
+index="5";
+sys="0";
+function RefurbishTextDis()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc,'CurRunData');//alert(nAlarm);
+	var arr=nAlarm.split("|");
+	var array=new Array();
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	for(var i in array)
+	{
+		if(i>=8275 && i<=8276)
+		{
+			if(i==8275)
+			{
+				
+				 $("div[id^='dev_color_']").each(function(){
+					 var arr=this.id.split("_");
+					//给漏水的位置换成红色的告警图片
+					 if(arr[2]==parseInt(array[i]))
+					 {
+						if($("#dev_color_"+parseInt(array[i])).hasClass("green"))
+						{
+						$("#dev_color_"+parseInt(array[i])).removeClass("green");
+						$("#dev_color_"+parseInt(array[i])).addClass("red");
+						}
+					 }else
+					 {
+						  $("#"+this.id).removeClass("red");
+						  $("#"+this.id).addClass("green");
+					 }
+				})
+			}
+			 setSpan(i,array[i]);
+		}else 
+		{
+			 Setimg(i,array[i]);
+		}
+	}
+
+	
+}
+ var XMLDOM = ["MSXML4.DOMDocument", "MSXML3.DOMDocument", "MSXML2.DOMDocument", "MSXML.DOMDocument", "Microsoft.XmlDom"];
+
+// funcAsync: 回调函数. function onload(xmlDoc, isError){ ... }
+function GetMsXml()
+{
+    var mGetData = null;
+   // 创建XML对象
+    for(var i=0; i < XMLDOM.length; i++)
+	{
+		if(window.ActiveXObject)
+		{
+			//alert("window!");
+			try
+			{
+				mGetData = new ActiveXObject("Microsoft.XmlDom");    // Support IE
+				mGetData.async = true;
+				break;
+			}catch(ex){}
+			
+		}
+		else
+		{
+			//alert("not window!");
+			try
+			{
+				// Support Firefox, Mozilla, Opera, etc
+				mGetData = document.implementation.createDocument("", "", null);    // 创建一个空的 XML 文档对象。
+				break;
+			}catch(ex){}
+		}
+	}
+    return mGetData;
+}
+
+function GetXmlTextByTagName(xml,id)
+{
+	var Obj, szTxt = "";
+	try
+	{
+		Obj = xml.getElementsByTagName(id);
+		
+		if (typeof(Obj) == "undefined")
+		{
+			return szTxt;
+		}
+		else if ((Obj = Obj.item(0)) == null)
+		{
+			return szTxt;
+		}
+		else
+		{
+			
+				if(window.ActiveXObject)
+			{
+				szTxt = Obj.text;
+			}
+			else
+			{
+				szTxt = Obj.textContent;
+			}
+		}
+	}
+	catch (objException)
+	{
+	}
+	
+	return szTxt;
+}
+
+
+function Gett(str)
+{
+	var edit=$("#edit").val();
+	//编辑时不执行
+	if(edit==1)
+	{
+		return false;
+	}
+	var i,nMsk,nStatus;
+     var agent = navigator.userAgent.toLowerCase();
+	
+	if(agent.indexOf("chrome") > -1)
+	{
+		//alert("chrome browser!");
+		try{
+               var xmlhttp = new window.XMLHttpRequest();
+			   var ret = xmlhttp.open("GET","9_5.xml",false);
+        		xmlhttp.send(null);
+				if(xmlhttp.readyState == 4)
+				{
+					xmlDoc = xmlhttp.responseXML.documentElement;
+					RefurbishTextDis();
+				}
+				
+			
+            }
+			catch(e)
+			{
+            	//alert("your chrome browser do not surport present!");
+			}
+	}
+	else
+	{
+		xmlDoc = GetMsXml();xmlDoc2 = GetMsXml();
+		if(xmlDoc == null)
+		{
+			alert("Sorry, xml Error!");
+			return;
+		}
+		xmlDoc.async= false;
+	
+		if ((xmlDoc.load("9_5.xml") == true))
+		{
+			RefurbishTextDis();
+		}
+		
+		
+	}
+
+	//RefurbishTextDis();
+	
+    extupid2=setTimeout(function(){Gett()},time_inteval);
+}
+function MM_callJS(jsStr)
+{
+	return eval(jsStr);
+}
+
+
+$(function(){
+	//edit_add(0);
+	//MM_callJS('Gett()');
+	$('.Alert_close,.guanbi').click(function(){
+		$('.dl_alert_out').hide().remove();
+		$('.dl_alert_in').hide().remove();
+		
+
+	})
+		//点击弹出上传
+	$("#upimg").click(function(){
+		$(this).siblings(".warp").fadeToggle()
+	})
+	$("#upload_img").change(function(){
+		$("#filename").val($(this).val())	
+	})
+	
+	// data_update();
+});
+function Setimg(imgname,value)
+{
+	if(value==0)
+	{
+		$("#"+imgname).attr("src",'../images/ico_gre.png');
+	}else if(value==1)
+	{
+		$("#"+imgname).attr("src",'../images/ico_gre.png');
+	}else if(value!=undefined)
+	{
+		$("#"+imgname).attr("src",'../images/ico_hui.png');
+	}
+	
+}
+function setSpan(id,value)
+{
+	if(String(value).indexOf('.')<0 && value!=undefined)
+	{
+		value=value+'.00';
+	}
+	value==0 ? $("#"+id).html('0.00') : $("#"+id).html(parseInt(value));
+}
+function set_img(img)
+{
+	$("#bgpic").attr("src",img);
+	$("#wz_img").css("display","none");
+	alert("上传成功！");
+	$(".warp").fadeToggle()
+}
+function edit_add(id)
+{
+	$("#edit").val(id);
+	//编辑页面时，显示关闭按钮和左边拖动的设备图标
+	if(id==1){
+		$(".tips").css("display","");
+		$("img[id^='img_']").each(function(){
+			$("#"+this.id).css("display","");
+		})
+		$("#bj").css("display","none");
+		$("#tj").css("display","");
+		$("div[id^='dev_color_']").removeClass("tip2 red");
+		$("div[id^='dev_color_']").addClass("tip green");
+	}else//显示页面时，隐藏关闭和左边拖动的设备图标
+	{
+		$(".tips").css("display","none");
+		$("img[id^='img_']").each(function(){
+			$("#"+this.id).css("display","none");
+		})
+		$("#bj").css("display","");
+		$("#tj").css("display","none");
+		$("div[id^='dev_color_']").removeClass("tip");
+		$("div[id^='dev_color_']").addClass("tip2");
+		MM_callJS('Gett()');
+	}
+	
+}
+</script></head>
+
+<body onselectstart="return false"><div id="wz_img" style="position:absolute; top:400px; left:50%; z-index:999; color:#FFF; font-size:16px;"></div>
+<div class="AlertUps" >
+<!--动力系统顶部开始-->
+<a href="javascript:void(0);" class="Alert_close"></a>
+<div class="dl_content_info">
+	<ul>
+		<!-- 
+        	<li class="cur"></li>
+         --->
+        <li>
+<!--padding div开始-->
+<div class="padding_div">
+<div class="content">
+<!--内容开始-->
+<table class="sm_dwls">
+<tbody><tr><td width="50%">
+<h1 class="sm_dwlstit">模拟量信息：</h1>
+
+
+
+<table class="sm_dwlsinfo"><tbody><tr><td>
+<!--漏水线缆开始-->
+<div class="sm_dwlsleft fixed">
+
+<div class="sm_dwlslefttxt">漏水线缆长度<br><span id="8276">6</span>m</div>
+<img src="../images/dwls/lsxl.png" class="sm_dwlsimg">
+
+</div>
+<!--漏水线缆结束-->
+
+</td><td>
+<!--漏水位置开始-->
+<div class="sm_dwlsleft  fixed">
+
+<div class="sm_dwlslefttxt">漏水位置<br><span id="8275">0.00</span>m</div>
+<img src="../images/dwls/lswz.png" class="sm_dwlsimg">
+
+</div>
+<!--漏水位置结束-->
+</td></tr>
+
+</tbody></table>
+
+
+</td><td valign="top">
+<h2 class="sm_dwlstit">告警状态信息：</h2>
+<!--告警状态信息开始-->
+<table class="sm_dwlsinfo2">
+
+<tbody><tr><td align="right">
+通讯状态： </td><td align="left"><img id="80031" src="../images/ico_gre.png" class="sm_dwlsimg2">
+
+
+</td><td align="right">
+检测线缆断线状态： </td><td align="left">
+<img id="88275" src="../images/ico_gre.png" class="sm_dwlsimg2">
+
+</td>
+</tr>
+<tr><td align="right">
+漏水状态： </td><td align="left">
+<img id="88276" src="../images/ico_gre.png" class="sm_dwlsimg2">
+
+</td><td align="right">
+硬件故障线状态： </td><td align="left">
+<img id="88278" src="../images/ico_gre.png" class="sm_dwlsimg2">
+
+</td></tr><tr><td align="right">
+维护状态：</td><td align="left">
+<img id="88277" src="../images/ico_gre.png" class="sm_dwlsimg2">
+</td></tr>
+</tbody></table>
+
+<!--告警状态信息结束-->
+</td></tr>
+</tbody></table>
+<!--内容结束-->
+</div>
+</div>
+<iframe id="leak_form" name="leak_form" style="display:none">
+</iframe>
+<!--padding div结束-->
+<div class="map_alert" style="width:90%">
+	<div class="btns">
+		<a id="bj" class="savebtn2" href="javascript:void(0)" onClick="edit_add(1)">编辑图像</a>
+        <a id="tj" style="display: none;" class="savebtn" href="javascript:void(0)" onClick="edit_add(0)">保存图像</a>
+		<a class="savebtn2" href="javascript:void(0)" id="upimg">机房图上传</a>
+       <!-- 上传开始-->
+        <div class="warp" style="position:absolute">
+	<form class="myform" method="post" enctype="multipart/form-data" action="dev_add/leak_data_form.php?pdi_id=5" target="leak_form">
+		<input type="file" name="file" value="上传" id="file">
+        <input class="btn1" type="submit" name="submit" id="submit" value="上传">
+	</form>
+   
+	</div> 
+    <!-- 上传结束-->
+	</div>
+	<div class="alert_title">
+		
+	</div>
+	<div class="tips fixed" style="display: none;">
+    			
+		<!--tip-->
+	</div>	
+	<div class="pic">
+		    <img src="../images/jfsf.png" id="bgpic" style="width:100%">
+    
+       
+	 		
+	<!--pic-->	
+	</div>		
+</div>
+</li>
+	</ul>
+</div>
+</div>
+<input type="hidden" id="edit" value="0">
+
+
+</body></html>

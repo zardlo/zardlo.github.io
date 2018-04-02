@@ -1,0 +1,475 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>动力系统</title>
+<link href="../css/index.css" rel="stylesheet" type="text/css">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<style>
+body{ background:#FFF;}
+</style>
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script>
+var time_inteval = 8000;
+var xmlDoc;var xmlDoc2;
+var index="1";
+sys="0";
+function RefurbishTextDis()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc,'CurRunData');
+
+	var arr=nAlarm.split("|");
+	var array=new Array();
+
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "")-((index-1)*40);
+		array[start[0]]=start[1];	
+	}
+	
+		
+		//输入电压
+		array[1]==0 ? $("#in_vol").html('0.00') : $("#in_vol").html(array[1]);
+		//频率
+		array[5]==0 ? $("#pinglv").html('0.00') : $("#pinglv").html(array[5]);
+		//温度
+		array[7]==0 ? $("#upstem").html('0.00') : $("#upstem").html(array[7]);
+		//输出电压
+		array[3]==0 ? $("#out_vol").html('0.00') : $("#out_vol").html(array[3]);
+		//输出负载
+		array[4]==0 ? $("#upsfz").html('0.00') : $("#upsfz").html(array[4]);
+		
+		
+		
+		
+		//输出最大电压
+		array[9]==0 ? $("#max_out_dianya").html('0.00') : $("#max_out_dianya").html(array[9]);
+		
+		//输出最小电压
+		array[10]==0 ? $("#min_out_dianya").html('0.00') : $("#min_out_dianya").html(array[10]);
+		
+		//电池电压
+		array[12]==0 ? $("#dc_dianya").html('0.00') : $("#dc_dianya").html(array[12]);
+		
+		//电池容量
+		array[8]==0 ? $("#dc_rl").html('0.00') : $("#dc_rl").html(array[8]);
+	
+		//UPS温度
+		array[7]==0 ? $("#ups_wd").html('0.00') : $("#ups_wd").html(array[7]);
+	
+		
+		//网络状态	
+		Setimg('ups_int',array[80015]);
+		
+		//连接状态	
+		Setimg('ups_con',array[80031]);
+	
+		
+		//工作状态
+		Setimg('ups_work',array[80005]);
+		
+		
+		//市电状态
+		Setimg('ups_acfalse',array[80007]);
+		
+		//电池状态
+		Setimg('ups_batlow',array[80006]);
+		
+		//关机状态
+		Setimg('ups_shutdown',array[80001]);
+		
+	
+		//测试状态
+		Setimg('ups_test',array[80002]);
+		
+	
+		
+		//ups状态
+		Setimg('ups_stats',array[80004]);
+		
+		//喇叭状态
+		Setimg('ups_wake',array[80000]);
+		
+		//UPS图片
+		if(array[80031]==1)//UPS断线
+		{
+			$("#ups_img").attr('src','../images/ups_stop.gif');
+		}
+		else if(array[80005]==1)//UPS旁路状态
+		{
+			$("#ups_img").attr('src','../images/ups_bypass.gif');
+		}else if(array[80007]==1)//UPS市电中断
+		{
+			$("#ups_img").attr('src','../images/ups_ac_fail.gif');
+		}else{
+			$("#ups_img").attr('src','../images/ups_online.gif');
+			}
+	
+}
+function RefurbishTextDis2()
+{
+	
+	nAlarm2 = GetXmlTextByTagName(xmlDoc2,'CurRunData');
+//alert(nAlarm2);
+	var arr2=nAlarm2.split("|");
+	var array2=new Array();
+	
+	for(var i=0;i<arr2.length;i++)
+	{
+		var start2 =arr2[i].split(":");
+		start2[0]  =start2[0].replace(/(^\s*)|(\s*$)/g, "")-((index-1)*100);
+		array2[start2[0]]=start2[1];
+	//	array2[start2[0].replace(/(^\s*)|(\s*$)/g, "")]=start2[1];	
+		
+	}
+		//电池电量仪
+		//alert(array[81]);
+		setSpan("dcdl_81",array2[81]);
+		setSpan("dcdl_82",array2[82]);
+		setSpan("dcdl_83",array2[83]);
+		setSpan("dcdl_84",array2[84]);
+		setSpan("dcdl_85",array2[85]);
+		if(array2[86]==0)
+		{
+			$("#dcdl_86").html("N/A");
+		}
+		else if(array2[86]==1)
+		{
+			$("#dcdl_86").html("准备自学习全放电");
+		}else if(array2[86]==4)
+		{
+			$("#dcdl_86").html("均充");
+		}else if(array2[86]==5)
+		{
+			$("#dcdl_86").html("浮充");
+		}else if(array2[86]==6)
+		{
+			$("#dcdl_86").html("正常放电");
+		}else if(array2[86]==17)
+		{
+			$("#dcdl_86").html("自学习全放电");
+		}
+		//setSpan("dcdl_86",data.t86);
+		$("#dcdl_87").html("N/A");
+		$("#dcdl_88").html("N/A");
+		//setSpan("dcdl_87",data.t87);
+		//setSpan("dcdl_88",data.t88);
+	
+		Setimg("dcdl_80080",array2[80080]);
+		Setimg("dcdl_80081",array2[80081]);
+		Setimg("dcdl_80082",array2[80082]);
+		Setimg("dcdl_80083",array2[80083]);
+		Setimg("dcdl_80084",array2[80084]);
+		Setimg("dcdl_80085",array2[80085]);
+		Setimg("dcdl_80086",array2[80086]);
+}
+ var XMLDOM = ["MSXML4.DOMDocument", "MSXML3.DOMDocument", "MSXML2.DOMDocument", "MSXML.DOMDocument", "Microsoft.XmlDom"];
+
+// funcAsync: 回调函数. function onload(xmlDoc, isError){ ... }
+function GetMsXml()
+{
+    var mGetData = null;
+   // 创建XML对象
+    for(var i=0; i < XMLDOM.length; i++)
+	{
+		if(window.ActiveXObject)
+		{
+			//alert("window!");
+			try
+			{
+				mGetData = new ActiveXObject("Microsoft.XmlDom");    // Support IE
+				mGetData.async = true;
+				break;
+			}catch(ex){}
+			
+		}
+		else
+		{
+			//alert("not window!");
+			try
+			{
+				// Support Firefox, Mozilla, Opera, etc
+				mGetData = document.implementation.createDocument("", "", null);    // 创建一个空的 XML 文档对象。
+				break;
+			}catch(ex){}
+		}
+	}
+    return mGetData;
+}
+
+function GetXmlTextByTagName(xml,id)
+{
+	var Obj, szTxt = "";
+	try
+	{
+		Obj = xml.getElementsByTagName(id);
+		
+		if (typeof(Obj) == "undefined")
+		{
+			return szTxt;
+		}
+		else if ((Obj = Obj.item(0)) == null)
+		{
+			return szTxt;
+		}
+		else
+		{
+			
+				if(window.ActiveXObject)
+			{
+				szTxt = Obj.text;
+			}
+			else
+			{
+				szTxt = Obj.textContent;
+			}
+		}
+	}
+	catch (objException)
+	{
+	}
+	
+	return szTxt;
+}
+
+
+function Gett(str)
+{
+	var i,nMsk,nStatus;
+     var agent = navigator.userAgent.toLowerCase();
+	
+	if(agent.indexOf("chrome") > -1)
+	{
+		//alert("chrome browser!");
+		try{
+               var xmlhttp = new window.XMLHttpRequest();
+			   var ret = xmlhttp.open("GET","1_1.xml",false);
+        		xmlhttp.send(null);
+				if(xmlhttp.readyState == 4)
+				{
+					xmlDoc = xmlhttp.responseXML.documentElement;
+					RefurbishTextDis();
+				}
+				
+				var xmlhttp2 = new window.XMLHttpRequest();
+				var ret2 = xmlhttp2.open("GET","4005_1.xml",false);
+     			xmlhttp2.send(null);
+				if(xmlhttp2.readyState == 4)
+				{
+					xmlDoc2 = xmlhttp2.responseXML.documentElement;
+					RefurbishTextDis2();
+				}
+       
+            }
+			catch(e)
+			{
+            	//alert("your chrome browser do not surport present!");
+			}
+	}
+	else
+	{
+		xmlDoc = GetMsXml();
+		xmlDoc2 = GetMsXml();
+		if(xmlDoc == null || xmlDoc2 == null )
+		{
+			alert("Sorry, xml Error!");
+			return;
+		}
+		xmlDoc.async= false;
+		xmlDoc2.async= false;
+		if ((xmlDoc.load("1_1.xml") == true))
+		{
+			RefurbishTextDis();
+		}
+		if ((xmlDoc2.load("4005_1.xml") == true))
+		{
+			RefurbishTextDis2();
+		}
+		
+	}
+
+	//RefurbishTextDis();
+	
+    extupid=setTimeout(function(){Gett()},time_inteval);
+}
+function MM_callJS(jsStr)
+{
+	return eval(jsStr);
+}
+
+
+$(function(){
+
+	$('.Alert_close,.guanbi').click(function(){
+		$('.dl_alert_out').hide().remove();
+		$('.dl_alert_in').hide().remove();
+
+	})
+	// data_update();
+});
+function Setimg(imgname,value)
+{
+	if(value==0)
+	{
+		$("#"+imgname).attr("src",'../images/ico_gre.png');
+	}else if(value==1)
+	{
+		$("#"+imgname).attr("src",'../images/ico_gre.png');
+	}else if(value!=undefined)
+	{
+		$("#"+imgname).attr("src",'../images/ico_hui.png');
+	}
+	
+}
+function setSpan(id,value)
+{
+	if(String(value).indexOf('.')<0 && value!=undefined)
+	{
+		value=value+'.00';
+	}
+	value==0 ? $("#"+id).html('0.00') : $("#"+id).html(value);
+}
+
+//设备图标状态
+
+</script>
+<style>
+
+</style>
+
+</head><body>
+<div class="AlertUps">
+<!--动力系统顶部开始-->
+<a href="javascript:void(0);" class="Alert_close"></a>
+<!--左右移动层开始-->
+<div class="dl_content_info">
+	<ul>
+		<!-- 
+        	<li class="cur"></li>
+         --->
+        <li>
+        	<div class="cen_div">
+            	<table class="cur_son_tab">
+            	<tbody><tr>
+                	<td style="vertical-align:top; padding-top:10px; width:70px; font-size:16px; color:#b6b6b6; border-right:0"></td>
+                    <td style="border-left:0;"><h4>输入</h4><br>
+                    	<table class="part2_tab">
+                          <tbody><tr>
+                            <td><a href="javascript:void(0)"><img src="../images/ups_img1.png"></a><br><a class="part_tit" href="javascript:void(0)">电压：<span id="in_vol">0.00</span>V</a></td>
+                            <td><a href="javascript:void(0)"><img src="../images/ups_img2.png"></a><br><a class="part_tit" href="javascript:void(0)">频率：<span id="pinglv">0.00</span>Hz</a></td>
+                            <td><a href="javascript:void(0)"><img src="../images/ups_img3.png"></a><br><a class="part_tit" href="javascript:void(0)">机内温度：<span id="upstem">0.00</span>°C</a></td>
+                          </tr>
+                      <!--    <tr>
+                             <td><a href="javascript:void(0)"><img src="../images/ups_img4.png" /></a><br><a class="part_tit"  href="javascript:void(0)">负载：<span>95%</span></a></td>
+                             <td><a href="javascript:void(0)"><img src="../images/ups_img4.png" /></a><br><a class="part_tit"  href="javascript:void(0)">负载：<span>95%</span></a></td>
+                             <td><a href="javascript:void(0)"><img src="../images/ups_img4.png" /></a><br><a class="part_tit"  href="javascript:void(0)">负载：<span>95%</span></a></td>
+                          </tr> -->
+                        </tbody></table>
+                    </td>
+                    <td style="width:130px; height:290px;" colspan="4">
+                    	<div class="center_bg" style="padding-bottom:10px;">
+                            <a><img style="height:190px" id="ups_img" src="../images/ups_stop.gif"></a><br>
+                            <a class="ups_name">单相UPS</a>
+                        </div>
+                    </td>
+                    <td style="border-left:0;"><h4>输出</h4><br>
+                    	<table class="part2_tab">
+                          <tbody><tr>
+                            <td><a href="javascript:void(0)"><img src="../images/ups_img1.png"></a><br><a class="part_tit" href="javascript:void(0)">电压：<span id="out_vol">220</span>V</a></td>
+                            <td><a href="javascript:void(0)"><img src="../images/ups_img2.png"></a><br><a class="part_tit" href="javascript:void(0)">负载：<span id="upsfz">30.8</span>%</a></td>
+                           <td>&nbsp;<!--<a href="javascript:void(0)"><img src="../images/ups_img3.png" /></a><br><a class="part_tit"  href="javascript:void(0)">机内温度：<span>32.5°C</span></a>--></td>
+                            
+                          </tr>
+                        <!--  <tr>
+                             <td><a href="javascript:void(0)"><img src="../images/ups_img4.png" /></a><br><a class="part_tit"  href="javascript:void(0)">负载：<span>95%</span></a></td>
+                             <td><a href="javascript:void(0)"><img src="../images/ups_img4.png" /></a><br><a class="part_tit"  href="javascript:void(0)">负载：<span>95%</span></a></td>
+                             <td></td>
+                          </tr>-->
+                        </tbody></table>
+                    </td>
+                    <td align="left" style="vertical-align:top; padding-top:10px; width:120px; font-size:16px; color:#b6b6b6; border-right:0; font-family:'微软雅黑'; text-align:left; padding-left:15px; border-right:0"></td>
+                </tr>
+                <tr><td colspan="8" style="text-align:center; padding-bottom:15px;"><a onClick="parent.show_scs()" class="ttscs xd_next a_btn1" style=" background:url(../images/btn_bg.jpg) repeat-x;color:#fff; display:block; font-size:14px; color:#fff; margin-right:auto; margin-left:auto; height:31px; line-height:28px; text-align:center; width:80px;">设备信息</a></td></tr>
+                <tr class="cur_son_tab_btm" style="border-bottom:1px solid #f9f9f9;">
+                	<td style="vertical-align:top; padding-top:10px; width:60px; font-size:16px; color:#b6b6b6; border-right:0;"><h4>状态</h4></td>
+                   	<td colspan="3"></td>
+             
+                  	<td></td>
+                    <td></td>
+                    <td></td>
+					<td style="border-right:1px solid #d8d8d8; "></td>
+                </tr>
+                <tr class="cur_son_tab_btm">
+                	<td></td>
+                	<td colspan="7" style="border-right:1px solid #d8d8d8; ">
+                    	<!--输出开始-->
+                       <table class="part2_out">
+                          <tbody><tr>
+                            <td><span><img id="ups_acfalse" src="../images/ico_red.png"></span>市电状态</td>
+                            <td><span><img id="ups_work" src="../images/ico_gre.png"></span>旁路</td>
+                            <td><span><img id="ups_batlow" src="../images/ico_gre.png"></span>电池电压</td>
+							 <td><span><img id="ups_stats" src="../images/ico_gre.png"></span>故障状态</td>
+                            <td><span><img id="ups_shutdown" src="../images/ico_gre.png"></span>关机状态</td>
+                            <td><span><img id="ups_test" src="../images/ico_gre.png"></span>测试状态</td>
+							 <td><span><img id="ups_con" src="../images/ico_gre.png"></span>通讯状态</td>
+                          </tr>
+                        </tbody></table>
+                <!--输出结束-->
+                    </td>
+                </tr>
+				
+				  <tr class="cur_son_tab_btm" style="border-bottom:1px solid #f9f9f9;">
+                    <td colspan="10" style="border-left:1px solid #d8d8d8;">
+                   		<a class="ups_name" style="font-family:'微软雅黑'; font-size:16px; color:#b6b6b6;"><h4>单相电池</h4></a>
+                    </td>
+                   
+                </tr>
+			 <tr class="cur_son_tab_btm" style="  ">
+                	<td><img style="height:99px; margin:10px;" id="ups_4005_1" src="../images/sz_dc.gif"></td>
+                	<td colspan="7" style="border-right:1px solid #d8d8d8; ">
+                    		<!--电池状态开始-->
+                        <table class="part2_dc">
+                          <tbody><tr>
+                            <td align="right"><a><img src="../images/dcz_img1.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">电池电压</span><br><span class="p2_num"><span id="dcdl_81">220</span>V</span></td>
+                          <td align="right"><a><img src="../images/dcz_img2.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">电池温度</span><br><span class="p2_num"><span id="dcdl_83">28.45</span>°C</span></td>
+                         <td align="right"><a><img src="../images/dcz_img3.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">后备时间</span><br>
+                            <span class="p2_num"><span id="dcdl_85">34</span>分钟</span></td>
+                           <!-- 、*********》-->
+                           <td align="right"><span><img id="dcdl_80082" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">电压上限</td>
+                             <td align="right"><span><img id="dcdl_80083" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">电压下限</td>
+                             <td align="right"><span><img id="dcdl_80081" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">放电时间下限</td>
+                            <!---------------->
+                          </tr>
+                          <tr>
+                            <td align="right"><a><img src="../images/dcz_img4.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">总电流</span><br><span class="p2_num"><span id="dcdl_82">32.05</span>A</span></td>
+                          <td align="right"><a><img src="../images/dcz_img2.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">工作状态</span><br><span class="p2_num"><span id="dcdl_86">正常</span></span></td>
+                            <td align="right"><a><img src="../images/dcz_img3.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">剩余电量</span><br><span class="p2_num"><span id="dcdl_84">28.05</span>%</span></td>
+                            <!------------>
+                            <td align="right"><span><img id="dcdl_80085" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">电流上限</td>
+                            <td align="right"><span><img id="dcdl_80086" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">电流下限</td>
+                            <td align="right"><span><img id="dcdl_80084" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">电池电量断线</td>
+                          </tr>
+                        </tbody></table>
+            
+                <!--电池状太结束-->
+                    </td>
+                </tr>
+            </tbody></table>
+            </div>
+        <!--eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee---></li>
+	</ul>
+</div>
+</div>
+
+</body></html>

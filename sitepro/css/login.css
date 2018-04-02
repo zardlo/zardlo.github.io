@@ -1,0 +1,69 @@
+.login_bg {
+	background: rgb(255, 255, 255); margin: -250px 0px 0px -222px; left: 50%; top: 50%; width: 444px; height: 450px; color: rgb(149, 149, 149); position: absolute;
+}
+.login_logo {
+	background: url("../images/logo.png") no-repeat center; margin: 10px auto; width: 350px; height: 124px;
+}
+.user_txt {
+	margin: 0px auto; width: 90%; text-align: left; line-height: 30px;
+}
+.pwd_txt {
+	margin: 0px auto; width: 90%; text-align: left; line-height: 30px; padding-top: 10px;
+}
+.user_txt_style1 {
+	padding-left: 4px; font-size: 16px;
+}
+.username {
+	background: url("../images/login_input_bg.gif") no-repeat center; margin: 0px auto; padding: 2px 16px; border: 0px currentColor; width: 376px; height: 46px; line-height: 46px\9; display: block;
+}
+.userpwd {
+	background: url("../images/login_input_bg.gif") no-repeat center; margin: 0px auto; padding: 2px 16px; border: 0px currentColor; width: 376px; height: 46px; line-height: 46px\9; display: block;
+}
+.rememberpwd {
+	margin: 0px auto; padding: 10px 0px 20px; width: 88%;
+}
+.wj_pwd {
+	color: rgb(6, 134, 227); text-decoration: none; float: left; display: block;
+}
+.jz_pwd_info {
+	float: right;
+}
+.jz_pwd_info_txt {
+	line-height: 8px;
+}
+.user_btn {
+	background: url("../images/login_btn.gif") no-repeat center; margin: 0px auto; border: 0px currentColor; width: 406px; height: 48px; line-height: 48px; text-indent: -9999px; display: block; cursor: pointer;
+}
+.user_btn_en {
+	background: url("../images/login_btn_en.gif") no-repeat center; margin: 0px auto; border: 0px currentColor; width: 406px; height: 48px; line-height: 48px; text-indent: -9999px; display: block; cursor: pointer;
+}
+.uncheckbox {
+	
+}
+.footer {
+	width: 100%; position: relative;
+}
+.footer_info {
+	left: 0px; width: 100%; text-align: center; bottom: -100px; color: rgb(241, 241, 241); font-size: 14px; position: absolute;
+}
+.focus.input {
+	
+}
+.return_btn {
+	background: url("../images/login_return_bg.gif") no-repeat center; width: 152px; text-align: center; color: rgb(255, 255, 255); line-height: 48px; font-size: 14px; text-decoration: none; margin-bottom: 23px; margin-left: 30px; float: left; display: block; _display: inline;
+}
+.next_btn {
+	background: url("../images/login_next_bg.gif") no-repeat center; width: 152px; text-align: center; color: rgb(255, 255, 255); line-height: 48px; font-size: 14px; text-decoration: none; margin-right: 30px; margin-bottom: 23px; float: right; display: block; _display: inline;
+}
+.return_btn2 {
+	background: url("../images/login_return_bg.gif") no-repeat center; margin: 0px auto 144px; width: 152px; text-align: center; color: rgb(255, 255, 255); line-height: 48px; font-size: 14px; text-decoration: none; display: block; _display: inline;
+}
+.gx_content {
+	margin: 0px auto; padding: 140px 0px 60px; width: 90%;
+}
+.style3 {
+	color: rgb(255, 102, 51); font-size: 16px;
+}
+.style4 {
+	font-size: 15px;
+}

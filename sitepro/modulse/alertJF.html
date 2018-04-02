@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<link href="../css/static.css" rel="stylesheet" type="text/css" />
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css" />
+<link href="css/map.css" rel="stylesheet" />
+<link href="css/move.css"  rel="stylesheet" type="text/css" />
+<script src="js/jquery.js" type="text/javascript"></script>
+<script src="js/computer_graphics2.js" type="text/javascript"></script>
+<script type="text/javascript" src="js/mappop.js" ></script>
+
+<script src="js/move.js"></script>
+<!--[if IE 6]>
+<script src="DD_belatedPNG_0.0.8a.js"></script>
+    <script type="text/javascript">
+    DD_belatedPNG.fix('img');
+    </script> 
+<![endif]-->  
+</head>
+
+<body style="background:#fff; ">
+<!--动力系统顶部开始-->
+<div class="xd_top">
+<a class="xd_bnt" href="javascript:history.go(-1)">返回</a>
+<a class="xd_tit" >主页设置</a>
+</div>
+<!--动力系统顶部结束-->
+<!--内容开始-->
+<div class="dl_info" style="height:auto; padding-top:50px;" >
+<div class="panel">
+	<div class="panel-title">
+		<a class="a_btn1" href="map.html" >保存</a>
+	</div>
+	<div class="tips">
+		<div class="tip red ttop right">
+		<span>漏水<img class="del" src="images/map/del.png" /></span>
+			<div class="box ls">
+				<div class="content">
+					<table>
+							<tr>
+								<th colspan="2">
+									漏水
+								</th>
+							</tr>
+							<tr>
+								<td>检测状态:</td>
+								<td><span>告警</span></td>
+							</tr>
+							<tr>
+								<td>连接状态:</td>
+								<td><span>告警</span><br /></td>
+							</tr>
+						</table>
+				</div>
+			</div>	
+		</div>
+		<!--tip-->
+		<div class="tip red ttop right">
+		<span>烟感<img class="del" src="images/map/del.png" /></span>
+			<div class="box yg">
+				<div class="content">
+					<table  style="">
+							<tr>
+								<th colspan="2">
+									烟感
+								</th>
+							</tr>
+							<tr>
+								<td>检测状态:</td>
+								<td><span>告警</span></td>
+							</tr>
+							<tr>
+								<td>连接状态:</td>
+								<td><span>告警</span><br /></td>
+							</tr>
+						</table>
+				</div>
+			</div>	
+		</div>
+		<!--tip-->
+		<div class="tip red ttop right">
+		<span>精密空调<img class="del" src="images/map/del.png" /></span>
+			<div class="box jmkt">
+				<div class="content">
+					<table>
+							<tr>
+								<th colspan="2">
+									精密空调3
+								</th>
+							</tr>
+							<tr>
+								<td>室内温度:</td>
+								<td><span>23.41</span>℃</td>
+								<td>室内湿度:</td>
+								<td><span>43.47</span>%</td>
+							</tr>
+							<tr>
+								<td>关机温度:</td><td><span>0.41</span>℃</td>
+								<td>关机湿度:</td><td><span>0.20</span>%</td>
+							</tr>
+							<tr>
+								<td>回风温度:</td><td><span>22.11</span>℃</td>
+								<td>回风湿度:</td><td><span>55.70</span>%</td>
+							</tr>
+							<tr>
+								<td>送风温度:</td><td><span>22.98</span>℃</td>
+								<td>送风湿度:</td><td><span>56.40</span>%</td>
+							</tr>
+						</table>
+				</div>
+			</div>	
+		</div>
+		<!--tip-->
+		<div class="tip red ttop right">
+		<span>精密配电<img class="del" src="images/map/del.png" /></span>
+			<div class="box jmpd">
+				<div class="content">
+					<table>
+							<tr>
+								<th colspan="4">
+									精密配电
+								</th>
+							</tr>
+							<tr>
+								<td>A相电压:</td><td><span>233</span>V</td>
+								<td>A相电流:</td><td><span>2.01</span>A</td>
+							</tr>
+							<tr>
+								<td>B相电压:</td><td><span>233</span>V</td>
+								<td>B相电流:</td><td><span>2.01</span>A</td>
+							</tr>
+							<tr>
+								<td>C相电压:</td><td><span>233</span>V</td>
+								<td>C相电流:</td><td><span>2.01</span>A</td>
+							</tr>
+						</table>
+				</div>
+			</div>	
+		</div>
+		<!--tip-->
+		<div class="tip green ttop right">
+		<span>UPS<img class="del" src="images/map/del.png" /></span>
+			<div class="box ups">
+				<div class="content">
+				<table style="">
+							<tr>
+								<th colspan="4">
+									UPS
+								</th>
+							</tr>
+							<tr>
+								<td>输入电压:</td>
+								<td>A&nbsp;<span>233.16</span>V</td>
+								<td>B&nbsp;<span>220.86</span>V</td>
+								<td>C&nbsp;<span>230.06</span>V</td>
+							</tr>
+							<tr>
+								<td>输出电压:</td>
+								<td>A&nbsp;<span>219.50</span>V</td>
+								<td>B&nbsp;<span>198.69</span>V</td>
+								<td>C&nbsp;<span>241.60</span>V</td>
+							</tr>
+							<tr>
+								<td>输出电流:</td>
+								<td>A&nbsp;<span>20.01</span>A</td>
+								<td>B&nbsp;<span>29.01</span>A</td>
+								<td>C&nbsp;<span>11.01</span>A</td>
+							</tr>
+						</table>
+				</div>
+			</div>	
+		</div>
+		<!--tip-->
+	   <div class="tip red ttop right">
+		<span>温湿度<img class="del" src="images/map/del.png" /></span>
+			<div class="box wsd">
+				<div class="content">
+					<table>
+							<tr>
+								<th colspan="2">
+									温湿度
+								</th>
+							</tr>
+							<tr>
+								<td>温&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度</td>
+								<td>：<span>23.3</span>℃</td>
+							</tr>
+							<tr>
+								<td>湿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度</td>
+								<td>：<span>56</span>%</td>
+							</tr>
+							<tr>
+								<td>连接状态</td>
+								<td>：<span>正常</span></td>
+							</tr>
+						</table>
+				</div>
+			</div>	
+		</div>
+		<!--tip-->
+			<div class="tip green ttop right">
+		<span>新风机开关检测<img class="del" src="images/map/del.png" /></span>
+			<div class="box xfj">
+				<div class="content">
+					<table>
+							<tr>
+								<th colspan="2">
+									新风机开关检测
+								</th>
+							</tr>
+							<tr>
+								<td>检测状态:</td>
+								<td><span>正常</span></td>
+							</tr>
+							<tr>
+								<td>连接状态:</td>
+								<td><span>正常</span><br /></td>
+							</tr>
+						</table>
+				</div>
+			</div>	
+		</div>
+		<!--tip-->
+	</div>	
+	<div class="pic">
+		<img src="../images/mapindex.jpg"  id="bgpic"/>
+	<!--pic-->	
+	</div>		
+</div>
+</div>
+<!--内容结束-->
+</body>
+</html>

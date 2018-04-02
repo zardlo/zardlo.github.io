@@ -1,0 +1,978 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>动力系统</title>
+<link href="../css/index.css" rel="stylesheet" type="text/css">
+<link href="../css/static.css" rel="stylesheet" type="text/css">
+<link href="../css/jmpd.css" rel="stylesheet" type="text/css">
+<script src="../js/jquery.js" type="text/javascript"></script>
+<style>
+body {
+	background: #FFF;
+}
+.newpd td{ text-align:center}
+.newpd td.cin{ background:#eee}
+.newpd td span{ float:none}
+</style>
+</head>
+<body>
+<div class="navcon"> <a class="active">三相配电</a><a>普通配电</a><a>精密配电</a> </div>
+<div class="content_info"> 
+  <!--第一块开始-->
+  <div class="dl_content_info" style="padding:20px;">
+    <table style="background-color:#FFF" class="pd_info_tab">
+      <tbody>
+        <tr>
+          <td width="20%" valign="middle" bgcolor="#dfdfdf" align="center" rowspan="3"><a href="javascript:;"><img border="0" src="../images/device/3xpd.png" id="pd_5_1" style="height:200px;"></a><br>
+            三相普通配电<br>
+            <a onClick="parent.parent.parent.show_scs()" class="a_btn1">设备信息</a><br>
+            设备连线:<img src="../images/ico_gre.png" id="dis_80031"></td>
+          <td valign="top" style="padding-left:30px;"><table class="pd_info_tab_1">
+              <tbody>
+                <tr>
+                  <td align="left" rowspan="4"><img border="0" src="../images/pd_value1.jpg"></td>
+                  <td align="left">三相平均相电压:<span id="dis_8301" class="green">N/A</span><span id="unit_8301" style="display: none;">V</span></td>
+                  <td align="left">电压输入范围:<span id="dis_8316" class="green">N/A</span><span id="unit_8316" style="display: none;">V</span></td>
+                  <td align="left">光亮强度:<span id="dis_8319" class="green">1.00</span></td>
+                </tr>
+                <tr>
+                  <td align="left">三相平均相电流:<span id="dis_8303" class="green">N/A</span><span id="unit_8303" style="display: none;">A</span></td>
+                  <td align="left">本机地址:<span id="dis_8313" class="green">1.00</span></td>
+                  <td align="left">频率:<span id="dis_8304" class="green">N/A</span><span id="unit_8304" style="display: none;">HZ</span></td>
+                </tr>
+                <tr>
+                  <td align="left">接线模式:<span id="dis_8314" class="green">N/A</span></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table></td>
+        </tr>
+        <tr>
+          <td style="padding-left:30px;"><table class="pd_info_tab_2">
+              <tbody>
+                <tr class="tab_header_bg">
+                  <th align="left"><strong></strong></th>
+                  <th align="left"><strong>A相</strong></th>
+                  <th align="left"><strong>B相</strong></th>
+                  <th align="left"><strong>C相</strong></th>
+                  <th align="left"><strong>三相</strong></th>
+                </tr>
+                <tr>
+                  <td align="left">电压(V)</td>
+                  <td align="left"><span id="dis_8277" class="green">1.30</span></td>
+                  <td align="left"><span id="dis_8285" class="green">88.80</span></td>
+                  <td align="left"><span id="dis_8293" class="green">11.59</span></td>
+                  <td align="left"><span class="green"></span></td>
+                </tr>
+                <tr>
+                  <td align="left">电流(A)</td>
+                  <td align="left"><span id="dis_8279" class="green">2.22</span></td>
+                  <td align="left"><span id="dis_8287" class="green">1.23</span></td>
+                  <td align="left"><span id="dis_8295" class="green">1.17</span></td>
+                  <td align="left"><span class="green"></span></td>
+                </tr>
+                <tr>
+                  <td align="left">有功功率(KW)</td>
+                  <td align="left"><span id="dis_8281" class="green">177.60</span></td>
+                  <td align="left"><span id="dis_8289" class="green">44.79</span></td>
+                  <td align="left"><span id="dis_8297" class="green">48.00</span></td>
+                  <td align="left"><span id="dis_8305" class="green">N/A</span></td>
+                </tr>
+                <tr>
+                  <td align="left">无功功率(KVar)</td>
+                  <td align="left"><span id="dis_8283" class="green">266.39</span></td>
+                  <td align="left"><span id="dis_8291" class="green">145.59</span></td>
+                  <td align="left"><span id="dis_8299" class="green">48.79</span></td>
+                  <td align="left"><span id="dis_8307" class="green">N/A</span></td>
+                </tr>
+                <tr>
+                  <td align="left">视在功率(KVA)</td>
+                  <td align="left"><span id="dis_8284" class="green">155.39</span></td>
+                  <td align="left"><span id="dis_8292" class="green">23.00</span></td>
+                  <td align="left"><span id="dis_8300" class="green">N/A</span></td>
+                  <td align="left"><span id="dis_8308" class="green">N/A</span></td>
+                </tr>
+                <tr>
+                  <td align="left">功率因数</td>
+                  <td align="left"><span id="dis_8282" class="green">122.05</span></td>
+                  <td align="left"><span id="dis_8290" class="green">0.01</span></td>
+                  <td align="left"><span id="dis_8298" class="green">0.01</span></td>
+                  <td align="left"></td>
+                </tr>
+                <tr>
+                  <td align="left">线电压(V)</td>
+                  <td align="left">Uca <span id="dis_8278" class="green">41.10</span></td>
+                  <td align="left">Uab <span id="dis_8286" class="green">99.89</span></td>
+                  <td align="left">Ubc <span id="dis_8294" class="green">11.69</span></td>
+                  <td align="left"></td>
+                </tr>
+              </tbody>
+            </table></td>
+        </tr>
+        <tr>
+          <td valign="bottom" style="padding-left:30px;"><table class="pd_info_tab_3">
+              <tbody>
+                <tr>
+                  <td align="left">三相总功率因数:<span id="dis_8306" class="green">0.01</span></td>
+                  <td align="left">正向有功电能:<span id="dis_8309" class="green">133.00</span><span id="unit_8309">KWh</span></td>
+                  <td align="left">负向有功电能:<span id="dis_8310" class="green">135.00</span><span id="unit_8310">KWh</span></td>
+                  <td align="left">PT:<span id="dis_8317" class="green">10.00</span></td>
+                </tr>
+                <tr>
+                  <td align="left">三相平均线电压:<span id="dis_8302" class="green">N/A</span><span id="unit_8302" style="display: none;">V</span></td>
+                  <td align="left">正向无功电能:<span id="dis_8311" class="green">N/A</span><span id="unit_8311" style="display: none;">Kvarh</span></td>
+                  <td align="left">负向无功电能:<span id="dis_8312" class="green">139.00</span><span id="unit_8312">Kvarh</span></td>
+                  <td align="left">CT:<span id="dis_8318" class="green">100.00</span></td>
+                </tr>
+              </tbody>
+            </table></td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+  <!--第一块结束--> 
+  
+  <!--第二块开始-->
+  <div class="dl_content_info" style="display:none">
+    <div class="cen_div" style="padding:20px;">
+      <div class="D_DLY"> 
+        <!--表格开始-->
+        <div class="D_dlytab">
+          <table class="D_dlytab1">
+            <tbody>
+              <tr> </tr>
+              <tr>
+                <td class="D_dlytit">CT:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8262">1</span><span></span></td>
+                <td class="D_dlytit">通讯地址:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8263">28.05</span><span></span></td>
+                <td class="D_dlytit">波特率:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8264">38.05</span><span>bps </span></td>
+              </tr>
+              <tr>
+                <td class="D_dlytit">电流:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8265">28.05</span><span>A</span></td>
+                <td class="D_dlytit">电压:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8266">410.00</span><span>V</span></td>
+                <td class="D_dlytit">有功功率:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8267">28.05</span><span>W</span></td>
+              </tr>
+              <tr>
+                <td class="D_dlytit">无功功率:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8268">26.85</span><span>Var</span></td>
+                <td class="D_dlytit">功率因数:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8269">28.05</span><span></span></td>
+                <td class="D_dlytit">频率:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8270">58.00</span><span>HZ</span></td>
+              </tr>
+              <tr>
+                <td class="D_dlytit">总有功电能:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8271">27.05</span><span>KWH</span></td>
+                <td class="D_dlytit">输入有功电能:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8272">21.05</span><span>KWH</span></td>
+                <td class="D_dlytit">输出有功电能:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8273">22.02</span><span>KWH</span></td>
+              </tr>
+              <tr>
+                <td class="D_dlytit">视在功率:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><span id="8275">27.05</span><span>VA</span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="D_dlytab1 D_dlytab2">
+            <tbody>
+              <tr> </tr>
+              <tr>
+                <td class="D_dlytit">电流状态:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><img src="../images/ico_gre.png" id="88197"></td>
+                <td class="D_dlytit">电压状态:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><img src="../images/ico_gre.png" id="88198"></td>
+              </tr>
+              <tr>
+                <td class="D_dlytit">频率状态:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><img src="../images/ico_gre.png" id="88199"></td>
+                <td class="D_dlytit">通讯状态:</td>
+                <td style="border-top:#d8d8d8 solid 1px;"><img src="../images/ico_gre.png" id="80031"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!--表格结束--> 
+        <!--图片开始-->
+        <div style="text-align:center" class="D_img"><img src="../images/device/dxpd.png" style="width:200px">
+          <div class="D_imgtit">单相配电</div>
+          <div style="text-align:center; padding-bottom:15px; padding-top:10px;"><a class="a_btn1" onClick="parent.parent.parent.show_scs()">设备信息</a><br>设备连线:<img src="../images/ico_gre.png"></div>
+        </div>
+        <!--图片结束--> 
+      </div>
+    </div>
+  </div>
+  <!--第二块结束--> 
+  
+  <!--第三块开始-->
+  <div class="dl_content_info" style="display:none">
+    <div class="cen_div" style="padding-bottom:20px;">
+      <div class="content" style="padding:20px">
+        <div class="jmpd fixed">
+          <div class="jmpd_left"> <img src="../images/device/jmpd.png" id="pd_30_4" style="height:250px;"><br>
+            <h3>精密配电</h3>
+            <div style="text-align:center; padding-bottom:15px; padding-top:10px;"><a class="a_btn1" onClick="parent.parent.parent.show_scs()">设备信息</a><br>设备连线:<img src="../images/ico_gre.png"></div>
+          </div> 
+          <table class="jmpd_box">
+            <tbody>
+              <tr class="toptr">
+                <td class="actd"><div class="jmpd_top">主路</div></td>
+                <td><div class="jmpd_top">1-10 路</div></td>
+                <td><div class="jmpd_top">11-20 路</div></td>
+                <td><div class="jmpd_top">21-30 路</div></td>
+                <td><div class="jmpd_top">31-42 路</div></td>
+              </tr>
+              <tr class="trcon">
+                <td style="border:none" colspan="5"><!--主路-->
+                  
+                  <table style="display: table;">
+                    <tbody>
+                      <tr class="kh_title">
+                        <td colspan="4">主路参数</td>
+                      </tr>
+                      <tr> </tr>
+                      <tr>
+                        <td><span>A</span><span id="4096">23.00</span>额定电流:</td>
+                        <td><span></span><span id="4097">28.00</span>电流变比 CT:</td>
+                        <td><span></span><span id="4098">32.50</span>电压变比 PT:</td>
+                      </tr>
+                      <tr class="kh_title">
+                        <td colspan="4">主路数据</td>
+                      </tr>
+                      <tr> </tr>
+                      <tr>
+                        <td colspan="4"><table class="newpd">
+                            <tbody>
+                              <tr>
+                                <td width="15%" class="cin"></td>
+                                <td class="cin">电流(A)</td>
+                                <td class="cin">电压(V)</td>
+                                <td class="cin">功率因数</td>
+                                <td class="cin">有功功率(W)</td>
+                                <td class="cin">无功功率(var)</td>
+                              </tr>
+                              <tr>
+                                <td class="cin">A相</td>
+                                <td><span>25.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">B相</td>
+                                <td><span>24.00</span></td>
+                                <td><span>24.30</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">C相</td>
+                                <td><span>35.00</span></td>
+                                <td><span>23.60</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                              </tr>
+                            </tbody>
+                          </table></td>
+                      </tr>
+                      <tr>
+                        <td><span>V</span><span id="4105">24.04</span>线电压Uab:</td>
+                        <td><span>V</span><span id="4106">32.00</span>线电压Ubc:</td>
+                        <td><span>V</span><span id="4107">29.50</span>线电压Uca:</td>
+                        <td><span>Hz</span><span id="4117">34.50</span>频率:</td>
+                      </tr>
+                    
+                      <tr>
+                        <td><span>Hz</span><span id="4117">34.50</span>频率:</td>
+                        <td><span>Wh</span><span id="4118">32.08</span>有功电能:</td>
+                      </tr>
+                      <tr class="kh_title">
+                        <td colspan="4">主路谐波</td>
+                      </tr>
+                      <tr> </tr>
+                      <tr>
+                        <td><span>%</span><span id="4119">36.70</span>THD I1:</td>
+                        <td><span>%</span><span id="4120">31.00</span>THD I2:</td>
+                        <td><span>%</span><span id="4121">28.00</span>THD I3:</td>
+                        <td><span>%</span><span id="4122">24.70</span>THD V1:</td>
+                      </tr>
+                      <tr>
+                        <td><span>%</span><span id="4123">26.40</span>THD V2:</td>
+                        <td><span>%</span><span id="4124">26.10</span>THD V3:</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                  <!--end主路--> 
+                  <!--1-10-->
+                  
+                    <table class="newpd" style="display: none;">
+                            <tbody>
+                              <tr>
+                                <td class="cin" style="width:32px;">支路</td>
+                                <td class="cin">MCB</td>
+                                <td class="cin">电源(A)</td>
+                                <td class="cin">功率因数</td>
+                                <td class="cin">有功功率(W)</td>
+                                <td class="cin">无功功率(var)</td>
+                                <td class="cin">有功需量(W)</td>
+                                <td class="cin">最大有功需量(W)</td>
+                                <td class="cin">有功电度(Kwh)</td>
+                                <td class="cin">无功电度(Kvarh)</td>
+                                <td class="cin">报警</td>
+                              </tr>
+                              <tr>
+                                <td class="cin">1</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">2</td>
+                                <td><span style="color:#F00">ON</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">3</td>
+                                <td><span style="color:#686868">NC</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_orange.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">4</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">5</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">6</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">7</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr><tr>
+                                <td class="cin">8</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">9</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">10</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                            </tbody>
+                  </table>
+                  
+                  <!--end1-10--> 
+                  
+                  <!--11-20-->
+                  
+                    <table class="newpd" style="display: none;">
+                            <tbody>
+                              <tr>
+                                <td class="cin" style="width:32px;">支路</td>
+                                <td class="cin">MCB</td>
+                                <td class="cin">电源(A)</td>
+                                <td class="cin">功率因数</td>
+                                <td class="cin">有功功率(W)</td>
+                                <td class="cin">无功功率(var)</td>
+                                <td class="cin">有功需量(W)</td>
+                                <td class="cin">最大有功需量(W)</td>
+                                <td class="cin">有功电度(Kwh)</td>
+                                <td class="cin">无功电度(Kvarh)</td>
+                                <td class="cin">报警</td>
+                              </tr>
+                              <tr>
+                                <td class="cin">11</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">12</td>
+                                <td><span style="color:#F00">ON</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">13</td>
+                                <td><span style="color:#686868">NC</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_orange.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">14</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">15</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">16</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">17</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr><tr>
+                                <td class="cin">18</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">19</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">20</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                            </tbody>
+                  </table>
+                  
+                  <!--end11-20-->
+                  
+                  <!--21-30-->
+                  
+                    <table class="newpd" style="display: none;">
+                            <tbody>
+                              <tr>
+                                <td class="cin" style="width:32px;">支路</td>
+                                <td class="cin">MCB</td>
+                                <td class="cin">电源(A)</td>
+                                <td class="cin">功率因数</td>
+                                <td class="cin">有功功率(W)</td>
+                                <td class="cin">无功功率(var)</td>
+                                <td class="cin">有功需量(W)</td>
+                                <td class="cin">最大有功需量(W)</td>
+                                <td class="cin">有功电度(Kwh)</td>
+                                <td class="cin">无功电度(Kvarh)</td>
+                                <td class="cin">报警</td>
+                              </tr>
+                              <tr>
+                                <td class="cin">21</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">22</td>
+                                <td><span style="color:#F00">ON</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">23</td>
+                                <td><span style="color:#686868">NC</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_orange.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">24</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">25</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">26</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">27</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr><tr>
+                                <td class="cin">28</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">29</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">30</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                            </tbody>
+                  </table>
+                  
+                  <!--end21-30-->
+                  
+                  <!--31-42-->
+                  
+                    <table class="newpd" style="display: none;">
+                            <tbody>
+                              <tr>
+                                <td class="cin" style="width:32px;">支路</td>
+                                <td class="cin">MCB</td>
+                                <td class="cin">电源(A)</td>
+                                <td class="cin">功率因数</td>
+                                <td class="cin">有功功率(W)</td>
+                                <td class="cin">无功功率(var)</td>
+                                <td class="cin">有功需量(W)</td>
+                                <td class="cin">最大有功需量(W)</td>
+                                <td class="cin">有功电度(Kwh)</td>
+                                <td class="cin">无功电度(Kvarh)</td>
+                                <td class="cin">报警</td>
+                              </tr>
+                              <tr>
+                                <td class="cin">31</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">32</td>
+                                <td><span style="color:#F00">ON</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">33</td>
+                                <td><span style="color:#686868">NC</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_orange.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">34</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">35</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">36</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">37</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr><tr>
+                                <td class="cin">38</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">39</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">40</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">41</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                              <tr>
+                                <td class="cin">42</td>
+                                <td><span style="color:#17bc55">OFF</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>19.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><span>0.00</span></td>
+                                <td><img src="../images/ico_gre.png"></td>
+                              </tr>
+                            </tbody>
+                  </table>
+                  
+                  <!--end31-42-->
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <!--padding div开始--> 
+      </div>
+    </div>
+  </div>
+  <!--第三块结束--> 
+</div>
+<script>
+$(function(){
+$(".navcon a").click(function(){//切换
+   $(this).siblings().removeClass("active").end().addClass("active");
+   $(".dl_content_info").hide().eq($(this).index()).show()
+   
+})
+$(".jmpd_box>tbody>tr.toptr>td").click(function(){//精密配电切换
+	$(this).addClass("actd").siblings("td").removeClass("actd")
+	$(".trcon>td").children("table").hide().eq($(this).index()).show();
+	
+})
+
+})
+</script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css" />
+<script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+<script>
+function href_page(page)
+{
+	var num =$("#num").val();
+	if(num>=6)
+	{
+		alert("最多添加5个用户！");
+		return false;
+	}
+	location.href=page;
+}
+</script>
+</head>
+<style type="text/css">
+body{ overflow-x:hidden;}
+</style>
+<body>
+
+<div class="xd_sz_content">
+  <table class="xd_sz1_tab">
+    <tr>
+    <td width="50%" valign="top" style="border-right:solid 1px #d8d8d8; padding-top:20px; padding-bottom:20px;">
+            	<ul class="sz2_user_set fixed" style="padding-top:10px; padding-bottom:10px; border-bottom:#ddd solid 1px; width:100%">
+                	<li><span class="administrate">超级管理账户：</span></li>
+                    <li><span class="userNmae">Admin</span></li>
+                    <li><a href="user_config.html?id=1" class="user_xg a_btn1">管&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;理</a></li>
+                  
+                </ul> <ul class="sz2_user_set fixed" style="padding-top:10px; padding-bottom:10px;width:100%">
+                 <li><span class="administrate">巡检人员账户：</span></li>
+                    <li><span class="userNmae">User</span></li>
+                    <li><a href="user_config1.html?id=1" class="user_xg a_btn1">管&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;理</a></li>
+                     </ul>
+            </td>
+          
+                    </tr>
+    </table>
+    <input type="hidden" id="num" value="1" />
+    <!---第一步骤结束--->
+   
+</div>
+ <!---上下步的步骤开始--->
+    <div class="xd2_bz">
+    	<div class="xd2_prev"><a  href="user_list1.html" target="xd_iframe"  class="xd_prev a_btn2">上一步</a></div>
+        <div class="xd2_center"><a href="javascript:;" onclick="href_page('user_add.html')"  class="xd_next a_btn1">添加用户</a></div>
+    	<div class="xd2_next"><a href="network_set.html" target="xd_iframe" class="xd_next a_btn1">下一步</a></div>
+    </div>
+    <!---上下步的步骤结束--->
+
+
+</body>
+</html>

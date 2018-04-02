@@ -1,0 +1,280 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css" />
+<script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript" src="SoftKey/vk_loader.js?vk_layout=CN%20Chinese%20Simpl.%20Pinyin&vk_skin=flat_gray" ></script>
+<script type="text/javascript" src="../js/WdatePicker.js"></script>
+<script>
+lan="cn";
+$(function(){
+	if($("input[name='cbx1']").attr("checked")=="checked"){
+			$(".net_q2").show()
+			show_numa();
+		}else{
+			$(".net_q2").hide()	
+			$(".add_times").hide()
+		}
+	$("#name").bind("keyup blur",function(){
+		
+		var oldname=$("#oldname").val()==undefined?"":$("#oldname").val();//取修改时的原名
+		var type='uname';
+		$.ajax({
+			url:'ajax/user_ajax.php',
+			type:'post',
+			dataType:'text',
+			data:{target:'checkname',type:type,name:$(this).val(),oldname:oldname},
+			cache:false,
+			success:function(data){
+				
+				if(data==1)
+				{
+					$("#name_val").val(1);
+					$("#span_name").html('<font color="red">此帐号已存在！</font>');
+					return false;
+				}else
+				{
+					$("#name_val").val(0);
+					$("#span_name").html('');
+				}
+			}
+		});
+		
+	});
+	$("input[name='cbx1']").click(function(){
+		if($(this).attr("checked")=="checked"){
+			$(".net_q2").show()
+show_numa();
+		}else{
+			$(".net_q2").hide()
+			$(".add_times").hide()
+
+		}
+	})
+	//选择次数
+	$("#sel_num").change(function(){
+			show_numa();
+	})
+	
+})
+
+function show_numa(){
+		var t=$("#sel_num").val()
+		$(".xgzh_tab>tbody>tr.add_times").each(function(i){
+			if(i<t){
+				$(this).show()	
+			}else{
+				$(this).hide()
+			}
+		})	
+}
+function btn_add()
+{
+	var name= $("#name").val();
+	var pwd= $("#pwd").val();
+	var cpwd= $("#cpwd").val();
+	var nval=$("#name_val").val();
+	if(nval==1)
+	{
+		alert("此帐号已存在！");
+		return  false;
+	}
+	if(name.length==0)
+	{
+		alert("账号不能为空！");
+		$("#name").focus();
+		return false;
+	}
+	if(name_function('name')==false)
+	{
+		return false;
+	}
+	if(pwd.length==0)
+	{
+		alert("密码不能为空！");
+		$("#pwd").focus();
+		return false;
+	}
+	if(cpwd.length==0)
+	{
+		alert("密码不能为空！");
+		$("#cpwd").focus();
+		return false;
+	}
+	if(pwd!=cpwd)
+	{
+		alert("密码输入不一致！");
+		$("#cpwd").focus();
+		return false;
+	}
+	if(phone_function('tel')==false)
+	{
+		return false;
+	}
+	var tel=$("#tel").val();
+	if(tel.length==0)
+	{
+		alert("手机号码不能为空！");
+		$("#tel").focus();
+		return false;
+	}
+	//提交表单
+	$.ajax({
+			type:"POST",
+			url:'dev_add/Basic_set_form.php',
+			dateType:'html',
+			data:$('#formid').serialize(),
+			cache:false,
+			async:false,
+			success: function(msg)
+			{
+				if(msg==1)
+				{
+					alert("设置成功！");
+					location.href='user_list.php';
+				}
+				else if(msg==2)
+				{
+					alert('此帐号已存在！');
+					$("#name").select();
+					return false;
+				}
+				else
+				{
+					alert("设置出错！");
+					return false;
+				}
+			}
+	})
+}
+//////名称/////
+function name_function(id)
+{
+		var val=$("#"+id).val();
+		if(val=='')//为空
+		{
+			alert("名称不能为空");
+			$("#"+id).focus();
+			return false;
+		}
+		var preg=/^[\w|\u4e00-\u9fa5]+$/;
+		if(!preg.test(val))
+		{
+			
+				alert('含有非法字符！');
+				
+			
+			$("#"+id).focus();
+			return false;
+		}
+	
+		if(val.length>6)
+		{
+			
+			
+				alert('账号不能大于6个字符');
+				
+			
+			$("#"+id).focus();
+			return false;
+		}
+		
+		
+}
+//////电话//////
+function phone_function(id)
+{
+		var val=$("#"+id).val();
+		
+	if(lan=='cn')
+	{
+		if(val.substr(0,1)=='+')
+		{
+			
+			if(!( /^([0-9,+]{14})?$/.test(val)) )
+			{
+				alert('号码输入错误');
+				$("#"+id).focus();
+				return false; 	
+			}
+		}else
+		{
+			if(!( /^(\+?)+([0-9]{11})?$/.test(val)) )
+			{ 
+				alert('号码输入错误');
+				$("#"+id).focus();
+				return false; 	
+			}
+		}
+	}
+	else
+		{
+			if(!( /^[0-9,+]*$/.test(val)) || val.length>30)
+			{
+					alert('号码输入错误');
+					$("#"+id).focus();
+					return false; 	
+			}
+		}
+}
+</script>
+</head>
+<style type="text/css">
+body{ overflow-x:hidden;}
+</style>
+<body>
+<!---页面内容开始-->
+<div class="xd_sz_content" >
+	<form action="" enctype="multipart/form-data" method="post" id="formid" style="padding-top:15px;">
+    <div  style="border-bottom:solid 1px #d8d8d8; padding-bottom:15px;">
+  	<table class="xgzh_tab">
+    <tr>
+        	<td height="38" align="right">权&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;限：&nbsp;</td>
+            <td align="left"><input type="radio"  name="cbx" value="1" checked="checked"  style="margin-right:5px;"  />查看 <input type="radio" name="cbx" value="2"  style="margin-left:15px; margin-right:5px;"  />控制<input type="checkbox" name="cbx1"  style="margin-left:15px; margin-right:5px;"  />巡检</td>
+        </tr>
+    	<tr class="net_q1">
+        	<td width="40%" height="38" align="right">登录账号：&nbsp;</td>
+            <td  align="left"><input  type="text" id="name" name="name" class="dx_txt" style="width:20%;"  /><span id="span_name"></span></td>
+        </tr>
+        <tr  class="net_q1">
+        	<td height="38" align="right">登录密码：&nbsp;</td>
+ 
+            <td align="left"><input type="password" class="dx_txt" id="pwd" name="pwd"  style="width:20%;" /></td>
+        </tr>
+         <tr  class="net_q1">
+        	<td height="38" align="right">确认密码：&nbsp;</td>
+
+            <td align="left"><input type="password" class="dx_txt" id="cpwd" name="cpwd"  style="width:20%;" /></td>
+        </tr>
+         
+        <tr  class="net_q1">
+        	<td height="38" align="right">绑定手机号码：&nbsp;</td>
+            <td align="left"><input type="text" class="dx_txt" id="tel" name="tel" style="width:20%;" /></td>
+        </tr>
+  
+             <tr  class="net_q2">
+        	<td height="38" align="right">巡检周期：&nbsp;</td>
+
+            <td align="left">每天&nbsp;&nbsp;<select id="sel_num"><option value="1">1次</option><option value="2">2次</option><option value="3">3次</option></select>&nbsp;次&nbsp;&nbsp;</td>
+           
+        </tr>
+        
+        <tr class="add_times" style="display:none"><td  height="28">&nbsp;</td><td style="text-align:left"><input type="text" class="dx_txt" id="tel" name="tel" style="width:80px; float:none; display:inline"  onfocus="WdatePicker({dateFmt:'HH:MM'})" /> - <input type="text" class="dx_txt" id="tel" name="tel" style="width:80px; float:none;display:inline"  onfocus="WdatePicker({dateFmt:'HH:MM'})"/></td></tr>
+           <tr class="add_times" style="display:none"><td  height="28">&nbsp;</td><td style="text-align:left"><input type="text" class="dx_txt" id="tel" name="tel" style="width:80px; float:none; display:inline"  onfocus="WdatePicker({dateFmt:'HH:MM'})"/> - <input type="text" class="dx_txt" id="tel" name="tel" style="width:80px; float:none;display:inline"  onfocus="WdatePicker({dateFmt:'HH:MM'})"/></td></tr>
+              <tr class="add_times" style="display:none"><td  height="28">&nbsp;</td><td style="text-align:left"><input type="text" class="dx_txt" id="tel" name="tel" style="width:80px; float:none; display:inline"  onfocus="WdatePicker({dateFmt:'HH:MM'})"/> - <input type="text" class="dx_txt" id="tel" name="tel" style="width:80px; float:none;display:inline"  onfocus="WdatePicker({dateFmt:'HH:MM'})" /></td></tr>
+    </table>
+    </div>
+     <input type="hidden" name="btform" value="user_add" />
+      <div class="xd2_bz">
+    	<div class="xd2_prev"><a href="javascript:void(0)" target="xd_iframe" onclick="btn_add()"  class="xd_prev a_btn2">确认</a></div>
+    	<div class="xd2_next"><a href="user_list.html" target="xd_iframe" class="xd_next a_btn1">返回</a></div>
+    </div>
+    </form>
+    <input type="hidden" id="name_val" value="0" />
+</div>
+<!--页面内容结束-->
+</body>
+</html>

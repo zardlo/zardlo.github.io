@@ -1,0 +1,307 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>历史数据报表</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css">
+<script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script><link href="../My97DatePicker/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../js/SoftKey/vk_loader.js?vk_layout=CN%20Chinese%20Simpl.%20Pinyin&amp;vk_skin=flat_gray"></script>
+
+<script>
+lan="cn";
+function btn_form(){
+	document.getElementById('form1').submit();
+}
+function Onexport()
+{
+	location.href="export.php?type=real_alarm&level=0";
+}
+//关闭按钮
+function closediv()
+{
+	$("#detailed").remove();
+	$("#softkey").remove();
+	$('.AlertUps').hide().remove();
+}
+
+function select_content(id)
+{
+	$("#detailed").remove();
+	$.ajax({
+			type:"get",
+			url:'ajax/get_information.php?id='+id+'&type=real',
+			dateType:'html',
+			cache:false,
+			success: function(msg)
+			{
+				$("#detailed").html(msg);
+				if($(window).outerWidth(true)>1800){
+				$(document).bind("contextmenu",function(e){ return false;})
+				$("input[type='text'],input[type='password'],textarea").focus(function(){
+					if($(this).attr("rels"))
+					{
+						return false;
+					}
+					if($("#softkey").length>0){
+							VirtualKeyboard.toggle('txt_Search', 'softkey');
+							$("#softkey").remove();
+					}
+					if(typeof($(this).attr("id"))=="undefined"){
+						$(this).attr("id","ric"+(Math.random().toString()).replace(".",""))
+					}
+					 var l=$(this).offset().left
+					 var t=$(this).offset().top +$(this).outerHeight(true)+3
+					$("<div>",{"id":"softkey"}).css({"position":"absolute","left":l+"px","top":t+"px","zIndex":999}).appendTo("body")
+					var thisid=$(this).attr("id")
+					VirtualKeyboard.toggle(thisid, 'softkey');
+				}).blur(function(){
+						var thisid=$(this).attr("id")
+						VirtualKeyboard.toggle(thisid, 'softkey');
+						$("#softkey").remove();
+				})
+				}
+			},
+			error:function(){
+		$("#detailed").remove();
+		$("body").append('<div id="detailed"><a style="position:absolute; right:5px; top:2px; font-size:15px; line-height:15px; color:#4b4b4b;z-index:99999" onclick="$(\'#detailed\').remove();" href="javascript:void(0)">×</a><div class="AlertUps">'+
+	'	<form action="" enctype="multipart/form-data" method="post" id="formid">'+
+	'	<a href="javascript:void(0);" onclick="closediv()" class="Alert_close"></a>'+
+		'<table class="Alert_content Alert_content1" style="width:600px;font-size:12px;color: #959595; ">'+
+		'<tbody><tr>'+
+      '  	<td style="width:80px;">设备名称</td><td>告警事件</td><td>发生时间</td><td>处理人</td><td>确认时间</td>'+
+      '  </tr>'+
+		' <tr>'+
+        '	<td>单相UPS</td><td>单相UPS:通讯状态</td><td>2014-09-03 14:14:33</td><td>'+
+		'<input name="Ha_handler" id="Ha_handler" class="dx_txt" type="text" style="width:50px;" value=""></td><td>2014-09-03 14:14:3'+
+      '  </tr>'+
+	'	 <tr>'+
+        '	<td>原因：</td><td colspan="3" align="left">'+
+		'<input name="Ha_alarm_reason" id="Ha_alarm_reason" class="dx_txt" type="text" style="width:200px;" value=""></td>'+
+      '  </tr>'+
+       ' <tr>'+
+        	'<td>处理过程：</td><td colspan="3" align="left">'+
+			'<textarea rows="5" style="width:55%;" name="Ha_handle_process" id="Ha_handle_process"></textarea></td>'+
+      '  </tr>'+
+     '     <tr>'+
+       ' 	<td>处理结果：</td><td colspan="3" align="left"><input name="Ha_handle_result" id="Ha_handle_result'+
+	   '" class="dx_txt" type="text" style="width:200px;" value=""></td>'+
+       ' </tr>'+
+       ' <tr><td colspan="4" align="center"><a href="javascript:void(0)" onclick="btn_add()" class="xd_prev a_btn2">确认</a></td>'+
+	   '</tr>'+
+		'</tbody></table>'+
+		'<input type="hidden" name="type" value="jilu">'+
+		'<input type="hidden" id="id" name="id" value="104">'+
+		'</form>'+
+		'</div>'+
+		'</div>');
+		$(".Alert_close").click(function(){
+			$("#detailed").remove();
+			})
+				}
+	})
+}
+//记录提交
+function btn_add()
+{
+	var level ="";
+	if(level!=3)
+	{
+		alert("对不起,您没有权限操作此页面！");
+		return false;
+	}
+	var val=$("#Ca_handler").val();
+	var Ca_alarm_reason=$("#Ca_alarm_reason").val();
+	var Ca_handle_process=$("#Ca_handle_process").val();
+	var Ca_handle_result=$("#Ca_handle_result").val();
+	var byte=val.replace(/[^\x00-\xff]/g, 'xx').length; 
+	if(val=='')//为空
+		{
+			alert("处理人不能为空");
+			$("#Ca_handler").focus();
+			return false;
+		}
+		var preg=/^[\w|\u4e00-\u9fa5]+$/;
+		if(!preg.test(val) && lan=='cn')
+		{
+			alert('含有非法字符！');
+			$("#Ca_handler").focus();
+			return false;
+		}
+	if(byte>256)
+	{
+		alert('处理人输入过长！');
+		$("#Ca_handler").focus();
+		return false;
+	}
+	if(Ca_alarm_reason.replace(/[^\x00-\xff]/g, 'xx').length>256)
+	{
+		alert('原因输入过长！');
+		$("#Ca_alarm_reason").focus();
+		return false;
+	}
+	if(Ca_handle_process.replace(/[^\x00-\xff]/g, 'xx').length>1024)
+	{
+		alert('处理过程输入过长！');
+		$("#Ca_handle_process").focus();
+		return false;
+	}
+	if(Ca_handle_result.replace(/[^\x00-\xff]/g, 'xx').length>256)
+	{
+		alert('处理结果输入过长！');
+		$("#Ca_handle_result").focus();
+		return false;
+	}
+	$.ajax({
+			type:"POST",
+			url:'ajax/get_information.php',
+			dateType:'html',
+			data:$('#formid').serialize(),
+			cache:false,
+			success: function(msg)
+			{
+				
+				var id=$("#id").val();
+				if(msg>0)
+				{
+					alert("保存成功!");
+					$("#span_"+id).html("有记录");
+				}else
+				{
+					alert("保存失败!");
+					
+				}
+			},
+			error:function(){
+				alert("保存成功!(DEMO)");
+				$("#span_"+id).html("有记录");
+				$("#detailed").remove();
+				}	})
+}
+
+
+function dateDiff(date1, date2){
+    var type1 = typeof date1, type2 = typeof date2;
+    if(type1 == 'string')
+    date1 = stringToTime(date1);
+    else if(date1.getTime)
+    date1 = date1.getTime();
+    if(type2 == 'string')
+    date2 = stringToTime(date2);
+    else if(date2.getTime)
+    date2 = date2.getTime();
+    return (date1 - date2) / 1000;//结果是秒
+}
+
+//字符串转成Time(dateDiff)所需方法
+function stringToTime(string){
+    var f = string.split(' ', 2);
+    var d = (f[0] ? f[0] : '').split('-', 3);
+    var t = (f[1] ? f[1] : '').split(':', 3);
+    return (new Date(
+    parseInt(d[0], 10) || null,
+    (parseInt(d[1], 10) || 1)-1,
+    parseInt(d[2], 10) || null,
+    parseInt(t[0], 10) || null,
+    parseInt(t[1], 10) || null,
+    parseInt(t[2], 10) || null
+    )).getTime();
+
+} 
+function gedate(){
+	var d=new Date()
+	return  d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() + " " + d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds()	
+}
+
+
+</script>
+<style type="text/css">
+body{ overflow-y:auto;}
+</style></head>
+
+<body>
+<!--顶部开始-->
+<div class="xd_top">
+<a class="xd_bnt" href="real_alarm.html">返回</a>
+<a class="xd_tit">实时告警记录</a>
+</div>
+<!--顶部结束-->
+<!---内容开始--->
+ <div id="detailed">
+ 	
+</div>
+<div class="xd_content">
+  <div class="xd_sz_content">
+ 
+  <form action="history_event.php" method="post" id="form1">
+  	<table class="ls_tab_info">
+    
+       
+        <tbody><tr>
+        	<td colspan="4" align="center" style="padding:10px 0;">
+            <table class="ls_tab_info_sj" style="font-size:14px" id="liebiao">
+                	<tbody><tr>
+                      <th>序号</th>
+                      <th>设备名称</th>
+                      <th>事件名称</th>
+                      <th>发生时间</th>
+            
+                     <th>持续时间</th>
+                      <th>记录情况</th>
+                        <th></th>
+                  </tr>
+                     <tr>
+                  	  <td align="center">1</td>
+                      <td align="center">UPS</td>
+                      <td align="center">单相UPS：市电异常</td>
+                      <td align="center">2014-10-02 12:18:00</td>
+               
+                      <td align="center"><script>
+					  
+				document.write( parseInt((dateDiff(gedate(),"2014-10-02 12:18:00"))/60))
+				</script> min</td>
+                      <td align="center"><span id="span_53">无记录</span></td>
+                      <td align="center"><a href="javascript:void(0);" onClick="select_content(53)" class="ls_btn2">详细</a></td>
+                  </tr>
+                                    <tr>
+                  	  <td align="center">2</td>
+                      <td align="center">UPS</td>
+                      <td align="center">单相UPS：市电异常</td>
+                      <td align="center">2014-10-02 11:36:17</td>
+                
+                      <td align="center"><script>
+					  
+				document.write( parseInt((dateDiff(gedate(),"2014-10-02 11:36:17"))/60))
+				</script> min</td>
+                      <td align="center"><span id="span_54">无记录</span></td>
+                      <td align="center"><a href="javascript:void(0);" onClick="select_content(54)" class="ls_btn2">详细</a></td>
+                  </tr>
+                                   <tr>
+                  	  <td align="center">3</td>
+                      <td align="center">UPS</td>
+                      <td align="center">单相UPS：市电异常</td>
+                      <td align="center">2014-10-02 13:36:11</td>
+            
+                      <td align="center"><script>
+					  
+				document.write( parseInt((dateDiff(gedate(),"2014-10-02 13:36:11"))/60))
+				</script> min</td>
+                      <td align="center"><span id="span_55">无记录</span></td>
+                      <td align="center"><a href="javascript:void(0);" onClick="select_content(55)" class="ls_btn2">详细</a></td>
+                  </tr>
+              
+                   
+                 
+                                  <tr>
+                 	<td colspan="8" align="right"><div style="width:96%; text-align:right;">共3条|&lt; &lt;&lt; [1] &gt;&gt;&gt;|</div></td>
+                 </tr>
+              </tbody></table>
+            </td>
+        </tr>
+    </tbody></table>
+    </form>
+  </div>
+</div>
+<!---内容结束--->
+
+
+</body></html>

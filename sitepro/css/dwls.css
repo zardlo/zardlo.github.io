@@ -1,0 +1,138 @@
+@import url(static.css);
+/*单相UPS*/
+.padding_div{ padding:50px; min-width:997px;}
+.sm_txtbg1{ background:url(../images/ups/txtbg.png); border:#e0e0e0 solid 1PX;}
+.sm_txtbg2{ background:url(../images/ups/dcbg.png) right 100px no-repeat;}
+.sm_txtbg3{ background:url(../images/ups/set_bg.png) right 100px no-repeat;}
+.sm_setpart1_w{ padding:20px;}
+.sm_statu{ padding-left:12%; padding-top:15px; padding-bottom:15px;}
+.sm_statu li{ float:left; width:28%; padding-left:25px; height:30px; line-height:30px; text-align:left; color:#727272; font-size:15px;}
+.sm_statu li span{ margin-left:8px; color:#38a3db; font-size:15px; font-family:Verdana, Geneva, sans-serif}
+.sm_upsdata{ padding-top:20px; padding-bottom:20px;}
+.sm_upsdata li{ width:24%; float:left;}
+.sm_upsbiao{ width:159px; height:99px; background:url(../images/ups/databg.png) center center no-repeat; margin-left:auto; margin-right:auto; font-size:16px; color:#fff; text-align:center; padding-top:60px; line-height:25px;}
+.sm_upsnum{ text-align:center; height:25px; line-height:25px; color:#14ab1f; font-size:16px; padding-top:6px; font-family:Verdana, Geneva, sans-serif}
+.sm_upsdesc1,.sm_upsdesc2{ color:#727272; font-size:16px; height:22px; line-height:22px; padding-top:15px;}
+.sm_upsdesc2{ color:#00b91c; padding:0}
+.sm_btpart2{ padding-top:10px;}
+.sm_btright,.sm_btleft{ width:50%; float:right;}
+.sm_btleft{ float:left; width:49.9%;}
+.sm_btrpd{ padding-left:5px;}
+.sm_btlpd{ padding-right:5px;}
+.sm_p20{ padding: 20px;}
+.sm_upstit{ text-align:left; font-size:18px; color:#38a3db; height:25px; line-height:25px; font-weight:normal}
+.sm_upstit span{ margin-left:10px;font-size:18px;  color:#f17070}
+.sm_upstab{ margin-top:3px;}
+.sm_upstab tr td{ padding-left:10px; text-align:left; font-size:14px; color:#727272; height:32px;}
+.sm_upstab tr td span.nums{ font-family:Verdana, Geneva, sans-serif; font-size:14px; color:#00b91c; margin-left:20px;}
+.sm_upstab tr td span.nonums{font-size:14px; color:#00b91c; margin-left:10px;}
+.sm_settab{ margin-top:10px;}
+.sm_settab tr td{ text-align:left;font-size:14px; color:#727272; line-height:25px; padding-top:3px; padding-bottom:3px;}
+.sm_radio{ margin:0; padding:0; vertical-align:middle; margin-bottom:3px;}
+.sm_input{ width:70px; background:#fff; height:20px; border:#66b1d8 solid 1px; line-height:22px; text-align:center; border-radius:5px;}
+.sm_bnt{ width:110px; height:34px; line-height:34px; color:#fff; background:#38a3db;border-radius:5px; border:0;  text-align:center}
+/*精密空调*/
+.sm_jmkttab{ border-left:#d8d8d8 solid 1px; border-top:#d8d8d8 solid 1px;}
+.sm_jmkttab tr td{ border-right:#d8d8d8 solid 1px; border-bottom:#d8d8d8 solid 1px; background:#f9f9f9}
+.sm_jmktctlist{ width:95%; margin-left:auto; margin-right:auto; margin-top:10px; color:#797979; font-size:13px;}
+.sm_jmktctlist tr td{ border:0; padding-top:10px;}
+.sm_jmktname{ text-align:center; height:30px; line-height:30px; color:#797979; font-size:14px; padding-top:5px; padding-bottom:15px;}
+.sm_jmktbtn{ border-bottom:#006f00 solid 3px; border-left:0; border-top:0; border-right:0; width:100px; line-height:28px; font-size:14px; background:#07b207; color:#fff;}
+.sm_jmktbtns{ height:40px;}
+.sm_jmktwtab{ width:95%; margin-left:auto; margin-right:3px;}
+.sm_jmktwtab tr td{ border:0; height:30px; text-align:left;color:#797979; font-size:13px;}
+.sm_jmkt_desc,.sm_jmkt_stab{ width:90%; margin-left:auto; margin-right:0}
+.sm_jmkt_desc tr td,.sm_jmkt_stab tr td{border:0; height:35px;color:#797979; font-size:13px; text-align:left}
+.sm_jmkt_stab{ margin-top:10px;}
+/*三相UPS*/
+.padding1_div{ padding:50px;}
+.sm_3Xtxtbg1{ background:url(../images/3xups/txtbg.png);  border:#e0e0e0 solid 1PX;}
+.sm_3Xtxtbg2{ padding:25px 15px;}
+.sm_3Xsetpart_w{ padding:20px;}
+.sm_3Xstatu{ padding-left:12%; padding-top:15px; padding-bottom:15px;}
+.sm_3Xstatu li{ float:left; width:28%; padding-left:25px; height:30px; line-height:30px; text-align:left; color:#727272; font-size:15px;}
+.sm_3Xstatu li span{ margin-left:8px; color:#38a3db; font-size:15px; font-family:Verdana, Geneva, sans-serif}
+.sm_3Xupsdata{ padding-bottom:20px;}
+.sm_3Xupsdata li{ width:33%; float:left;}
+.sm_3Xupsbiao{ width:179px; height:178px; background:url(../images/3xups/databg.png) center center no-repeat; margin-left:auto; margin-right:auto; font-size:16px; color:#fff; text-align:center; padding-top:30px; line-height:50px;}
+.sm_3Xupsnum{text-align: center; height:15px; line-height: 15px;color: #14ab1f;font-size: 16px;font-family:Verdana, Geneva, sans-serif}
+.sm_3Xbiao{ font-size:16px; color:#fff; text-align:center; line-height: 35PX; height: 35px;}
+.sm_3Xxbiao{ text-align: center; color: #14ab1f; line-height: 30px; height: 30px;}
+.sm_3Xupsdesc1{ color:#727272; font-size:16px; height:22px; line-height:22px;}
+.sm_3Xupsdesc1  span.nonums{ color:#00b91c;font-size:16px;}
+.sm_3Xbtpart1{ padding-top:10px;}
+.sm_3Xbtpart4{ padding-top:10px;}
+.sm_3Xbtright,.sm_3Xbtleft{ width:49.5%; float:right;}
+.sm_3Xbtleft{ float:left; width:50%;}
+.sm_3Xbtrpd{ padding-left:5px;}
+.sm_3Xp20{ padding: 20px;}
+.sm_3Xupstit{  font-size:18px; color:#38a3db; height:35px; line-height:25px; font-weight:normal;text-align:left;}
+.sm_3Xupstit span{ margin-left:10px;font-size:18px;  color:#f17070; }
+.sm_3Xupstab{ margin-top:3px;}
+.sm_3Xupstab tr td{border:#e0e0e0 solid 1PX;  padding-left:10px; text-align:left; font-size:13px; color:#727272; height:32px;width:16%}
+.sm_3Xupstab tr td span.nums{ font-family:Verdana, Geneva, sans-serif; font-size:13px; color:#00b91c; margin-left:20px;}
+.sm_3Xupstab tr td span.nonums{font-size:14px; color:#00b91c; margin-left:10px;}
+.sm_3Xsettab tr td{ text-align:left;font-size:14px; color:#727272; line-height:25px; padding-top:3px; padding-bottom:3px;}
+.sm_3Xradio{ margin:0; padding:0; vertical-align:middle; margin-bottom:3px;}
+.sm_3Xinput{ width:70px; background:#fff; height:20px; border:#66b1d8 solid 1px; line-height:22px; text-align:center; border-radius:5px;}
+.sm_3Xbnt{ width:110px; height:30px; line-height:30px; color:#fff; background:#38a3db;border-radius:5px; border:0;  text-align:center}
+/*精密配电*/
+.jmpd{ min-width:920px;border:1px solid #d8d8d8; background: url(../images/JMPD/jmpd_bg.png) 110% -60%   no-repeat #fbfbfb; padding:20px;}
+.jmpd_left{height:397px; width:20%; text-align:center; float:left; padding-top:10px;}
+.jmpd_left h3{ color:#686868; padding-top:10px; font-weight:normal}
+.jmpd table{ text-align:left; font-size:12px; border-collapse: collapse;border-spacing: 0;}
+.jmpd_box{float:left; width:80%}
+.jmpd_box tr{background:#fbfbfb;}
+.jmpd_box .odd{ background:#ffffff;}
+.jmpd_box td{ border:1px solid #e8e8e8; padding:8px 11px; color:#686868}
+.jmpd_box .toptr td{ border:none; padding:0; text-align:center; background:none;}
+.jmpd_top{vertical-align:bottom; line-height:35px; padding:10px 0; cursor:pointer;}
+.jmpd_top:hover {color:#65cb6f}
+.jmpd_top { color:#686868}
+.cgreen{ background:url(../images/JMPD/cgreen.png) no-repeat center center; display:block;width:15px; height:15px; float:right }
+.cred{ background:url(../images/JMPD/cred.png) no-repeat center center; display:block;width:15px; height:15px; float:right }
+/*普通配电*/
+.fn-clear {zoom: 1;/* for IE6 IE7 */}
+.ptpd_top tr td{ font-size:14px; color:#686868}
+.ptpd_top tr td span{ color:#07a70b; font-family:Verdana, Geneva, sans-serif; font-size:15px;}
+.ptpd_middle{width:100%; text-align:center; border:1px solid #d8d8d8; text-align:left; line-height:20px; margin-top:-1px; font-size:15px; }
+.ptpd_middle tr td{ border-right:1px solid #d8d8d8;}
+.ptpd_middle tr td table tr td{ border-right:0; font-size:14px; }
+.ptpd_middle tr td table tr td img{ vertical-align:middle}
+.ptpt_tab1{width:90%; margin-left:auto; margin-right:0}
+.ptpt_tab1  tr td{ height:30px; }
+.ptpd_middle_left{ width:98%;border:1px solid #e8e8e8;margin:25px  auto;}
+.ptpd_middle_left tr td{ border-bottom:1px solid #e8e8e8; border-right:0; padding:0 2px ; height:35px; line-height:35px;}
+.ptpd_middle_left span{ color:#07a70b; font-size:15px; font-family:Verdana, Geneva, sans-serif}
+.ptpd_img { margin:0 8px;}
+.cgreen{ background:url(../images/ptpd/cgreen.png) no-repeat center center; display:block;width:15px; height:15px; float:right }
+.cred{ background:url(../images/ptpd/cred.png) no-repeat center center; display:block;width:15px; height:15px; float:right }
+/*定位漏水*/
+.sm_dwls{ border-top:#d8d8d8 solid 1px;border-left:#d8d8d8 solid 1px;}
+.sm_dwls tr td{  background:#fbfbfb; border-right:#d8d8d8 solid 1px;border-bottom:#d8d8d8 solid 1px;}
+.sm_dwlstit{ font-size:16px; color:#38a3db; height:30px; line-height:30px; text-align:left; padding-top:30px; padding-left:35px}
+.sm_dwlsleft{  width:260px; margin-left:auto; margin-right:auto}
+
+.sm_dwlsimg{ float:left;}
+.sm_dwlslefttxt{ float:right; margin-top:35px; text-align:center; width:140px; line-height:24px; font-size:14px; color:#686868}
+.sm_dwlslefttxt span{ color:#00b91c; font-family:Verdana, Geneva, sans-serif; font-size:14px;}
+.sm_dwlsinfo tr td{ padding-top:20px; padding-bottom:30px; border:0; }
+.sm_dwlsinfo2{ border:0; margin-top:20px; width:90%;}
+.sm_dwlsinfo2 tr td{ border:0; font-size:14px; color:#787878; height:30px;}
+.sm_dwlsimg2{ float:right; vertical-align:middle}
+/*发电机开始*/
+.sm_fdjinfo{ border:#d8d8d8 solid 1px; background:#fbfbfb}
+.sm_fdjp1,.sm_fdjp2,.sm_fdjp3{ border-bottom:#d8d8d8 solid 1px; padding-top:25px; padding-bottom:25px;}
+.sm_fdjp1l{ width:70%; float:right; padding-top:5px; }
+.sm_fdjp1img{ float:left; margin-left:5%;}
+.sm_fdjtit{ font-size:16px; color:#38a3db; font-weight:normal; text-align:left}
+.sm_fdjtab1{ border-left:#e8e8e8 solid 1px; border-top:#e8e8e8 solid 1px; width:95%; margin-left:0; margin-right:auto; margin-top:25px;}
+.sm_fdjp2,.sm_fdjp3{ padding-left:25px; padding-right:25px;}
+.sm_fdjtab1 tr td{ height:35px; font-size:14px; background:#fff; border-right:#e8e8e8 solid 1px; border-bottom:#e8e8e8 solid 1px; text-align:left; color:#727272; padding-left:10px; padding-right:10px;}
+.sm_fdjtab1 tr td span{ float:right; font-size:14px; color:#00b91c}
+.sm_fdjtab1 tr td span.red{ color:#F33}
+.sm_fdjtab2{ width:100%; margin-top:15px;}
+.sm_fdjp3{ border-bottom:0;}
+
+.kh_title td{ background:#39F; border:none; color:#fff; font-size:14px;}
+.kh_title2 td{ background:#7D7A7A; border:none; color:#fff; font-size:14px; text-align:left}

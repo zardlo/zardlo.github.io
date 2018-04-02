@@ -1,0 +1,957 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="../css/setting.css" rel="stylesheet" />
+    <link href="../css/SetInfo.css" rel="stylesheet" type="text/css" />
+    <title>无标题文档</title>
+</head>
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script src="../js/WdatePicker.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+    function AlertDiv() {
+        $('body').append($('<div class="alert_out"></div>'));
+        $('body').append($('<div class="alert_in"></div>'));
+    }
+
+    function showdetail(arr) {
+        var array, type, index;
+        array = arr.split("|");
+        type = array[0];
+        index = array[1];
+        $('.alert_out').hide().remove();
+        $('.alert_in').hide().remove();
+        AlertDiv();
+        $('.alert_out').show().height($(window).outerHeight(true));
+        var url;
+
+        switch (type) {
+            case '1':
+                url = 'dev_alarm_config1.html?type=' + type + '&index=' + index + '&dtype=1';
+                break;
+            case '1256':
+                url = 'dev_alarm_config2.html?type=' + type + '&index=' + index + '&dtype=1';
+                break;
+            case '10':
+                url = 'dev_alarm_config10.html?type=' + type + '&index=' + index + '&dtype=1';
+                break;
+            case '13':
+                url = 'dev_alarm_config13.html?type=' + type + '&index=' + index + '&dtype=13';
+                break;
+            case '5':
+                url = 'devzn_alarm_config.html?type=' + type + '&index=' + index + '&dtype=5';
+                break;
+            case '30':
+                url = 'devzn_alarm_config.html?type=' + type + '&index=' + index + '&dtype=5';
+                break;
+            case '301':
+                url = 'devzn1_alarm_config.2.html?type=' + type + '&index=' + index + '&dtype=5';
+                break;
+            case '31':
+                url = 'devzn1_alarm_config.html?type=' + type + '&index=' + index + '&dtype=5';
+                break;
+            case '9':
+                url = 'devzn_alarm_config9.html?type=' + type + '&index=' + index;
+                break;
+            case '2':
+                url = 'devzn_alarm_config1.html?type=' + type + '&index=' + index;
+                break;
+            case '4001':
+                url = 'dev485_alarm_config1.html?type=' + type + '&val=' + index;
+                break;
+            case '4011':
+                url = 'dev4851_alarm_config1.html?type=' + type + '&val=' + index;
+                break;
+            case '4002':
+                url = 'dev485_alarm_config2.html?type=' + type + '&index=' + index;
+                break;
+            case '4003':
+                url = 'dev485_alarm_config4.html?type=' + type + '&index=' + index;
+                break;
+            case '4004':
+                url = 'dev485_alarm_config5.html?type=' + type + '&val=' + index;
+                break;
+                //电池组
+            case '4005':
+                url = 'dev485_alarm_config.html?type=' + type + '&index=' + index;
+                break;
+                //普通空调（红外模块）
+            case '4006':
+                url = 'dev485_alarm_config3.html?type=' + type + '&index=' + index;
+                break;
+            case '4020':
+                url = 'dev485_alarm_config20.html?type=' + type + '&index=' + index;
+                break;
+            case '4444':
+                url = 'dev_other_config.h2.html?type=' + type + '&index=' + index;
+                break;
+            case '9999':
+                url = 'dev_other_config1.html?type=' + type + '&index=' + index;
+                break;
+            case '3333':
+                url = 'devzn_alarm_config1.doorAccess.html?type=' + type + '&index=' + index;
+                break;
+            case 'other':
+                url = 'dev_other_config.html?type=' + type + '&index=' + index;
+                break;
+        }
+        $('.alert_in').show().load(url);
+        var posY = $(document).scrollTop();
+        //根据滚动条设置弹出框位置
+        $('.alert_in').css("top", posY + 320);
+
+    }
+</script>
+
+<body>
+    <div class="alert_in" style="display: none;">
+
+    </div>
+    <div id="h2_content" style="display: none;">
+        <div class="AlertUps">
+            <a class="Alert_close" href="javascript:void(0);" onclick="$('.alert_in').html('').hide()"></a>
+            <div class="Alert_title">扩展设备设置选项</div>
+            <span id="config_1">
+            <form id="formid" method="post" enctype="multipart/form-data" action="">
+            <table width="100%" class="Alert_content">
+                <tbody>
+                    <tr>
+                        <td width="35%" height="30">使&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;能：</td>
+                        <td height="30" align="left">
+                            <input type="checkbox" value="enb" name="gjEnable1" id="gjEnable" class="Alert_dx" checked="checked">
+                            <span class="c_bj">&nbsp;</span>
+            </td>
+            </tr>
+            <tr>
+                <td width="35%" height="30">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</td>
+                <td height="30" align="left"><input type="text" value="氢气检测1" class="UpsName" name="mn_name1" id="name"></td>
+            </tr>
+            <tr>
+                <td width="35%" height="30">通讯协议：</td>
+                <td height="30" align="left">
+                    <select>
+                        <option>选择协议</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td width="35%" height="30">告警事件：</td>
+                <td height="30" align="left">
+                    <a class="a_btn2" href="javascript:void(0);">选择事件</a>
+                </td>
+            </tr>
+            <style>
+                select {
+                    border-color: #ccc;
+                    border: 1px solid #CCC;
+                }
+            </style>
+            <tr>
+                <td width="35%" height="30"></td>
+                <td width="35%" height="30">
+                    <span style="display:inline-block;width:100px;">生产商</span>
+                    <span style="display:inline-block;width:100px;">供应商</span>
+                </td>
+            </tr>
+            <tr style="line-height:30px;">
+                <td width="35%" height="30">名称：</td>
+                <td height="30" align="left">
+                    <select style="width: 105px;">
+                        <option>选择生厂商</option>
+                    </select>
+                    <select style="width: 105px;">
+                        <option>选择供应商</option>
+                    </select>
+                </td>
+            </tr>
+            <tr style="line-height:30px;">
+                <td width="35%" height="30">联系人：</td>
+                <td height="30" align="left">
+                    <input type="text" style="width: 100px;" />
+                    <input type="text" style="width: 100px;" />
+                </td>
+            </tr>
+            <tr style="line-height:30px;">
+                <td width="35%" height="30">联系方式：</td>
+                <td height="30" align="left" colspan="2">
+                    <input type="text" style="width: 100px;" />
+                    <input type="text" style="width: 100px;" />
+                </td>
+            </tr>
+            <tr style="line-height:30px;">
+                <td width="35%" height="30">设备维保到期日期：</td>
+                <td height="30" align="left" colspan="2">
+                    <input type="text" style="width: 210px;" />
+                </td>
+            </tr>
+
+            <!--  -->
+
+            <!-- 普通空调屏蔽失效时间设置  -->
+            <tr style="display:none">
+                <td>
+                    <input type="checkbox" value="alarm" id="alarm_time" name="alarm_time" class="Alert_dx">
+                    <span class="c_bj">失效时间段</span></td>
+                <td> 起始：<input type="text" value="" class="sd_sxsjd_txt" name="start_time" id="start_time" style="width:60px;">&nbsp; 结束：<input type="text" value="" class="sd_sxsjd_txt" style="width:60px;" id="overs_time" name="overs_time">&nbsp;(hh:mm)</td>
+            </tr>
+            <tr>
+                <td height="60" align="right"><a class="a_btn1" onclick="$('.alert_in').html('').hide()" href="javascript:void(0);">确认</a></td>
+                <td height="60" align="center"><a class="a_btn1 guanbi" onclick="$('.alert_in').html('').hide()" href="javascript:void(0);">关闭</a></td>
+            </tr>
+
+
+            </tbody>
+            </table>
+            <!-- 告警方式配置-->
+            <input type="hidden" value="0" name="alarm_way" id="alarm_way">
+            <!-- 设备索引 -->
+            <input type="hidden" value="1" name="index" id="index">
+            <!-- 设备名称 -->
+            <input type="hidden" value="4004" name="upsradio" id="type">
+            <!-- 描述 -->
+            <input type="hidden" value="4004" name="485type" id="485type">
+            <!-- 用于判断是哪个表单提交的数据 -->
+            <input type="hidden" value="485" name="btform">
+            </form>
+            </span>
+
+
+            <!--   管理员账号验证     -->
+            <span style="display:none" id="config_4">
+                 <form id="formid4" method="post" enctype="multipart/form-data" action="">
+                     <table width="100%" style="line-height:30px;">
+                        <tbody><tr>
+                            <td colspan="2"> 警告：您现在准备进入的是控制功能页面，可能将会对运行设备造成影响！</td>
+                        </tr>
+                        <tr>
+                            <td> 账号：</td><td><input type="text" value="admin" name="username" id="username" class="select_set"></td>
+                        </tr>
+                         <tr>
+                            <td> 密&nbsp;&nbsp;码：</td><td><input type="password" name="pwd" id="pwd" class="select_set"></td>
+                        </tr>
+                        <tr> 
+                           <td height="60" align="right"><a class="a_btn1" onclick="senior_form(4)" href="javascript:void(0);">确认</a></td>
+                        
+                        <td height="60" align="center"><a class="a_btn1" onclick="close_senior(1)" href="javascript:void(0);">返回</a></td>
+                    </tr>
+                    </tbody></table>
+                   <!-- 用于判断是哪个表单提交的数据 -->
+                    <input type="hidden" value="4" name="btform">
+                 </form>
+             </span>
+            <!--  空调控制  -->
+            <span style="display:none" id="config_5">
+                  <form id="formid5" method="post" enctype="multipart/form-data" action="">
+                     <table width="100%" style="line-height:30px;">
+                        <tbody><tr>
+                            
+                            <td> 开启空调时间</td>
+                            <td><input type="text" name="kq_kongtiao" id="kq_kongtiao" value="" class="UpsName" style="width:60px">&nbsp;(hh:mm)</td>
+                        </tr>
+                        <tr>
+                            
+                            <td> 关闭空调时间</td>
+                            <td><input type="text" name="gb_kongtiao" id="gb_kongtiao" value="" class="UpsName" style="width:60px">&nbsp;(hh:mm)</td>
+                        </tr>
+                         <tr> 
+                        <td><a class="a_btn1" onclick="senior_form(5)" href="javascript:void(0);">确认</a></td>
+                        <td height="60" align="center"><a class="a_btn1" onclick="close_senior(1)" href="javascript:void(0);">返回</a></td>
+                    </tr>
+                      </tbody></table>
+                           <!-- 设备索引 -->
+                        <input type="hidden" value="1" name="index" id="index">
+                         <!-- 设备名称 -->
+                        <input type="hidden" value="4004" name="upsradio" id="type">
+                        <input type="hidden" value="5" name="btform">
+                 </form>
+             </span>
+            <!-- UPS控制显示 -->
+            <span style="display:none" id="config_6">
+              </span>
+            <span style="display:none" id="config_7">
+              </span>
+        </div>
+        <iframe style="widht:0px; height:0px; border:0px;" name="hidden_frame2" id="hidden_frame2"></iframe>
+    </div>
+
+
+    <div class="dl_top"> <a class="dl_bnt" href="setgj.html">返回</a> <a class="dl_tit">详细设置</a> </div>
+    <div class="sz_content" style="padding-top:50px;">
+        <!--头部开始-->
+        <div class="dl_info">
+            <div class="setting_main">
+                <div>
+                    <div class="setting_head">UPS+电池设置区域</div>
+                    <table class="setting">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)"><img id="img_1" src="../images/device/dxups.png" class="sz_dev" onclick="showdetail('1|1')" /><br />
+                                    <span id="dev_1" class="red">单相UPS</span>&nbsp;</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"><img id="img_4005_1" src="../images/device/dch.png" style="height:70px;" onclick="showdetail('4005|1')" /><br />
+                                    <span id="dev_4005_1" class="green">单相电池</span>&nbsp;</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"><img id="img_2" src="../images/device/ups.png" class="sz_dev" onclick="showdetail('10|2')" /><br />
+                                    <span id="dev_2" class="red">三相UPS</span>&nbsp;</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"><img id="img_4005_2" src="../images/device/dch2.png" style="height:70px;" onclick="showdetail('4005|2')" /><br />
+                                    <span id="dev_4005_2" class="green"></span>&nbsp;</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"><img id="img_3" src="../images/chuankou.png" class="sz_dev" onclick="showdetail('1|3')" /><br />
+                                    <span id="dev_3" class="red">UPS3</span>&nbsp;</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"><img id="img_4005_3" src="../images/device/dch2.png" style="height:70px;" onclick="showdetail('4005|3')" /><br />
+                                    <span id="dev_4005_3" class="green"></span>&nbsp;</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"><img id="img_4" src="../images/chuankou.png" class="sz_dev" onclick="showdetail('1|4')" /><br />
+                                    <span id="dev_4" class="red">UPS4</span>&nbsp;</a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"><img id="img_4005_4" src="../images/device/dch2.png" style="height:70px;" onclick="showdetail('4005|4')" /><br />
+                                    <span id="dev_4005_4" class="green"></span>&nbsp;</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>
+                    <div class="setting_head">空调设置区域</div>
+                    <table class="setting">
+                        <tr>
+                            <td class="setting_jmkt">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <a href="javascript:void(0)"><img id="img_13_3" class="sz_dev" onclick="showdetail('13|3')" src="../images/device/jmkt.png" /><br />
+                                                <span id="dev_13_3" class="red">精密空调1</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"><img id="img_13_4" class="sz_dev" onclick="showdetail('13|4')" src="../images/device/jmkt.png" /><br />
+                                                <span id="dev_13_4" class="red">精密空调2</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"><img id="img_13_3" class="sz_dev" onclick="showdetail('13|3')" src="../images/device/jmkt.png" /><br />
+                                                <span id="dev_13_3" class="red">精密空调3</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"><img id="img_13_4" class="sz_dev" onclick="showdetail('13|4')" src="../images/device/jmkt.png" /><br />
+                                                <span id="dev_13_4" class="red">精密空调4</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"><img id="img_13_3" class="sz_dev" onclick="showdetail('13|3')" src="../images/device/jmkt.png" /><br />
+                                                <span id="dev_13_3" class="red">精密空调5</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"><img id="img_13_4" class="sz_dev" onclick="showdetail('13|4')" src="../images/device/jmkt.png" /><br />
+                                                <span id="dev_13_4" class="red">精密空调6</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"><img id="img_13_3" class="sz_dev" onclick="showdetail('13|3')" src="../images/device/jmkt.png" /><br />
+                                                <span id="dev_13_3" class="red">精密空调7</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"><img id="img_13_4" class="sz_dev" onclick="showdetail('13|4')" src="../images/device/jmkt.png" /><br />
+                                                <span id="dev_13_4" class="red">精密空调8</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>
+                    <div class="setting_head">配电设置区域<img src="../images/set.png" class="setimg" /></div>
+                    <table class="setting">
+                        <tr>
+                            <td class="setting_pd">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_43" src="../images/device/dxpd.png" border="0" class="sz_dev" onclick="showdetail('31|43')" /><br />
+                                                <span id="dev_43" class="green">单相配电</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_44" src="../images/device/3xpd.png" border="0" class="sz_dev" onclick="showdetail('5|44')" /><br />
+                                                <span id="dev_44" class="green">三相总配电</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                            <td class="setting_jmpd">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_45" src="../images/device/jmpd.png" border="0" class="sz_dev" onclick="showdetail('30|45')" /><br />
+                                                <span id="dev_45" class="green">精密配电</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_46" src="../images/device/jmpd.png" border="0" class="sz_dev" onclick="showdetail('30|46')" /><br />
+                                                <span id="dev_46" class="green">精密配电2</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_4020_1" src="../images/device/kg.png" class="sz_dev" border="0" onclick="showdetail('4020|1')" /><br />
+                                                <span id="dev_4020_1" class="green">支路开关1至8</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_4020_2" src="../images/device/kg.png" class="sz_dev" border="0" onclick="showdetail('4020|2')" /><br />
+                                                <span id="dev_4020_2" class="green">开关支路9至16</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_4020_3" src="../images/device/kg.png" class="sz_dev" border="0" onclick="showdetail('4020|3')" /><br />
+                                                <span id="dev_4020_3" class="green">开关支路17至24</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_4020_4" src="../images/device/kg.png" class="sz_dev" border="0" onclick="showdetail('4020|4')" /><br />
+                                                <span id="dev_4020_4" class="green">开关支路25至32</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_4020_5" src="../images/device/kg.png" class="sz_dev" border="0" onclick="showdetail('4020|5')" /><br />
+                                                <span id="dev_4020_5" class="green">开关支路33至40</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_4020_6" src="../images/device/kg.png" class="sz_dev" border="0" onclick="showdetail('4020|6')" /><br />
+                                                <span id="dev_4020_6" class="green">开关支路41至48</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_4020_7" src="../images/device/kg.png" class="sz_dev" border="0" onclick="showdetail('4020|7')" /><br />
+                                                <span id="dev_4020_7" class="green">开关支路49至56</span></a>
+                                        </td>
+                                        <td>
+                                            <a href="javascript:void(0)"> <img id="img_4020_8" src="../images/device/kg.png" class="sz_dev" border="0" onclick="showdetail('4020|8')" /><br />
+                                                <span id="dev_4020_8" class="green">开关支路57至64</span></a>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div>
+                    <div class="setting_head">PDU设置区域</div>
+                    <table class="setting">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_1" src="../images/device/pdu.png" class="sz_dev" border="0" /> <br />
+                                    <span id="dev_4002_1" class="green">01 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_2" src="../images/device/pdu.png" class="sz_dev" border="0" /> <br />
+                                    <span id="dev_4002_2" class="green">02 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_3" src="../images/device/pdu.png" class="sz_dev" border="0" /> <br />
+                                    <span id="dev_4002_3" class="green">03 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_4" src="../images/device/pdu.png" class="sz_dev" border="0" /> <br />
+                                    <span id="dev_4002_4" class="green">04 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_5" src="../images/device/pdu.png" class="sz_dev" border="0" /> <br />
+                                    <span id="dev_4002_5" class="green">05 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_6" src="../images/device/pdu.png" class="sz_dev" border="0" /> <br />
+                                    <span id="dev_4002_6" class="green">06 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_7" src="../images/device/pdu.png" class="sz_dev" border="0" /> <br />
+                                    <span id="dev_4002_7" class="green">07 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_8" src="../images/device/pdu.png" class="sz_dev" border="0" /> <br />
+                                    <span id="dev_4002_8" class="green">08 PDU</span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_9" src="../images/device/pdu.png" class="sz_dev" border="0" /> <br />
+                                    <span id="dev_4002_9" class="green">09 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_10" src="../images/device/pdu.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_10" class="green">10 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_11" src="../images/device/pdu.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_11" class="green">11 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_12" src="../images/device/pdu.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_12" class="green">12 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_13" src="../images/device/pdu.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_13" class="green">13 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_14" src="../images/device/pdu.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_14" class="green">14 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_15" src="../images/device/pdu.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_15" class="green">15 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_16" src="../images/device/pdu.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_16" class="green">16 PDU</span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_17" src="../images/device/pdu3.gif" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_17" class="green">17 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_18" src="../images/device/pdu3.gif" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_18" class="green">18 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_19" src="../images/device/pdu3.gif" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_19" class="green">19 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_20" src="../images/device/pdu3.gif" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_20" class="green">20 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_21" src="../images/device/pdu3.gif" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_21" class="green">21 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_22" src="../images/device/pdu3.gif" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_22" class="green">22 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_23" src="../images/device/pdu3.gif" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_23" class="green">23 PDU</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_24" src="../images/device/pdu3.gif" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_24" class="green">24 PDU</span></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <!-- STS -->
+
+
+                <div>
+                    <div class="setting_head">STS设置区域</div>
+                    <table class="setting">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_1" src="../images/device/STS2.png" class="sz_dev" border="0" onclick="showdetail('1256|1')" /> <br />
+                                    <span id="dev_4002_1" class="green">01 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_2" src="../images/device/STS2.png" class="sz_dev" border="0" onclick="showdetail('1256|1')" /> <br />
+                                    <span id="dev_4002_2" class="green">02 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_3" src="../images/device/STS2.png" class="sz_dev" border="0" onclick="showdetail('1256|1')" /> <br />
+                                    <span id="dev_4002_3" class="green">03 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_4" src="../images/device/STS2.png" class="sz_dev" border="0" onclick="showdetail('1256|1')" /> <br />
+                                    <span id="dev_4002_4" class="green">04 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_5" src="../images/device/STS2.png" class="sz_dev" border="0" onclick="showdetail('1256|1')" /> <br />
+                                    <span id="dev_4002_5" class="green">05 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_6" src="../images/device/STS2.png" class="sz_dev" border="0" onclick="showdetail('1256|1')" /> <br />
+                                    <span id="dev_4002_6" class="green">06 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_7" src="../images/device/STS2.png" class="sz_dev" border="0" onclick="showdetail('1256|1')" /> <br />
+                                    <span id="dev_4002_7" class="green">07 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_8" src="../images/device/STS2.png" class="sz_dev" border="0" onclick="showdetail('1256|1')" /> <br />
+                                    <span id="dev_4002_8" class="green">08 STS</span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_9" src="../images/device/STS2.png" class="sz_dev" border="0" /> <br />
+                                    <span id="dev_4002_9" class="green">09 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_10" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_10" class="green">10 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_11" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_11" class="green">11 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_12" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_12" class="green">12 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_13" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_13" class="green">13 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_14" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_14" class="green">14 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_15" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_15" class="green">15 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_16" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_16" class="green">16 STS</span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_17" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_17" class="green">17 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_18" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_18" class="green">18 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_19" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_19" class="green">19 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_20" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_20" class="green">20 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_21" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_21" class="green">21 STS</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_22" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_22" class="green">22 STS</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_23" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_23" class="green">23 STS</span
+                                        ></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_24" src="../images/device/STS2.png" class="sz_dev" border="0" /><br />
+                                    <span id="dev_4002_24" class="green">24 STS</span>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <!-- STS -->
+
+                <!-- 发电机和定位漏水-->
+                <div class="setting_LDSD  fixed">
+                    <div class="setting_fdj">
+                        <div class="setting_head">配电设置区域</div>
+                        <table class="setting ">
+                            <tr>
+                                <td>
+                                    <a href="javascript:void(0)"> <img id="img_49" src="../images/device/fdj.png" border="0" class="sz_dev" onclick="showdetail('2|49')" /><br />
+                                        <span id="dev_49" class="green">发电机1</span></a>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)"> <img id="img_50" src="../images/device/fdj.png" border="0" class="sz_dev" onclick="showdetail('2|50')" /><br />
+                                        <span id="dev_50" class="green">发电机2</span></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="setting_dwls">
+                        <div class="setting_head">定位漏水设置区域</div>
+                        <table class="setting ">
+                            <tr>
+                                <td>
+                                    <a href="javascript:void(0)"> <img id="img_47" src="../images/device/dwls.png" border="0" class="sz_dev" onclick="showdetail('9|47')" /><br />
+                                        <span id="dev_47" class="green">定位漏水1</span></a>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)"> <img id="img_48" src="../images/device/dwls.png" border="0" class="sz_dev" onclick="showdetail('9|48')" /><br />
+                                        <span id="dev_48" class="green">定位漏水2</span></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- 发电机和定位漏水结束-->
+                <!-- 零地电压和市电-->
+                <div class="setting_LDSD fixed">
+                    <div class="setting_fdj">
+                        <div class="setting_head">零地电压设置区域</div>
+                        <table class="setting ">
+                            <tr>
+                                <td>
+                                    <a href="javascript:void(0)"> <img id="img_xhcjkmn_1" src="../images/device/lddy.png" class="sz_dev" border="0" onclick="showdetail('4004|titi_signal_mn_1')" /><br />
+                                        <span id="span_xhcjkname_mn_1" class="green">零地电压1</span></a>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)"> <img id="img_xhcjkmn_2" src="../images/device/lddy.png" class="sz_dev" border="0" onclick="showdetail('4004|titi_signal_mn_2')" /><br />
+                                        <span id="span_xhcjkname_mn_2" class="green">零地电压2</span></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="setting_dwls">
+                        <div class="setting_head">市电开关设置区域</div>
+                        <table class="setting ">
+                            <tr>
+                                <td>
+                                    <a href="javascript:void(0)"> <img id="img_xhcjkmn_3" src="../images/device/shidian.png" class="sz_dev" border="0" onclick="showdetail('4003|titi_signal_mn_3')" /><br />
+                                        <span id="span_xhcjkname_mn_3" class="green">市电1</span></a>
+                                </td>
+                                <td>
+                                    <a href="javascript:void(0)"> <img id="img_xhcjkmn_4" src="../images/device/shidian.png" class="sz_dev" border="0" onclick="showdetail('4003|titi_signal_mn_4')" /><br />
+                                        <span id="span_xhcjkname_mn_4" class="green">市电2</span></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <!-- 零地电压和市电结束-->
+                <div>
+                    <div class="setting_head">温湿度设置区域</div>
+                    <table class="setting">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_1" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|1')" /><br />
+                                    <span id="dev_4002_1" class="green">温湿度1</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_2" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|2')" /><br />
+                                    <span id="dev_4002_2" class="green">温湿度2</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_3" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|3')" /><br />
+                                    <span id="dev_4002_3" class="green">温湿度3</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_4" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|4')" /><br />
+                                    <span id="dev_4002_4" class="green">温湿度4</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_5" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|5')" /><br />
+                                    <span id="dev_4002_5" class="green">温湿度5</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_6" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|6')" /><br />
+                                    <span id="dev_4002_6" class="green">温湿度6</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_7" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|7')" /><br />
+                                    <span id="dev_4002_7" class="green">温湿度7</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_8" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|8')" /><br />
+                                    <span id="dev_4002_8" class="green">温湿度8</span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_9" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|9')" /><br />
+                                    <span id="dev_4002_9" class="green">温湿度9</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_10" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|10')" /><br />
+                                    <span id="dev_4002_10" class="green">温湿度10</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_11" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|11')" /><br />
+                                    <span id="dev_4002_11" class="green">温湿度11</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_12" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|12')" /><br />
+                                    <span id="dev_4002_12" class="green">温湿度12</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_13" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|13')" /><br />
+                                    <span id="dev_4002_13" class="green">温湿度13</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_14" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|14')" /><br />
+                                    <span id="dev_4002_14" class="green">温湿度14</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_15" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|15')" /><br />
+                                    <span id="dev_4002_15" class="green">温湿度15</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_16" src="../images/device/wsd.png" class="sz_dev" border="0" onclick="showdetail('4002|16')" /><br />
+                                    <span id="dev_4002_16" class="green">温湿度16</span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_17" src="../images/device/wsd2.png" class="sz_dev" border="0" onclick="showdetail('4002|17')" /><br />
+                                    <span id="dev_4002_17" class="green"></span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_18" src="../images/device/wsd2.png" class="sz_dev" border="0" onclick="showdetail('4002|18')" /><br />
+                                    <span id="dev_4002_18" class="green"></span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_19" src="../images/device/wsd2.png" class="sz_dev" border="0" onclick="showdetail('4002|19')" /><br />
+                                    <span id="dev_4002_19" class="green"></span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_20" src="../images/device/wsd2.png" class="sz_dev" border="0" onclick="showdetail('4002|20')" /><br />
+                                    <span id="dev_4002_20" class="green"></span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_21" src="../images/device/wsd2.png" class="sz_dev" border="0" onclick="showdetail('4002|21')" /><br />
+                                    <span id="dev_4002_21" class="green"></span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_22" src="../images/device/wsd2.png" class="sz_dev" border="0" onclick="showdetail('4002|22')" /><br />
+                                    <span id="dev_4002_22" class="green"></span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_23" src="../images/device/wsd2.png" class="sz_dev" border="0" onclick="showdetail('4002|23')" /><br />
+                                    <span id="dev_4002_23" class="green"></span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_4002_24" src="../images/device/wsd2.png" class="sz_dev" border="0" onclick="showdetail('4002|24')" /><br />
+                                    <span id="dev_4002_24" class="green"></span></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="setting_head">开关量设置区域</div>
+                    <table class="setting">
+                        <tr>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_xhcjkkg_1" src="../images/device/yg.png" border="0" class="sz_dev" onclick="showdetail('4001|titi_signal_kg_1')" /><br />
+                                    <span id="span_xhcjkname_kg_1" class="green">烟雾检测</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_xhcjkkg_2" src="../images/device/mc.png" border="0" class="sz_dev" onclick="showdetail('4001|titi_signal_kg_2')" /><br />
+                                    <span id="span_xhcjkname_kg_2" class="green">门磁检测</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_xhcjkkg_3" src="../images/device/xfj.png" border="0" class="sz_dev" onclick="showdetail('4001|titi_signal_kg_3')" /><br />
+                                    <span id="span_xhcjkname_kg_3" class="green">新风机检测</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_xhcjkkg_4" src="../images/device/flei.png" border="0" class="sz_dev" onclick="showdetail('4011|titi_signal_kg_4')" /><br />
+                                    <span id="span_xhcjkname_kg_4" class="green">防雷检测</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_xhcjkkg_5" src="../images/device/hwsj.png" border="0" class="sz_dev" onclick="showdetail('4001|titi_signal_kg_5')" /><br />
+                                    <span id="span_xhcjkname_kg_5" class="green">入侵检测</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_xhcjkkg_6" src="../images/device/ls.png" border="0" class="sz_dev" onclick="showdetail('4001|titi_signal_kg_6')" /><br />
+                                    <span id="span_xhcjkname_kg_6" class="green">漏水检测</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_xhcjkkg_7" src="../images/device/ls2.png" border="0" class="sz_dev" onclick="showdetail('4001|titi_signal_kg_7')" /><br />
+                                    <span id="span_xhcjkname_kg_7" class="green">信号采集卡开关量7</span></a>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)"> <img id="img_xhcjkkg_8" src="../images/device/ls2.png" border="0" class="sz_dev" onclick="showdetail('4001|titi_signal_kg_8')" /><br />
+                                    <span id="span_xhcjkname_kg_8" class="green">信号采集卡开关量8</span></a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="setting_head">氢气检测设置区域</div>
+                    <table class="setting">
+                        <tr>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td width="12.5%">
+                                            <a href="javascript:void(0)"> <img class="sz_dev" id="img_other_sp_1" src="../images/device/h2.png" border="0" onclick="showdetail('4444|1')" /><br />
+                                                <span id="dev_other_sp_1" class="green">氢气检测</span></a>
+                                        </td>
+                                        <td width="12.5%">
+                                            <a href="javascript:void(0)"> <img class="sz_dev" id="img_other_sp_1" src="../images/device/h2.png" border="0" onclick="showdetail('4444|1')" /><br />
+                                                <span id="dev_other_sp_1" class="green">氢气检测</span></a>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <div class="setting_head">安防设置区域</div>
+                    <table class="setting">
+                        <tr>
+                            <td style="width:430px">
+                                <table>
+                                    <tr>
+                                        <td width="12.5%">
+                                            <a href="javascript:void(0)"> <img class="sz_dev" id="img_other_sp_1" src="../images/device/sxt.png" border="0" onclick="showdetail('9999|1')" /><br />
+                                                <span id="dev_other_sp_1" class="green">视频监控</span>
+                                            </a>
+                                        </td>
+                                        <td width="12.5%">
+                                            <a href="javascript:void(0)"> <img class="sz_dev" id="img_other_sp_2" src="../images/device/menjin.png" border="0" onclick="showdetail('3333|1')" /><br />
+                                                <span id="dev_other_sp_2" class="green">门禁监控</span>
+                                            </a>
+                                        </td>
+                                        <td width="12.5%">
+                                            <a href="javascript:void(0)"> <img class="sz_dev" id="img_other_sp_2" src="../images/device/menjin.png" border="0" onclick="showdetail('3333|1')" /><br />
+                                                <span id="dev_other_sp_2" class="green">门禁监控</span>
+                                            </a>
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- <script>
+        $('.Alert_close', 'body').on('click', function() {
+            console.log('close');
+            $('.alert_in').html('').slideUp();
+        })
+
+        function showH2Modal(htmlStr) {
+            console.log('modal');
+            var innerHTMLs = $('#h2_content').html();
+            var scrollTop = $(document).scrollTop();
+            console.log('scrolltop: ', scrollTop);
+            $('.alert_in').html(innerHTMLs).css({
+                top: scrollTop + 400
+            }).show();
+        }
+    </script> -->
+</body>
+
+</html>

@@ -1,0 +1,492 @@
+body {
+    background: #fff;
+}
+
+.fixed:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.fixed {
+    display: block;
+}
+
+.fixed {
+    min-height: 1%;
+}
+
+* html .fixed {
+    height: 1%;
+}
+
+body {
+    ;
+    font-size: 12px;
+    line-height: 22px;
+    font-family: "微软雅黑";
+    text-align: center;
+    min-width: 1001px;
+    margin: 0;
+    padding: 0 0 0 0
+}
+
+body a {
+    outline: none;
+    blr: expression(this.onFocus=this.blur());
+    text-decoration: none;
+}
+
+form,
+ul,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+}
+
+input,
+select {
+    font-size: 12px;
+    line-height: 16px;
+}
+
+img {
+    border: 0;
+}
+
+ul,
+li {
+    list-style-type: none;
+}
+
+table,
+table tr td {
+    border-collapse: collapse;
+    padding: 0;
+    margin: 0;
+}
+
+.dl_top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 50px;
+    background: url(../images/ny_tbg.gif) center top repeat-x;
+    width: 100%;
+    z-index: 10;
+}
+
+.dl_bnt {
+    float: right;
+    padding: 6px 25px;
+    color: #fff;
+    margin-top: 8px;
+    background: #29a5f9;
+    border-radius: 3px;
+    font-size: 14px;
+    margin-right: 25px;
+}
+
+.dl_tit {
+    float: left;
+    font-size: 20px;
+    color: #fff;
+    background: url(../images/setting_topbg.png) left center no-repeat;
+    line-height: 50px;
+    padding-left: 60px;
+    margin-left: 25px;
+}
+
+.dl_info_tab {
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.dl_info_tab1 {
+    width: 100%;
+    height: 340px;
+    background: #f9f9f9;
+    border: 1px solid #d8d8d8;
+}
+
+.dl_info_tab2 {
+    width: 100%;
+    height: 340px;
+    background: #f9f9f9;
+    border: 1px solid #d8d8d8;
+}
+
+.dl_info_tab3 {
+    width: 100%;
+    height: 580px;
+    background: #f9f9f9;
+    border: 1px solid #d8d8d8;
+}
+
+.dl_info_tab4 {
+    width: 100%;
+    height: 580px;
+    background: #f9f9f9;
+    border: 1px solid #d8d8d8;
+    border-left: 0px;
+}
+
+.dl_info_tab5 {
+    width: 100%;
+    height: 192px;
+    background: #f9f9f9;
+}
+
+.dl_info_tab6 {
+    width: 100%;
+    height: 172px;
+    background: #f9f9f9;
+    border: 1px solid #d8d8d8;
+}
+
+.dl_listbox {
+    /* width:119px;*/
+    height: 128px;
+    margin: 0px auto;
+    position: relative;
+    overflow: hidden;
+}
+
+.dl_listbox .dl_tools {
+    height: 24px;
+    background: #666;
+    position: absolute;
+    left: 0px;
+    bottom: -25px;
+}
+
+.dl_listbox .dl_tools li {
+    display: inline-block;
+    width: 48px;
+    float: left;
+    border-left: 1px solid #ccc;
+    color: white;
+    cursor: pointer;
+}
+
+.dl_listbox .dl_tools li:hover {
+    background: #999;
+}
+
+tr.tab_borderBtm {
+    border-bottom: 1px solid #d8d8d8;
+}
+
+tr.tab_borderBtm td {
+    border-bottom: 1px solid #d8d8d8;
+}
+
+
+/*ie6 ie7不支持tr边框样式*/
+
+.dl_info_tab3_tab {
+    widht: 100%;
+    height: 100%;
+}
+
+td.sgkz {
+    padding: 20px 0 0 20px;
+}
+
+span.green {
+    line-height: 30px;
+    color: #959595;
+    font-size: 14px;
+}
+
+span.red {
+    line-height: 30px;
+    color: #959595;
+    font-size: 14px;
+}
+
+span.orange {
+    line-height: 30px;
+    color: #959595;
+    font-size: 14px;
+}
+
+
+/*实时告警样式*/
+
+.gj_color1 {
+    padding-left: 20px;
+    color: #ff9320;
+}
+
+.gj_color2 {
+    padding-left: 20px;
+    color: #ff4848;
+}
+
+.gj_color3 {
+    padding-left: 20px;
+    color: #959595;
+}
+
+.gj_color4 {
+    color: #06b206;
+    font-weight: bold;
+}
+
+.gj_title {
+    font-size: 18px;
+    color: #959595;
+}
+
+
+/*告警结束*/
+
+
+/*按钮样式*/
+
+.btn {
+    width: 89px;
+    height: 26px;
+    background: url(../images/Open_Close_bg.png) center center no-repeat;
+    margin: 0 auto;
+    position: relative;
+}
+
+.close_btn {
+    width: 89px;
+    height: 26px;
+    background: url(../images/Open_bg.png) left center no-repeat;
+    line-heithg: 0px;
+    font-size: 0;
+    margin-left: 0;
+    margin-right: auto;
+}
+
+.ico_btn {
+    height: 20px;
+    width: 20px;
+    background: url(../images/Open_Close_btn.gif) center center no-repeat;
+    _background: url(../images/Open_Close_btn.png) center center no-repeat;
+    position: absolute;
+    left: 64px;
+    top: 3px
+}
+
+
+/*按钮样式结束*/
+
+
+/*UPS设置选项样式*/
+
+.AlertUps {
+    margin: 35px auto;
+    padding: 25px 40px;
+    width: 420px;
+    border-radius: 4px;
+    border: solid 1px #d8d8d8;
+    background: #fff;
+    position: relative;
+    color: #959595;
+}
+
+.Alert_close {
+    display: block;
+    width: 34px;
+    height: 32px;
+    background: url(../images/Alert_close.png) no-repeat;
+    position: absolute;
+    right: -41px;
+    top: -45px;
+}
+
+.Alert_title {
+    background: #fff;
+    padding: 2px 10px;
+    position: absolute;
+    left: 35px;
+    top: -13px;
+}
+
+.Alert_txxy {
+    padding-top: 16px;
+}
+
+.Alert_txxy div {
+    padding: 2px 0;
+    line-height: 24px;
+    height: 24px;
+    text-align: left;
+}
+
+.Alert_txxy_left {
+    padding-right: 30px;
+}
+
+.c_dx {
+    padding: 0 20px 0 10px;
+}
+
+input.UpsName {
+    width: 70%;
+    text-align: center;
+    color: #959595;
+    padding: 2px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    height: 1.2em;
+    -ms-radius-border: 4px;
+    line-height: 1.2em;
+}
+
+input.select_set {
+    width: 30%;
+    text-align: center;
+    color: #959595;
+    padding: 2px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    height: 1.2em;
+    -ms-radius-border: 4px;
+    line-height: 1.2em;
+}
+
+input[type=text]:focus {
+    outline: none!important;
+    outline: 1px solid #90cff9;
+    border: 1px solid #90cff9;
+}
+
+
+/*.checkbox{line-height:22px; padding:4px 0; width:22px; overflow:hidden;}*/
+
+.uncheckbox {
+    background: url(../IMAGES/Alert_uncheckbox.png) no-repeat center center;
+}
+
+.active_checkbox {
+    background: url(../IMAGES/Alert_checkbox.png) no-repeat center center;
+}
+
+
+/*input[type=checkbox]{ position:relative; left:-9999px; z-index:-10;}*/
+
+.Alert_bjld li {
+    width: 44%;
+    float: left;
+    padding-bottom: 10px;
+}
+
+.Alert_bjld li span.c_bj {
+    padding-left: 10px;
+}
+
+.sd_sxsjd_txt {
+    width: 60%;
+    color: #959595;
+    padding: 2px 4px;
+    margin-left: 1px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    line-height: 1.2em;
+    height: 1.2em;
+    -ms-radius-border: 4px;
+}
+
+
+/*UPS设置选项样式结束*/
+
+
+/*弹出样式*/
+
+.alert_out {
+    background: url(../images/OpenWinbg.png);
+    width: 100%;
+    overflow-y: hidden;
+    height: 100%;
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 996;
+}
+
+.alert_in {
+    width: 560px;
+    height: auto;
+    display: none;
+    margin: -300px 0 0 -280px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 997;
+    background: #fff;
+    box-shadow: 0 0 10px #666;
+}
+
+
+/*弹出样式结束*/
+
+.senior {}
+
+.bg_img {
+    width: 50px;
+    height: 50px;
+}
+
+
+/*5.21*/
+
+.img_info {
+    float: left;
+    width: 140px;
+}
+
+.img_info2 {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+
+
+/*5.21*/
+
+.sz_dev {
+    height: 99px;
+}
+
+a.a_btn1 {
+    margin: 0 auto;
+    display: block;
+    height: 31px;
+    width: 80px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 28px;
+    padding: 0px 10px;
+    background: url(../images/btn_bg.jpg) repeat-x;
+    color: #fff;
+    float: left;
+    margin-left: 60px;
+}
+
+a.a_btn2 {
+    margin: 0 auto;
+    height: 31px;
+    width: 80px;
+    text-align: center;
+    font-size: 15px;
+    line-height: 28px;
+    padding: 6px 20px 8px 20px;
+    background: url(../images/btn_bg.jpg) repeat-x;
+    color: #fff;
+}

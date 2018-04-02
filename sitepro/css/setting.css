@@ -1,0 +1,19 @@
+@import url(static.css);
+.setting_main{ padding-top:20px; width:98%; margin:0 auto;}
+.setting{ background:#f9f9f9; border:1px solid #d8d8d8; margin:0 auto;margin-bottom:10px; }
+.setting tr td{ font-size:15px; color:#717171; vertical-align:text-top; padding-bottom:30px; padding-top:27px;}
+.setting tr td a{ display:block; height:100%;font-size:15px; }
+.setting tr td a{ width:150px; margin:0 auto;word-wrap:break-word; overflow:hidden;}
+.setting tr td img{ margin-bottom:5px;}
+.setting tr td a:hover{ color:#19b7f1;}
+.setting .setting_title{ background:#cee4ef; width:75px; padding:0 10px; vertical-align:middle;}
+.setting  .setting_jmkt{width:434px;border-right:1px solid #d8d8d8;}
+.setting tr td table tr td{ padding:0;}
+.setting .setting_pd{border-right:1px solid #d8d8d8; border-bottom:1px solid #d8d8d8;}
+.setting .setting_jmpd{ border-bottom:1px solid #d8d8d8;}
+.setting_LDSD table { height:200px;}
+.setting_fdj{ width:49%; float:left;}
+.setting_dwls{ width:49%; float:right;}
+.setting_dwls tr td{ padding-bottom:27px;}
+.setting_head{ background:#cee4ef; text-align:left; font-size:15px; color:#717171; height:45px; line-height:45px; padding:0 18px; border:1px solid #d8d8d8; border-bottom:0}
+.setting_head .setimg{ float:right; width:32px; padding-top:6px;}

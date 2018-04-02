@@ -1,0 +1,67 @@
+ .fixed:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.fixed{display:block;}
+.fixed{min-height:1%;}
+* html .fixed{height:1%;}
+body,font{margin:0;padding:0 0 0 0;font-size:12px;line-height:22px; text-align:center; background: background:url(../images/manger/body_bg.jpg) top center;font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei; color:#7a7a7a}
+body a{outline:none;blr:expression(this.onFocus=this.blur());text-decoration:none;font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei;}
+form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei;}
+input,select{font-size:12px;line-height:16px;font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei;}
+ul,li,span{list-style-type:none;font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei;font-size:12px;}
+table{ width: 100%;  border-collapse:collapse; padding: 0; margin: 0}
+table tr td,table thead th{ margin: 0; padding: 0}
+table,tr,th,td{font-family:Arial,'Times New Roman','Microsoft YaHei',SimHei;font-size:13px;}
+img{border:0;}
+input{outline:none;}
+a{ color:#f8db6a; cursor:pointer; text-decoration:none}
+/*统一提示框样式*/
+.load_msg{ color:#666; font-size:13px; background:url(/images/loading1.gif) left center no-repeat; padding-left:20px; text-align:left; height:25px; line-height:25px;}
+.err_msg{ background:url(/images/ico_err.gif) left center no-repeat; padding-left:20px; color:#f00; font-size:13px; line-height:25px; font-size:13px; padding-top:2px; padding-bottom:1px;}
+.right_msg{ background:url(/images/right_ico.gif) left center no-repeat; padding-left:20px; color:#666; font-size:13px; line-height:25px; font-size:13px;padding-top:2px; padding-bottom:1px;}
+.ts_msg{background:url(/images/ico_ts.gif) left center no-repeat; padding-left:20px;  color:#f00; font-size:13px; line-height:25px; font-size:13px; padding-top:2px; padding-bottom:1px;}
+/*弹出框样式开始*/
+*html{ background-image:url(about:blank);background-attachment:fixed;}
+.hui_div{background:url(/images/OpenWinbg.png);}
+#win_txt{position: fixed;_position: absolute;left:50%; top:50%; border-radius:5px; _top:  expression(eval(document.compatMode &&document.compatMode=='CSS1Compat')?documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);}
+.win_tit{height:28px; padding-bottom:6px; line-height:28px; text-align:center; font-size:14px; font-weight:bold; color:#fff; position:relative;gn:expression(this.onselectstart=function(){return false;})}
+#win_titid1{ width:100%; position:absolute; height:28px; z-index:10;}
+.win_close{ position:absolute; right:0; top:5px; z-index:11}
+.win_mid{ background:#fff; Max-Height:450px;_height:expression(this.scrollHeight > 450 ? "450px" : (this.scrollHeight < 40 ? "40px" : "auto")); overflow-y:auto; cursor:default;}
+.do_c{ width:90px; height:30px; color:#fff; font-size:12px; font-weight:bold; border:0; background:#f1881f}
+/*弹出框样式结束*/
+/*统一按钮样式*/
+.btn_sub,.btn_res{ height:33px; line-height:33px;*line-height:28px; border:0; width:103px; border-radius:5px; }
+.btn_sub{ background:#00b91c; border:#00b91c solid 1px; color:#fff; margin-right:10px;}
+.btn_res{background:#fff; border:#969696 solid 1px; color:#666;}
+.bg_y1{ background:#E19900;border:#E19900 solid 1px;}
+.bg_y2{ background:#F1871F;border:#F1871F solid 1px;}
+.bnt_w{ width:127px;}
+a.a_btn1{ background:url(../images/btn_bg.jpg) repeat-x;color:#fff; display:block; font-size:14px; color:#fff; margin-right:auto; margin-left:auto; height:31px; line-height:28px; text-align:center; width:80px;}
+/*输入框*/
+.sys_input,.user_input,.user_input3,.ls_input1{padding:3px 5px; height:23px; width:157px; border:#c4c9cd solid 1px; line-height:23px; color:#4b4b4b;}
+/*CSS3样式*/
+/*圆角*/
+.ric_br5{ border-radius:5px;}
+.ric_br4{ border-radius:4px;}
+/*淡入淡出*/
+.tran_color{transition: color 0.3s  ease-in-out;-webkit-transition: color 0.3s  ease-in-out;}
+.tran_bg{transition: background 0.3s  ease-in-out;-webkit-transition: background 0.3s  ease-in-out;}
+.tran_opa{transition: opacity 0.3s  ease-in-out;-webkit-transition: opacity 0.3s  ease-in-out;}
+.tran_bs{transition: box-shadow 0.3s  ease-in-out;-webkit-transition: box-shadow 0.3s  ease-in-out;}
+/*滚动条*/
+ ::-webkit-scrollbar
+ {
+     width: 10px;
+     height: 10px;
+     background-color: #F5F5F5;
+ }
+ ::-webkit-scrollbar-track
+ {
+     -webkit-box-shadow: inset 0 0 6px #DDD;
+     border-radius: 10px;
+     background-color: #F5F5F5;
+ }
+ ::-webkit-scrollbar-thumb
+ {
+     border-radius: 10px;
+     background-color: #CCC;
+ }

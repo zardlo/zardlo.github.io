@@ -1,0 +1,403 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>动力系统</title>
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <link href="../css/static.css" rel="stylesheet" type="text/css">
+    <link href="../css/jmpd.css" rel="stylesheet" type="text/css">
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <style>
+        body {
+            background: #FFF;
+        }
+        
+        .newpd td {
+            text-align: center
+        }
+        
+        .newpd td.cin {
+            background: #eee
+        }
+        
+        .newpd td span {
+            float: none
+        }
+        
+        .theader {
+            font-weight: bold;
+        }
+        
+        .jmpd_box td .txt__red {
+            color: #ef1b1b;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content_info">
+        <!--第一块开始-->
+
+        <!--第四块-->
+        <div class="dl_content_info">
+            <div class="cen_div" style="padding-bottom:20px;">
+                <div class="content" style="padding:20px">
+                    <div class="jmpd fixed">
+                        <div class="jmpd_left" style="display: none;"> <img src="../images/device/jmpd.png" id="pd_30_4" style="height:220px;"><br>
+                            <h3>精密配电</h3>
+                            <div style="text-align:center; padding-bottom:15px; padding-top:10px;"><a class="a_btn1" onClick="parent.parent.parent.show_scs()">设备信息</a><br>设备连线:<img src="../images/ico_gre.png"></div>
+                        </div>
+                        <table class="jmpd_box" id="jmpd_box2">
+                            <tbody>
+                                <tr class="toptr">
+                                    <!--<td class="actd"><div class="jmpd_top">主路</div></td>-->
+                                    <td class="actd">
+                                        <div class="jmpd_top">主路数据</div>
+                                    </td>
+                                    <td>
+                                        <div class="jmpd_top">支路数据</div>
+                                    </td>
+                                    <!--<td><div class="jmpd_top">功率</div></td>-->
+                                </tr>
+                                <tr class="trcon">
+                                    <td style="border:none;" colspan="5">
+
+
+                                        <!--主路数据-->
+                                        <table style="display: table;" class="">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="half-part part-left">
+                                                            <table>
+                                                                <tbody>
+                                                                    <tr class="kh_title">
+                                                                        <td colspan="3">电源A</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span>23.00</span>A相电压值（V）:</td>
+                                                                        <td><span>28.00</span>A相电流值（A）:</td>
+                                                                        <td><span>32.50</span>频率（HZ）:</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span>23.00</span>B相电压值（V）:</td>
+                                                                        <td><span>28.00</span>B相电流值（A）:</td>
+                                                                        <td><span>32.50</span>电能（kW•h）:</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span>23.00</span>C相电压值（V）:</td>
+                                                                        <td><span>28.00</span>C相电流值（A）:</td>
+                                                                        <td><span>200</span>总功率因数（PF）：</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="3"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span></span><span>23.00</span>总有功率（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>总无功率（kW）:</td>
+                                                                        <td><span></span><span>32.50</span>总视在功率（kW）:</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span></span><span>23.00</span>A相有功（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>A相无功（kW）:</td>
+                                                                        <td><span></span><span>32.50</span>A相视在功率（kW）:</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span></span><span>23.00</span>B相有功（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>B相无功（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>B相视在功率（kW）:</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span></span><span>23.00</span>C相有功（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>C相无功（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>C相视在功率（kW）:</td>
+                                                                    </tr>
+                                                            </table>
+                                                        </div>
+                                                        <div class="half-part part-right">
+                                                            <table>
+                                                                <tbody>
+                                                                    <tr class="kh_title">
+                                                                        <td colspan="3">电源B</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span>23.00</span>A相电压值（V）:</td>
+                                                                        <td><span>28.00</span>A相电流值（A）:</td>
+                                                                        <td><span>32.50</span>频率（HZ）:</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span>23.00</span>B相电压值（V ):</td>
+                                                                        <td><span>28.00</span>B相电流值（A）:</td>
+                                                                        <td><span>32.50</span>电能（kW•h）:</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span>23.00</span>C相电压值（V）:</td>
+                                                                        <td><span>28.00</span>C相电流值（A）:</td>
+                                                                        <td><span>200</span>总功率因数（PF）：</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td colspan="3"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span></span><span>23.00</span>总有功率（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>总无功率（kW）:</td>
+                                                                        <td><span></span><span>32.50</span>总视在功率（kW）:</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span></span><span>23.00</span>A相有功（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>A相无功（kW）:</td>
+                                                                        <td><span></span><span>32.50</span>A相视在功率（kW）:</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span></span><span>23.00</span>B相有功（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>B相无功（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>B相视在功率（kW）:</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td><span></span><span>23.00</span>C相有功（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>C相无功（kW）:</td>
+                                                                        <td><span></span><span>28.00</span>C相视在功率（kW）:</td>
+                                                                    </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr> </tr>
+                                                </tbody>
+                                        </table>
+                                        <!--end主路数据-->
+
+                                        <!--支路数据-->
+                                        <table style="display: none;" class="">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="half-part part-left">
+                                                            <table style="text-align:center;">
+                                                                <tbody>
+                                                                    <tr class="kh_title">
+                                                                        <td colspan="6">电源A</td>
+                                                                    </tr>
+                                                                    <tr class="theader">
+                                                                        <td>支路</td>
+                                                                        <td>电压(V)</td>
+                                                                        <td>电流(A)</td>
+                                                                        <td>功率(W)</td>
+                                                                        <td>负载率(%)</td>
+                                                                        <td>状态</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>A01</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i>闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>A02</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i>闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>A03</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="txt__red">断开</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>A04</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="txt__red">断开</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>A05</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="txt__red">断开</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>A06</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i>闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>A07</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="txt__red">断开</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>A08</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="txt__red">断开</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>A09</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i>闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>A10</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="txt__red">断开</i></td>
+                                                                    </tr>
+                                                            </table>
+                                                        </div>
+                                                        <div class="half-part part-right">
+                                                            <table style="text-align:center;">
+                                                                <tbody>
+                                                                    <tr class="kh_title">
+                                                                        <td colspan="6">电源B</td>
+                                                                    </tr>
+                                                                    <tr class="theader">
+                                                                        <td>支路</td>
+                                                                        <td>电压(V)</td>
+                                                                        <td>电流(A)</td>
+                                                                        <td>功率(W)</td>
+                                                                        <td>负载率(%)</td>
+                                                                        <td>状态</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>B01</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="">闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>B02</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="">闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>B03</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="">闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>B04</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="">闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>B05</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="">闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>B06</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="">闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>B07</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="">闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>B08</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="">闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>B09</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i>闭合</i></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>B10</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td>23.00</td>
+                                                                        <td><i class="txt__red">断开</i></td>
+                                                                    </tr>
+                                                            </table>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr> </tr>
+                                                </tbody>
+                                        </table>
+                                        <!--end支路数据-->
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                        </table>
+                    </div>
+
+                    <!--padding div开始-->
+                </div>
+            </div>
+        </div>
+        <!--第四块-->
+    </div>
+    <script>
+        $(function() {
+            $(".navcon a").click(function() { //切换
+                $(this).siblings().removeClass("active").end().addClass("active");
+                $(".dl_content_info").hide().eq($(this).index()).show()
+
+            })
+            $(".jmpd_box>tbody>tr.toptr>td").click(function() { //精密配电切换
+                $(this).addClass("actd").siblings("td").removeClass("actd")
+                $(".trcon>td").children("table").hide().eq($(this).index()).show();
+
+            })
+
+        })
+    </script>
+</body>
+
+</html>

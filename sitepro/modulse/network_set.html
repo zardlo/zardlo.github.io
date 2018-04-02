@@ -1,0 +1,305 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css" />
+
+<script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript" src="SoftKey/vk_loader.js?vk_layout=CN%20Chinese%20Simpl.%20Pinyin&vk_skin=flat_gray" ></script>
+<script>
+function btn_add()
+{
+	
+	if(check()==false)
+	{
+		return false;
+	}
+
+	document.getElementById('form1').submit();
+}
+function check(){
+	
+	//权限判断
+	var level = '3';
+	if(level==1 || level==2)
+	{
+		alert("对不起，您没有权限操作此页面!");
+		return false;
+	}
+	var id_address = document.getElementById('ip_address');
+	var Mask = document.getElementById('Mask');
+	var Gateway = document.getElementById('Gateway');
+	var DNS = document.getElementById('DNS');
+	var DNS2 = document.getElementById('DNS2');
+	/*var IPPOWER_Port = document.getElementById('IPPOWER_Port');
+	if(isNaN(IPPOWER_Port.value)){
+		alert("请勿输入非法字符！");
+		$("#IPPOWER_Port").focus();
+ 	 	 return false;
+	}*/
+
+	var id_address2 = document.getElementById('ip_address1');
+	var Mask2 = document.getElementById('Mask1');
+	for(var i=0;i<7;i++)
+	{
+		if(i==0)
+		{
+				var str = id_address.value;
+				var allip = id_address;
+		}
+		if(i==1)
+		{
+				var str = Mask.value;
+				var allip = Mask;
+		}
+		if(i==2)
+		{
+				var str = Gateway.value;
+				var allip = Gateway;
+		}
+		if(i==3)
+		{
+				var str = DNS.value;
+				var allip = DNS;
+		}
+		if(i==4)
+		{
+				var str = DNS2.value;
+				var allip = DNS2;
+		}
+		if(i==5)
+		{
+				var str = id_address2.value;
+				var allip = id_address2;
+		}
+		if(i==6)
+		{
+				var str = Mask2.value;
+				var allip = Mask2;
+		}
+		
+    var strlength= str.length; 
+    if(strlength <1&&i!=3&&i!=4){ 
+        alert("输入的内容不能为空");
+ 		allip.focus(); 
+        return false; 
+    }else{ 
+      if((strlength>15||strlength <7)&&strlength>0)          //IP的字段长度的限制 
+        { 
+            alert("您输入的IP长度不正确，必须是7到15位"); 
+    		allip.focus(); 
+            return false; 
+        } 
+        var patrn =/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/;//正则表达式，\d为数字,{1,3}一位或为三位. 
+        if(!patrn.exec(str) && strlength>0){ 
+            alert("您输入的IP格式不正确，必须是000.000.000.000格式"); 
+			
+    		allip.focus(); 
+            return false; 
+        }    
+        var laststr; 
+        laststr= str.split(".");    //用.把字符串str分开 
+        var last_patrn=/^\d{1,3}$/; 
+        if(parseInt(laststr[0])>255 ||parseInt(laststr[1])>255||parseInt(laststr[2])>255||parseInt(laststr[3])>255) //判断IP每位的大小 
+        { 
+                alert("您输入的IP范围不正确"); 
+     			allip.focus(); 
+                return false; 
+        } 
+
+        if(!last_patrn.exec(laststr[3])&&strlength>0) 
+        { 
+              alert("您输入的IP格式不正确，必须是000.000.000.000格式"); 
+     		allip.focus(); 
+            return false; 
+        } 
+      
+        } 
+	}
+
+	  return true; 
+	}
+//获取当前时间
+function GetNowtime()
+{
+	//alert(nt.setTime(t_s+1000*60));//设置新时间比旧时间多一分钟
+	var now_time=$("#now_time").val().replace(/-/g, "/");
+	var t_s = (new Date(now_time)).getTime(); //得到毫秒数 
+	//var t_s=t.getTime();//转化为时间戳毫秒数
+	//var nt=(new Date('2014/04/22 12:15:05'));//定义一个新时间
+	var now = new Date(t_s+1000);
+
+	// var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth();
+    var date = now.getDate();
+    var day = now.getDay();
+    var hour = now.getHours();
+    var minu = now.getMinutes();
+    var sec = now.getSeconds();
+  
+    month = month+1;
+    if(month<10)month="0"+month;
+    if(date<10)date="0"+date;
+    if(hour<10)hour="0"+hour;
+    if(minu<10)minu="0"+minu;
+    if(sec<10)sec="0"+sec;
+ 
+    var time = "";
+    time = year+"/"+month+"/"+date+" "+hour+":"+minu+":"+sec;
+	$("#now_time").val(time)
+	//alert(year);
+	return time;
+}
+function data_update()
+{
+    var time =GetNowtime();
+	var date=time.split(" ");
+   $("#ymd").html(date[0]);
+   $("#hms").html(date[1]);
+   
+}
+setInterval('data_update()',1000); 	
+$(function(){
+	data_update();
+
+});
+//同步时间
+function up_time()
+{
+
+
+	var now = new Date();
+
+	// var now = new Date();
+    var year = now.getFullYear();
+    var month = now.getMonth();
+    var date = now.getDate();
+    var day = now.getDay();
+    var hour = now.getHours();
+    var minu = now.getMinutes();
+    var sec = now.getSeconds();
+  
+    month = month+1;
+    if(month<10)month="0"+month;
+    if(date<10)date="0"+date;
+    if(hour<10)hour="0"+hour;
+    if(minu<10)minu="0"+minu;
+    if(sec<10)sec="0"+sec;
+ 
+    var time = "";
+    time = year+"-"+month+"-"+date+" "+hour+":"+minu+":"+sec;
+	
+	//提交表单
+	$.ajax({
+			type:"get",
+			url:'ajax/update_time.php?time='+time,
+			dateType:'html',
+			cache:false,
+			success: function(msg)
+			{
+				if(msg==1)
+				{
+					alert("同步时间成功！");
+					tuptime();
+					index_time();
+				}
+			}
+	})
+	
+
+}
+//同步主页面时间
+function index_time()
+{
+	window.parent.window.parent.uptime();
+}
+//同步当前页面时间
+setInterval("tuptime()",10000);
+function tuptime()
+{
+	
+	$.ajax({url: 'function/GetTime.php?time=Gettime',
+			type: 'get',
+			dataType: 'text',
+			error:function (XMLHttpRequest, textStatus, errorThrown) {},
+			cache:false,		
+			success: function(data) 
+			{
+				//data=data.split("_");
+				$("#now_time").val(data);
+				//data_update();
+			}
+	    });
+	
+}
+</script>
+</head>
+<style type="text/css">
+body{ overflow-y:auto;}
+</style>
+<body>
+
+<div class="xd_sz_content">
+	<form action="network_set.html" enctype="multipart/form-data" method="post" name="form1"  id="form1">
+  <table class="xd3_sz_tab">
+    	<tr>
+        	<td colspan="6" style="border-bottom:solid 1px #d8d8d8;">
+            	<ul class="xd3_info fixed">
+                	<li><span class="xd3_title">当前系统运行时间：</span></li>
+                    <li><span class="xd3_year" id="ymd">2014/09/03</span></li>
+                    <li><span class="xd3_time" id="hms">10:05:12</span></li>
+                    <li><a href="javascript:void(0);" onclick="up_time()" class="xd3_tb_btn1" title="与本台电脑时间同步"></a></li>
+                </ul>
+            </td>
+        </tr>
+        <tr>
+        	<td height="50px" style="border-bottom:solid 1px #d8d8d8;"><span class="sd3_wz_style">IP地址：&nbsp;&nbsp;&nbsp;</span></td>
+            <td style="border-right:solid 1px #d8d8d8;border-bottom:solid 1px #d8d8d8;"><input type="text" class="dx_txt" name="ip_address" id="ip_address" value="192.168.0.88
+"  /><span></span></td>
+            <td style="border-bottom:solid 1px #d8d8d8;"><span class="sd3_wz_style">子网掩码：</span></td>
+            <td style="border-right:solid 1px #d8d8d8;border-bottom:solid 1px #d8d8d8;"><input type="text" class="dx_txt" name="Mask" id="Mask" value="255.255.255.0
+"  /><span></span></td>
+            <td style="border-bottom:solid 1px #d8d8d8;"><span class="sd3_wz_style">网关：</span></td>
+            <td style="border-bottom:solid 1px #d8d8d8;"><input type="text" class="dx_txt" name="Gateway" id="Gateway" value="192.168.0.1
+"  /><span></span></td>
+        </tr>
+        <tr>
+        	<td style="border-bottom:solid 1px #d8d8d8;" height="50px" ><span class="sd3_wz_style">首选DNS：</span></td>
+            <td  style="border-right:solid 1px #d8d8d8;border-bottom:solid 1px #d8d8d8;"><input type="text" class="dx_txt" name="DNS" id="DNS" value="0.0.0.0
+"  /><span></span></td>
+            <td style="border-bottom:solid 1px #d8d8d8;"><span class="sd3_wz_style">备选DNS：</span></td>
+            <td style="border-right:solid 1px #d8d8d8;border-bottom:solid 1px #d8d8d8;"><input type="text" class="dx_txt" name="DNS2" id="DNS2" value="0.0.0.0
+"  /><span></span></td>
+            <td style="border-bottom:solid 1px #d8d8d8;"></td>
+            <td style="border-bottom:solid 1px #d8d8d8;"></td>
+        </tr>
+        
+         <tr>
+        	<td  height="50px" ><span class="sd3_wz_style">IP地址2：</span></td>
+            <td style="border-right:solid 1px #d8d8d8;"><input type="text" class="dx_txt" name="ip_address1" id="ip_address1" value="192.168.1.100
+"  /><span></span></td>
+            <td><span class="sd3_wz_style">子网掩码2：</span></td>
+            <td style="border-right:solid 1px #d8d8d8;"><input type="text" class="dx_txt" name="Mask1" id="Mask1" value="255.255.255.0
+"  /><span></span></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+     <input type="hidden" name="btform" value="network" />
+     <!-- 当前时间-->
+      <input type="hidden" id="now_time" value="2014/09/03 10:05:12" />
+    </form>
+    <!---第一步骤结束--->
+   
+</div>
+
+    <div class="xd2_bz">
+    	<div class="xd2_prev"><a href="user_list.html" target="xd_iframe"  class="xd_prev a_btn2">上一步</a></div>
+    	<div class="xd2_next"><a href="javascript:void(0);"  class="xd_next a_btn1">保存重启</a></div>
+    </div>
+
+</body>
+</html>

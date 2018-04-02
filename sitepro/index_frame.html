@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/index.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery.js" type="text/javascript"></script>
+</head>
+
+<body style="overflow-y:hidden">
+    <div class="newinx">
+        <!--左边菜单开始-->
+        <div class="lnavcon lnavcon-toRight">
+            <div class="leftnav">
+                <a class="lnav1 active" href="modulse/mapindex.html" target="riframe"><!--<span class="navwz">主监控</span>--></a>
+                <a class="lnav6" href="modulse/Single_three_UPS.html" target="riframe"><!--<span class="navwz">UPS</span>--></a>
+                <a class="lnav2" href="modulse/power.html" target="riframe"><!--<span class="navwz">配电</span>--></a>
+                <a class="lnav3" href="modulse/kongtiaoxitong.html" target="riframe"><!--<span class="navwz">空调</span>--></a>
+                <a class="lnav4" href="modulse/huanjingjiance.html" target="riframe"><!--<span class="navwz">环境</span>--></a>
+                <a class="lnav5" href="modulse/anfangxitong.html" target="riframe"><!--<span class="navwz">门禁</span>--></a>
+            </div>
+        </div>
+        <!--左边菜单结束-->
+
+        <!--右边iframe-->
+        <div class="rcon">
+            <iframe name="riframe" frameborder="0" width="100%" height="100%" src="modulse/mapindex.html"></iframe>
+        </div>
+        <!--右边iframe-->
+    </div>
+    <script>
+        $(function() {
+            var h = $(window).outerHeight(true)
+            $(".lnavcon,.leftnav,.rcon").height(h - 1)
+            var navh = h - 6
+            $(".leftnav>a").height(navh / 6)
+            if ($(".leftnav>a").height() > 140) {
+                $(".navwz").css("bottom", "22%")
+            }
+
+            $(".leftnav>a").click(function() {
+                $(this).addClass("active").siblings("a").removeClass("active")
+                $('.headnav>a', window.parent.document).removeClass("active")
+            })
+
+        })
+    </script>
+</body>
+
+</html>

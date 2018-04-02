@@ -1,0 +1,1149 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>index_index_home</title>
+    <LINK href="css/style.css" rel="stylesheet" type="text/css">
+    <LINK href="css/index.css" rel="stylesheet" type="text/css">
+    <SCRIPT src="js/jquery.js" type="text/javascript"></SCRIPT>
+
+    <script>
+        if ($(window).outerWidth(true) > 1800) {
+            document.write('<link href="css/screen.css" rel="stylesheet" type="text/css" />')
+        }
+    </script>
+
+    <script>
+        if ($(window).outerWidth(true) > 1800) {
+            document.write('<link href="css/Screen2.css" rel="stylesheet" type="text/css" />')
+        }
+    </script>
+    <script>
+        pue = "1";
+        userid = "1";
+        var str1 = ""
+        $(function() {
+
+            var t7 = '<table class="inner_tb" id="inner_tb2">' +
+                '<tbody><tr>' +
+                '	<td>' +
+                '	  <img style="float:left; margin:0 10px;" src="images/mic.gif">	 ' +
+                '	  <table style="float:left; width:325px">' +
+                '	  	<tbody><tr>' +
+                '			<td colspan="3">SD卡容量:29.27G</td>' +
+                '		</tr>' +
+                '		<tr style="">' +
+                '			<td colspan="2"><div style="width:290px; height:7; border:1px solid #d8d8d8; margin:0 5px;">' +
+                '<div class="bar1" style="width:0%"></div></div></td>' +
+                '			<td>0%</td>' +
+                '		</tr>' +
+                '		<tr>' +
+                '			<td>已用:0M</td>' +
+                '			<td>未用:29970M</td>' +
+                '		</tr>' +
+                '	  </tbody></table>' +
+                '	</td>' +
+                '</tr>' +
+                '<tr>' +
+                '	<td>' +
+                '	  <img style="float:left; margin:0 10px;" src="images/mic2.jpg">' +
+                '	 <table style="float:left;width:325px">' +
+                '	  	<tbody><tr>' +
+                '			<td colspan="2">FLASH卡容量:0.93G</td>' +
+                '		</tr>' +
+                '		<tr><td colspan="2"><div style="width:290px; height:7; border:1px solid #d8d8d8; margin:0 5px;">' +
+                '<div class="bar2" style="width:8%"></div></div></td>' +
+                '			<td>8%</td>' +
+                '		</tr>' +
+                '		<tr>' +
+                '			<td>已用:79M</td>' +
+                '			<td>未用:874M</td>' +
+                '		</tr>' +
+                '	  </tbody></table>' +
+                '	</td>' +
+                '</tr>' +
+                '	</tbody></table></div>'
+            $(".inner_colse").click(function() {
+                $(this).parent().parent("#info_box1").hide();
+            })
+
+            $(".info_div7").click(function() {
+                //点击SD卡存储容量没有登陆时，点到登陆页面
+                parent.show($(this), 520, 300)
+                $.ajax({
+                    url: 'ajax/get_sd_card.php',
+                    type: 'get',
+                    dataType: 'html',
+                    cache: false,
+                    success: function(data) {
+                        setTimeout(function() {
+                            parent.sett(data)
+                        }, 500)
+                    },
+                    error: function() {
+                        setTimeout(function() {
+                            parent.sett(t7)
+                        }, 1000)
+                    }
+                });
+            })
+
+
+
+            $(".shiping").click(function() {
+                parent.show($(this), 627, 407)
+                setTimeout(function() {
+                    parent.sett('<img  src="images/ship.jpg">')
+                }, 1000)
+            })
+
+            $(".menjinCK").click(function() {
+                parent.show($(this), 782, 535)
+                $.ajax({
+                    url: 'ajax/get_sd_card.php',
+                    type: 'get',
+                    dataType: 'html',
+                    cache: false,
+                    success: function(data) {
+                        setTimeout(function() {
+                            parent.sett(data)
+                        }, 500)
+                    },
+                    error: function() {
+                        setTimeout(function() {
+                            parent.sett('<img  src="images/mengj.jpg">')
+                        }, 1000)
+                    }
+                });
+            })
+        });
+    </script>
+</head>
+
+<body style="background:url(images/body_bg.jpg) center top #000d2e; background-size:100% 100%;">
+
+    <!--中间开始-->
+    <div class="centers" style="min-height: 420px; height: 454px;">
+
+        <div class="cen_info">
+            <!--右侧开始-->
+            <div class="c_right">
+                <div class="c_rtop">
+                    <!--机房详细设置开始-->
+                    <div class="c_lright info_config">
+                        <div class="jfcom">
+                            <a href="modulse/basic_settings.html" target="container_iframe"><img src="images/img10.png"><br><span>一键设置向导</span></a>
+
+                        </div>
+                        <div class="szcom">
+                            <a href="modulse/dev_config.html" target="container_iframe"><img src="images/img11.png"><br><span>机房详细设置</span></a>
+                        </div>
+                    </div>
+                    <!--机房详细设置结束-->
+
+                    <script>
+                        $(function() {
+                            var flag = true;
+                            $(".c_box").click(function() {
+
+                                if (flag) {
+                                    $(this).animate({
+                                        width: "200%"
+                                    })
+                                    flag = false;
+                                } else {
+
+                                    $(this).animate({
+                                        width: "100%"
+                                    })
+                                    flag = true;
+                                }
+                            });
+                        })
+                    </script>
+                    <!--实时告警信息开始-->
+                    <div class="c_lleft">
+                        <div class="c_box ">
+                            <h2 class="msg_tit"><a href="javascript:void(0)" onClick="href_page2('modulse/real_alarm.html')" style="float:left">实时告警信息</a><a class="nums_msg">99<span>+</span></a><span style="float:left; position:absolute;"><a href="javascript:void(0)"></a></span></h2>
+                            <!-- <img src="images/more.png" onclick="href_page2('real_alarm.html')"  />  -->
+                            <table class="msg_tab" id="bottom_msg">
+                                <tbody>
+                                    <tr>
+                                        <td width="20px"><img src="images/ico_win1.png"></td>
+                                        <td width="160px"><a>2014-09-02 12:18:00</a></td>
+                                        <td><a>单相usp:市电异常</a></td>
+                                        <td class="last"><a class="msg_tabr">未确认</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20px"><img src="images/ico_win1.png"></td>
+                                        <td width="160px"><a href="#" onClick="richcommWin(140,-4,90,25,1)">2014-09-02 11:36:17</a></td>
+                                        <td><a href="#">温湿度1:连接状态</a></td>
+                                        <td class="last"><a class="msg_tabr">未确认</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20px"><img src="images/ico_win1.png"></td>
+                                        <td width="160px"><a href="#" onClick="richcommWin(140,-4,90,25,1)">2014-09-02 11:36:11</a></td>
+                                        <td><a href="#">温湿度2:温度过高</a></td>
+                                        <td class="last"><a class="msg_tabr">未确认</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td width="20px"><img src="images/ico_win1.png"></td>
+                                        <td width="160px"><a href="#" onClick="richcommWin(140,-4,90,25,1)">2014-09-02 11:36:17</a></td>
+                                        <td><a href="#">温湿度1:连接状态</a></td>
+                                        <td class="last"><a class="msg_tabr">未确认</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--实时告警信息结束-->
+                </div>
+
+                <div class="c_rbot">
+                    <!--能耗分析-->
+                    <div class="info_div8 show_info" rel="modulse/donglixitong.html?url=puetp.html">
+                        <div class="info_d8_1">能耗分析</div>
+                        <img src="images/img_nh.png" style="margin-top:19px;">
+                    </div>
+                    <!--能耗分析结束-->
+
+                    <!--电池容量-->
+                    <div class="info_div6 show_info">
+                        <a href="javascript:void(0)"><span id="alarm_miaoshu">无告警</span><img id="voice_img" src="images/index_home/img6_04.gif" class="info_div6_img"></a>
+                    </div>
+                    <!--电池容量结束-->
+                    <!--SD卡容量开始-->
+                    <div class="info_div7 show_info">
+                        <div class="info_d7_1">存储容量</div>
+                        <img src="images/index_home/mom.png" class="info_div7_img">
+                    </div>
+                    <!--SD卡容量结束-->
+                    <div class="info_div9 show_info">
+                        <div class="info_d9_1">
+                            <img id="83999" src="images/cgred.png"><br>
+                            <span>采集卡指示灯</span></div>
+                    </div>
+                    <!--end指示灯--->
+
+                </div>
+
+            </div>
+            <!--右侧结束-->
+            <!--左侧开始-->
+            <div class="c_left">
+                <!--第一块开始-->
+                <div class="info_div1 info_div" rel="modulse/huanjingjiance.html">
+                    <div class="show_info1 show_info">
+                        <div class="info_ds info_ds1">
+                            <!--可见内容开始-->
+                            <div class="info_ds1_left">
+                                <div class="info_ds1_img"><img src="images/index_home/hj_big.png"></div>
+                                <div class="info_ds1_wz">环境监测</div>
+
+                            </div>
+                            <!--可见内容结束-->
+                            <div class="info_ds1_right">
+                                <h4 class="s_tit s_tit1"><img src="images/index_home/hj_big.png">环境监测</h4>
+
+                                <table class="s_tab s_tab_f">
+                                    <tbody>
+                                        <tr>
+                                            <td>温湿度</td>
+                                            <td class="nums"><span id="wsd">2</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>烟感</td>
+                                            <td class="nums"><span id="yg">1</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>漏水</td>
+                                            <td class="nums"><span id="ls">3</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>新风机开关监测</td>
+                                            <td class="nums"><span id="xfj">0</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--第一块结束-->
+                <!--第二块开始-->
+                <div class="info_div2 info_div" rel="modulse/kongtiaoxitong.html">
+                    <div class="show_info2 show_info">
+                        <div class="info_ds info_ds2">
+                            <!--可见内容开始-->
+                            <div class="info_ds2_left">
+                                <div class="info_ds2_img"><img src="images/index_home/kt_big.png"></div>
+                                <div class="info_ds2_wz">空调系统</div>
+
+                            </div>
+                            <!--可见内容结束-->
+                            <div class="info_ds2_right">
+                                <h4 class="s_tit s_tit2"><img src="images/index_home/kt_big.png">空调系统</h4>
+
+                                <table class="s_tab s_tab_r" style="width:75%; margin-top:10px">
+                                    <tbody>
+                                        <tr>
+                                            <td>精密空调</td>
+                                            <td style="width:20px"><span id="jmkongtiao">1</span></td>
+                                        </tr>
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--第二块结束-->
+                <!--第三块开始-->
+                <div class="info_div3 info_div" rel="modulse/anfangxitong.html">
+                    <div class="show_info3 show_info">
+                        <div class="info_ds info_ds3">
+                            <!--可见内容开始-->
+                            <div class="info_ds3_left">
+                                <div class="info_ds3_img"><img src="images/index_home/af_big.png"></div>
+                                <div class="info_ds3_wz">安防系统</div>
+                            </div>
+                            <!--可见内容结束-->
+                            <div class="info_ds3_right">
+                                <h4 class="s_tit s_tit3"><img src="images/index_home/af_big.png">安防系统</h4>
+
+                                <table class="s_tab s_tab_f">
+                                    <tbody>
+                                        <tr>
+                                            <td>门磁</td>
+                                            <td class="nums"><span id="mc">0</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>红外双鉴</td>
+                                            <td class="nums"><span id="hwsj">0</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>视频</td>
+                                            <td class="nums"><span id="shipin">1</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>门禁</td>
+                                            <td class="nums"><span id="menjin">1</span></td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <!--第三块结束-->
+
+                <!--动力系统开始-->
+                <div class="info_div4 info_div" rel="modulse/donglixitong.html?url=upsreal.html">
+                    <div class="show_info4 show_info  show_info_red">
+                        <div class="info_ds info_ds4">
+                            <!--可见内容开始-->
+                            <div class="info_ds4_left">
+                                <div class="info_ds4_img"><img src="images/index_home/dc_big.png"></div>
+                                <div class="info_ds4_wz">动力系统</div>
+
+                            </div>
+                            <!--可见内容结束-->
+                            <div class="info_ds4_right">
+                                <h4 class="s_tit s_tit4"><img src="images/index_home/dc_big.png">动力系统</h4>
+
+                                <table class="s_tab">
+                                    <tbody>
+                                        <tr>
+                                            <td>UPS</td>
+                                            <td class="nums"><span id="ups">2</span></td>
+                                            <td>配电</td>
+                                            <td class="nums"><span id="peidian">3</span></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <!--动力系统结束-->
+                <!--机房展示图开始-->
+                <div class="info_div5" rel="modulse/map.html">
+                    <!-- computer_graphics.php -->
+                    <div class="info_div5_info show_info">
+                        <div class="info_div5_img"><img src="images/index_home/map.png"></div>
+                        <a href="javascript:void(0)" class="show_info">机房图形展示</a>
+                    </div>
+                </div>
+                <!--机房展示图结束-->
+                <!--容量管理开始-->
+                <div class="info_div10 show_info" rel="modulse/rongliang.html">
+                    <div class="info_d10_1"><img src="images/dianchi.png">容量管理</div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>空调容量 </td>
+                                <td>100%</td>
+                            </tr>
+                            <tr>
+                                <td>电力容量 </td>
+                                <td>20%</td>
+                            </tr>
+                            <tr>
+                                <td>空间容量 </td>
+                                <td>100%</td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+                <!--容量管理结束-->
+
+            </div>
+            <!--左侧结束-->
+
+
+        </div>
+
+
+        <!--左右移动层开始-->
+        <div class="cen_list">
+
+            <ul class="cen_ul">
+                <li class="cur"></li>
+                <li class="">
+                    <div class="cen_div">1</div>
+                </li>
+                <li class="">
+                    <div class="cen_div">2</div>
+                </li>
+                <li class="">
+                    <div class="cen_div">3</div>
+                </li>
+                <li class="">
+                    <div class="cen_div">4</div>
+                </li>
+                <li class="">
+                    <div class="cen_div">5</div>
+                </li>
+                <li class="">
+                    <div class="cen_div">6</div>
+                </li>
+                <li class="">
+                    <div class="cen_div">7</div>
+                </li>
+            </ul>
+
+        </div>
+        <!--左右移动层结束-->
+        <!--控制按钮开始-->
+        <div class="ctrl">
+            <a onClick="showList(0)" href="javascript:void(0)"><img src="images/ico_up.png"></a>
+        </div>
+        <!--控制按钮结束-->
+    </div>
+    <!--中间结束-->
+    <!--底部开始-->
+    <div class="bot_div">
+        <table class="bot_tab">
+            <tbody>
+                <tr>
+                    <td>
+                        <a href="modulse/Integrated_interface.html" target="container_iframe" class="" title="集成接口设置"><img src="images/bottom/bot_img2.png"></a>
+                    </td>
+                    <td>
+                        <a href="modulse/history_event.html" target="container_iframe" class="" title="历史记录报表"><img src="images/bottom/bot_img3.png"></a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)" onClick="href_page('modulse/Backup_restore.html')" target="container_iframe" class="" title="一键备份/还原"><img src="images/bottom/bot_img4.png"></a>
+                    </td>
+                    <td>
+                        <a href="modulse/setTime.html" target="container_iframe" class="" title="时间设置"><img src="images/bottom/bot_img5.png"></a>
+                    </td>
+                    <td>
+                        <a href="modulse/host_information.html" target="container_iframe" class="" title="主机信息"><img src="images/bottom/bot_img6.png"></a>
+                    </td>
+                    <td>
+                        <a href="javascript:void(0)" target="container_iframe" class="shiping" title="视频查看"><img src="images/bottom/bot_img7.png"></a>
+                    </td>
+                    <td>
+                        <a href="modulse/menjin.html" target="container_iframe" title="门禁"><img src="images/bottom/bot_img8.png"></a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <!--底部结束-->
+
+
+    <script>
+        function shipin(id) {
+            var userid = "1";
+            if (userid == '') {
+                parent.location.href = 'login.php';
+                return false;
+            }
+            var enable = "1";
+            if (enable == 1) {
+                window.open('Single_video.php?id=' + id);
+            } else {
+                alert("视频未使能！");
+            }
+
+        }
+
+        function menjin(id) {
+            var userid = "1";
+            if (userid == '') {
+                parent.location.href = 'login.php';
+                return false;
+            }
+            var enable = "1";
+            if (enable == 1) {
+                window.open('Single_video.php?id=' + id);
+            } else {
+                alert("门禁未使能！");
+            }
+
+        }
+
+        function href_page(page) {
+            var userid = "1";
+            if (userid == '') {
+                parent.location.href = 'login.php';
+                return false;
+            }
+            var user = "3";
+            if (user != '3') {
+                alert("对不起，您没有权限操作此页面！");
+                return false;
+            }
+            location.href = page;
+        }
+
+        function href_page2(page) {
+
+            location.href = page;
+        }
+        setInterval("update_warns(0)", 7000);
+        setInterval("Get_voicelight()", 7000);
+        setInterval("Get_devnum()", 7000);
+
+        function Get_devnum() {
+            $.ajax({
+                url: 'ajax/get_devnum_ajax.php',
+                type: 'get',
+                dataType: 'json',
+                cache: false,
+                success: function(data) {
+
+                    for (var i in data) {
+
+                        $("#" + i).html(data[i]);
+                    }
+
+
+                }
+            });
+        }
+        ///////////////告警内容更新//////////////
+        function update_warns(level) {
+            $.ajax({
+                url: 'ajax/real_alarm_warns_ajax.php?level=' + level,
+                type: 'get',
+                dataType: 'html',
+                cache: false,
+                success: function(data) { //alert(data);
+                    //alert(data);
+                    var array = data.split('|');
+                    //$("#bott_title").html(array[0]);
+                    $("#bottom_msg").html(array[1]);
+                    if (parseInt(array[2]) > 99) {
+                        $(".nums_msg").html(array[2] + '<span>+</span>');
+                    } else {
+                        $(".nums_msg").html(array[2]);
+                    }
+
+                    $(".msg_tabr").click(function(e) {
+
+                        e.stopPropagation();
+                    })
+
+
+                }
+            });
+        }
+
+        function Get_voicelight() {
+            $.ajax({
+                url: 'ajax/voicelight.php?update=update',
+                type: 'get',
+                dataType: 'html',
+                cache: false,
+                success: function(data) {
+                    var val = data.split("_");
+                    if (val[0] == 1) {
+                        $("#alarm_miaoshu").html("有告警");
+                    } else {
+                        $("#alarm_miaoshu").html("无告警");
+                    }
+                    //有效
+                    if (val[1] == 1) {
+                        if (!$(".info_div6").hasClass('info_div6_1')) {
+                            $(".info_div6").addClass('info_div6_1');
+                            $("#voice_img").attr("src", "images/index_home/img6_03.png");
+                        }
+
+
+                    } else { //无效
+                        if ($(".info_div6").hasClass('info_div6_1')) {
+                            $(".info_div6").removeClass('info_div6_1');
+                            $("#voice_img").attr("src", "images/index_home/img6_04.gif");
+                        }
+                    }
+
+                }
+            });
+        }
+
+        setInterval("get_warns()", 7000);
+
+        function get_warns() {
+            $.ajax({
+                url: 'ajax/get_warns_ajax.php',
+                type: 'get',
+                dataType: 'json',
+                cache: false,
+                success: function(data) {
+                    var len = data.length,
+                        i = 0,
+                        temp = '',
+                        arr = new Array(['none'], ['block']),
+                        images, dongli = 0,
+                        huanjing = 0,
+                        anfang = 0,
+                        kongtiao = 0;
+                    images = sys == 1 ? 'images' : 'images';
+                    if (len > 0) {
+                        for (i; i < len; i++) {
+                            temp = data[i].split("|");
+
+                            var val = temp[0].split("_");
+
+                            //判断是否是SPB.SPC.SPI设备，连线状态图片设置
+                            if (val[2] == 'SP') {
+                                //$("#img_"+val[0]+'_'+val[1]).attr("src",temp[1]);
+                            } else {
+
+                                //信号采集卡
+                                if (val[0] == 4001) {
+                                    var val2 = temp[1].split("_");
+                                    //是否告警 1：告警 0：没告警
+                                    if (val2[0] == 1) {
+
+                                        //告警时，有自定义的图片
+                                        if (temp[1].substr(2, temp[1].length).length > 0) {
+                                            var val = temp[1].split("_");
+                                            if (val[2] == 'ls2.gif' || val[2] == 'yg2.gif' || val[2] == 'xfjkgjc2.gif') {
+                                                huanjing++;
+                                            } else if (val[2] == 'mc2.gif' || val[2] == 'hwsj2.gif') {
+                                                anfang++;
+                                            } else if (val[2] == 'flqkgjc2.gif') {
+                                                dongli++;
+                                            }
+
+
+                                        }
+                                        //告警时，没有自定义图片
+                                        else {
+                                            //模拟量默认告警图片
+                                            if (val[1] >= 3969 && val[1] <= 3972) {
+                                                //动力系统告警
+                                                dongli++;
+                                            }
+                                        }
+
+                                    } else {
+
+
+                                    }
+
+                                } else {
+                                    var img = '';
+                                    //有告警
+                                    //alert(temp[1]);
+                                    if (temp[1] == 1) {
+                                        if (val[0] == 1 || val[0] == 10 || val[0] == 2 || val[0] == 5 || val[0] == 4020 || val[0] == 4005 || val[0] == 30 || val[0] == 31 || val[0] == 32) {
+                                            //动力告警
+                                            dongli++;
+                                        } else if (val[0] == 4002 || val[0] == 9) {
+                                            //环境告警
+                                            huanjing++;
+                                        } else if (val[0] == 13) {
+                                            //空调系统告警
+                                            kongtiao++;
+                                        } else if (val[0] == 4004) {
+                                            //空调系统告警
+                                            sys == 0 && ver == 1 ? huanjing++ : kongtiao++;
+
+                                        }
+
+
+
+                                    }
+                                    //alert(img);
+                                    $("#" + temp[0]).attr("src", img);
+                                }
+
+                            }
+
+                        }
+                        //系统中设备有告警时，显示红色
+                        if (dongli > 0) {
+                            if (!$('.show_info4').hasClass('show_info_red')) {
+                                $('.show_info4').addClass('show_info_red');
+                            }
+                        } else {
+                            if ($('.show_info4').hasClass('show_info_red')) {
+                                $('.show_info4').removeClass('show_info_red');
+                            }
+                        }
+                        if (anfang > 0) {
+                            if (!$('.show_info3').hasClass('show_info_red')) {
+                                $('.show_info3').addClass('show_info_red');
+                            }
+                        } else {
+                            if ($('.show_info3').hasClass('show_info_red')) {
+                                $('.show_info3').removeClass('show_info_red');
+                            }
+                        }
+                        if (kongtiao > 0) {
+                            if (!$('.show_info2').hasClass('show_info_red')) {
+                                $('.show_info2').addClass('show_info_red');
+                            }
+                        } else {
+                            if ($('.show_info2').hasClass('show_info_red')) {
+                                $('.show_info2').removeClass('show_info_red');
+                            }
+                        }
+                        if (huanjing > 0) {
+                            if (!$('.show_info1').hasClass('show_info_red')) {
+                                $('.show_info1').addClass('show_info_red');
+                            }
+                        } else {
+                            if ($('.show_info1').hasClass('show_info_red')) {
+                                $('.show_info1').removeClass('show_info_red');
+                            }
+                        }
+                    } else {
+                        return false;
+                    }
+                }
+            });
+        }
+        $(document).ready(function() {
+            get_warns();
+
+        });
+        $(function() {
+                Get_devnum();
+                Get_voicelight();
+                update_warns(0);
+                get_warns();
+                $(".pue_info").height(33 * ($(".pue_info").parent().text()) / 100);
+                var cenHeight = $(window).outerHeight(true) - $(".top").outerHeight(true) - $(".bot_div").outerHeight(true)
+                if (cenHeight <= 420) {
+                    cenHeight = 420
+                }
+                $(".centers").height(cenHeight);
+                // console.log($(".bot_div").outerHeight(true))
+                //窗口改变后动态计算
+                $(window).resize(function() {
+
+                        var cenHeight = $(window).outerHeight(true) - $(".top").outerHeight(true) - $(".bot_div").outerHeight(true)
+                        if (cenHeight <= 420) {
+                            cenHeight = 420
+                        }
+                        $(".centers").height(cenHeight);
+                    })
+                    //鼠标移动到图片开始
+                $(".bot_tab>tbody>tr>td>a").hover(function() {
+                        if ($(window).outerWidth(true) > 1800) {
+                            $(this).children("img").animate({
+                                "width": "150px",
+                                "height": "150px"
+                            }, 200)
+                        } else if ($(window).outerWidth(true) > 1800) {
+                            $(this).children("img").animate({
+                                "width": "125px",
+                                "height": "125px"
+                            }, 200)
+                        } else {
+                            $(this).children("img").animate({
+                                "width": "98px",
+                                "height": "98px"
+                            }, 200)
+                        }
+
+                    }, function() {
+                        if ($(window).outerWidth(true) > 1800) {
+                            $(this).children("img").animate({
+                                "width": "120px",
+                                "height": "120px"
+                            }, 200)
+                        } else if ($(window).outerWidth(true) > 1800) {
+                            $(this).children("img").stop(true, true).animate({
+                                "width": "100px",
+                                "height": "100px"
+                            }, 200)
+                        } else {
+                            $(this).children("img").stop(true, true).animate({
+                                "width": "77px",
+                                "height": "77px"
+                            }, 200)
+                        }
+                    })
+                    /*.click(function(){
+                    	     if($(this).attr("class").indexOf("cure")==-1){
+                    	   
+                    	   $(".ctrl").fadeIn()
+                    	    $(".cen_list").show();
+                    	  var objs=$(this).parent("td").parent("tr").parent("tbody").parent(".bot_tab").children("tbody").children("tr").children("td").children("a")
+                    	  var t=objs.index($(this))
+                    	  var items=$(this)
+                    	  objs.removeClass("cure")
+                    	  $(this).addClass("cure")
+                    	  objs.each(function(i){
+                    		 if(i==t){
+                    			 $(this).children("img").animate({"width":"98px","height":"98px"},200) 
+                    			 }else{
+                    			  $(this).children("img").animate({"width":"77px","height":"77px"},200) 
+                    		  } 
+                    		 }) 
+                    		showList(t+1) 
+                    		}
+                    	})*/
+                    //鼠标点击图片 
+
+
+
+
+                //鼠标移动到内容页样式
+                $(".info_div>.show_info").hover(function() {
+                        var w = $(this).outerWidth(true)
+                        $(this).children(".info_ds").animate({
+                            "left": "-" + w + "px"
+                        }, 300)
+                    }, function() {
+                        $(this).children(".info_ds").stop(true, true).animate({
+                            "left": "0px"
+                        }, 300)
+                    })
+                    //为声音单独设置
+                $(".info_div6>a").click(function() {
+                        //点击告警确认没有登陆时，返回到登陆页面
+                        if (userid == '') {
+                            parent.location.href = 'login.php';
+                            return false;
+                        }
+                        var level = "3";
+                        if (level == 1) {
+                            alert("对不起，您没有权限操作此页面！");
+                            return false;
+                        }
+                        var val = 0;
+
+                        $.ajax({
+                            url: 'ajax/voicelight.php?update=center&val=' + val,
+                            type: 'get',
+                            dataType: 'html',
+                            cache: false,
+                            success: function(data) {
+                                //无效时，删除class
+                                if (val == 0 && data == 1) {
+                                    $(".info_div6").removeClass('info_div6_1');
+                                    $("#voice_img").attr("src", "images/index_home/img6_04.gif");
+                                }
+                                /*else if(val==0 && data==1)
+                                			{
+                                				$(".info_div6").addClass('info_div6_1');
+                                				$("#voice_img").attr("src","images/index_home/img6_03.png");
+                                			}*/
+                                update_warns(0);
+                            }
+                        })
+                    })
+                    //弹框
+                $(".info_div1,.info_div5,.info_div3,.info_div4,.info_div2,.info_div10,.info_div8").click(function() { /*,.info_div5*/
+                    window.open($(this).attr("rel"), 'container_iframe')
+                });
+                //$(".info_div2").click(function(){window.open($(this).attr("rel"))});
+                //$(".info_div4").click(function(){$('iframe').attr('src','mould/dlxt/donglixitong.html');});
+                //$(".info_div3").click(function(){window.open($(this).attr("rel"))});
+                //$(".info_div5").click(function(){top.location.href=$(this).attr("rel")});
+                //$(".info_div6").click(function(){window.open($(this).attr("rel"))});
+
+
+
+
+                ////////
+            })
+            //滑动函数
+        function showList(t) {
+            if (t == 0) {
+                $(".ctrl").fadeOut()
+                $(".cen_list").fadeOut()
+                $(".bot_tab>tbody>tr>td>a").children("img").animate({
+                    "width": "77px",
+                    "height": "77px"
+                }, 200)
+                $(".bot_tab>tbody>tr>td>a.cure").removeClass("cure")
+                $(".cen_ul>li.cur").removeClass("cur").css({
+                    "width": "0px"
+                }).hide()
+                $(".cen_ul>li").eq(0).css({
+                    "width": "960px"
+                }).show().addClass("cur")
+            } else {
+                var cobj = $(".cen_ul>li.cur")
+                var c = cobj.parent(".cen_ul").children("li").index(cobj)
+                    //alert("t="+t+",c="+c)
+                if (t > c) {
+                    $(".cen_ul>li").eq(t).show().css({
+                        "width": "960px"
+                    })
+                    $(".cen_ul>li.cur").animate({
+                        "width": "0px"
+                    }, 300, function() {
+                        $(this).hide();
+                        $(this).removeClass("cur");
+                        $(".cen_ul>li").eq(t).addClass("cur")
+                    })
+
+                } else {
+                    $(".cen_ul>li").eq(t).show().animate({
+                        "width": "960px"
+                    }, 300, function() {
+                        $(".cen_ul>li.cur").removeClass("cur").css({
+                            "width": "0px"
+                        }).hide();
+                        $(this).addClass("cur")
+                    });
+
+
+                }
+            }
+        }
+        var XMLDOM = ["MSXML4.DOMDocument", "MSXML3.DOMDocument", "MSXML2.DOMDocument", "MSXML.DOMDocument", "Microsoft.XmlDom"];
+
+        // funcAsync: 回调函数. function onload(xmlDoc, isError){ ... }
+        function GetMsXml() {
+            var mGetData = null;
+            // 创建XML对象
+            for (var i = 0; i < XMLDOM.length; i++) {
+                if (window.ActiveXObject) {
+                    //alert("window!");
+                    try {
+                        mGetData = new ActiveXObject("Microsoft.XmlDom"); // Support IE
+                        mGetData.async = true;
+                        break;
+                    } catch (ex) {}
+
+                } else {
+                    //alert("not window!");
+                    try {
+                        // Support Firefox, Mozilla, Opera, etc
+                        mGetData = document.implementation.createDocument("", "", null); // 创建一个空的 XML 文档对象。
+                        break;
+                    } catch (ex) {}
+                }
+            }
+            return mGetData;
+        }
+
+        function GetXmlTextByTagName(xml, id) {
+            var Obj, szTxt = "";
+            try {
+                Obj = xml.getElementsByTagName(id);
+
+                if (typeof(Obj) == "undefined") {
+                    return szTxt;
+                } else if ((Obj = Obj.item(0)) == null) {
+                    return szTxt;
+                } else {
+
+                    if (window.ActiveXObject) {
+                        szTxt = Obj.text;
+                    } else {
+                        szTxt = Obj.textContent;
+                    }
+                }
+            } catch (objException) {}
+
+            return szTxt;
+        }
+
+
+        function MM_callJS(jsStr) {
+            return eval(jsStr);
+        }
+        $(function() {
+
+            MM_callJS('Gett()');
+
+        })
+        var time_inteval = 8000;
+        var xmlDoc;
+        var xmlDoc2;
+        sys = "0";
+        ver = "0";
+        cn1 = "输出功率配电";
+        cn2 = "IT设备负载功率配电";
+        cn3 = "PUE值";
+
+        function RefurbishTextDis() {
+            var arr1, arr2, arr3;
+            nAlarm = GetXmlTextByTagName(xmlDoc, 'CurRunData');
+            //alert(nAlarm);
+            var arr = nAlarm.split("|");
+
+            var array = new Array();
+            for (var i = 0; i < arr.length; i++) {
+                var start = arr[i].split(":");
+                array[start[0].replace(/(^\s*)|(\s*$)/g, "")] = start[1];
+            }
+
+            for (var i in array) {
+
+                if (i == 15212) {
+                    arr3 = array[i];
+                    if ($("#15212", window.parent.document).length > 0) {
+                        $("#15212", window.parent.document).val(array[i])
+                    }
+                    if (pue == 1) {
+                        $("#d" + i).html(array[i]);
+                    } else {
+                        $("#d" + i).html('N/A');
+                    }
+                } else if (i == 15210) {
+                    arr1 = array[i];
+                    if ($("#15210", window.parent.document).length > 0) {
+                        $("#15210", window.parent.document).text(array[i])
+                    }
+                } else if (i == 15211) {
+                    arr2 = array[i];
+                    if ($("#15211", window.parent.document).length > 0) {
+                        $("#15211", window.parent.document).text(array[i])
+                    }
+                }
+
+            }
+            str1 = '<table class="inner_tb"><tr><td><div style="position:relative;"><img src="images/info_dc.gif" /><span  class="outVal" id="15210">' + arr1 + '</span></div>' + cn1 + '</td><td><div style=" position:relative;"><img src="images/info_dc.gif" /><span  class="outVal" id="15211">' + arr2 + '</span></div>' + cn2 + '</td></tr><tr><td colspan="2">' + cn3 + '：<input type="text" disabled="disabled" id="15212"  value="' + arr3 + '" /></td></tr></table>'
+
+        }
+
+        function RefurbishTextDis2() {
+            nAlarm = GetXmlTextByTagName(xmlDoc2, 'CurRunData');
+            var arr = nAlarm.split("|");
+
+            var array = new Array();
+            for (var i = 0; i < arr.length; i++) {
+                var start = arr[i].split(":");
+                array[start[0].replace(/(^\s*)|(\s*$)/g, "")] = start[1];
+            }
+            for (var i in array) {
+                if (i == 83999) {
+                    if (array[i] == 1) {
+                        $("#" + i).attr("src", "images/cgred.png");
+                    } else if (array[i] == 0) {
+                        $("#" + i).attr("src", "images/cgreen.png");
+                    } else {
+                        $("#" + i).attr("src", "images/cgray.png");
+                    }
+
+                }
+            }
+        }
+
+        function Gett(str) {
+            var i, nMsk, nStatus;
+            var agent = navigator.userAgent.toLowerCase();
+
+            if (agent.indexOf("chrome") > -1) {
+                //alert("chrome browser!");
+                try {
+                    var xmlhttp = new window.XMLHttpRequest();
+                    var ret = xmlhttp.open("GET", "4021_1.xml", false);
+                    xmlhttp.send(null);
+                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                        xmlDoc = xmlhttp.responseXML.documentElement;
+                        RefurbishTextDis();
+                    }
+
+                    var xmlhttp2 = new window.XMLHttpRequest();
+                    var ret2 = xmlhttp2.open("GET", "4001_1.xml", false);
+                    xmlhttp2.send(null);
+                    if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
+                        xmlDoc2 = xmlhttp2.responseXML.documentElement;
+                        RefurbishTextDis2();
+                    }
+
+                } catch (e) {
+                    //alert("your chrome browser do not surport present!");
+                }
+            } else {
+                xmlDoc = GetMsXml();
+                xmlDoc2 = GetMsXml();
+                if (xmlDoc == null || xmlDoc2 == null) {
+                    alert("Sorry, xml Error!");
+                    return;
+                }
+                xmlDoc.async = false;
+                xmlDoc2.async = false;
+                if ((xmlDoc.load("4021_1.xml") == true)) {
+                    RefurbishTextDis();
+                }
+                if ((xmlDoc2.load("4001_1.xml") == true)) {
+                    RefurbishTextDis2();
+                }
+            }
+
+
+            extupid = setTimeout(function() {
+                Gett()
+            }, time_inteval);
+        }
+
+        function confirm_alarm(str) {
+            $.ajax({
+                url: 'ajax/comfirm_alarm_ajax.php?str=' + str,
+                type: 'get',
+                dataType: 'html',
+                cache: false,
+                success: function(data) {
+                    if (data > 0) {
+                        alert("确认成功!");
+                        update_warns(0);
+                        get_warns();
+                    }
+                }
+            });
+        }
+    </script>
+
+
+
+</body>
+
+</html>

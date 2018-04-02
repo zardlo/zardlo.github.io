@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+body{ text-align:center; font:"微软雅黑"; font-size:14px; margin:0; padding:0}
+
+a{ text-decoration:none; outline:none;}
+.panel{ position:relative; margin:0 auto;  overflow:hidden; color:#fff;font-family:"微软雅黑"; font-size:15px;}
+.panel,img#bgpic{ width:100%;}  	 /*整块宽度调整*/
+.panel,.panel span{moz-user-select: -moz-none; -moz-user-select: none; -o-user-select:none; -khtml-user-select:none; -webkit-user-select:none;-ms-user-select:none; user-select:none;/**禁止选中文字*/}
+.panel .panel-title{position:absolute; right:25px; top:25px;}
+
+.tips{position:absolute; top:80px; left:25px; width:200px;}  /*左侧移动块*/
+.tips .tip{ float:left; margin:2px;position: relative;}
+.tips .tip .del{ display:none;}
+.tip .del{ position:relative; top:-8px; right:0; cursor:pointer; z-index:500}
+.tip{ background:url(../images/map/tips_tip.png); padding:2px; border-radius:2px; }
+.tip span{ cursor:move;}
+
+.tip.red>span{background:url(../images/map/red_03.png) no-repeat center left; display:block; padding-left:15px; }
+.tip.green>span{background:url(../images/map/green_03.png) no-repeat center left; display:block; padding-left:15px; }
+.box{display:none; } 	/*提示框隐藏*/
+.pic .box{ display:none;}
+.box,.content{height:200px; } /*文字提示框大小*/
+.content table tr th{text-align:left;}
+.box,.content,.content tabel{ width:400px;}  /* 默认内容宽度*/
+.pic.bj .tip>span{ width:12px; text-indent:-5000px;}
+.pic.bj .tip{ background:none; } 
+.pic.bj .tip span{ cursor:default;}
+.pic .tip{ padding:0;min-width:15px;position:absolute;background:url(../images/map/greenbg_03.png);padding:2px;width:inherit;z-index:10}  /*移动块的位置*/
+.pic .tip>span{ padding-left:15px;display:block;}
+/*默认右上绿样式*/	
+.pic .tip .box{position:absolute; bottom:-119px;right:10px;background:url(../images/map/rightyllow.png) no-repeat right 20px; display:none;}
+.pic .tip .content{position:absolute; right:69px; overflow:hidden;}
+ /*右上红*/
+.pic .tip.right.red .content table{ float:right;}
+.pic .tip.right.red.ttop .box{ padding-right:83px;position:absolute; bottom:-75px;  right:23px;background:url(../images/map/rightred.png) no-repeat right 40px;}
+.pic .tip.right.red.ttop .content{position:absolute; right:83px; overflow:hidden;}
+/*右下红*/
+.pic .tip.right.red.bottom .box{padding-right:69px; position:absolute; top: 0px;  right:25px;background:url(../images/map/Brightred.png) no-repeat right 20px;}
+.pic .tip.right.red.bottom .content{position:absolute; right:83px; top:40px; overflow:hidden;}
+/*右上绿*/
+.pic .tip.right.green.ttop .box{ padding-right:69px;position:absolute; bottom:-80px;right:25px;background:url(../images/map/rightyllow.png) no-repeat right 60px;}
+.pic .tip.right.green.ttop .content{position:absolute; right:69px; overflow:hidden;}
+/*右下绿*/
+.pic .tip.right.green.bottom .box{padding-right:69px;position:absolute; top: -2px;right:25px;background:url(../images/map/Brightyllow.png) no-repeat right 20px;}
+.pic .tip.right.green.bottom .content{position:absolute; right:69px; top:50px; overflow:hidden;}
+.pic .tip.right.green .content table{ float:right;}
+/*左上红*/
+.pic .tip.left.red.ttop .box{padding-left: 83px;position:absolute; bottom:-45px; left:5px;  background:url(../images/map/redline.png) no-repeat left 70px;}
+.pic .tip.left.red.ttop .box .content{position:absolute; left:83px; overflow:hidden;}
+/*左下红*/
+.pic .tip.left.red.bottom .box{padding-left:69px;position:absolute; top: -9px; left:5px;  background:url(../images/map/Bredline.png) no-repeat left 20px;}
+.pic .tip.left.red.bottom .box .content{position:absolute; left:83px;top:20px; overflow:hidden;}
+/*左上绿*/
+.pic .tip.left.green.ttop .box{ padding-left:69px;position:absolute; bottom:-119px; left:8px;  background:url(../images/map/yellowline.png) no-repeat left 20px;}
+.pic .tip.left.green.ttop .box .content{position:absolute; left:69px; overflow:hidden;}
+/*左下绿*/
+.pic .tip.left.green.bottom .box{position:absolute; top: -5px; left:8px;  background:url(../images/map/Byellowline.png) no-repeat left 20px;}
+.pic .tip.left.green.bottom .box .content{position:absolute; left:69px; top:50px; overflow:hidden;}
+
+/*table内容样式*/
+.content table{text-align:left;background:url(../images/map/tb_bg2.png); border:1px solid #F00; padding: 10px; }
+.tip.red .content table{ border:1px solid #F00;}
+.tip.red .content table td span{ color:#e71d1d;}
+.tip.green .content table td span{ color:#0F0;}
+.tip.green .content table{ border:1px solid #0F0;}
+
+/*每添加一个标签 需要设置标签宽度,最好给上高度*/
+.box.yg,.box.yg .content,.box.yg .content table{ width:150px;}  /*烟感*/
+.box.ls,.box.ls .content,.box.ls .content table{ width:150px;} /*漏水*/
+.box.jmkt,.box.jmkt .content,.box.jmkt .content table{ width:300px;}   /*精密配电*/
+.box.jmpd,.box.jmpd .content,.box.jmpd .content table{ width:300px;} 
+.box.wsd,.box.wsd .content,.box.wsd .content table{ width:160px;}
+.box.ups,.box.ups .content,.box.ups .content table{ width:330px;} 
+.box.xfj,.box.xfj .content,.box.xfj .content table{width:150px;} 
+
+/*机房图上传*/
+.btn1{padding:5px;  width:80px; background:#0CF; border:0; color:#FFF; margin-left:5px; cursor:pointer;}   
+#preview_wrapper{        
+    display:inline-block;        
+}        
+#preview_fake{ /* 该对象用户在IE下显示预览图片 */        
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale);        
+}        
+#preview_size_fake{ /* 该对象只用来在IE下获得图片的原始尺寸，无其它用途 */        
+    filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);          
+    visibility:hidden;        
+}        
+#preview{ /* 该对象用户在FF下显示预览图片 */        
+    width:1000px;        
+	display:none;
+}
+.myform{  height:35px;width:100%; text-align:center;}  
+.myform  #upload_img{ width:0; height:0;}

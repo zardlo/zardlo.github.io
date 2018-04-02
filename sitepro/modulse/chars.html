@@ -1,0 +1,340 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+    <link href="../css/static.css" rel="stylesheet" type="text/css">
+    <link href="../css/NavBtm.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/highcharts.js"></script>
+    <script type="text/javascript" src="../js/WdatePicker.js"></script>
+    <link href="../css/WdatePicker.css" rel="stylesheet" type="text/css">
+    <style>
+        .selector {
+            width: 60px;
+            line-height: 24px;
+            height: 24px;
+            margin-top: 12px;
+            color: #959595;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        .selector__pull-right {
+            float: right;
+            margin-right: 50px;
+        }
+    </style>
+</head>
+<style>
+    .charsdiv {
+        padding-top: 50px;
+    }
+
+    .charsbox {
+        padding-top: 35px;
+    }
+
+    .charsin {
+        width: 95%;
+        height: 440px;
+        position: relative;
+        margin: 0 auto
+    }
+
+    .charswd {
+        text-align: center;
+        background: #fff;
+        position: absolute;
+        height: 240px;
+        width: 340px;
+        top: 120px;
+        left: 50%;
+        margin-left: -170px;
+        border: 1px solid #ccc;
+        display: none
+    }
+
+    .wsdini {
+        line-height: 28px;
+    }
+
+    .charswd a.btn, .cxbtn {
+        border-radius: 3px;
+        color: #fff;
+        display: inline-block;
+        height: 26px;
+        line-height: 26px;
+        text-align: center;
+        width: 62px;
+        background: #57bc46;
+        font-size: 12px;
+        margin: 12px 5px 0 5px;
+    }
+
+    .ytit {
+        font-size: 13px;
+        display: block;
+        padding-top: 7px;
+        text-align: left;
+        padding-left: 90px;
+    }
+
+    .charswd input {
+        width: 70px
+    }
+
+    .xdsearch {
+        float: left;
+        padding-top: 12px;
+        padding-left: 30px;
+    }
+</style>
+<body style="background:#fff;">
+<div class="xd_top">
+    <a class="xd_tit">温度曲线图</a>
+    <div class="xdsearch">
+        <input type="text" class="ls_txt" value="2017-02-24 00:00:00"
+               onfocus="WdatePicker({isShowWeek:true,lang:'zh-cn'})" readonly="readonly"
+               style="display:inline; float:none; width:115px"/>
+        &nbsp;<span style="color: white;">--</span>&nbsp;
+        <input type="text" class="ls_txt" value="2017-05-24 00:00:00"
+               onfocus="WdatePicker({isShowWeek:true,lang:'zh-cn'})" readonly="readonly"
+               style="display:inline; float:none; width:115px"/>
+        <a href="javascript:void(0);" class="cxbtn" style="margin-top:0">查询</a>
+    </div>
+    <div>
+        <a class="xd_bnt" href="../index_frame.html">返回</a>
+        <select class="selector selector__pull-right" id="j-slect1">
+            <option>冷通道温湿度1</option>
+            <option>冷通道温湿度2</option>
+            <option>冷通道温湿度3</option>
+        </select>
+    </div>
+</div>
+<div class="charsdiv">
+    <div class="charsbox fixed">
+        <div class="charsin">
+            <div class="" id="chars" style="width:100%; height:100%;"></div>
+            <div class="lyzh" style=" position:absolute; top:0; height:100%; left:1%; width:4%">0</div>
+            <div class="lyzh" style=" position:absolute; top:0; height:100%; right:1%; width:4%">0</div>
+        </div>
+
+        <div class="charswd">
+            <div class=""></div>
+            <div class="wsdini">
+                <p class="ytit">温度Y轴</p>最大值：
+                <input type="text" class="wmax"/>
+                <br/>
+                最小值：
+                <input type="text" class="wmin"/>
+                <br/>
+                <p class="ytit">湿度Y轴</p>
+                最大值：
+                <input type="text" class="smax"/>
+                <br/>
+                最小值：
+                <input type="text" class="smin"/><br/>
+                <a class="btn" id="set">设置</a><a class="cancel btn">取消</a>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+<script>
+    $(function () {
+        function fun(options) {
+            var defOpt = {
+                mdata: {
+                    wmax: 80,
+                    wmin: 12,
+                    smax: 95,
+                    smin: 5,
+                },
+                wsdData: {
+                    wdData: [27.0, 26.9, 29.5, 24.5, 18.2, 61.5, 35.2, 40.5, 23.3, 18.3, 13.9, 19.6],
+                    sdData: [49.9, 71.5, 66.4, 59.2, 44.0, 46.0, 45.6, 48.5, 56.4, 54.1, 55.6, 54.4]
+                },
+                time: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00',
+                    '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+            };
+            if(options === undefined) {
+                options = {};
+            }
+            var opt = $.extend(defOpt, options);
+            $('#chars').highcharts({
+                chart: {
+                    zoomType: 'xy'
+                },
+                title: {
+                    text: ' 　'
+                },
+                colors: ['#62a4ff', '#8dd379'],
+                xAxis: [{
+                    categories: opt.time,
+                    crosshair: true
+                }],
+                yAxis: [{ // Primary yAxis
+                    max: opt.mdata.wmax, // 定义Y轴 最大值
+                    min: opt.mdata.wmin, // 定义最小值
+                    labels: {
+                        format: '{value}°C',
+                        style: {
+                            color: '#4e99ff',
+                        }
+                    },
+                    title: {
+                        text: '温度',
+                        style: {
+                            color: '#4e99ff',
+                        }
+                    }
+                }, { // Secondary yAxis
+                    max: opt.mdata.smax, // 定义Y轴 最大值
+                    min: opt.mdata.smin, // 定义最小值
+                    title: {
+                        text: '湿度',
+                        style: {
+                            color: '#4ebb30'
+                        }
+                    },
+                    labels: {
+                        format: '{value} %',
+                        style: {
+                            color: '#4ebb30'
+                        }
+                    },
+                    opposite: true
+                }],
+                tooltip: {
+                    shared: true
+                },
+                credits: { //去掉网址
+                    enabled: false
+                },
+                legend: {
+                    align: 'right',
+                    x: -90,
+                    verticalAlign: 'top',
+                    y: 0,
+                    floating: true,
+                },
+                series: [{
+                    name: '温度',
+                    type: 'spline',
+                    data: opt.wsdData.wdData,
+                    tooltip: {
+                        valueSuffix: '°C'
+                    }
+                }, {
+
+                    name: '湿度',
+                    type: 'spline',
+                    yAxis: 1,
+                    data: opt.wsdData.sdData,
+                    tooltip: {
+                        valueSuffix: ' %'
+                    }
+                }]
+            });
+        }
+
+        var data1 = {
+            wdData: [27.0, 26.9, 29.5, 24.5, 18.2, 61.5, 35.2, 40.5, 23.3, 18.3, 13.9, 19.6],
+            sdData: [49.9, 71.5, 66.4, 59.2, 44.0, 46.0, 45.6, 48.5, 56.4, 54.1, 55.6, 54.4]
+        };
+        var data2 = {
+            wdData: [55.3,27.0, 26.9, 29.5, 24.5, 18.2, 31.5, 35.2, 26.5, 23.3, 18.3, 13.9],
+            sdData: [55.6, 49.9, 71.5, 66.4, 59.2, 70.0, 46.0, 45.6, 48.5, 56.4, 54.1, 54.4]
+        };
+        var data3 = {
+            wdData: [10.5, 26.9, 29.5, 24.5, 18.2, 31.5, 35.2, 26.5, 38.26, 18.3, 13.9, 19.6],
+            sdData: [54.4, 49.9, 71.5, 66.4, 59.2, 44.0, 46.0, 45.6, 48.5, 56.4, 54.1, 55.6]
+        };
+
+        $(".lyzh").click(function () {
+            $(".charswd").show();
+        })
+        $(".cancel").click(function () {
+            $(".charswd").hide();
+        })
+        $("#set").click(function () {
+            var mdata = {
+                wmax: $(this).siblings(".wmax").val().replace(/(^\s*)|(\s*$)/g, ""),
+                wmin: $(this).siblings(".wmin").val().replace(/(^\s*)|(\s*$)/g, ""),
+                smax: $(this).siblings(".smax").val().replace(/(^\s*)|(\s*$)/g, ""),
+                smin: $(this).siblings(".smin").val().replace(/(^\s*)|(\s*$)/g, "")
+            }
+
+            if (mdata.wmax == "" || mdata.wmin == "" || mdata.smax == "" || mdata.smin == "") {
+                alert('不能为空')
+            }
+            else if (isNaN(mdata.wmax) || isNaN(mdata.wmin) || isNaN(mdata.smax) || isNaN(mdata.smin)) {
+                alert('请输入数字')
+            }
+            else if (mdata.wmin >= mdata.wmax || mdata.smin >= mdata.smax) {
+                alert('最大值不能低于或等于最小值')
+            } else {
+                fun({
+                    mdata: mdata,
+                });
+                $(".charswd").hide();
+                $("input").val(null)
+            }
+
+
+        })
+
+        fun({
+            wmax: 80,
+            wmin: 12,
+            smax: 95,
+            smin: 5,
+        }, data1);
+
+
+        $('#j-slect1').change(function() {
+            var selectedIndex = $(this).get(0).selectedIndex;
+            switch(selectedIndex) {
+                case 0:
+                    fun({
+                        mdata: {
+                            wmax: 80,
+                            wmin: 12,
+                            smax: 95,
+                            smin: 5,
+                        },
+                        wsdData: data1
+                    });
+                    break;
+                case 1:
+                    fun({
+                        mdata: {
+                            wmax: 80,
+                            wmin: 12,
+                            smax: 95,
+                            smin: 5,
+                        },
+                        wsdData: data2
+                    });
+                    break;
+                case 2:
+                    fun({
+                        mdata: {
+                            wmax: 80,
+                            wmin: 12,
+                            smax: 95,
+                            smin: 5,
+                        },
+                        wsdData: data3
+                    });
+                    break;
+            }
+        });
+    })
+
+
+</script>
+</body>
+</html>

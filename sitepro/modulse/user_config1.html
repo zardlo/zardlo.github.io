@@ -1,0 +1,424 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css" />
+<script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+</head>
+<style type="text/css">
+body{ overflow-x:hidden;}
+</style>
+<script type="text/javascript" src="SoftKey/vk_loader.js?vk_layout=CN%20Chinese%20Simpl.%20Pinyin&vk_skin=flat_gray" ></script>
+<script>
+
+lan="cn";
+$(function(){
+	
+	$("#name").bind("keyup blur",function(){
+		
+		var oldname=$("#oldname").val()==undefined?"":$("#oldname").val();//取修改时的原名
+		var type='uname';
+		$.ajax({
+			url:'ajax/user_ajax.php',
+			type:'post',
+			dataType:'text',
+			data:{target:'checkname',type:type,name:$(this).val(),oldname:oldname},
+			cache:false,
+			success:function(data){
+			
+				if(data==1)
+				{
+					$("#name_val").val(1);
+					$("#span_name").html('<font color="red">此帐号已存在！</font>');
+					return false;
+				}else
+				{
+					$("#name_val").val(0);
+					$("#span_name").html('');
+				}
+			}
+		});
+		
+	});
+})
+function btn_add()
+{
+	
+	if(name_function('name')==false)
+	{
+		return false;
+	}
+	if(phone_function('tel')==false)
+	{
+		return false;
+	}
+	var pwd=$("#pwd").val();
+	if(pwd.length==0)
+	{
+		alert("密码不能为空！");
+		$("#pwd").focus();
+		return false;
+	}
+	var tel=$("#tel").val();
+	if(tel.length==0)
+	{
+		alert("手机号码不能为空！");
+		$("#tel").focus();
+		return false;
+	}
+	var num=0;
+	
+	//用户名
+	$("input[id^='user_name']").each(function(){
+		if(name_function(this.id)==false)
+		{
+			num++;
+			return false;
+		}
+	});
+	if(num>0)
+	{
+		return false;
+	}
+	num=0;
+	//电话号码
+	$("input[id^='telphone']").each(function(){
+		if(phone_function(this.id)==false)
+		{
+			num++;
+			return false;
+		}
+	});
+	if(num>0)
+	{
+		return false;
+	}
+	$("input[id^='smsphone']").each(function(){
+		if(phone_function(this.id)==false)
+		{
+			num++;
+			return false;
+		}
+	});
+	if(num>0)
+	{
+		return false;
+	}
+	//邮箱
+	num=0;
+	$("input[id^='email']").each(function(){
+		if(email_function(this.id)==false)
+		{
+			num++;
+			return false;
+		}
+	});
+	
+	if(num>0)
+	{
+		return false;
+	}
+	var len=$("input[id^='user_name']").length;
+	$("#num").val(len);
+	//提交表单
+	$.ajax({
+			type:"POST",
+			url:'dev_add/Basic_set_form.php',
+			dateType:'html',
+			data:$('#formid').serialize(),
+			cache:false,
+			async:false,
+			success: function(msg)
+			{
+				if(msg==1)
+				{
+					alert("设置成功！");
+					//location.href='user_list.php';
+				}else if(msg==2)
+				{
+					alert("此帐号已存在！");
+					return false;
+				}else
+				{
+					alert("设置出错！");
+					return false;
+				}
+			}
+	})
+	
+}
+//添加告警对象
+function add_time(obj)
+{
+	tid=$(obj).parent('td').parent('tr').prev('tr').attr('id');
+
+
+	oid=$(obj).parent('td').parent('tr').prev('tr').children('td').eq(0).html();
+	oid=parseInt(oid);
+	var id=parseInt(tid.substr(8));
+	
+	var c=0;
+	$("tr[id^='div_time']").each(function(){
+		c++;
+	})
+	if(c==11)
+	{
+		alert("最多添加10个告警对象！");
+		return false;
+	}
+	//循环所有时间点
+	/*var tid=0;
+	$("tr[id^='div_time']").each(function(){
+	
+		tid=$(this).children('td').eq(0).html();
+		
+	})
+	tid=parseInt(tid);alert(tid);*/
+	//var jia="<img width='20px' height='20px' src='img/jia.jpg' onclick='add_time("+(id+1)+",1)' /> ";
+	
+	
+	//在点击的时间点后面添加一个时间点
+	$("#"+tid).after("<tr id='div_time"+(id+1)+"'  ><td>"+(oid+1)+"</td><td><input type='text' id='user_name"+(id+1)+"' name='user_name[]' class='dx_txt1' value='' /></td><td><input type='text' id='telphone"+(id+1)+"' name='telphone[]' class='dx_txt1' value='' /></td><td><input type='text' id='smsphone"+(id+1)+"' name='smsphone[]' class='dx_txt1' value='' /></td><td><input type='text' id='email"+(id+1)+"' name='email[]' class='dx_txt1' value='' /></td><td  style='text-align:center'><input type='checkbox' id='email"+(id+1)+"' name='pan[]' class='dx_txt1' value='' /></td><td style='text-align:center'><input type='checkbox' id='email"+(id+1)+"' name='pan[]' class='dx_txt1' value='' /></td><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img width='20px' height='20px' src='../images/jian.png' onclick='del_time(this)' /></td></tr>");
+	
+	if($(window).outerWidth(true)>1800){
+	$(document).bind("contextmenu",function(e){ return false;})
+	$("#"+tid).next("tr").find("input[type='text'],input[type='password'],textarea").focus(function(){
+		if($("#softkey").length>0){
+				VirtualKeyboard.toggle('txt_Search', 'softkey');
+				$("#softkey").remove();
+		}
+		if(typeof($(this).attr("id"))=="undefined"){
+			$(this).attr("id","ric"+(Math.random().toString()).replace(".",""))
+		}
+		 var l=$(this).offset().left
+		 var t=$(this).offset().top +$(this).outerHeight(true)+3
+		$("<div>",{"id":"softkey"}).css({"position":"absolute","left":l+"px","top":t+"px","zIndex":999}).appendTo("body")
+		var thisid=$(this).attr("id")
+		VirtualKeyboard.toggle(thisid, 'softkey');
+	}).blur(function(){
+			var thisid=$(this).attr("id")
+			VirtualKeyboard.toggle(thisid, 'softkey');
+			$("#softkey").remove();
+	})
+	}
+	/*var tid=$('.jia').attr('id');
+	$('.jia').attr('id',(parseInt(tid)+1))
+	*/
+}
+//删除告警对象
+function del_time(obj)
+{
+		var id=$(obj).parent('td').parent('tr').attr('id');
+		id=parseInt(id.substr(8));
+
+		$("#div_time"+id).remove();
+		var i=0;
+		//循环所有时间点
+		$("tr[id^='div_time']").each(function(){
+		//获取ID数字
+		var cd=$(this).attr('id');
+		cd=parseInt(cd.substr(8));
+		var t=$(this).children('td').eq(0).html();
+		
+		if(cd>id)
+		{
+			$(this).children('td').eq(0).html(t-1);
+		}
+
+	})
+	
+	
+		
+}
+
+//////名称/////
+function name_function(id)
+{
+		var val=$("#"+id).val();
+		if(val=='')//为空
+		{
+			alert("名称不能为空");
+			$("#"+id).focus();
+			return false;
+		}
+		var preg=/^[\w|\u4e00-\u9fa5]+$/;
+		if(!preg.test(val) && lan=='cn')
+		{
+			if(lan=='en')
+			{
+				alert('Contains illegal characters!');
+			}else
+			{
+				alert('含有非法字符！');
+				
+			}
+			$("#"+id).focus();
+			return false;
+		}
+		var strleng=fucCheckLength(val);
+		var n=lan=='cn' ? 6 : 20;
+		if(val.length>n)
+		{
+			
+			
+				alert('账号不能大于'+n+'个字符');
+				
+			
+			$("#"+id).focus();
+			return false;
+		}
+		
+		
+}
+//////电话//////
+function phone_function(id)
+{
+		var val=$("#"+id).val();
+		
+		if(lan=='cn')
+		{
+			if(val.substr(0,1)=='+')
+			{
+				
+				if(!( /^([0-9,+]{14})?$/.test(val)) )
+				{
+					alert('号码输入错误！');
+					$("#"+id).focus();
+					return false; 	
+				}
+			}else
+			{
+				if(!( /^(\+?)+([0-9]{11})?$/.test(val)) )
+				{ 
+					alert('号码输入错误！');
+					$("#"+id).focus();
+					return false; 	
+				}
+			}
+		}else
+		{
+			if(!( /^[0-9,+]*$/.test(val)) || val.length>30)
+			{
+					alert('号码输入错误！');
+					$("#"+id).focus();
+					return false; 	
+			}
+		}
+		
+}
+///////邮箱////////
+function email_function(id)
+{
+		var val=$("#"+id).val();
+		if(val.length>25)////超过25位数截取前25位
+		{
+			val=val.substr(0,25);
+			$("#"+id).val(val);
+		}
+		if(val.length>0)
+		{
+		var reg=/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+		var tt=reg.test(val);
+		if(tt)
+		{
+		
+		}
+		else 
+		{
+			alert("邮箱输入错误！");
+			$("#"+id).focus();
+			return false;
+		}
+		}
+}
+/////////////////////中英文长度///////////////////////////
+function fucCheckLength(strTemp) {
+  var i,sum;
+  sum=0;
+  for(i=0;i<strTemp.length;i++) {
+    if ((strTemp.charCodeAt(i)>=0) && (strTemp.charCodeAt(i)<=255)) {
+      sum=sum+1;
+    }else {
+      sum=sum+2;
+    }
+  }
+  return sum;
+}
+</script>
+<body>
+<!---页面内容开始-->
+<div class="xd_sz_content">
+	<form action="" enctype="multipart/form-data" method="post" id="formid" style="padding-top:20px;">
+  	<table class="xgzh_tab">
+    	<tr>
+        	<td width="40%" height="30" align="right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登录账号：</td>
+            <td width="20%"></td>
+            <td width="40%" align="left"><input disabled="disabled" type="text" id="name" name="name" class="dx_txt" style="width:20%;" value="admin"  /><span id="span_name"></span></td>
+        </tr>
+      <!--  <tr>
+        	<td height="30" align="right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;旧密码：</td>
+            <td></td>
+            <td align="left"><input type="password" class="dx_txt" name="old_pwd" value="admin" style="width:20%;" /></td>
+        </tr> -->
+         <tr>
+        	<td height="30" align="right">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;密码：</td>
+            <td></td>
+            <td align="left"><input type="password" class="dx_txt" id="pwd" name="pwd" value="admin" style="width:20%;" /></td>
+        </tr>
+                  <tr>
+        	<td height="30" align="right" style="border-bottom:solid 1px #d8d8d8; padding-bottom:20px;">绑定手机号码：</td>
+            <td style="border-bottom:solid 1px #d8d8d8; padding-bottom:20px;"></td>
+            <td align="left" style="border-bottom:solid 1px #d8d8d8; padding-bottom:20px;"><input type="text" class="dx_txt" id="tel" name="tel" value="" style="width:20%;" /></td>
+        </tr>
+       
+                <!--------设置信息---------->
+        <tr>
+        	<td colspan="3" style="padding:0 20px; text-align:center;">
+            	<table class="xgzh_tab_info">
+                	<thead bgcolor="#d9f6d2">
+                    	<th bgcolor="#d9f6d2"></th>
+                        <th bgcolor="#d9f6d2">告警接收人</th>
+                        <th bgcolor="#d9f6d2">电话语音号码</th>
+                        <th bgcolor="#d9f6d2">手机短信号码</th>
+                        <th bgcolor="#d9f6d2">邮箱地址</th>
+                            <th bgcolor="#d9f6d2">平安短信</th>
+                          <th bgcolor="#d9f6d2">巡检短信</th>
+                        <th></th>
+                    </thead>
+                   <tr id="div_time0" style="display:none"><td>0</td></tr>
+                                       
+                   
+                    <tr align="left" >
+                    	<td colspan="6" ><img class="jia" id="0" width="20px" height="20px" src="../images/jia.jpg" onclick="add_time(this)" /></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    
+       	
+    </table>
+       <input type="hidden" name="btform" value="user_config" />
+       <!-- 告警对象个数 -->
+       <input type="hidden" name="num" id="num" value="0" />
+       <!-- 用户ID-->
+       <input type="hidden"  name="id" id="id" value="1" />
+       <input type="hidden"  id="oldname" name="oldname" value="admin" />
+   </form>
+      <!---第一步骤结束--->
+    <!---上下步的步骤开始--->
+   
+    	
+   
+    <!---上下步的步骤结束--->
+</div>
+ <!---上下步的步骤开始--->
+    <div class="xd2_bz">
+    	<div class="xd2_prev"><a href="javascript:void(0)"  target="xd_iframe" onclick="btn_add()"  class="xd_prev a_btn2">确认</a></div>
+    	<div class="xd2_next"><a href="user_list.html" target="xd_iframe" class="xd_next a_btn1">返回</a></div>
+    </div>
+    <!---上下步的步骤结束--->
+<!--页面内容结束-->
+</body>
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="../css/static.css" rel="stylesheet" type="text/css">
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <script src="../js/highcharts.js" type="text/javascript"></script>
+    <style>
+        body {
+            background: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="minnav">
+        <div class="mintt">
+            <div class="mttx"><a class="nav naved" href="Single_upsreal.php?val=1_1"><span id="1_1_tit" style="color: red;">单节电池</span></a></div>
+        </div>
+    </div>
+
+
+    <div class="dl_info">
+        <div class="batop"><a class="batgj">电池实时告警<span>10</span><div class="batgjbox">
+<div class="gjdown"><img src="../images/battgj_jt.png" /></div>
+<div class="gjinfo">
+	<table class="batlist" >
+       	<thead>
+          	<th>时间</th><th>类型</th><th>告警内容</th>
+        </thead>
+        <tbody>
+             <tr><td>2016-02-23 10:00:00</td><td>单节电压</td><td>#100电池电压上限告警</td></tr>
+             <tr><td>2016-02-23 10:00:00</td><td>单节电压</td><td>#100电池电压上限告警</td></tr>
+             <tr><td>2016-02-23 10:00:00</td><td>单节电压</td><td>#100电池电压上限告警</td></tr>
+             <tr><td>2016-02-23 10:00:00</td><td>单节电压</td><td>#100电池电压上限告警</td></tr>
+       </tbody>
+   </table>
+</div>
+</div></a>
+
+        </div>
+        <div class="batbox">
+            <div class="batit">组数据</div>
+            <div class="">
+                <div class="navcon"><a class="active">电池组1</a><a>电池组2</a><a>电池组3</a><a>电池组4</a></div>
+                <div class="batco">
+                    <table class="battab">
+                        <tr>
+                            <td>组电压：<span>410.22 V</span></td>
+                            <td>组电流：<span>430.22 A</span></td>
+                            <td>SoC：<span>430.22 %</span></td>
+                            <td width="30%">状态：<span>均充</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="batco" style=" display:none">
+                    <table class="battab">
+                        <tr>
+                            <td>组电压：<span>420.22 V</span></td>
+                            <td>组电流：<span>430.22 A</span></td>
+                            <td>SoC：<span>430.22 %</span></td>
+                            <td width="30%">状态：<span>放电</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="batco" style=" display:none">
+                    <table class="battab">
+                        <tr>
+                            <td>组电压：<span>430.22 V</span></td>
+                            <td>组电流：<span>430.22 A</span></td>
+                            <td>SoC：<span>430.22 %</span></td>
+                            <td width="30%">状态：<span>均充</span></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="batco" style=" display:none">
+                    <table class="battab">
+                        <tr>
+                            <td>组电压：<span>440.22 V</span></td>
+                            <td>组电流：<span>430.22 A</span></td>
+                            <td>SoC：<span>430.22 %</span></td>
+                            <td width="30%">状态：<span>均充</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="batbox">
+            <div class="batit">单节数据</div>
+            <div class="">
+                <div class="navcon"><a class="active">电池组1</a><a>电池组2</a><a>电池组3</a><a>电池组4</a></div>
+                <div class="batco">
+                    <div class="tb">
+                        <div class="tbnav">
+                            <a class="clck">电压</a><a>温度</a><a>内阻</a>
+                        </div>
+                        <div class="tbline">
+
+                            <div class="qhtb">
+                                <table class="battab" style="margin-bottom:10px">
+                                    <tr>
+                                        <td width="6%" style="padding-left:0">ID:<span>#50</span></td>
+                                        <td width="25%">Max：<span>430.22 V</span></td>
+                                        <td width="8%">ID:<span>#20</span></td>
+                                        <td>Min ：<span>430.22 V</span></td>
+                                        <td>平均值：<span>430.22 V</span></td>
+                                    </tr>
+                                </table>
+                                <div class="tbmain" id="tbmain"></div>
+                            </div>
+
+                            <div class="qhtb" style="display:none">
+                                <table class="battab" style="margin-bottom:10px">
+                                    <tr>
+                                        <td width="6%" style="padding-left:0">ID:<span>#9</span></td>
+                                        <td width="25%">Max：<span>26 ℃</span></td>
+                                        <td width="8%">ID:<span>#12</span></td>
+                                        <td>Min ：<span>21 ℃</span></td>
+                                        <td>平均值：<span>22 ℃</span></td>
+                                    </tr>
+                                </table>
+                                <div class="tbmain" id="tbmain1" style="width:88%; height:180px;"></div>
+                            </div>
+                            <div class="qhtb" style="display:none">
+                                <table class="battab" style="margin-bottom:10px">
+                                    <tr>
+                                        <td width="6%" style="padding-left:0">ID:<span>#6</span></td>
+                                        <td width="25%">Max：<span>1 mΩ</span></td>
+                                        <td width="8%">ID:<span>#2</span></td>
+                                        <td>Min ：<span>0.6 mΩ</span></td>
+                                        <td>平均值：<span>1 mΩ</span></td>
+                                    </tr>
+                                </table>
+                                <div class="tbmain" id="tbmain2" style="width:88%;height:180px;"></div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="batbox">
+            <div class="batit">单节列表</div>
+            <div>
+                <table class="batlist">
+                    <thead>
+                        <th>序号</th>
+                        <th>电压（V）</th>
+                        <th>温度（℃）</th>
+                        <th>内阻（mΩ）</th>
+                        <th>剩余容量（%）</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2.11</td>
+                            <td>22</td>
+                            <td>0.98</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2.11</td>
+                            <td>22</td>
+                            <td>0.98</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>2.11</td>
+                            <td>22</td>
+                            <td>0.98</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>2.11</td>
+                            <td>22</td>
+                            <td>0.98</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>2.11</td>
+                            <td>22</td>
+                            <td>0.98</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>2.11</td>
+                            <td>22</td>
+                            <td>0.98</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>7</td>
+                            <td>2.11</td>
+                            <td>22</td>
+                            <td>0.98</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>2.11</td>
+                            <td>22</td>
+                            <td>0.98</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>9</td>
+                            <td>2.11</td>
+                            <td>22</td>
+                            <td>0.98</td>
+                            <td>100</td>
+                        </tr>
+                        <tr>
+                            <td>10</td>
+                            <td>2.11</td>
+                            <td>22</td>
+                            <td>0.98</td>
+                            <td>100</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="batpage">共10条|&lt; &lt;&lt; [1] &gt;&gt;&gt;|</div>
+            </div>
+        </div>
+
+
+
+    </div>
+    <script language="javascript" type="text/javascript">
+        $(function() {
+            var chart;
+
+            $(".navcon>a").click(function() { //电池组切换
+                $(this).siblings().removeClass("active").end().addClass("active")
+                $(this).parent().siblings(".batco").hide().eq($(this).index()).show()
+            })
+
+            $(".tbnav>a").click(function() { //电压温度内阻切换
+                $(this).siblings().removeClass("clck").end().addClass("clck")
+                $(this).parent().siblings(".tbline").children(".qhtb").hide().eq($(this).index()).css("display", "block")
+            })
+            var max_dy = 450; //电压刻度线上限
+            var min_dy = 100; //电压刻度线下限
+            var data = [{
+                y: 393,
+                color: ''
+            }, {
+                y: 481,
+                color: ''
+            }, {
+                y: 414,
+                color: ''
+            }, {
+                y: 411,
+                color: ''
+            }, {
+                y: 393,
+                color: ''
+            }, {
+                y: 411,
+                color: ''
+            }, {
+                y: 414,
+                color: ''
+            }, {
+                y: 411,
+                color: ''
+            }, {
+                y: 393,
+                color: ''
+            }, {
+                y: 61,
+                color: ''
+            }, {
+                y: 414,
+                color: ''
+            }, {
+                y: 411,
+                color: ''
+            }]
+            for (var i = 0; i < data.length; i++) { //电压的判断
+                if (data[i]['y'] > max_dy) {
+                    data[i]['color'] = '#f51c35'
+                } else if (data[i]['y'] < min_dy) {
+                    data[i]['color'] = '#f51c35'
+                } else {
+                    data[i]['color'] = '#66cc66'
+                }
+            }
+
+            var max_wd = 40; //温度刻度线上限
+            var min_wd = 10; //温度刻度线下限
+            var data_wd = [{
+                y: 33,
+                color: ''
+            }, {
+                y: 47,
+                color: ''
+            }, {
+                y: 28,
+                color: ''
+            }, {
+                y: 27,
+                color: ''
+            }, {
+                y: 23,
+                color: ''
+            }, {
+                y: 31,
+                color: ''
+            }, {
+                y: 34,
+                color: ''
+            }, {
+                y: 31,
+                color: ''
+            }, {
+                y: 33,
+                color: ''
+            }, {
+                y: 31,
+                color: ''
+            }, {
+                y: 34,
+                color: ''
+            }, {
+                y: 21,
+                color: ''
+            }]
+            for (var i = 0; i < data_wd.length; i++) { //温度的判断
+                if (data_wd[i]['y'] > max_wd) {
+                    data_wd[i]['color'] = '#f51c35'
+                } else if (data_wd[i]['y'] < min_wd) {
+                    data_wd[i]['color'] = '#f51c35'
+                } else {
+                    data_wd[i]['color'] = '#66cc66'
+                }
+            }
+
+            var max_nz = 10; //内阻刻度线上限
+            var min_nz = 1; //内阻刻度线下限
+            var data_nz = [{
+                y: 3,
+                color: ''
+            }, {
+                y: 4,
+                color: ''
+            }, {
+                y: 8,
+                color: ''
+            }, {
+                y: 7,
+                color: ''
+            }, {
+                y: 3,
+                color: ''
+            }, {
+                y: 1,
+                color: ''
+            }, {
+                y: 0.8,
+                color: ''
+            }, {
+                y: 11,
+                color: ''
+            }, {
+                y: 3,
+                color: ''
+            }, {
+                y: 3,
+                color: ''
+            }, {
+                y: 4,
+                color: ''
+            }, {
+                y: 1,
+                color: ''
+            }]
+            for (var i = 0; i < data_nz.length; i++) { //内阻的判断
+                if (data_nz[i]['y'] > max_nz) {
+                    data_nz[i]['color'] = '#f51c35'
+                } else if (data_nz[i]['y'] < min_nz) {
+                    data_nz[i]['color'] = '#f51c35'
+                } else {
+                    data_nz[i]['color'] = '#66cc66'
+                }
+            }
+
+
+            $('#tbmain').highcharts({
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'none',
+
+                },
+
+                title: {
+                    text: false
+                },
+                colors: ['#66cc66'],
+
+                xAxis: {
+                    gridLineWidth: 0, //网线
+                    tickmarkPlacement: 'on',
+                    categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']
+                },
+
+                yAxis: {
+
+                    max: 550, // 定义Y轴 最大值  
+                    min: 0, // 定义最小值  
+                    // minPadding: 0.2,   
+                    // maxPadding: 0.2,  
+                    tickInterval: 50, // 刻度值  
+                    title: {
+                        text: '电压（V）'
+                    },
+
+                    plotLines: [{ // plotLines 表示为定义曲线报表中的 （刻度线）或者叫做（定义的区间范围）
+                        zIndex: 1,
+                        value: max_dy,
+                        color: 'red',
+
+                        dashStyle: 'shortdash',
+                        width: 2,
+                        label: {
+                            text: '上限',
+                            align: 'left',
+                            x: -10,
+
+                        }
+                    }, {
+                        value: min_dy,
+                        color: 'red',
+                        dashStyle: 'shortdash',
+                        width: 2,
+                        label: {
+                            text: '下限',
+                            align: 'left',
+                            x: -10
+                        }
+                    }]
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.y:.1f}V</b>'
+                },
+
+                credits: {
+                    enabled: false
+                },
+                legend: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                },
+                series: [{
+                    name: '电压',
+                    // data: [393, 481, 414, 411,410, 411,412,412.5, 411, 411, 411,411, 411,411]
+                    data: data
+
+                }]
+            });
+
+            $('#tbmain1').highcharts({
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'none',
+                },
+
+                title: {
+                    text: false
+                },
+                colors: ['#66cc66'],
+                xAxis: {
+                    gridLineWidth: 0, //网线
+                    tickmarkPlacement: 'on',
+                    categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14']
+                },
+
+                yAxis: {
+                    max: 50, // 定义Y轴 最大值  
+                    min: 0, // 定义最小值  
+                    tickInterval: 10, // 刻度值 
+                    title: {
+                        text: '温度℃'
+                    }, //Y轴标题
+                    plotLines: [{ // plotLines 表示为定义曲线报表中的 （刻度线）或者叫做（定义的区间范围）  
+                        value: max_wd,
+                        color: 'red',
+                        dashStyle: 'shortdash',
+                        width: 2,
+                        label: {
+                            text: '上限',
+                            align: 'left',
+                            x: -10
+                        }
+                    }, {
+                        value: min_wd,
+                        color: 'red',
+                        dashStyle: 'shortdash',
+                        width: 2,
+                        label: {
+                            text: '下限',
+                            align: 'left',
+                            x: -10
+                        }
+                    }]
+
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.y:.1f}℃</b>'
+                },
+
+                credits: {
+                    enabled: false
+                },
+                legend: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                },
+                series: [{
+                    name: '温度',
+                    data: data_wd
+
+                }]
+            });
+
+            $('#tbmain2').highcharts({
+                chart: {
+                    type: 'column',
+                    backgroundColor: 'none',
+                },
+
+                title: {
+                    text: false
+                },
+                colors: ['#66cc66'],
+                xAxis: {
+                    gridLineWidth: 0, //网线
+                    tickmarkPlacement: 'on',
+                    categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14']
+                },
+
+                yAxis: {
+                    max: 20, // 定义Y轴 最大值  
+                    min: 0, // 定义最小值  
+                    tickInterval: 2, // 刻度值 
+                    title: {
+                        text: '内阻mΩ'
+                    }, //Y轴标题
+                    plotLines: [{ // plotLines 表示为定义曲线报表中的 （刻度线）或者叫做（定义的区间范围）  
+                        value: max_nz,
+                        color: 'red',
+                        dashStyle: 'shortdash',
+                        width: 2,
+                        label: {
+                            text: '上限',
+                            align: 'left',
+                            x: -10
+                        }
+                    }, {
+                        value: min_nz,
+                        color: 'red',
+                        dashStyle: 'shortdash',
+                        width: 2,
+                        label: {
+                            text: '下限',
+                            align: 'left',
+                            x: -10
+                        }
+                    }]
+
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.y:.1f}mΩ</b>'
+                },
+
+                credits: {
+                    enabled: false
+                },
+                legend: {
+                    enabled: false
+                },
+                exporting: {
+                    enabled: false
+                },
+                series: [{
+                    name: '内阻',
+                    data: data_nz
+
+                }]
+            });
+
+
+        })
+    </script>
+</body>
+
+</html>

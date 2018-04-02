@@ -1,0 +1,56 @@
+.warll{ font-family:"微软雅黑"; position:relative; padding:20px;}
+.pue,.pue body{ height:100%; background:none; }
+.container{ height:100%; width:100%;}
+.pue_top{ position:relative; overflow:hidden; border:1px solid #d8d8d8}
+.pue_set{ position:absolute; display:block; right:-1px; top:3.5%; width:1.2em; padding:5px; cursor:pointer;  z-index:900; background:#3CF; color:#fff;box-shadow:0 0 2px #3CF;}
+.psetting{ text-align:left; position:absolute; display:block;  right:-1px;top:3%;  background:#fff; border:1px solid #C2D3EA;z-index:901; line-height:25px; width:180px; right:-182px;}
+.psetting h3{ height:30px;fill: #fff; background:#3CF; color:#fff; padding-left:5px;}
+.psetting table{ margin:5px; line-height:30px; width:100%; text-align:center }
+.psetting table input.text{ width:80px;text-align:center; border:1px solid #C2D3EA;}
+.icon_back{ float:right; display:block; height:100%; width:28px; cursor:pointer;}
+.icon_back img{ width:100%;}
+.pue_bottom{ overflow:hidden;margin-top:20px; position:relative;  border:1px solid #d8d8d8}
+.pue_left{ width:75%; height:85%; ;box-shadow:0 10px 5px #000; float:left;}
+.pue_right{ position:relative; width:24.5%; height:85%; margin-left:0.4%;  float:left;box-shadow:0 10px 5px #000;}
+.puezz{ height:25px; padding-top:20px; padding-bottom:10px; background:#fff;}
+.puezz h3{ font-size:21px; color:#000; fill:#000; font-weight:normal;  float:left; margin-left:1%;}
+.p_switch{ height:29px; margin-left:10px; line-height:28px;  float:left;  text-align:center;}
+.p_switch span{ width:50px; display:block;  float:left; height:28px;border:1px solid #3CF;border-radius:4px; }
+.warll_close{ position:absolute; right:-1.5%; top:-2%; width:3%; height:3%;  z-index:999; cursor:pointer;}
+.warll_close img{ width:100%;}
+#setZero{ position:absolute; top:0; left:0; padding:0.5% 1%; color:#fff; background:#F33; z-index:999; cursor:pointer;box-shadow:0 0 2px #000; }
+.dropdown{ position:relative; float:left; margin-left:10px; z-index:999;}
+.dropdown-menu{ position:absolute; z-index:999; min-width:160px; background:#fff;border:1px solid #ccc; margin-top:2px; text-align:left; display:none;}
+.dropdown-menu li{ padding:3px 20px; cursor:pointer;}
+.dropdown-menu li:hover{ background:#DFCECE;}
+.dnbtn{background:#fff; border:1px solid #ccc; padding-right:20px; border-radius:4px; height:27px; display:block;}
+.dnbtn .icon{width:14px; position:absolute; right:4px;top:5px;}
+.mouth li{ float:left; padding:3px;}
+.mytext{ position:absolute; top:20px; right:50px; z-index:999; font-size:15px;}
+.mytext li{width:80px; color:#fff; height:64px; display:block; float:left; border-radius:50px;  background:#3CF; margin-left:10px;padding-top:15px;}
+.psetting table input.pue_btn{ padding:5px; border:none; background:#3CF; color:#fff; cursor:pointer;}
+.ls_btn{ border: none;text-align: center;font-size: 15px;padding:6px 10px;background: url(../images/btn_bg.jpg) repeat-x;color: #fff; display:inline-block; line-height:18px;}
+.tabl{ padding-bottom:10px;}
+.tabl table td{ font-size:14px; padding:0 3px;  color:#797979;}
+.tabl table td .puesel{ width:60px;}
+.zhset{ width:550px; height:260px; display:none; left:50%; margin-left:-225px; top:50%; margin-top:-130px; right:0 }
+.zh_setl{ float:left; width:37%}
+.zh_setl table td a{ cursor:pointer; }
+.zh_setl table td a:hover{ background:#CCC}
+.zh_setr{ float:right; width:60.5%; height:230px; border-left:1px solid #CCC; padding-left:10px;}
+.zh_setr h4{ text-align:center; font-weight:normal; font-size:14px;}
+.boxleft{ float:left;  border:1px solid #dadedb; width:40%; height:163px; overflow-y:auto}
+.boxcen{ float:left; text-align:center}
+.boxcen a{ display:block; background:#06b206; border-radius:3px; color:#fff; padding:1px 4px; text-align:center; margin-top:10px; margin-left:5px; cursor:pointer; border-bottom:2px solid #037a03}
+.boxright{float:right;  border:1px solid #dadedb; width:40%; height:163px; overflow-y:auto; margin-right:6px;}
+.psetting .chtab{ margin:0}
+.chtab td{ text-align:left; line-height:20px;}
+.chtab td input{ vertical-align:bottom}
+.setbom{ text-align:center; padding-top:8px;}
+.setbom a{ display:inline-block; background:#3cf; border-radius:3px; color:#fff; padding:0 15px; margin:0 8px; border-bottom:2px solid #1e9cc6; cursor:pointer}
+.printop{ padding-bottom:14px; font-size:15px; color:#797979}
+.ssnum{ float:left; font-size:14px; color:#797979; padding-left:30px;}
+.ssnum span{ padding-right:25px; padding-left:6px; font-size:15px;}
+.sbxxtab{width:50%; float:left; margin-left:60px; margin-bottom:16px;}
+.sbxxtab th{ font-size:14px;}
+.sbxxtab td{font-size:14px; line-height:29px;}

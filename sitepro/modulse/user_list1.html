@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css" />
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css" />
+<script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+<script>
+function href_page(page)
+{
+	var num =$("#num").val();
+	if(num>=6)
+	{
+		alert("最多添加5个用户！");
+		return false;
+	}
+	location.href=page;
+}
+</script>
+</head>
+<style type="text/css">
+body{ overflow-x:hidden;}
+</style>
+<body>
+
+<div class="xd_sz_content" style="padding-top:20px; padding-bottom:20px;">
+ <table class="xd_sztab"><tr><td style="border-bottom:#CCC solid 1px; text-align:right; padding-right:10px;">设置生产商与供应商：</td><td style="width:250px;border-bottom:#CCC solid 1px;" align="left"><input type="text" class="ls_txt"  id="tesss" style="width:200px;" /></td><td align="left" style="border-bottom:#CCC solid 1px;"><a  class="xd_next a_btn1" id="adds" href="javascript:void(0)"  style="margin-left:0">增加</a></td></tr>
+ <tr><td></td><td align="left" >科士达</td><td  align="left"><a class="edits"  style="margin-right:20px;" href="javascript:void(0)" >编辑</a><a class="dels"  href="javascript:void(0)" >删除</a></td></tr>
+  <tr><td></td><td align="left" >山特</td><td  align="left"><a class="edits"  style="margin-right:20px;" href="javascript:void(0)" >编辑</a><a  class="dels"  href="javascript:void(0)" >删除</a></td></tr>
+ 
+ </table>
+
+    <input type="hidden" id="num" value="1" />
+    <!---第一步骤结束--->
+   
+</div>
+ <!---上下步的步骤开始--->
+    <div class="xd2_bz">
+    	<div class="xd2_prev"><a  href="alarm_way.html" target="xd_iframe"  class="xd_prev a_btn2">上一步</a></div>
+          	<div class="xd2_next"><a href="user_list.html" target="xd_iframe" class="xd_next a_btn1">下一步</a></div>
+    </div>
+    <!---上下步的步骤结束--->
+
+<script>
+$(function(){
+	$("#adds").click(function(){
+		if($("#tesss").val()!=""){
+		$("<tr>").html("<td></td><td align='left' >"+$("#tesss").val()+"</td><td  align='left'><a class='edits'  style='margin-right:20px;' href='javascript:void(0)' >编辑</a><a  class='dels'  href='javascript:void(0)' >删除</a></td>").appendTo(".xd_sztab")
+		}
+		$("#tesss").val("")
+	})	
+	$(".xd_sztab").delegate(".dels","click",function(){
+		$(this).parent("td").parent("tr").remove();	
+	}).delegate(".edits","click",function(){
+		var obj=$(this).parent("td").prev("td")
+		var obj2=$("<input>",{"class":"ls_txt"}).val(obj.text())
+		if(obj.find("input").length==0){
+			obj.empty().append(obj2)
+			obj2.focus();
+		}
+	}).delegate("input:not(:eq(0))","blur",function(){
+		var str=$(this).val()
+		var obj=$(this).parent("td")
+		if(str==""){
+			alert("不能为空！")
+	
+		}else{
+			obj.empty().text(str)
+		}
+	})
+	
+	
+})
+</script>
+</body>
+</html>

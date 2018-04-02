@@ -1,0 +1,459 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <link href="../css/static.css" rel="stylesheet" type="text/css">
+</head>
+<style>
+    body {
+        background: #fff;
+    }
+
+    .mapfd {
+        position: absolute;
+        width: 140px;
+        height: 260px;
+        right: 30px;
+        top: 10%;
+        background: #fff;
+        border: 1px solid #b4b4b4;
+        border-radius: 5px;
+        text-align: left;
+        font-size: 13px;
+    }
+
+    .fdkt {
+        padding: 13px 0px;
+        line-height: 26px;
+    }
+    .fdkt span{ margin:0 10px;}
+    .fdinp {
+        border: 1px solid #b4b4b4;
+        border-radius: 3px;
+        width: 40px;
+    }
+
+    .fdpue {
+        padding: 10px 15px;
+    }
+
+    .fdpue .puenum {
+        color: #5193ff
+    }
+
+    .doorzt {
+        height: 45px;
+        float: right
+    }
+
+    .doorin {
+        padding-bottom: 12px;
+    }
+
+    .doorname {
+        padding-top: 12px;
+    }
+
+    .td_right .pltb {
+        width: 86%;
+        margin: 20px auto;
+        border: 1px solid #c4cdd5;
+        position: relative;
+    }
+    .pltb .pltb_con {
+        height: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        padding-top: 34px;
+    }
+   
+    .ltd {
+        float: left;
+        text-align: left;
+        padding-left: 10px;
+        width: 28%;
+        padding-top: 27px;
+        line-height: 20px;
+        font-size: 14px;
+    }
+    .puel {
+        line-height: 28px;
+        padding-top: 50px;
+        width:20%;
+    }
+
+    .ltd .buletxt {
+        color: #2c9cff;
+        font-size:28px;
+    }
+    .rtd {
+        float: left;
+        width: 67%;
+        height: 98%;
+    }
+    .pltb .pltb_top {
+        background: #7c8894;
+        color: #fff;
+        text-align: center;
+        height: 34px;
+        line-height: 34px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+    }
+    .ltd .ittip {
+        width: 10px;
+        height: 10px;
+        display: inline-block;
+        margin-right: 3px;
+        background: rgb(44, 156, 255);
+    }
+    .plselset{position:relative;}
+    .plselset .select_ico {
+        font-size: 0px;
+        height: 0px;
+        line-height: 0;
+        position: absolute;
+        right: 15px;
+        top: 18px;
+        width: 0px;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 5px solid rgb(255, 255, 255);
+    }
+    .plselecto {
+        background: #7c8894;
+        display: none;
+        left: -1px;
+        position: absolute;
+        top: 40px;
+        width: 100%;
+        z-index:9;
+    }
+    .plselecto a {
+        display: block;
+        height: 35px;
+        line-height: 35px;
+        text-align: center;
+        color: #fff;
+        border-top: 1px solid #c4cdd5;
+    }
+	.ktbtn{ text-align:center; padding-top:10px;}
+</style>
+<body>
+<div class="map" style="overflow:hidden">
+    <div style="float:right;width:76%;">
+        <img src="../images/mapindex.jpg" style="width:100%;"/>
+    </div>
+    <div class="" style="float: right;width:23.5%; height:100%;">
+       
+        <div class="td_right" style="height:90%;">
+            <div class="pltb" style=" height:32%">
+                <div class="pltb_top">PUE（实时）</div>
+                <div class="pltb_con fixed">
+                    <div class="rtd" id="tbpue" style="width:100%; height:100%;"></div>
+                </div>
+            </div>
+            <div class="pltb" style=" height:32%">
+                <div class="pltb_top">冷通道温度</div>
+                <div class="pltb_con fixed">
+                    <div class="rtd" id="tbltd" style="width: 100%; height: 100%;"></div>
+                </div>
+            </div>
+            <div class="pltb" style=" height:32%">
+                <div class="pltb_top">热通道温度</div>
+                <div class="pltb_con fixed">
+                    <div class="rtd" id="tbrtd" style="width: 100%; height: 100%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="../js/echarts-all.js"></script>
+<script type="text/javascript" src="../js/highcharts.js"></script>
+<script>
+    $(function () {
+        var Hei = $(window).height()
+        $('.map').height(Hei);
+    })
+
+</script>
+<script>
+    $(function(){
+        //初始化装图表的盒子的宽高度
+        $('.pltb_con').css({
+            width: function() {
+                var width;
+                width = $('.pltb').width();
+                $('#tbltd').css({width: width});
+                $('#tbpue').css({width: width});
+                $('#tbrtd').css({width: width});
+                return width;
+            },
+            height: function() {
+                var height;
+                height = $('.pltb').height() - $('.pltb_top').height();
+                $('#tbltd').css({height: height});
+                $('#tbpue').css({height: height});
+                $('#tbrtd').css({height: height});
+                return height;
+            },
+        });
+
+        //这是表盘的渐变色数组
+        var colors2 = [
+            [0.05, '#004BFF'],
+            [0.1, '#007CFF'],
+            [0.15, '#0095FF'],
+            [0.2, '#00B7FF'],
+            [0.25, '#00FFF0'],
+            [0.3, '#00FFC9'],
+            [0.35, '#00FFA0'],
+            [0.4, '#00FF62'],
+            [0.45, '#00FF0D'],
+            [0.5, '#1AFF00'],
+            [0.55, '#40FF00'],
+            [0.6, '#7CFF00'],
+            [0.65, '#FFFC00'],
+            [0.7, '#FFE800'],
+            [0.75, '#FFCE00'],
+            [0.8, '#FFAA00'],
+            [0.85, '#FFAF00'],
+            [0.9, '#FF8E00'],
+            [0.95, '#FF5200'],
+            [1, '#FF0000'],
+        ];
+
+        var myChart1= echarts.init(document.querySelector('#tbpue'));
+        var myChart2 = echarts.init(document.querySelector('#tbltd'));
+        var myChart3 = echarts.init(document.querySelector('#tbrtd'));
+
+        //基础配置
+        var baseOption = {
+            tooltip : {
+                formatter: "{a} :<br/>{b} {c}°C"
+            },
+            toolbox: {
+                show : false,
+            },
+            series : [
+                {
+                    name:'当前值',
+                    type:'gauge',
+                    center : ['50%', '70%'],    // 默认全局居中
+                    radius : [0, '100%'],
+                    startAngle: 200,
+                    endAngle : -20,
+                    min: 1,                     // 最小值
+                    max: 5,                   // 最大值
+                    precision: 0,               // 小数精度，默认为0，无小数点
+                    splitNumber: 1,             // 分割段数，默认为5
+                    axisLine: {            // 坐标轴线
+                        show: true,        // 默认显示，属性show控制显示与否
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: colors2,
+                            width: 13
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        show: true,        // 属性show控制显示与否，默认不显示
+                        splitNumber: 5,    // 每份split细分多少段
+                        length :8,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: '#eee',
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
+                    axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+                        show: true,
+                        formatter: function(v){
+                            switch (v+''){
+                                case '1': return '1';
+                                case '5': return '5';
+                                default: return '';
+                            }
+                        },
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            color: '#555'
+                        }
+                    },
+                    splitLine: {           // 分隔线
+                        show: true,        // 默认显示，属性show控制显示与否
+                        length :15,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: '#fff',
+                            width: 2,
+                            type: 'solid'
+                        }
+                    },
+                    pointer : {  //指针样式
+                        length : '80%',
+                        width : 5,
+                        color : 'auto'
+                    },
+                    title : {
+                        show : true,
+                        offsetCenter: ['-65%', -10],       // x, y，单位px
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            color: '#333',
+                            fontSize : 15
+                        }
+                    },
+                    detail : {  //仪表盘详情
+                        show : true,
+                        backgroundColor: 'rgba(0,0,0,0)',
+                        borderWidth: 0,
+                        borderColor: '#ccc',
+                        width: 100,
+                        height: 40,
+                        offsetCenter: ['0', 5],       // x, y，单位px
+                        formatter:'',
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            color: '#000',
+                            fontSize : 16
+                        }
+                    },
+                    data:[{value: 1.4, name: ''}]
+                }
+            ]
+
+        };
+        var baseseries = {
+            series : [
+                {
+                    name:'当前值',
+                    type:'gauge',
+                    center : ['50%', '70%'],    // 默认全局居中
+                    radius : [0, '100%'],
+                    startAngle: 200,
+                    endAngle : -20,
+                    min: 0,                     // 最小值
+                    max: 40,                   // 最大值
+                    precision: 0,               // 小数精度，默认为0，无小数点
+                    splitNumber: 1,             // 分割段数，默认为5
+                    axisLine: {            // 坐标轴线
+                        show: true,        // 默认显示，属性show控制显示与否
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: colors2,
+                            width: 13,
+                        }
+                    },
+                    axisTick: {            // 坐标轴小标记
+                        show: true,        // 属性show控制显示与否，默认不显示
+                        splitNumber: 5,    // 每份split细分多少段
+                        length :8,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: '#eee',
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
+                    axisLabel: {           // 坐标轴文本标签，详见axis.axisLabel
+                        show: true,
+                        formatter: function(v){
+                            switch (v+''){
+                                case '0': return '0°C';
+                                case '40': return '40°C';
+                                default: return '';
+                            }
+                        },
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            color: '#7c8894'
+                        }
+                    },
+                    splitLine: {           // 分隔线
+                        show: true,        // 默认显示，属性show控制显示与否
+                        length :10,         // 属性length控制线长
+                        lineStyle: {       // 属性lineStyle（详见lineStyle）控制线条样式
+                            color: '#fff',
+                            width: 2,
+                            type: 'solid'
+                        }
+                    },
+                    pointer : {  //指针样式
+                        length : '80%',
+                        width : 5,
+                        color : 'auto'
+                    },
+                    title : {
+                        show : true,
+                        offsetCenter: ['-65%', -10],       // x, y，单位px
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            color: '#333',
+                            fontSize : 15
+                        }
+                    },
+                    detail : {  //仪表盘详情
+                        show : true,
+                        backgroundColor: 'rgba(0,0,0,0)',
+                        borderWidth: 0,
+                        borderColor: '#ccc',
+                        width: 100,
+                        height: 40,
+                        offsetCenter: ['0', '5%'],       // x, y，单位px
+                        formatter:'{value}°C',
+                        textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                            color: '#000',
+                            fontSize : 16
+                        }
+                    },
+                    data:[{value: 0, name: ''}]
+                }
+            ]
+        };
+
+        var optLTD_series = $.extend({}, baseseries, {});
+        var optRTD_series = $.extend({}, baseseries, {});
+
+        //PUE
+        var optPUE = $.extend({}, baseOption, {
+            tooltip : {
+                formatter: "{a} :<br/>{b} {c}"
+            },
+        });
+        //冷通道温度
+        var optLTD = $.extend({} ,baseOption, optLTD_series, { tooltip : {
+            formatter: "{a} :<br/>{b} {c}°C"
+        },});
+        //热通道温度
+        var optRTD = $.extend({}, baseOption, optRTD_series, { tooltip : {
+            formatter: "{a} :<br/>{b} {c}°C"
+        },});
+
+        myChart1.setOption(optPUE, true);
+        myChart2.setOption(optLTD, true);
+        myChart3.setOption(optRTD, true);
+
+        function updatePUE(value) { //PUE表盘数据更新
+            optPUE.series[0].data[0].value = parseFloat(value);
+            myChart1.setOption(optPUE, true);
+        }
+        function updateLTD(value) { //冷通道温度表盘数据更新
+            optLTD.series[0].data[0].value = parseFloat(value);
+            myChart2.setOption(optLTD, true);
+        }
+        function updateRTD(value) { //热通道温度表盘数据更新
+            optRTD.series[0].data[0].value = parseFloat(value);
+            myChart3.setOption(optRTD, true);
+        }
+
+        setInterval(function() {
+            updatePUE(parseInt(Math.random()*4+1));
+            updateLTD(parseInt(Math.random()*40));
+            updateRTD(parseInt(Math.random()*40));
+        }, 1000);
+    })
+
+
+
+</script>
+</body>
+</html>

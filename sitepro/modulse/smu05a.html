@@ -1,0 +1,479 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title></title>
+<link href="../css/index.css" rel="stylesheet" type="text/css">
+<link href="../css/static.css" rel="stylesheet" type="text/css">
+<link href="../css/jmpd.css" rel="stylesheet" type="text/css">
+<script src="../js/jquery.js" type="text/javascript"></script>
+<style>
+body {
+	background: #FFF;
+}
+.newpd td{ text-align:center}
+.newpd td.cin{ background:#eee}
+.newpd td span{ float:none}
+.jmpd_box td span.txt-red {color: #e40;}
+    .tb-header{padding: 10px 5px;text-align:left; font-size: 1.3em;}
+</style>
+</head>
+<body>
+<div class="content_info"> 
+  <!--第一块开始-->
+
+    <!--第四块-->
+    <div class="dl_content_info">
+        <div class="cen_div" style="padding-bottom:20px;">
+            <div class="content" style="padding:20px">
+                <div class="jmpd fixed">
+                    <div class="jmpd_left" style="display: none;"> <img src="../images/device/jmpd.png" id="pd_30_4" style="height:220px;" ><br>
+                        <h3>精密配电</h3>
+                        <div style="text-align:center; padding-bottom:15px; padding-top:10px;"><a class="a_btn1" onClick="parent.parent.parent.show_scs()">设备信息</a><br>设备连线:<img src="../images/ico_gre.png"></div>
+                    </div>
+                    <table class="jmpd_box" id="jmpd_box2">
+                        <tbody>
+                        <tr class="toptr">
+                            <td class="actd"><div class="jmpd_top">总体监控</div></td>
+                            <td><div class="jmpd_top">交流配电</div></td>
+                            <td><div class="jmpd_top">整流器</div></td>
+                            <td><div class="jmpd_top">直流配电</div></td>
+                        </tr>
+                        <tr class="trcon">
+                            <td style="border:none;" colspan="5">
+                                <!--总体监控-->
+                                <table style="display: table;" class="">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tbody>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">运行状态</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>自动</span>系统控制状态: </td>
+                                                </tr>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">总体告警</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>监控硬件故障告警：</td>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>告警屏蔽告警：</td>
+                                                    <td><span><img src="../images/ico_gre.png"/></span>PSU丢失：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>PSU冗余不足：</td>
+                                                    <td><span class="txt-red"><img src="../images/ico_gre.png"/></span>多模块故障：</td>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>模块加载故障：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>单模块故障(冗余)：</td>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>单模块故障(非冗余)：</td>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>模块冗余激活：</td>
+
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>环境高高温告警：</td>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>电池高高温告警：</td>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>电池低低温告警：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>系统重载告警：</td>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>直流过过压告警：</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>系统轻载告警：</td>
+                                                    <td><span class="txt-red"><img src="../images/ico_red.png"/></span>直流欠欠压告警：</td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!--end总体监控-->
+
+                                <!--交流配电-->
+                                <table style="display: none;" class="">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tbody>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">运行参数</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>输入线/相电压 AB/A（V）：</td>
+                                                    <td><span>28.00</span>输入线/相电压 BC/B（V）：</td>
+                                                    <td><span>32.50</span>输入线/相电压 CA/C（V）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>交流屏输出电流A（A）：</td>
+                                                    <td><span>28.00</span>交流屏输出电流B（A）：</td>
+                                                    <td><span>32.50</span>交流屏输出电流C（A）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>输入频率（Hz）：</td>
+                                                    <td><span>28.00</span>交流柜环境温度（°C):</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">运行状态</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>自动</span>交流切换状态: </td>
+                                                </tr>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">告警</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">欠压</span>输入线/相电压 AB/A：</td>
+                                                    <td><span class="txt-red">过压</span>输入线/相电压 BC/B：</td>
+                                                    <td><span>正常</span>输入线/相电压 CA/C：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">低于下限</span>频率：</td>
+                                                    <td><span class="txt-red">告警</span>交流防雷器断：</td>
+                                                    <td><span class="txt-red">告警</span>交流屏通讯中断：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>交流输出空开跳：</td>
+                                                    <td><span class="txt-red">告警</span>交流第一路输入停电：</td>
+                                                    <td><span></span></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!--end交流配电-->
+
+                                <!--整流器-->
+                                <table style="display: none;" class="">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tbody>
+                                                <th colspan="3" class="tb-header">整流器1</th>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">运行数据</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>220.00</span>输入三相电压AB/A（V）：</td>
+                                                    <td><span>221.00</span>输入三相电压BC/B（V）：</td>
+                                                    <td><span>440.00</span>交输入三相电压CA/C（V）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>220.00</span>整流模块输出电压（V）：</td>
+                                                    <td><span>221.00</span>整流模块输出电流（A）：</td>
+                                                    <td><span>440.00</span>模块限流点（A）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>220.00</span>模块输出电压（V）：</td>
+                                                    <td><span>221.00</span>模块温度（°C）：</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">运行状态</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>开机</span>开机/关机状态：</td>
+                                                    <td><span>限流</span>限流/不限流状态：</td>
+                                                    <td><span><img src="../images/ico_gre.png"/></span>浮充/均充/测试状态：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>使能</span>WALK-In模式：</td>
+                                                    <td><span>顺序</span>模块顺序起机使能状态：</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">告警</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">故障</span>整流模块故障：</td>
+                                                    <td><span>正常</span>模块通讯中断：</td>
+                                                    <td><span class="txt-red">告警</span>模块保护：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>模块不均流：</td>
+                                                    <td><span class="txt-red">告警</span>模块交流不平衡：</td>
+                                                    <td><span class="txt-red">告警</span>模块交流缺相：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>模块环境温度异常：</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tbody>
+                                                <th colspan="3" class="tb-header">整流器2</th>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">运行数据</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>220.00</span>输入三相电压AB/A（V）：</td>
+                                                    <td><span>221.00</span>输入三相电压BC/B（V）：</td>
+                                                    <td><span>440.00</span>交输入三相电压CA/C（V）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>220.00</span>整流模块输出电压（V）：</td>
+                                                    <td><span>221.00</span>整流模块输出电流（A）：</td>
+                                                    <td><span>440.00</span>模块限流点（A）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>220.00</span>模块输出电压（V）：</td>
+                                                    <td><span>221.00</span>模块温度（°C）：</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">运行状态</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>开机</span>开机/关机状态：</td>
+                                                    <td><span>限流</span>限流/不限流状态：</td>
+                                                    <td><span><img src="../images/ico_gre.png"/></span>浮充/均充/测试状态：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>使能</span>WALK-In模式：</td>
+                                                    <td><span>顺序</span>模块顺序起机使能状态：</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">告警</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">故障</span>整流模块故障：</td>
+                                                    <td><span>正常</span>模块通讯中断：</td>
+                                                    <td><span class="txt-red">告警</span>模块保护：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>模块不均流：</td>
+                                                    <td><span class="txt-red">告警</span>模块交流不平衡：</td>
+                                                    <td><span class="txt-red">告警</span>模块交流缺相：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>模块环境温度异常：</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!--整流器-->
+
+                                <!--直流配电-->
+                                <table style="display: none;" class="">
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <table>
+                                                <tbody>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">运行参数</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>风扇组1风扇1转速（r/min）：</td>
+                                                    <td><span>28.00</span>风扇组2风扇1转速（r/min）：</td>
+                                                    <td><span>32.50</span>总负载电流（A）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>风扇组1风扇2转速（r/min）：</td>
+                                                    <td><span>28.00</span>风扇组2风扇2转速（r/min）：</td>
+                                                    <td><span>32.50</span>电池总电流（A）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>电池组1电压（V）：</td>
+                                                    <td><span>28.00</span>电池组1中点电压（V）：</td>
+                                                    <td><span>28.00</span>电池组1剩余容量百分比（%）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>电池组2电压（V）：</td>
+                                                    <td><span>28.00</span>电池组2中点电压（V）：</td>
+                                                    <td><span>28.00</span>电池组2剩余容量百分比（%）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>电池组3电压（V）：</td>
+                                                    <td><span>28.00</span>电池组3中点电压（V）：</td>
+                                                    <td><span>28.00</span>电池组3剩余容量百分比（%）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>电池组4电压（V）：</td>
+                                                    <td><span>28.00</span>电池组4中点电压（V）：</td>
+                                                    <td><span>28.00</span>电池组4剩余容量百分比（%）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>电池组5电压（V）：</td>
+                                                    <td><span>28.00</span>电池组5中点电压（V）：</td>
+                                                    <td><span>28.00</span>电池组5剩余容量百分比（%）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>电池组6电压（V）：</td>
+                                                    <td><span>28.00</span>电池组6中点电压（V）：</td>
+                                                    <td><span>28.00</span>电池组6剩余容量百分比（%）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>电池组温度（°C)：</td>
+                                                    <td><span>28.00</span>机柜内环境温度（°C):</td>
+                                                    <td><span>28.00</span>机柜内环境湿度（%）：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span>23.00</span>直流输出电压（V）：</td>
+                                                    <td><span>28.00</span>第1~m组蓄电池充、放电电流</td>
+                                                    <td></td>
+                                                </tr>
+                                                <tr class="kh_title">
+                                                    <td colspan="3">告警状态</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>直流防雷器故障：</td>
+                                                    <td><span class="txt-red">告警</span>直流屏通讯中断：</td>
+                                                    <td><span class="txt-red">告警</span>负载熔丝断(合路)：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>电池组1熔丝断：</td>
+                                                    <td><span class="txt-red">告警</span>电池组2熔丝断：</td>
+                                                    <td><span class="txt-red">告警</span>电池组3熔丝断：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>电池组4熔丝断：</td>
+                                                    <td><span class="txt-red">告警</span>电池组5熔丝断：</td>
+                                                    <td><span class="txt-red">告警</span>电池组6熔丝断：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>电池组1充电过流：</td>
+                                                    <td><span class="txt-red">告警</span>电池组2充电过流：</td>
+                                                    <td><span class="txt-red">告警</span>电池组3充电过流：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>电池组4充电过流：</td>
+                                                    <td><span class="txt-red">告警</span>电池组5充电过流：</td>
+                                                    <td><span class="txt-red">告警</span>电池组6充电过流：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>电池组1不平衡：</td>
+                                                    <td><span class="txt-red">告警</span>电池组2不平衡：</td>
+                                                    <td><span class="txt-red">告警</span>电池组3不平衡：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>电池组4不平衡：</td>
+                                                    <td><span class="txt-red">告警</span>电池组5不平衡：</td>
+                                                    <td><span class="txt-red">告警</span>电池组6不平衡：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>电池组1丢失：</td>
+                                                    <td><span class="txt-red">告警</span>电池组2丢失：</td>
+                                                    <td><span class="txt-red">告警</span>电池组3丢失：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>电池组4丢失：</td>
+                                                    <td><span class="txt-red">告警</span>电池组5丢失：</td>
+                                                    <td><span class="txt-red">告警</span>电池组6丢失：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>BLVD下电：</td>
+                                                    <td><span class="txt-red">告警</span>负载下电LLVD1：</td>
+                                                    <td><span class="txt-red">告警</span>负载下电LLVD2：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>电池电流异常：</td>
+                                                    <td><span class="txt-red">告警</span>电池组间电流不平衡：</td>
+                                                    <td><span class="txt-red">告警</span>电池温补激活：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>电池放电告警：</td>
+                                                    <td><span class="txt-red">告警</span>电池均充告警：</td>
+                                                    <td><span class="txt-red">过温</span>电池温度告警状态：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">未接</span>电池温度传感器1异常：</td>
+                                                    <td><span class="txt-red">故障</span>电池温度传感器2异常：</td>
+                                                    <td><span class="txt-red">过温</span>环境温度告警状态：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">未接</span>环境温度传感器1异常：</td>
+                                                    <td><span class="txt-red">故障</span>环境温度传感器2异常：</td>
+                                                    <td><span class="txt-red">过湿</span>环境湿度告警状态：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">未接</span>环境湿度传感器1异常：</td>
+                                                    <td><span class="txt-red">告警</span>门磁：</td>
+                                                    <td><span class="txt-red">告警</span>水浸：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>烟雾：</td>
+                                                    <td><span class="txt-red">告警</span>温控高温：</td>
+                                                    <td><span class="txt-red">告警</span>电池测试失败：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>风扇组1风扇1：</td>
+                                                    <td><span class="txt-red">告警</span>风扇组1风扇2：</td>
+                                                    <td><span class="txt-red">未接</span>温控传感器1异常：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>风扇组2风扇1：</td>
+                                                    <td><span class="txt-red">告警</span>风扇组2风扇2：</td>
+                                                    <td><span class="txt-red">告警</span>温控传感器2异常：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>开关量输入1：</td>
+                                                    <td><span class="txt-red">告警</span>开关量输入2：</td>
+                                                    <td><span class="txt-red">告警</span>开关量输入3：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>开关量输入4：</td>
+                                                    <td><span class="txt-red">告警</span>开关量输入5：</td>
+                                                    <td><span class="txt-red">告警</span>开关量输入6：</td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="txt-red">告警</span>开关量输入7：</td>
+                                                    <td><span class="txt-red">告警</span>开关量输入8：</td>
+                                                    <td></td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <!--直流配电-->
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--padding div开始-->
+            </div>
+        </div>
+    </div>
+    <!--第四块-->
+</div>
+<script>
+$(function(){
+$(".navcon a").click(function(){//切换
+   $(this).siblings().removeClass("active").end().addClass("active");
+   $(".dl_content_info").hide().eq($(this).index()).show()
+   
+})
+$(".jmpd_box>tbody>tr.toptr>td").click(function(){//精密配电切换
+	$(this).addClass("actd").siblings("td").removeClass("actd")
+	$(".trcon>td").children("table").hide().eq($(this).index()).show();
+	
+})
+
+})
+</script>
+</body>
+</html>

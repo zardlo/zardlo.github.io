@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../css/SetInfo.css" rel="stylesheet" type="text/css" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<title>无标题文档</title>
+</head>
+
+<body>
+<style>
+
+</style>
+<script>
+$(function(){
+ 	$(".Alert_close,.a_btn1").click(function(){
+		
+ 		$(".alert_in,.alert_out").remove();
+ })
+   $("#sel1").change(function(){
+	 var f= $(this).val()
+	 $("#formid"+f).show().siblings().hide()
+	 $('#sel2').val(f)
+		
+   })
+   $("#sel2").change(function(){
+	 var f= $(this).val()
+	 $("#formid"+f).show().siblings().hide()
+	 $('#sel1').val(f)
+		
+   })
+   $("#sel1,#sel2").val(0)
+   $("#formid0").show().siblings().hide()
+})
+</script>
+<div class="AlertUps"> <a href="javascript:void(0);" class="Alert_close"></a>
+  <div class="Alert_title">扩展设备设置选项</div>
+  <span id="config_1">
+  <form action="" enctype="multipart/form-data" method="post" id="formid0">
+    <table class="Alert_content" width="100%">
+      <tbody>
+        <tr>
+          <td width="35%" height="30">使&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;能：</td>
+          <td height="30" align="left"><input type="checkbox" class="Alert_dx" id="gjEnable" name="gjEnable1" value="enb">
+            <span style="padding-left:10px">
+            <select class="sel1" id="sel1">
+              <option value="0">凝智科技</option>
+              <option value="1">派诺</option>
+            </select>
+            </span></td>
+        </tr>
+        <tr>
+          <td width="35%" height="30">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</td>
+          <td height="30" align="left"><input id="name" name="mn_name1" type="text" class="UpsName" value="单相电池组"></td>
+        </tr>
+        <tr style="line-height:30px">
+          <td width="35%" height="30">电池电压：</td>
+          <td height="30" align="left">上限阀值：
+            <input style="width:60px" id="BatVolUp1" name="BatVolUp1" type="text" class="UpsName" value="0">
+            V<br>
+            下限阀值：
+            <input style="width:60px" id="BatVolDw1" name="BatVolDw1" type="text" class="UpsName" value="0">
+            V </td>
+        </tr>
+        <tr style="line-height:30px">
+          <td width="35%" height="30">电池电流：</td>
+          <td height="30" align="left">上限阀值：
+            <input style="width:60px" id="BatCurUp1" name="BatCurUp1" type="text" class="UpsName" value="0">
+            A<br>
+            下限阀值：
+            <input style="width:60px" id="BatCurDw1" name="BatCurDw1" type="text" class="UpsName" value="0">
+            A </td>
+        </tr>
+        <tr style="line-height:30px">
+          <td width="35%" height="30">放电时间：</td>
+          <td height="30" align="left">下限阀值：
+            <input style="width:60px" id="BatDisDw1" name="BatDisDw1" type="text" class="UpsName" value="0">
+            &nbsp;(min) </td>
+        </tr>
+        <tr>
+          <td valign="top"> 电池放电时间下限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx813[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx813[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx813[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 电池电压上限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx814[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx814[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx814[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 电池电压下限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx815[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx815[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx815[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 电池电量断线 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx816[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx816[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx816[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 电池电流上限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx1031[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx1031[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx1031[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 电池电流下限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx1032[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <!---------------普通空调屏蔽失效时间设置 ------------>
+        <tr>
+          <td><input type="checkbox" class="Alert_dx" name="alarm_time" id="alarm_time" value="alarm">
+            <span class="c_bj">失效时间段</span></td>
+          <td style="text-align:left"> 起始：
+            <input style="width:60px;" id="start_time" name="start_time" type="text" class="sd_sxsjd_txt" value="">
+            &nbsp; 结束：
+            <input name="overs_time" id="overs_time" style="width:60px;" type="text" class="sd_sxsjd_txt" value="">
+            &nbsp;(hh:mm)</td>
+        </tr>
+        <tr>
+          <td colspan="2"><table>
+              <tr>
+                <td></td>
+                <td height="30">生产商</td>
+                <td style="padding-left:25px; text-align:left">供应商</td>
+              </tr>
+              <tr>
+                <td style="width:133px; text-align:right">名称：</td>
+                <td height="30"><select>
+                    <option>选择生产商</option>
+                    <option>科士达</option>
+                    <option>山特</option>
+                  </select></td>
+                <td style=" text-align:left"><select>
+                    <option>选择供应商</option>
+                    <option>科士达</option>
+                    <option>山特</option>
+                  </select></td>
+              </tr>
+              <tr>
+                <td  height="30" style="text-align:right">联系人：</td>
+                <td  align="right" style="width:125px; padding-right:8px;"><input id="name" name="name" type="text" class="UpsName" value="" style=" width:77px;"></td>
+                <td align="left"><input id="name" name="name" type="text" class="UpsName" value="" style=" width:77px;"></td>
+              </tr>
+              <tr>
+                <td  height="30" style="text-align:right">联系方式：</td>
+                <td align="right" style="width:125px; padding-right:8px;"><input id="name" name="name" type="text" class="UpsName" value="" style=" width:77px;"></td>
+                <td align="left"><input id="name" name="name" type="text" class="UpsName" value="" style=" width:77px;"></td>
+              </tr>
+            </table></td>
+        </tr>
+        <tr>
+          <td  height="30">设备维保到期日期：</td>
+          <td height="30" align="left"><input id="name" name="name" type="text" class="UpsName" value=""  onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'})"></td>
+        </tr>
+        <tr>
+          <td height="60" align="right"><a href="javascript:void(0);" onclick="btn_form()" class="a_btn1">确认</a></td>
+          <td height="60" align="center"><a href="javascript:void(0);" class="a_btn1 guanbi">关闭</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- 告警方式配置--->
+    <input type="hidden" id="alarm_way" name="alarm_way" value="0">
+    <!-- 设备索引 --->
+    <input type="hidden" id="index" name="index" value="1">
+    <!-- 设备名称 --->
+    <input type="hidden" id="type" name="upsradio" value="4005">
+    <!-- 描述 --->
+    <input type="hidden" id="485type" name="485type" value="4005">
+    <!-- 用于判断是哪个表单提交的数据 --->
+    <input type="hidden" name="btform" value="485">
+  </form>
+  
+  
+  <form  method="post" id="formid1" style="display:none">
+    <table class="Alert_content" width="100%">
+      <tbody>
+        <tr>
+          <td width="35%" height="30">使&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;能：</td>
+          <td height="30" align="left"><input type="checkbox" class="Alert_dx" id="gjEnable" name="gjEnable1" value="enb">
+            <span style="padding-left:10px">
+            <select class="sel1" id="sel2">
+              
+              <option value="0">凝智科技</option>
+              <option value="1">派诺</option>
+            </select>
+            </span></td>
+        </tr>
+        <tr>
+          <td width="35%" height="30">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</td>
+          <td height="30" align="left"><input id="name" name="mn_name1" type="text" class="UpsName" value="单相电池组"></td>
+        </tr>
+        <tr>
+          <td height="30">IP：</td>
+          <td height="30" align="left"><input id="name" name="mn_name1" type="text" class="UpsName" ></td>
+        </tr>
+       	<tr style="line-height:30px"><td colspan="2" style="background:#e4e4e4">组阈值设置</td></tr>
+        <tr style="line-height:30px">
+          <td width="35%" height="30">电压：</td>
+          <td height="30" align="left">上限阀值：
+            <input style="width:60px" id="BatVolUp1" name="BatVolUp1" type="text" class="UpsName" value="0">
+            V<br>
+            下限阀值：
+            <input style="width:60px" id="BatVolDw1" name="BatVolDw1" type="text" class="UpsName" value="0">
+            V </td>
+        </tr>
+        <tr style="line-height:30px">
+          <td width="35%" height="30">电流：</td>
+          <td height="30" align="left">上限阀值：
+            <input style="width:60px" id="BatCurUp1" name="BatCurUp1" type="text" class="UpsName" value="0">
+            A<br>
+            下限阀值：
+            <input style="width:60px" id="BatCurDw1" name="BatCurDw1" type="text" class="UpsName" value="0">
+            A </td>
+        </tr>
+        <tr style="line-height:30px">
+          <td width="35%" height="30">容量：</td>
+          <td height="30" align="left">下限阀值：
+            <input style="width:60px" id="BatDisDw1" name="BatDisDw1" type="text" class="UpsName" value="0">
+            &nbsp;(%) </td>
+        </tr>
+        <tr style="line-height:30px"><td colspan="2" style="background:#e4e4e4">单节阈值设置</td></tr>
+        <tr style="line-height:30px">
+          <td width="35%" height="30">电压：</td>
+          <td height="30" align="left">上限阀值：
+            <input style="width:60px" id="BatVolUp1" name="BatVolUp1" type="text" class="UpsName" value="0">
+            V<br>
+            下限阀值：
+            <input style="width:60px" id="BatVolDw1" name="BatVolDw1" type="text" class="UpsName" value="0">
+            V </td>
+        </tr>
+        <tr>
+          <td width="35%" height="30">内阻：</td>
+          <td height="30" align="left">上限阀值：
+            <input style="width:60px" id="BatCurUp1" name="BatCurUp1" type="text" class="UpsName" value="0">
+            mΩ</td>
+        </tr>
+        <tr style="line-height:30px">
+          <td width="35%" height="30">温度：</td>
+          <td height="30" align="left">上限阀值：
+            <input style="width:60px" id="BatCurUp1" name="BatCurUp1" type="text" class="UpsName" value="0">
+            ℃<br>
+            下限阀值：
+            <input style="width:60px" id="BatCurDw1" name="BatCurDw1" type="text" class="UpsName" value="0">
+            ℃ </td>
+        </tr>
+        <tr>
+          <td valign="top" style="padding-top:10px; padding-bottom:3px;"> 告警量 </td>
+          <td align="left" style="padding-top:10px; padding-bottom:3px;"><input type="checkbox" class="Alert_dx" name="Alert_dx813[]" id="checke_1" value="1">
+            <span class="c_bj">全选</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx813[]" id="checke_4" value="4">
+            <span class="c_bj">全选</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx813[]" id="checke_8" value="8">
+            <span class="c_bj">全选</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 断线 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx813[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx813[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx813[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 组电压上限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx814[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx814[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx814[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 组电压下限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx815[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx815[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx815[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 组电流上限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx816[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx816[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx816[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 组电流下限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx1031[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx1031[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx1031[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr style="line-height:30px"><td colspan="2">组容量的告警方式</td></tr>
+        <tr>
+          <td valign="top"> 单节电压上限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx1032[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 单节电压下限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx1032[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 单节内阻上限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx1032[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 单节内阻下限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx1032[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 单节温度上限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx1032[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <tr>
+          <td valign="top"> 单节温度下限 </td>
+          <td align="left"><input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_1" value="1">
+            <span class="c_bj">短信</span>
+            <input type="checkbox" class="Alert_dx" name="Alert_dx1032[]" id="checke_4" value="4">
+            <span class="c_bj">声光</span>
+            <input type="checkbox" class="Alert_sx" name="Alert_dx1032[]" id="checke_8" value="8">
+            <span class="c_bj">电话语音</span></td>
+        </tr>
+        <!---------------普通空调屏蔽失效时间设置 ------------>
+        <tr>
+          <td><input type="checkbox" class="Alert_dx" name="alarm_time" id="alarm_time" value="alarm">
+            <span class="c_bj">失效时间段</span></td>
+          <td style="text-align:left"> 起始：
+            <input style="width:60px;" id="start_time" name="start_time" type="text" class="sd_sxsjd_txt" value="">
+            &nbsp; 结束：
+            <input name="overs_time" id="overs_time" style="width:60px;" type="text" class="sd_sxsjd_txt" value="">
+            &nbsp;(hh:mm)</td>
+        </tr>
+       
+        <tr>
+          <td height="60" align="right"><a href="javascript:void(0);" onclick="btn_form()" class="a_btn1">确认</a></td>
+          <td height="60" align="center"><a href="javascript:void(0);" class="a_btn1 guanbi">关闭</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- 告警方式配置--->
+    <input type="hidden" id="alarm_way" name="alarm_way" value="0">
+    <!-- 设备索引 --->
+    <input type="hidden" id="index" name="index" value="1">
+    <!-- 设备名称 --->
+    <input type="hidden" id="type" name="upsradio" value="4005">
+    <!-- 描述 --->
+    <input type="hidden" id="485type" name="485type" value="4005">
+    <!-- 用于判断是哪个表单提交的数据 --->
+    <input type="hidden" name="btform" value="485">
+  </form>
+  
+  
+  </span> 
+  
+  <!------------   管理员账号验证     ----------> 
+  <span id="config_4" style="display:none">
+  <form action="" enctype="multipart/form-data" method="post" id="formid4">
+    <table width="100%" style="line-height:30px;">
+      <tbody>
+        <tr>
+          <td colspan="2"> 警告：您现在准备进入的是控制功能页面，可能将会对运行设备造成影响！</td>
+        </tr>
+        <tr>
+          <td> 账号：</td>
+          <td><input type="text" class="select_set" id="username" name="username" value="admin"></td>
+        </tr>
+        <tr>
+          <td> 密&nbsp;&nbsp;码：</td>
+          <td><input type="password" class="select_set" id="pwd" name="pwd"></td>
+        </tr>
+        <tr>
+          <td height="60" align="right"><a href="javascript:void(0);" onclick="senior_form(4)" class="a_btn1">确认</a></td>
+          <td height="60" align="center"><a href="javascript:void(0);" onclick="close_senior(1)" class="a_btn1">返回</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- 用于判断是哪个表单提交的数据 --->
+    <input type="hidden" name="btform" value="4">
+  </form>
+  </span> 
+  <!------------   空调控制    ----------> 
+  <span id="config_5" style="display:none">
+  <form action="" enctype="multipart/form-data" method="post" id="formid5">
+    <table width="100%" style="line-height:30px;">
+      <tbody>
+        <tr>
+          <td> 开启空调时间</td>
+          <td><input type="text" style="width:60px" class="UpsName" value="" id="kq_kongtiao" name="kq_kongtiao">
+            &nbsp;(hh:mm)</td>
+        </tr>
+        <tr>
+          <td> 关闭空调时间</td>
+          <td><input type="text" style="width:60px" class="UpsName" value="" id="gb_kongtiao" name="gb_kongtiao">
+            &nbsp;(hh:mm)</td>
+        </tr>
+        <tr>
+          <td><a href="javascript:void(0);" onclick="senior_form(5)" class="a_btn1">确认</a></td>
+          <td height="60" align="center"><a href="javascript:void(0);" onclick="close_senior(1)" class="a_btn1">返回</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- 设备索引 --->
+    <input type="hidden" id="index" name="index" value="1">
+    <!-- 设备名称 --->
+    <input type="hidden" id="type" name="upsradio" value="4005">
+    <input type="hidden" name="btform" value="5">
+  </form>
+  
+  
+  
+  
+  </span> 
+  <!------------   UPS控制显示    ----------> 
+  <span id="config_6" style="display:none"> </span> <span id="config_7" style="display:none"> </span> </div>
+<iframe style="widht:0px; height:0px; border:0px;" name="hidden_frame2" id="hidden_frame2"></iframe>
+</body>
+</html>

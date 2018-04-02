@@ -1,0 +1,114 @@
+/* CSS Document */
+body{ background:#fff;}
+.xd_top{ position:fixed; top:0; left:0; height:50px; background:url(../images/ny_tbg.gif) center top repeat-x;  width:100%; z-index:10;}
+.xd_bnt{ float:right; padding:6px 25px; color:#fff; margin-top:8px; background:#29a5f9; border-radius:3px; font-size:14px; margin-right:25px; }
+.xd_tit{ float:left; font-size:20px; color:#fff; line-height:50px; padding-left:25px;}
+.xd_content{ padding-top:50px;}
+
+/*向导1样式*/
+.xd_sz_content{ border:solid 1px #d8d8d8; background:#f9f9f9; color:#808080; margin:20px 25px 0 25px; font-size:14px; position:relative;}
+.xd_sz1_tab{ width:100%;}
+.sz1_sgsz{ width:60%; padding-top:15px; margin:0 auto; padding-bottom:25px;}
+.sz1_sgsz_left{ float:left; line-height:27px; padding-right:18px; text-align:right; width:165px;}
+.sz1_sgsz_right{ float:left; width: 60px; height: 27px; line-height:27px; background: url(../images/sd_close.png) center center no-repeat; position: relative;}
+.close_btn{width: 60px; height: 27px; background: url(../images/sd_open.png) left center no-repeat; line-height:0px; font-size: 0; margin-left: 0; margin-right: auto;}
+.ico_btn{ height: 27px; width: 27px; background: url(../images/sd_btn.png) center center no-repeat;_background: url(images/ico_btn.gif) center center no-repeat; position: absolute; left: 32px; top: 0px}
+
+/*激活通道*/
+.sz1_jhtd{ width:70%; padding-top:15px; margin:0 auto;}
+.sz1_jhtd_left{ float:left; line-height:22px; padding-right:18px; padding-top:5px;}
+.sz1_jhtd_right{ float:left; width:70%;}
+.sz1_jhtd_right li{ float:left; width:40%; text-align:left; padding:5px 0 15px 0;}
+input[type=text]:focus{outline:none!important;outline:1px solid #90cff9; border:1px solid #90cff9;}
+.checkbox{ float:left; display:block; line-height:0px; height:22px; width:22px; overflow:hidden;}
+.uncheckbox{ background:url(../images/Alert_uncheckbox.png) no-repeat center center; }
+.active_checkbox{ background:url(../images/Alert_checkbox.png) no-repeat center center;}
+.checkbox input[type=checkbox]{ position:absolute; left:-9999px; z-index:-10;}
+.jhtd_checkbox_info{ display:block; float:left; padding-left:10px; width:80px; height:22px; line-height:22px;}
+/*激活通道结束*/
+.dx_from{ width:68%; padding-bottom:15px; border-radius:2px;  background:; margin:0 auto;}
+.dx_from li{ width:100%; height:40px; text-align:left;}
+.from_info_font{ display:block; float:left;}
+.dx_txt{ display:block; float:left; width:40%;color:#959595; padding:2px 10px; border-radius:4px; border:1px solid #ccc; height:18px; -ms-radius-border:4px; line-height:18px;}
+.dx_txt1{ display:block; float:left; width:50%;color:#959595; padding:2px 10px; border-radius:4px; border:1px solid #ccc; height:18px; -ms-radius-border:4px; line-height:18px; margin-left:50px;}
+.dx_txt2{ color:#959595;  border-radius:4px; border:1px solid #ccc; height:18px; -ms-radius-border:4px; line-height:18px;}
+.dx_user_txt,.dx_pwd_txt{ display:block; float:left; width:25%;color:#959595; padding:2px 10px; border-radius:4px; border:1px solid #ccc; height:18px; -ms-radius-border:4px; line-height:18px;}
+/*向导1样式结束*/
+/*向导步骤按钮样式*/
+.xd_bz{ width:30%; position:absolute; top:380px; left:35%;}
+.xd2_bz{ width:100%; padding:20px 0; position:relative; height:30px;}
+.xd1_btn{ width:120px; margin:0 auto;}
+.xd2_prev{ position:absolute; top:20px; left:26%; margin-left:-10px;}
+.xd2_center{ position:absolute; top:20px; left:49%; margin-left:-10px;}
+.xd2_next{ position:absolute; top:20px; right:25%; margin-right:-10px;}
+.xgzh_tab tr.net_q2{ display:none}
+a.a_btn2{ margin:0 auto; display:block; width:80px; height:31px; padding:0 10px; line-height:28px; color:#fff; font-size:15px; text-align:center; background:url(../images/xd_shangyibu.jpg) repeat-x;}
+a.a_btn1{ margin:0 auto; display:block; height:31px; width:80px; text-align:center; font-size:15px; line-height:28px; padding:0 10px; background:url(../images/btn_bg.jpg) repeat-x; color:#fff; }
+/*向导步骤按钮样式结束*/
+/*向导2样式开始*/
+.sz2_user_set{width:80%; margin:0 auto; padding:50px 0;}
+.sz2_user_set li{float:left; width:33%; line-height:31px;}
+.administrate{ padding-left:30px; background:url(../images/ico_administrate_users.gif) no-repeat left center;}
+.user_chakan{ padding-left:28px; background:url(../images/ico_chakan_users.gif) no-repeat left center;}
+.userNmae{ color:orange; font-family:Verdana, Geneva, sans-serif; font-size:15px}
+/*向导2样式结束*/
+/*向导3样式开始*/
+.xd3_sz_tab{ width:100%;}
+.xd3_info{ width:30%; padding:20px 0 20px 20px; margin:0 auto;}
+.xd3_info li{ float:left; padding-left:20px; line-height:27px; text-align:center;}
+.xd3_tb_btn1{ margin-left:10px; display:block; width:27px; height:27px; background:url(../images/xd_tb_btn.gif) no-repeat center center;}
+/*向导3样式结束*/
+
+/*账号查看修改样式*/
+.xgzh_tab{ width:100%; }
+.xgzh_tab_info{ width:90%; margin:0 auto;}
+.xgzh_tab_info tr td,.xgzh_tab_info th{ line-height:30px;}
+/*账号查看修改样式结束*/
+/*集成样式*/
+.jc_content{ width:40%; margin:0 auto; padding-top:220px;}
+.jc_content li{ float:left; width:50%; line-height:31px; }
+a.jc_btn{ margin:0 auto; display:block; height:31px; width:100px; text-align:center; font-size:15px; line-height:28px; padding:0 30px; background:url(../images/btn_bg.jpg) repeat-x; color:#fff;}
+/*集成样式结束*/
+
+/*历史记录报表样式开始*/
+.xd_sz_ul{ height:45px; line-height:45px;  border-left:solid 1px #d8d8d8; background:url(../images/ico_line.gif) repeat-x scroll left bottom #fff}
+.xd_sz_ul li{ float:left; width:115px; border-top:solid 1px #d8d8d8; border-right:solid 1px #d8d8d8; cursor:default}
+.ls_tab{width:100%; background:#fff; clear:both; border-right:solid 1px #d8d8d8; border-left:solid 1px #d8d8d8; background:#f9f9f9; padding-top: 20px;; padding-bottom:35px;}
+.ls_tab_info{width:98%; margin:auto; background:#fff}
+.tab_info_tr{ border-right:solid 1px #d8d8d8; border-left:solid 1px #d8d8d8;border-top:solid 1px #d8d8d8; }
+.ls_txt{ display:block; float:left;color:#959595; padding:2px 10px; border-radius:4px; border:1px solid #ccc; height:18px; -ms-radius-border:4px; line-height:18px;}	
+.ls_btn{ border:none; text-align:center; font-size:15px; padding:7px 10px; background:url(../images/btn_bg.jpg) repeat-x; color:#fff;}
+.ls_tab_info_sj{ width:100%; }
+.ls_tab_info_sj tr, .ls_tab_info_sj tr td{ border:solid 1px #d8d8d8; line-height:35px; text-align:center}
+.ls_tab_info_sj th{ border:solid 1px #d8d8d8; background:#d9f6d2; font-weight:100; line-height:30px;}
+.ls_btn2{ padding:4px 10px; line-height:28px; color:#fff; font-size:15px; text-align:center; background:url(../images/xd_shangyibu.jpg) left bottom repeat-x;}
+.xd_sz_content .xd_sz_ul li.active{background:none #f9f9f9}
+/*历史记录报表样式结束*/
+
+/*主机信息样式开始*/
+.zj_info{ padding: 15px 30px;}
+.zj_info li { float:left; width:50%; line-height:40px; text-align:left;}
+/*主机信息样式结束*/
+#detailed{
+	position:absolute;
+	top: 150px;
+left: 50%;
+margin-left: -300px;
+	background:#fff;
+	z-index:998;
+}
+.AlertUps{ padding:25px 40px; width:600px; border-radius:4px; border:solid 1px #d8d8d8; background:#fff; position:relative; color:#959595;}
+.Alert_close{display:block; width:34px; height:32px; background:url(../images/Alert_close.png) no-repeat; position:absolute; right:-15px; top:-10px;}
+.mytable tr td{border-collapse: collapse;
+margin: 0px;
+word-break: break-all;
+text-align: left;
+padding: 10px;
+padding-left:32px;
+}
+.Alert_content1 tr td{ height:auto; padding-top:8px; padding-bottom:8px;}
+.xd_sztab{ width:80%; margin-left:auto; margin-right:auto}
+.xd_sztab tr td{ padding-top:5px; padding-bottom:5px; height:30px;}
+a.a_btn2{ margin:0 auto; display:block; width:80px; height:31px; padding:0 10px; line-height:28px; color:#fff; font-size:15px; text-align:center; background:url(../images/xd_shangyibu.jpg) repeat-x;}
+a.a_btn1{ margin:0 auto; display:block; height:31px; width:80px; text-align:center; font-size:15px; line-height:28px; padding:0 10px; background:url(../images/btn_bg.jpg) repeat-x; color:#fff;}
+a.a_btn3{ display:block; height:31px; width:80px; text-align:center; font-size:15px; line-height:28px; padding:0 10px; background:url(../images/btn_bg.jpg) repeat-x; color:#fff;}

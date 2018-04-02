@@ -1,0 +1,262 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>环境监测</title>
+    <link href="../css/huanjing.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <style>
+        .newhj {
+            width: 100%;
+        }
+        
+        .newhj td {
+            text-align: center;
+            color: #6C6;
+        }
+        
+        .newhj td.cin {
+            background: #efefef;
+            color: #686868;
+        }
+        
+        .newhj td span {
+            float: none
+        }
+        
+        .hj_deepblue {
+            color: #2f49cd;
+        }
+        
+        .detail {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 内容开始 -->
+    <div class="hj_content">
+        <table style="display: table;" class="hj">
+            <tbody>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        <div class="half-part part-left">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">名称</td>
+                                        <td class="cin">通讯状态</td>
+                                        <td class="cin">漏水详情</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cin">定位漏水01</td>
+                                        <td><span class="hj_red">异常</span></td>
+                                        <td><span class="detail hj_deepblue">详情</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="half-part part-right">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">名称</td>
+                                        <td class="cin">通讯状态</td>
+                                        <td class="cin">漏水详情</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cin">定位漏水02</td>
+                                        <td><span class="hj_green">正常</span></td>
+                                        <td><span class="detail hj_deepblue">详情</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!---内容结束-->
+
+
+    <!-- 定位漏水详情 -->
+    <style>
+        .modal-fullScreen {
+            position: fixed;
+            top: 20px;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+        }
+        
+        .modal--close {
+            cursor: pointer;
+            position: absolute;
+            right: -12px;
+            top: -17px;
+        }
+        
+        .D {
+            margin-left: 30px;
+            width: 50%;
+        }
+        
+        .D tbody td {
+            padding: 5px 0;
+        }
+        
+        .D tbody th {
+            font-weight: lighter;
+            color: #686868;
+            padding: 5px 0;
+        }
+        
+        .r-btn {
+            background-color: #d15a63;
+            color: #fff;
+            border-radius: 3px;
+            border: none;
+            padding: 6px 8px;
+        }
+    </style>
+    <div class='modal modal-fullScreen' style='display:none;'>
+        <div class='modal--header'>
+
+            <img src='../images/Alert_close.png' title='点击关闭' alt='' class='modal--close' />
+        </div>
+        <div class='modal--body'>
+            <div style='overflow: hidden;'>
+                <div style='float:left;width:50%;'>
+                    <h4 style='padding: 20px 30px;text-align:left;color:#38a3db;font-size:16px;
+                    '>模拟量信息</h4>
+                    <div style="overflow:hidden;margin-left:30px;">
+                        <div style='float:left;width:50%;'>
+                            <img src='../images/lsxl.png' style='float:left;' />
+                            <p style='float:left;width:50%;font-size: 14px;'>
+                                漏水线缆长度
+                                <br/>
+                                <span style='color:#00b91c;'>N/A</span>
+                            </p>
+                        </div>
+                        <div style='float:left;width:50%; overflow:hidden;'>
+                            <img src='../images/lswz.png' style='float:left;' />
+                            <p style='float:left;width:50%;font-size: 14px;'>
+                                漏水位置
+                                <br/>
+                                <span style='color:#00b91c;'>N/A</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!--  -->
+                <div style='float:left;width:50%;'>
+                    <h4 style='padding: 20px 30px;text-align:left;color:#38a3db;font-size:16px;
+                        '>模拟量信息</h4>
+                    <table class='D'>
+                        <tbody>
+                            <tr>
+                                <th>通讯状态:</th>
+                                <td><img src='../images/ico_red.png' /></td>
+                                <th>检测线缆断线状态:</th>
+                                <td><img src='../images/ico_red.png' /></td>
+                            </tr>
+                            <tr>
+                                <th>漏水状态:</th>
+                                <td><img src='../images/ico_red.png' /></td>
+                                <th>硬件故障线状态:</th>
+                                <td><img src='../images/ico_red.png' /></td>
+                            </tr>
+                            <tr>
+                                <th>维护状态:</th>
+                                <td><img src='../images/ico_red.png' /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <p style='height:1px; background-color:#ccc;'></p>
+        </div>
+        <div class='modal--footer'></div>
+        <div style="position: relative;">
+            <div style='position: absolute; right: 30px; top:6px;'>
+                <button class='r-btn'>编辑图像</button>
+                <div style='display:inline-block; position:relative; '>
+                    <button class='r-btn'>机房图上传</button>
+                    <div style='box-shadow:0 0 10px #ccc;padding: 12px 0;position:absolute; top: 35px;right:0; width: 300px;background-color:#fff;'>
+                        <input type='file' />
+                        <button class>上传</button>
+                    </div>
+                </div>
+            </div>
+            <img src='../images/pp1.jpg' style='width:100%;' />
+        </div>
+    </div>
+    <!-- 定位漏水详情 -->
+
+    <script>
+        var Event = {
+            eventList: {},
+            listen: function(key, cb) {
+                /* 
+                    Event.listen('modalshow', function(data) {}); 
+                */
+                if (!this.eventList[key]) {
+                    this.eventList[key] = [];
+                }
+                this.eventList[key].push(cb);
+            },
+            trigger: function() {
+                /**
+                    Event.trigger('modalshow', data1, data2);
+                */
+                var key = Array.prototype.shift.call(arguments);
+
+                if (this.eventList[key] && this.eventList[key].length > 0) {
+                    for (var i = 0; i < this.eventList[key].length; i++) {
+                        var cb = this.eventList[key][i];
+                        if (typeof cb === 'function') {
+                            cb.apply(this, arguments);
+                        }
+                    }
+                } else {
+                    return false;
+                }
+            }
+        };
+    </script>
+    <script>
+        $(function() {
+            console.log('A');
+            Event.listen('modalshow', function(data) {
+                $('body').css('overflow', 'hidden');
+                console.log('点击打开');
+            });
+
+            Event.listen('modalclose', function(data) {
+                $('body').css('overflow', 'auto');
+                console.log('点击关闭');
+            });
+
+            $('.detail').on('click', function() {
+                $('.modal').fadeIn('fast', function() {
+                    Event.trigger('modalshow');
+                });
+
+            });
+
+            $('.modal--close').on('click', function() {
+                $('.modal').fadeOut('fast', function() {
+                    Event.trigger('modalclose');
+                });
+            });
+        });
+
+        console.log('AAAAAAAAAAAAAA6666666666666');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>历史数据报表</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css">
+<script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript" src="../js/WdatePicker.js"></script>
+<link href="../css/WdatePicker.css" rel="stylesheet" type="text/css">
+<!--<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script><!--JQ包-->
+
+<style type="text/css">
+body {
+	overflow-y: auto;
+}
+.ls_tab_infosear{ border:#ccc solid 1px; width:100%}
+.tj_tb_tit{ border:#ccc solid 1px; padding-left:1px}
+.tab_info_tr th,.tab_info_tr td{ border-bottom:#ccc solid 1px;}
+</style>
+</head>
+
+<body>
+
+<!--顶部开始-->
+<div class="xd_top"> <a class="xd_bnt" href="setgj.html">返回</a> <a class="xd_tit" >一键备份/还原 </a> </div>
+<!--顶部结束--> 
+<!---内容开始--->
+<div class="xd_content">
+<div class="xd_sz_content">
+  <table class="xd3_sz_tab">
+    	<tbody><tr>
+        	<td colspan="4" style="border-bottom:solid 1px #d8d8d8;" height="60">一键备份/还原</td>
+      </tr>
+      <tr class="bar_td" style="display:none;">
+      	<td colspan="4">
+        	<div class="bar_tips">备份进度:<span id="jd">0%</span></div>
+        	<div class="bar_box">
+            	<div class="bar1" style="width:0%"></div>
+            </div>
+        </td>
+      </tr>
+      
+      <tr class="set_hy" style="display:none;">
+      	<td colspan="2" align="right" width="60%">
+              &nbsp;&nbsp; &nbsp;&nbsp;
+        </td>
+        <td colspan="2" align="left"><a href="javascript:void(0);" onclick="return Myconfirm2()" class="a_btn3 confirm">还&nbsp;&nbsp;&nbsp;&nbsp;原</a></td>
+      </tr>
+       <tr class="bar_td2" style="display:none;">
+      	<td colspan="4">
+        	<div class="bar_tips">还原进度:<span id="hjd">0%</span></div>
+        	<div class="bar_box">
+            	<div class="bar2" style="width:0%"></div>
+            </div>
+        </td>
+      </tr>
+      <tr class="bar_td" id="result" style="display:none;">
+      	<td colspan="4" height="60">
+      	 	<a href="javascript:void(0);" class="a_btn1 confirm" onclick="return Myconfirm2()">返&nbsp;&nbsp;&nbsp;&nbsp;回</a>
+        </td>
+      </tr>
+        <tr id="BFHY">
+        	<td width="25%"></td>
+            <td align="right" height="60" width="25%"><a href="javascript:void(0);" class="a_btn1 confirm" onclick="return Myconfirm2()">备&nbsp;&nbsp;&nbsp;&nbsp;份</a></td>
+            <td align="left" width="25%"><a href="javascript:void(0);" onclick="Myconfirm2()" class="a_btn1 confirm">还原文件</a></td>
+            <td width="25%"></td>
+     </tr>
+  </tbody></table>
+  <input id="update_Backup" value="0" type="hidden">
+   <input id="update_Reduction" value="0" type="hidden">
+</div>
+</div>
+</div>
+</body>
+<script>
+function Myconfirm2(){
+	alert("未配置")
+	}
+</script>
+</html>

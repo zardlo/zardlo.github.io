@@ -1,0 +1,784 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>历史数据报表</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css">
+<script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript" src="../js/WdatePicker.js"></script>
+<link href="../css/WdatePicker.css" rel="stylesheet" type="text/css">
+<!--<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script><!--JQ包-->
+<script type="text/javascript" src="../js/Column_img.js"></script><!--柱状图-->
+<script type="text/javascript" src="../js/dynamic_img.js"></script><!--饼状图-->
+<script type="text/javascript" src="../js/highcharts.js"></script><!--图形生成-->
+<script type="text/javascript" src="../js/vk_loader.js"></script>
+<script>
+colors=["#ff0000","#ffff00","#0000ff","#f0f0f0"]
+lan="cn";
+array={"name":["\u5355\u76f8 ups: \u544a\u8b66\u4ea7\u751f","\u6e29\u6e7f\u5ea61:\u65ad\u7ebf:\u65ad\u7ebf: \u544a\u8b66\u4ea7\u751f","\u6e29\u6e7f\u5ea62:\u6e29\u5ea6\u8fc7\u9ad8: \u544a\u8b66\u4ea7\u751f",],"value":[{"color":"","name":"\u5b9a\u4f4d\u6f0f\u6c342:\u901a\u8baf\u72b6\u6001: \u544a\u8b66\u4ea7\u751f","y":"15"},{"color":"","name":"\u5c71\u7279UPS\u7535\u6c60\u7ec4:\u7535\u6c60\u7535\u91cf\u65ad\u7ebf: \u544a\u8b66\u4ea7\u751f","y":"4"},{"color":"","name":"\u6e29\u6e7f\u5ea68:\u65ad\u7ebf: \u544a\u8b66\u4ea7\u751f","y":"6"}],"total":"25"};
+
+array2={"name":["山特1","山特2","科士达1","科士达2"],"value":[{"color":"#ff0000","name":"山特1","y":"10"},{"color":"#ffff00","name":"山特2","y":"4"},{"color":"#0000ff","name":"科士达1","y":"6"},{"color":"#f0f0f0","name":"科士达2","y":"6"}],"total":"26"};
+
+
+array1={"name":["未过保","过保"],"value":[{"color":"#00ff00","name":"未过保","y":"10"},{"color":"#ff0000","name":"过保","y":"4"}],"total":"14"};
+
+Graphical="1";
+function btn_form(){
+	document.getElementById('form1').submit();
+}
+function Onexport()
+{
+	location.href="export.php?type=event&btime=0&etime=0&dev=0";
+}
+
+
+function Column()
+{
+
+	$("#Graphical").val(2);
+		for(var i in array.value)
+		{
+			cc=i%7;
+			array.value[i].color=colors[cc];
+			array.value[i].y=parseInt(array.value[i].y);
+			//alert(array.value[i].y);
+		}
+		$("#liebiao").css("display","none");
+		$("#cont_infos").css("display","");
+		if(array.total=='0'){$("#cont_infos").html('没有数据！');return false;}
+		
+		Column_img(array.name,array.value,array.total,"次","cont_infos");
+		
+		
+	
+}
+function Pie()
+{
+	$("#Graphical").val(3);
+	for(var i in array.value)
+	{
+		cc=i%7;
+		array.value[i].color=colors[cc];
+		array.value[i].y=parseInt(array.value[i].y);
+		//alert(array.value[i].y);
+	}
+		$("#liebiao").css("display","none");
+		$("#cont_infos").css("display","");
+	//hh=array.value.length*2+400;
+	//hh=hh>820?820:hh;//最高限制
+	//if(array.value.length>12){$("#container").css('height',hh);}
+	
+	if(array.total=='0'){$("#cont_infos").html('没有数据！');return false;}
+		dynamic(array.value,array.total,"次","cont_infos");
+		
+	
+		
+			//$(".tj_tb_tit").html(tit+'<{$langArr[29]}>');
+}
+
+
+function btn_form11(){
+		$("#liebiao").css("display","");
+		$("#cont_infos").css("display","none");
+}
+
+
+function btn_form2(){
+		$("#pro_list2").css("display","");
+		$("#cont_infos2").css("display","none");
+}
+function Column2()
+{
+
+	$("#Graphical").val(2);
+		for(var i in array2.value)
+		{
+			cc=i%7;
+			array2.value[i].color=colors[cc];
+			array2.value[i].y=parseInt(array2.value[i].y);
+			//alert(array.value[i].y);
+		}
+		$("#pro_list2").css("display","none");
+		$("#cont_infos2").css("display","");
+		if(array2.total=='0'){$("#cont_infos2").html('没有数据！');return false;}
+		
+		Column_img(array2.name,array2.value,array2.total,"次","cont_infos2");
+		
+		
+	
+}
+function Pie2()
+{
+	$("#Graphical").val(3);
+	for(var i in array2.value)
+	{
+		cc=i%7;
+		array2.value[i].color=colors[cc];
+		array2.value[i].y=parseInt(array2.value[i].y);
+		//alert(array.value[i].y);
+	}
+		$("#pro_list2").css("display","none");
+		$("#cont_infos2").css("display","");
+	//hh=array.value.length*2+400;
+	//hh=hh>820?820:hh;//最高限制
+	//if(array.value.length>12){$("#container").css('height',hh);}
+	
+	if(array.total=='0'){$("#cont_infos2").html('没有数据！');return false;}
+		dynamic(array2.value,array2.total,"次","cont_infos2");
+		
+	
+		
+			//$(".tj_tb_tit").html(tit+'<{$langArr[29]}>');
+}
+
+
+
+function btn_form1(){
+		$("#pro_list").css("display","");
+		$("#cont_infos1").css("display","none");
+}
+function Column1()
+{
+
+	$("#Graphical").val(2);
+		for(var i in array1.value)
+		{
+			cc=i%7;
+			array1.value[i].color=colors[cc];
+			array1.value[i].y=parseInt(array1.value[i].y);
+			//alert(array.value[i].y);
+		}
+		$("#pro_list").css("display","none");
+		$("#cont_infos1").css("display","");
+		if(array1.total=='0'){$("#cont_infos1").html('没有数据！');return false;}
+		
+		Column_img(array1.name,array1.value,array1.total,"个","cont_infos1");
+		
+		
+	
+}
+function Pie1()
+{
+	$("#Graphical").val(3);
+	for(var i in array1.value)
+	{
+		cc=i%7;
+		array1.value[i].color=colors[cc];
+		array1.value[i].y=parseInt(array1.value[i].y);
+		//alert(array.value[i].y);
+	}
+		$("#pro_list").css("display","none");
+		$("#cont_infos1").css("display","");
+	if(array1.total=='0'){$("#cont_infos1").html('没有数据！');return false;}
+		dynamic(array1.value,array1.total,"个","cont_infos1");
+}
+
+
+
+
+
+
+
+//关闭按钮
+function closediv()
+{
+	VirtualKeyboard.toggle($("#softkey").attr("rel"), 'softkey');
+	$("#softkey").remove();
+	$('.AlertUps').hide().remove();
+}
+
+function select_content(id)
+{
+	$.ajax({
+			type:"get",
+			url:'ajax/get_information.php?id='+id+'&type=event',
+			dateType:'html',
+			cache:false,
+			success: function(msg)
+			{
+				$("#detailed").html(msg);
+				if($(window).outerWidth(true)>1800){
+				$(document).bind("contextmenu",function(e){ return false;})
+				$("input[type='text'],input[type='password'],textarea").focus(function(){
+					if($(this).attr("rels"))
+					{
+						return false;
+					}
+					if($("#softkey").length>0){
+							VirtualKeyboard.toggle('txt_Search', 'softkey');
+							$("#softkey").remove();
+					}
+					if(typeof($(this).attr("id"))=="undefined"){
+						$(this).attr("id","ric"+(Math.random().toString()).replace(".",""))
+					}
+					 var l=$(this).offset().left
+					 var t=$(this).offset().top +$(this).outerHeight(true)+3
+					$("<div>",{"id":"softkey"}).css({"position":"absolute","left":l+"px","top":t+"px","zIndex":999}).appendTo("body")
+					var thisid=$(this).attr("id")
+					VirtualKeyboard.toggle(thisid, 'softkey');
+				}).blur(function(){
+						var thisid=$(this).attr("id")
+						VirtualKeyboard.toggle(thisid, 'softkey');
+						$("#softkey").remove();
+				})
+				}
+			},
+			error:function(){
+		$("#detailed").remove();
+		$("body").append('<div id="detailed"><div class="AlertUps">'+
+	'	<form action="" enctype="multipart/form-data" method="post" id="formid">'+
+	'	<a href="javascript:void(0);" onclick="closediv()" class="Alert_close"></a>'+
+		'<table class="Alert_content" style="width:600px; line-height:50px;">'+
+		'<tbody><tr>'+
+      '  	<td style="width:200px;">设备名称</td><td>告警事件</td><td>发生时间</td><td>处理人</td>'+
+      '  </tr>'+
+		' <tr>'+
+        '	<td>发电机</td><td>温湿度模块:通讯状态</td><td>2014-09-02 14:14:33</td><td>'+
+		'<input name="Ha_handler" id="Ha_handler" class="dx_txt" type="text" style="width:50px;" value=""></td>'+
+      '  </tr>'+
+	'	 <tr>'+
+        '	<td>原因：</td><td colspan="3" align="left">'+
+		'<input name="Ha_alarm_reason" id="Ha_alarm_reason" class="dx_txt" type="text" style="width:200px;" value=""></td>'+
+      '  </tr>'+
+       ' <tr>'+
+        	'<td>处理过程：</td><td colspan="3" align="left">'+
+			'<textarea rows="5" style="width:55%;" name="Ha_handle_process" id="Ha_handle_process"></textarea></td>'+
+      '  </tr>'+
+     '     <tr>'+
+       ' 	<td>处理结果：</td><td colspan="3" align="left"><input name="Ha_handle_result" id="Ha_handle_result'+
+	   '" class="dx_txt" type="text" style="width:200px;" value=""></td>'+
+       ' </tr>'+
+       ' <tr><td colspan="4" align="center"><a href="javascript:void(0)" onclick="btn_add()" class="xd_prev a_btn2">确认</a></td>'+
+	   '</tr>'+
+		'</tbody></table>'+
+		'<input type="hidden" name="type" value="jilu">'+
+		'<input type="hidden" id="id" name="id" value="104">'+
+		'</form>'+
+		'</div>'+
+		'</div>')
+				}
+	})
+}
+
+function select_contents(id)
+{
+	$.ajax({
+			type:"get",
+			url:'ajax/get_information.php?id='+id+'&type=event',
+			dateType:'html',
+			cache:false,
+			success: function(msg)
+			{
+				$("#detailed").html(msg);
+				if($(window).outerWidth(true)>1800){
+				$(document).bind("contextmenu",function(e){ return false;})
+				$("input[type='text'],input[type='password'],textarea").focus(function(){
+					if($(this).attr("rels"))
+					{
+						return false;
+					}
+					if($("#softkey").length>0){
+							VirtualKeyboard.toggle('txt_Search', 'softkey');
+							$("#softkey").remove();
+					}
+					if(typeof($(this).attr("id"))=="undefined"){
+						$(this).attr("id","ric"+(Math.random().toString()).replace(".",""))
+					}
+					 var l=$(this).offset().left
+					 var t=$(this).offset().top +$(this).outerHeight(true)+3
+					$("<div>",{"id":"softkey"}).css({"position":"absolute","left":l+"px","top":t+"px","zIndex":999}).appendTo("body")
+					var thisid=$(this).attr("id")
+					VirtualKeyboard.toggle(thisid, 'softkey');
+				}).blur(function(){
+						var thisid=$(this).attr("id")
+						VirtualKeyboard.toggle(thisid, 'softkey');
+						$("#softkey").remove();
+				})
+				}
+			},
+			error:function(){
+		$("#detailed").remove();
+		$("body").append('<div id="detailed"><div class="AlertUps">'+
+	'	<form action="" enctype="multipart/form-data" method="post" id="formid">'+
+	'	<a href="javascript:void(0);" onclick="closediv()" class="Alert_close"></a>'+
+		'<table class="Alert_content" style="width:600px; line-height:50px;">'+
+		'<tbody><tr>'+
+        	'<td>备注：</td><td colspan="3" align="left">'+
+			'<textarea rows="5" style="width:55%;" name="Ha_handle_process" id="Ha_handle_process"></textarea></td>'+
+      '  </tr>'+
+   
+		'</tbody></table>'+
+		'<input type="hidden" name="type" value="jilu">'+
+		'<input type="hidden" id="id" name="id" value="104">'+
+		'</form>'+
+		'</div>'+
+		'</div>')
+				}
+	})
+}
+//记录提交
+function btn_add()
+{
+	var level ="3";
+	if(level!=3)
+	{
+		alert("对不起,您没有权限操作此页面！");
+		return false;
+	}
+	var val=$("#Ha_handler").val();
+	var Ca_alarm_reason=$("#Ha_alarm_reason").val();
+	var Ca_handle_process=$("#Ha_handle_process").val();
+	var Ca_handle_result=$("#Ha_handle_result").val();
+	var byte=val.replace(/[^\x00-\xff]/g, 'xx').length; 
+	if(val=='')//为空
+		{
+			alert("处理人不能为空");
+			$("#Ha_handler").focus();
+			return false;
+		}
+		var preg=/^[\w|\u4e00-\u9fa5]+$/;
+		if(!preg.test(val) && lan=='cn')
+		{
+			alert('含有非法字符！');
+			$("#Ha_handler").focus();
+			return false;
+		}
+	if(byte>256)
+	{
+		alert('处理人输入过长！');
+		$("#Ha_handler").focus();
+		return false;
+	}
+	if(Ca_alarm_reason.replace(/[^\x00-\xff]/g, 'xx').length>256)
+	{
+		alert('原因输入过长！');
+		$("#Ha_alarm_reason").focus();
+		return false;
+	}
+	if(Ca_handle_process.replace(/[^\x00-\xff]/g, 'xx').length>1024)
+	{
+		alert('处理过程输入过长！');
+		$("#Ha_handle_process").focus();
+		return false;
+	}
+	if(Ca_handle_result.replace(/[^\x00-\xff]/g, 'xx').length>256)
+	{
+		alert('处理结果输入过长！');
+		$("#Ha_handle_result").focus();
+		return false;
+	}
+	$.ajax({
+			type:"POST",
+			url:'ajax/get_information.php',
+			dateType:'html',
+			data:$('#formid').serialize(),
+			cache:false,
+			success: function(msg)
+			{
+				var id=$("#id").val();
+				if(msg==1)
+				{
+					alert("保存成功!");
+					$("#span_"+id).html("有记录");
+				}else
+				{
+					alert("保存失败!");
+					
+				}
+			},
+			error:function(){
+				alert("保存成功!(DEMO)");
+				$("#span_"+id).html("有记录");
+				$("#detailed").remove();
+				}
+	}) 
+}
+$(function(){
+		//--------切换------\\
+	$(".xd_sz_ul li").click(function(){   /*选卡*/
+	
+		  $(this).siblings().removeClass("active").end().addClass("active");
+		   $(".ls_tab").children("table").hide().eq($(this).index()).show()
+		   
+		 })
+	})
+function AlertDiv(){
+		$('body').append($('<div class="dl_alert_out"></div>'));
+		$('body').append($('<div class="dl_alert_in"></div>'));
+	}
+function Onhref(val)
+{
+	AlertDiv();
+	$('.dl_alert_out').show().height($(window).outerHeight(true));
+	var array=val.split("_");
+	var url;
+	switch(array[0])
+	{
+		case "1":
+			url='Single_upsreal.html?val='+val;
+			break;
+	}
+	var posY = $(document).scrollTop();
+	//根据滚动条设置弹出框位置
+	$('.dl_alert_in').css("top",posY+20);//posY+320
+	$('.dl_alert_in').load(url);
+	setTimeout(function(){$('.dl_alert_in').css({"display":"block","opacity":0});$('.dl_alert_in').animate({"opacity":1},500)},100)
+}
+
+
+function dateDiff(date1, date2){
+    var type1 = typeof date1, type2 = typeof date2;
+    if(type1 == 'string')
+    date1 = stringToTime(date1);
+    else if(date1.getTime)
+    date1 = date1.getTime();
+    if(type2 == 'string')
+    date2 = stringToTime(date2);
+    else if(date2.getTime)
+    date2 = date2.getTime();
+    return (date1 - date2) / 1000;//结果是秒
+}
+
+//字符串转成Time(dateDiff)所需方法
+function stringToTime(string){
+    var f = string.split(' ', 2);
+    var d = (f[0] ? f[0] : '').split('-', 3);
+    var t = (f[1] ? f[1] : '').split(':', 3);
+    return (new Date(
+    parseInt(d[0], 10) || null,
+    (parseInt(d[1], 10) || 1)-1,
+    parseInt(d[2], 10) || null,
+    parseInt(t[0], 10) || null,
+    parseInt(t[1], 10) || null,
+    parseInt(t[2], 10) || null
+    )).getTime();
+
+} 
+
+</script>
+<style type="text/css">
+body {
+	overflow-y: auto;
+}
+.ls_tab_infosear {
+	border: #ccc solid 1px;
+	width: 100%
+}
+.tj_tb_tit {
+	border: #ccc solid 1px;
+	width: 100%
+}
+.tab_info_tr th, .tab_info_tr td {
+	border-bottom: #ccc solid 1px;
+}
+.ls_tab_info {
+	width: 100%
+}
+.ls_tab {
+	padding: 20px;
+	width: auto
+}
+</style>
+</head>
+
+<body>
+
+<!--顶部开始-->
+<div class="xd_top"> <a class="xd_bnt"  href="../index_frame.html">返回</a> <a class="xd_tit" >历史记录报表</a> </div>
+<!--顶部结束--> 
+<!---内容开始--->
+<div id="detailed"> </div>
+<div class="xd_content">
+  <div class="xd_sz_content" style="border-top:none; border-left:none; border-right:none">
+    <form action="#" id="form1">
+      <ul class="xd_sz_ul">
+        <li  class="active">报警历史记录</li>
+        <li>日常数据记录</li>
+        <li>门禁记录</li>
+      </ul>
+      <div class="ls_tab"> 
+        <!--第一内容开始-->
+        <table class="ls_tab_info">
+          <tr>
+            <td><table class="ls_tab_infosear">
+                <tr>
+                  <th height="50">起始时间：</th>
+                  <td><input type="text" rels=1 name="begintime" class="ls_txt" value="2014-09-02 00:00:00" onfocus="WdatePicker({isShowWeek:true,lang:'zh-cn'})" readonly="readonly"   /></td>
+                  <th>结束时间：</th>
+                  <td><input type="text" rels=1 name="endtime" class="ls_txt" value="2014-09-02 23:59:59" onfocus="WdatePicker({isShowWeek:true,lang:'zh-cn'})" readonly="readonly"/></td>
+                  <th align="right">设备：</th>
+                  <td><div id="dev_sele">
+                      <select id="devices" name="devices" >
+                        <option value="0">所有</option>
+                        <option value="dev_1_1"> 单相UPS</option>
+                        <option value="dev_10_2"> 三相UPS</option>
+                        <option value="dev_13_3"> 精密空调</option>
+                        <option value="dev_13_4"> 艾默生精密空调</option>
+                        <option value="dev_4002_1"> 温湿度1</option>
+                        <option value="dev_4002_2"> 温湿度2</option>
+                        <option value="dev_4002_3"> 温湿度3</option>
+                        <option value="dev_4002_4"> 温湿度4</option>
+                        <option value="dev_4002_5"> 温湿度5</option>
+                        <option value="dev_4002_6"> 温湿度6</option>
+                        <option value="dev_4002_7"> 温湿度7</option>
+                        <option value="dev_4002_8"> 温湿度8</option>
+                        <option value="dev_4002_9"> 温湿度9</option>
+                        <option value="dev_4002_16"> 温湿度16</option>
+                        <option value="dev_4004_1"> 海信空调</option>
+                        <option value="dev_4004_2"> 美的空调</option>
+                        <option value="dev_4004_3"> 海尔空调</option>
+                        <option value="dev_4004_4"> 格力空调</option>
+                        <option value="dev_4005_1"> UPS电池组</option>
+                        <option value="dev_31_1"> 单相配电</option>
+                        <option value="dev_5_2"> 三相配电</option>
+                        <option value="dev_30_3"> 精密配电</option>
+                        <option value="dev_30_4"> 精密配电</option>
+                        <option value="dev_9_5"> 定位漏水1</option>
+                        <option value="dev_9_6"> 定位漏水2</option>
+                        <option value="dev_2_7"> 众智发电机1</option>
+                        <option value="dev_2_8"> 众智发电机2</option>
+                        <option value="dev_4020_1"> 配电开关1至8</option>
+                        <option value="dev_4020_2"> 配电开关9至16</option>
+                        <option value="dev_4020_3"> 配电开关17至24</option>
+                        <option value="dev_4020_4"> 配电开关25至32</option>
+                        <option value="dev_4020_5"> 配电开关33至40</option>
+                      </select>
+                    </div></td>
+                  <td><a href="javascript:void(0);" onclick="btn_form()" class="ls_btn">查询</a></td>
+                  <td><a href="javascript:void(0);" class="ls_btn">导出</a></td>
+                </tr>
+              </table>
+          </tr>
+          <tr>
+            <td><div style="padding-top:15px; height:35px; border-left:#ccc solid 1px; border-right:#ccc solid 1px;"> <a href="javascript:void(0);" onclick="btn_form11()" class="ls_btn">列表</a> <a href="javascript:void(0);" onclick="Column()" class="ls_btn" style="margin-left:15px;" >柱状图</a> <a href="javascript:void(0);" onclick="Pie()" style="margin-left:15px;" class="ls_btn">饼状图</a> </div></td>
+          </tr>
+          <tr >
+            <td align="center" ><table class="ls_tab_info_sj" id="liebiao" >
+                <tr>
+                  <th>序号</th>
+                  <th>设备名称</th>
+                  <th>事件名称</th>
+                  <th>发生时间</th>
+                  <th>结束时间</th>
+                  <th>持续时间</th>
+                  <th>记录情况</th>
+                  <th></th>
+                </tr>
+                <tr>
+                  <td align="center">1</td>
+                  <td align="center">UPS</td>
+                  <td align="center">单相UPS:断线</td>
+                  <td align="center">2014-10-02 12:18:00</td>
+                  <td align="center">2014-10-11 14:05:11</td>
+                  <td align="center"><script>
+				document.write( parseInt((dateDiff("2014-10-11 14:05:11","2014-09-02 12:18:00"))/60))
+				</script> min</td>
+                  <td align="center"><span id="span_53">无记录</span></td>
+                  <td align="center"><a href="javascript:void(0);" onclick="select_content(53)" class="ls_btn2">详细</a></td>
+                </tr>
+                <tr>
+                  <td align="center">2</td>
+                  <td align="center">温湿度模块</td>
+                  <td align="center">温湿度1:断线</td>
+                  <td align="center">2014-09-02 11:36:17</td>
+                  <td align="center">2014-09-05 14:32:57</td>
+                  <td align="center"><script>
+				document.write( parseInt((dateDiff("2014-09-05 14:32:57","2014-09-02 11:36:17"))/60))
+				</script> min</td>
+                  <td align="center"><span id="span_54">无记录</span></td>
+                  <td align="center"><a href="javascript:void(0);" onclick="select_content(54)" class="ls_btn2">详细</a></td>
+                </tr>
+                <tr>
+                  <td align="center">3</td>
+                  <td align="center">温湿度模块</td>
+                  <td align="center">温湿度2:温度过高</td>
+                  <td align="center">2014-09-02 11:36:11</td>
+                  <td align="center">2014-09-09 13:12:45</td>
+                  <td align="center"><script>
+				document.write( parseInt((dateDiff("2014-09-09 13:12:45","2014-09-02 11:36:11"))/60))
+				</script> min</td>
+                  <td align="center"><span id="span_55">无记录</span></td>
+                  <td align="center"><a href="javascript:void(0);" onclick="select_content(55)" class="ls_btn2">详细</a></td>
+                </tr>
+                <tr>
+                  <td align="center">4</td>
+                  <td align="center">UPS</td>
+                  <td align="center">单相UPS:断线</td>
+                  <td align="center">2014-10-02 12:18:00</td>
+                  <td align="center">2014-10-11 14:05:11</td>
+                  <td align="center"><script>
+				document.write( parseInt((dateDiff("2014-10-11 14:05:11","2014-09-02 12:18:00"))/60))
+				</script> min</td>
+                  <td align="center"><span id="span_53">无记录</span></td>
+                  <td align="center"><a href="javascript:void(0);" onclick="select_content(53)" class="ls_btn2">详细</a></td>
+                </tr>
+                <tr>
+                  <td align="center">5</td>
+                  <td align="center">温湿度模块</td>
+                  <td align="center">温湿度1:断线</td>
+                  <td align="center">2014-09-02 11:36:17</td>
+                  <td align="center">2014-09-05 14:32:57</td>
+                  <td align="center"><script>
+				document.write( parseInt((dateDiff("2014-09-05 14:32:57","2014-09-02 11:36:17"))/60))
+				</script> min</td>
+                  <td align="center"><span id="span_54">无记录</span></td>
+                  <td align="center"><a href="javascript:void(0);" onclick="select_content(54)" class="ls_btn2">详细</a></td>
+                </tr>
+                <tr>
+                  <td align="center">6</td>
+                  <td align="center">温湿度模块</td>
+                  <td align="center">温湿度2:温度过高</td>
+                  <td align="center">2014-09-02 11:36:11</td>
+                  <td align="center">2014-09-09 13:12:45</td>
+                  <td align="center"><script>
+				document.write( parseInt((dateDiff("2014-09-09 13:12:45","2014-09-02 11:36:11"))/60))
+				</script> min</td>
+                  <td align="center"><span id="span_55">无记录</span></td>
+                  <td align="center"><a href="javascript:void(0);" onclick="select_content(55)" class="ls_btn2">详细</a></td>
+                </tr>
+                <tr>
+                  <td align="center">7</td>
+                  <td align="center">UPS</td>
+                  <td align="center">单相UPS:断线</td>
+                  <td align="center">2014-10-02 12:18:00</td>
+                  <td align="center">2014-10-11 14:05:11</td>
+                  <td align="center"><script>
+				document.write( parseInt((dateDiff("2014-10-11 14:05:11","2014-09-02 12:18:00"))/60))
+				</script> min</td>
+                  <td align="center"><span id="span_53">无记录</span></td>
+                  <td align="center"><a href="javascript:void(0);" onclick="select_content(53)" class="ls_btn2">详细</a></td>
+                </tr>
+                <tr>
+                  <td align="center">8</td>
+                  <td align="center">温湿度模块</td>
+                  <td align="center">温湿度1:断线</td>
+                  <td align="center">2014-09-02 11:36:17</td>
+                  <td align="center">2014-09-05 14:32:57</td>
+                  <td align="center"><script>
+				document.write( parseInt((dateDiff("2014-09-05 14:32:57","2014-09-02 11:36:17"))/60))
+				</script> min</td>
+                  <td align="center"><span id="span_54">无记录</span></td>
+                  <td align="center"><a href="javascript:void(0);" onclick="select_content(54)" class="ls_btn2">详细</a></td>
+                </tr>
+                <tr>
+                  <td align="center">9</td>
+                  <td align="center">温湿度模块</td>
+                  <td align="center">温湿度2:温度过高</td>
+                  <td align="center">2014-09-02 11:36:11</td>
+                  <td align="center">2014-09-09 13:12:45</td>
+                  <td align="center"><script>
+				document.write( parseInt((dateDiff("2014-09-09 13:12:45","2014-09-02 11:36:11"))/60))
+				</script> min</td>
+                  <td align="center"><span id="span_55">无记录</span></td>
+                  <td align="center"><a href="javascript:void(0);" onclick="select_content(55)" class="ls_btn2">详细</a></td>
+                </tr>
+                <tr>
+                  <td align="center">10</td>
+                  <td align="center">UPS</td>
+                  <td align="center">单相UPS:断线</td>
+                  <td align="center">2014-10-02 12:18:00</td>
+                  <td align="center">2014-10-11 14:05:11</td>
+                  <td align="center"><script>
+				document.write( parseInt((dateDiff("2014-10-11 14:05:11","2014-09-02 12:18:00"))/60))
+				</script> min</td>
+                  <td align="center"><span id="span_53">无记录</span></td>
+                  <td align="center"><a href="javascript:void(0);" onclick="select_content(53)" class="ls_btn2">详细</a></td>
+                </tr>
+                <tr>
+                  <td colspan="8" align="right"><div style="width:96%; text-align:right;">共10条|< << [1] >>>|</a></div></td>
+                </tr>
+              </table>
+              <div class="tj_tb_tit">
+                <div id="cont_infos" style="display:none; width:1400px; margin:0 auto"></div>
+              </div></td>
+          </tr>
+        </table>
+        
+        <!--第一内容结束--> 
+        
+        <!--第二内容开始-->
+        <table class="ls_tab_info" style="display:none">
+          <tr class="tab_info_tr" >
+            <th height="50">起始时间：</th>
+            <td><input type="text" rels=1 name="begintime" class="ls_txt" value="2014-09-02 00:00:00" onfocus="WdatePicker({isShowWeek:true,lang:'zh-cn'})" readonly="readonly"   /></td>
+            <th>结束时间：</th>
+            <td><input type="text" rels=1 name="endtime" class="ls_txt" value="2014-09-02 23:59:59" onfocus="WdatePicker({isShowWeek:true,lang:'zh-cn'})" readonly="readonly"/></td>
+            <th align="right">设备：</th>
+            <td><div id="dev_sele">
+                <select id="devices" name="devices" >
+                  <option value="0">设备选择</option>
+                  <option value="dev_1_1"> 单相UPS</option>
+                  <option value="dev_10_2"> 三相UPS</option>
+                </select>
+              </div></td>
+            <td><a href="javascript:void(0);" onclick="btn_form()" class="ls_btn">查询</a></td>
+            <td><a href="javascript:void(0);" class="ls_btn">导出</a></td>
+          </tr>
+        </table>
+        <!--第二内容结束--> 
+        
+        <!--第三内容开始-->
+        <table class="ls_tab_info" style="display:none">
+          <tr>
+            <td><table class="ls_tab_infosear">
+                <tbody>
+                  <tr>
+                    <th height="50">起始时间：</th>
+                    <td><input rels="1" name="begintime" class="ls_txt" value="2014-09-02 00:00:00" onfocus="WdatePicker({isShowWeek:true,lang:'zh-cn'})" readonly="readonly" type="text"></td>
+                    <th>结束时间：</th>
+                    <td><input rels="1" name="endtime" class="ls_txt" value="2014-09-02 23:59:59" onfocus="WdatePicker({isShowWeek:true,lang:'zh-cn'})" readonly="readonly" type="text"></td>
+                    <td><a href="javascript:void(0);" onclick="btn_form()" class="ls_btn">查询</a></td>
+                    <td><a href="javascript:void(0);" class="ls_btn">导出</a></td>
+                  </tr>
+                </tbody>
+              </table></td>
+          </tr>
+          <tr>
+            <td><table class="ls_tab_info_sj" style="background:#fff">
+                <tbody>
+                  <tr>
+                    <th width="10%">序号</th>
+                    <th width="25%">名称</th>
+                    <th width="25%">状态</th>
+                    <th>时间</th>
+                  </tr>
+                  <tr>
+                    <td>1</td>
+                    <td>李先生</td>
+                    <td>开门</td>
+                    <td>2017-02-02 09:18:00</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>陈先生</td>
+                    <td>开门</td>
+                    <td>2017-02-02 12:11:24</td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>王先生</td>
+                    <td>开门</td>
+                    <td>2017-02-02 18:48:53</td>
+                  </tr>
+                  <tr>
+                    <td colspan="4" align="right"><div style="width:96%; text-align:right;">共3条|&lt; &lt;&lt; [1] &gt;&gt;&gt;|</div></td>
+                  </tr>
+                </tbody>
+              </table></td>
+          </tr>
+        </table>
+        
+        <!--第三内容结束--> 
+        
+      </div>
+      <input type="hidden" name="current_dev" id="current_dev" value="0" />
+      <input type="hidden" name="current_type" id="current_type" value="0" />
+      <input type="hidden" name="type" id="type" value="" />
+      <input type="hidden" name="Graphical" id="Graphical" value="1" />
+    </form>
+  </div>
+</div>
+<!---内容结束--->
+</body>
+</html>

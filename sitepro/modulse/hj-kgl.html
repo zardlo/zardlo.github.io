@@ -1,0 +1,221 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>环境监测</title>
+    <link href="../css/huanjing.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="../js/jquery.js"></script>
+    <script type="text/javascript" src="../js/alarm_dev.js"></script>
+    <style>
+        .hj {
+            width: 82%;
+            margin: 25px auto;
+        }
+        
+        .hj h3 {
+            color: #333;
+        }
+        
+        .newhj {
+            width: 100%;
+        }
+        
+        .newhj td {
+            text-align: center;
+            color: #6C6;
+        }
+        
+        .newhj td.cin {
+            background: #fff;
+            color: #686868;
+            width: 150px;
+            max-width: 200px;
+        }
+        
+        .newhj td.cin2 {
+            background-color: #fff;
+        }
+        
+        .newhj td span {
+            float: none
+        }
+        
+        .hj-kgl-container .half-part {
+            width: 47%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 内容开始 -->
+    <div class="hj_content hj-kgl-container">
+        <table style="display: table;" class="hj">
+            <tbody>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        <h3>烟感</h3>
+                        <div class="half-part part-left">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">机房烟感01</td>
+                                        <td class="cin2"><span class="hj_green">正常</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="half-part part-right">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">机房烟感02</td>
+                                        <td class="cin2"><span class="hj_green">正常</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table style="display: table;" class="hj">
+            <tbody>
+                <tr>
+                    <td style="background-color:#f9f9f9; border-bottom:none;">
+                        <h3>漏水</h3>
+                        <div class="half-part part-left">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">空调1漏水</td>
+                                        <td class="cin2"><span class="hj_green">正常</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="half-part part-right">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">空调2漏水</td>
+                                        <td class="cin2"><span class="hj_red">异常</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        <div class="half-part part-left">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">空调3漏水</td>
+                                        <td class="cin2"><span class="hj_red">异常</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table style="display: table;" class="hj">
+            <tbody>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        <h3>红外</h3>
+                        <div class="half-part part-left">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">红外01</td>
+                                        <td class="cin2"><span class="hj_green">正常</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table style="display: table;" class="hj">
+            <tbody>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        <h3>新风机</h3>
+                        <div class="half-part part-left">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">空调新风机</td>
+                                        <td class="cin2"><span class="hj_green">正常</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="half-part part-right">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">空调新风机02</td>
+                                        <td class="cin2"><span class="hj_green">正常</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table style="display: table;" class="hj">
+            <tbody>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        <h3>门磁</h3>
+                        <div class="half-part part-left">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">门磁01</td>
+                                        <td class="cin2"><span class="hj_green">正常</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+
+        <table style="display: table;" class="hj">
+            <tbody>
+                <tr>
+                    <td style="background-color:#f9f9f9;">
+                        <h3>防雷开关</h3>
+                        <div class="half-part part-left">
+                            <table class="newhj">
+                                <tbody>
+                                    <tr>
+                                        <td class="cin">防雷开关01</td>
+                                        <td class='cin2'><span class="hj_green">正常</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!---内容结束-->
+
+</body>
+
+</html>

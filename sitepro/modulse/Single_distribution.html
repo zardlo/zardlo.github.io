@@ -1,0 +1,969 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>配电</title>
+<link href="../css/index.css" rel="stylesheet" type="text/css">
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<script src="../js/jquery.js" type="text/javascript"></script>
+
+<style>
+body{ background:#FFF; }
+</style><script language="javascript" type="text/javascript">
+var time_inteval = 8000;
+var xmlDoc;var xmlDoc2;var xmlDoc3;var xmlDoc4;var xmlDoc5;var xmlDoc6;var xmlDoc7;var xmlDoc8;var xmlDoc9;
+sys="0";
+function RefurbishTextDis()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc,'CurRunData');
+	
+	var arr=nAlarm.split("|");
+	var data=new Array();
+	var data2=new Array();
+	var array=new Array();
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		//start[0]  =start[0]-((index-1)*40);
+		start[0]=start[0].replace(/(^\s*)|(\s*$)/g, "");
+		if(start[0]==9409 || start[0]==9410 || start[0]==9411 || start[0]==9412)
+		{
+			//去除最后2位小数点
+			start[1]=start[1].substr(0,start[1].length-3);
+			//转成2进制
+			start[1]=parseInt(start[1]).toString(2); 
+			var str='';
+			for(var j=start[1].length;j>=0;j--)
+			{
+				str+=start[1].substr(j,1);
+			}
+			data2[start[0]]=str;	
+		}else
+		{
+			data[start[0]]=start[1];	
+		}
+	}
+	
+	for(var i in data2)
+	{
+		for(var j=0;j<20;j++)
+		{
+			if(i==9409)
+			{
+				z=1;
+			}else if(i==9410)
+			{
+				z=2;
+			}else if(i==9411)
+			{
+				z=3;
+			}else if(i==9412)
+			{
+				z=4;
+			}   
+			
+			array['t'+String(z)+'_'+String(j)]=	data2[i].substr(j,1);
+		}
+	}
+
+	for(var i in data)
+	{
+		if(i>=80031)
+		{
+			Setimg("dis_"+i,data[i]);
+		}else
+		{
+			if(i==8316)
+			{
+				switch(parseInt(data[i]))
+				{
+				  case 0:
+					   btv=150;
+					   break;
+				 case 1:
+					   btv=600;
+					   break;
+				 case 2:
+					   btv=100;
+					   break;
+				 case 3:
+					   btv=400;
+					   break;
+				 default:
+				 	   btv='N/A'
+					   break;
+				}
+				//data.vals[i]= btv;
+				$("#dis_"+i).html(btv);
+			}
+			if(i==8315)
+			{
+				var wave='';
+				switch(parseInt(data[i]))
+				{
+				  case 0:
+					   wave=1200;
+					   break;
+				 case 1:
+					   wave=2400;
+					   break;
+				 case 2:
+					   wave=4800;
+					   break;
+				 case 3:
+					   wave=9600;
+					   break;
+				 case 4:
+					   wave=19200;
+					   break;
+				case 5:
+					   wave=38400;
+					   break;
+				case 6:
+					   wave=600;
+					   break;
+					  
+				}
+					//data.vals[i]= wave;
+					$("#dis_"+i).html(wave);
+			}
+		/*	if(i==8319)
+			{
+				data.vals[i]='N/A';
+			}*/
+			if(i==8314)
+			{
+				var moshi='';
+				switch(parseInt(data[i]))
+				{
+				 	case 0:
+						moshi='三相四线';
+					   break;
+						 case 1:
+								moshi='一相二线';
+							   break;
+						 case 2:
+								moshi='三相三线';
+							   break;
+						 case 3:
+								moshi='三相三线平衡';
+							   break;
+						 case 4:
+								moshi='一相三线';
+							   break;
+						 case 5:
+								moshi='三相四线平衡';
+							   break;
+						default:
+							   break;
+				}
+				$("#dis_"+i).html(moshi);
+				
+			}
+			
+				if(i>=8277 && i<=8295)
+				{
+					if(array['t1'+'_'+String(i-8277)]==1)
+					{
+						setSpan("dis_"+i,data[i]);
+						$("#unit_"+i).show();
+					}else if(array['t1'+'_'+String(i-8277)]==0)
+					{
+						setSpan("dis_"+i,'N/A');
+						$("#unit_"+i).hide();
+					}
+				}
+				else if(i>=8297 && i<=8316)
+				{
+					if(array['t2'+'_'+String(i-8297)]==1)
+					{
+						if(i!=8314 && i!=8315 && i!=8316 )
+						{
+							setSpan("dis_"+i,data[i]);
+						}
+						$("#unit_"+i).show();
+					}else if(array['t2'+'_'+String(i-8297)]==0)
+					{
+						setSpan("dis_"+i,'N/A');
+						$("#unit_"+i).hide();
+					}
+				}else if(i>=8317 && i<=8319)
+				{
+					if(array['t3'+'_'+String(i-8317)]==1)
+					{
+						setSpan("dis_"+i,data[i]);
+						$("#unit_"+i).show();
+					}else if(array['t3'+'_'+String(i-8317)]==0)
+					{
+						setSpan("dis_"+i,'N/A');
+						$("#unit_"+i).hide();
+					}
+				}else if(i>=9345 && i<=9351)
+				{
+					if(array['t4'+'_'+String(i-9345)]==1)
+					{
+						setSpan("dis_"+i,data[i]);
+						$("#unit_"+i).show();
+					}else if(array['t4'+'_'+String(i-9345)]==0)
+					{
+						setSpan("dis_"+i,'N/A');
+						$("#unit_"+i).hide();
+					}
+				}
+		//	setSpan("dis_"+i,data.vals[i]);
+			}
+		
+		
+	}
+	
+	
+}
+
+function RefurbishTextDis2()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc2,'CurRunData');
+	//alert(nAlarm);
+	var arr=nAlarm.split("|");
+	var array=new Array();
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	for(var i in array)
+	{
+		 Setimg('dis_'+i,array[i]);
+	}
+}
+function RefurbishTextDis3()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc3,'CurRunData');
+	//alert(nAlarm);
+	var arr=nAlarm.split("|");
+	var array=new Array();
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	for(var i in array)
+	{
+		 Setimg('dis_'+i,array[i]);
+	}
+}
+function RefurbishTextDis4()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc4,'CurRunData');
+	//alert(nAlarm);
+	var arr=nAlarm.split("|");
+	var array=new Array();
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	for(var i in array)
+	{
+		 Setimg('dis_'+i,array[i]);
+	}
+}
+function RefurbishTextDis5()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc5,'CurRunData');
+	//alert(nAlarm);
+	var arr=nAlarm.split("|");
+	var array=new Array();
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	for(var i in array)
+	{
+		 Setimg('dis_'+i,array[i]);
+	}
+}
+function RefurbishTextDis6()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc6,'CurRunData');
+	//alert(nAlarm);
+	var arr=nAlarm.split("|");
+	var array=new Array();
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	for(var i in array)
+	{
+		 Setimg('dis_'+i,array[i]);
+	}
+}
+function RefurbishTextDis7()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc7,'CurRunData');
+	//alert(nAlarm);
+	var arr=nAlarm.split("|");
+	var array=new Array();
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	for(var i in array)
+	{
+		 Setimg('dis_'+i,array[i]);
+	}
+}
+function RefurbishTextDis8()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc8,'CurRunData');
+	//alert(nAlarm);
+	var arr=nAlarm.split("|");
+	var array=new Array();
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	for(var i in array)
+	{
+		 Setimg('dis_'+i,array[i]);
+	}
+}
+function RefurbishTextDis9()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc9,'CurRunData');
+	//alert(nAlarm);
+	var arr=nAlarm.split("|");
+	var array=new Array();
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	for(var i in array)
+	{
+		 Setimg('dis_'+i,array[i]);
+	}
+}
+
+function Gett2(str)
+{
+	var i,nMsk,nStatus;
+     var agent = navigator.userAgent.toLowerCase();
+	
+	if(agent.indexOf("chrome") > -1)
+	{
+		//alert("chrome browser!");
+		try{
+               var xmlhttp = new window.XMLHttpRequest();
+			   var ret = xmlhttp.open("GET","5_2.xml",false);
+        		xmlhttp.send(null);
+				if(xmlhttp.readyState == 4)
+				{
+					xmlDoc = xmlhttp.responseXML.documentElement;
+				}
+				var xmlhttp2 = new window.XMLHttpRequest();
+				var ret2 = xmlhttp2.open("GET","4020_1.xml",true);
+     			xmlhttp2.send(null);
+				if(xmlhttp2.readyState == 4)
+				{
+					xmlDoc2 = xmlhttp2.responseXML.documentElement;
+					RefurbishTextDis2();
+				}
+				
+				var xmlhttp3 = new window.XMLHttpRequest();
+				var ret3 = xmlhttp3.open("GET","4020_2.xml",true);
+     			xmlhttp3.send(null);
+				if(xmlhttp3.readyState == 4)
+				{
+					xmlDoc3 = xmlhttp3.responseXML.documentElement;
+					RefurbishTextDis3();
+				}
+				
+				var xmlhttp4 = new window.XMLHttpRequest();
+				var ret4 = xmlhttp4.open("GET","4020_3.xml",true);
+				
+     			xmlhttp4.send(null);
+				if(xmlhttp4.readyState == 4)
+				{
+					xmlDoc4 = xmlhttp4.responseXML.documentElement;
+					RefurbishTextDis4();
+				}
+				
+				var xmlhttp5 = new window.XMLHttpRequest();
+				var ret5 = xmlhttp5.open("GET","4020_4.xml",true);
+     			xmlhttp5.send(null);
+				if(xmlhttp5.readyState == 4)
+				{
+					xmlDoc5 = xmlhttp5.responseXML.documentElement;
+					RefurbishTextDis5();
+				}
+				
+				var xmlhttp6 = new window.XMLHttpRequest();
+				var ret6 = xmlhttp6.open("GET","4020_5.xml",true);
+     			xmlhttp6.send(null);
+				if(xmlhttp6.readyState == 4)
+				{
+					xmlDoc6 = xmlhttp6.responseXML.documentElement;
+					RefurbishTextDis6();
+				}
+				
+				var xmlhttp7 = new window.XMLHttpRequest();
+				var ret7 = xmlhttp7.open("GET","4020_6.xml",true);
+     			xmlhttp7.send(null);
+				if(xmlhttp7.readyState == 4)
+				{
+					xmlDoc7 = xmlhttp7.responseXML.documentElement;
+					RefurbishTextDis7();
+				}
+				
+				var xmlhttp8 = new window.XMLHttpRequest();
+				var ret8 = xmlhttp8.open("GET","4020_7.xml",true);
+     			xmlhttp8.send(null);
+				if(xmlhttp8.readyState == 4)
+				{
+					xmlDoc8 = xmlhttp8.responseXML.documentElement;
+					RefurbishTextDis8();
+				}
+				
+				var xmlhttp9 = new window.XMLHttpRequest();
+				var ret9 = xmlhttp9.open("GET","4020_8.xml",true);
+     			xmlhttp9.send(null);
+				if(xmlhttp9.readyState == 4)
+				{
+					xmlDoc9 = xmlhttp9.responseXML.documentElement;
+					RefurbishTextDis9();
+				}
+       
+            }
+			catch(e)
+			{
+            	//alert("your chrome browser do not surport present!");
+			}
+	}
+	else
+	{
+		xmlDoc = GetMsXml();
+		xmlDoc2 = GetMsXml();
+		xmlDoc3 = GetMsXml();
+		xmlDoc4 = GetMsXml();
+		xmlDoc5 = GetMsXml();
+		xmlDoc6 = GetMsXml();
+		xmlDoc7 = GetMsXml();
+		xmlDoc8 = GetMsXml();
+		xmlDoc9 = GetMsXml();
+		if(xmlDoc == null || xmlDoc2 == null || xmlDoc3 == null || xmlDoc4 == null || xmlDoc5 == null || xmlDoc6 == null || xmlDoc7 == null || xmlDoc8 == null || xmlDoc9 == null)
+		{
+			alert("Sorry, xml Error!");
+			return;
+		}
+		xmlDoc.async= false;
+		xmlDoc2.async= false;
+		xmlDoc3.async= false;
+		xmlDoc4.async= false;
+		xmlDoc5.async= false;
+		xmlDoc6.async= false;
+		xmlDoc7.async= false;
+		xmlDoc8.async= false;
+		xmlDoc9.async= false;
+	/*	if ((xmlDoc.load("5_2.xml") != true))
+		{
+			//return;
+		}*/
+		
+		if((xmlDoc.load("5_2.xml") == true))
+		{
+			RefurbishTextDis();
+		}
+		if((xmlDoc2.load("4020_1.xml") == true))
+		{
+			RefurbishTextDis2();
+		}
+		if((xmlDoc3.load("4020_2.xml") == true))
+		{
+			RefurbishTextDis3();
+		}
+		if((xmlDoc4.load("4020_3.xml") == true))
+		{
+			RefurbishTextDis4();
+		}
+		if((xmlDoc5.load("4020_4.xml") == true))
+		{
+			RefurbishTextDis5();
+		}
+		if((xmlDoc6.load("4020_5.xml") == true))
+		{
+			RefurbishTextDis6();
+		}
+		if((xmlDoc7.load("4020_6.xml") == true))
+		{
+			RefurbishTextDis7();
+		}
+		if((xmlDoc8.load("4020_7.xml") == true))
+		{
+			RefurbishTextDis8();
+		}
+		
+		if((xmlDoc9.load("4020_8.xml") == true))
+		{
+			RefurbishTextDis9();
+		}
+	}
+//	RefurbishTextDis();
+	
+    extupid=setTimeout(function(){Gett2()},time_inteval);
+}
+function Setimg(imgname,value)
+{
+	if(value==0)
+	{
+		$("#"+imgname).attr("src",'../images/ico_gre.png');
+	}else if(value==1)
+	{
+		$("#"+imgname).attr("src",'../images/ico_gre.png');
+	}else if(value!=undefined)
+	{
+		$("#"+imgname).attr("src",'../images/ico_gre.png');
+	}
+	
+}
+function setSpan(id,value)
+{	
+	if(String(value).indexOf('.')<0 && value!=undefined && value!='N/A')
+	{
+		value=value+'.00';
+	}
+	value==0 ? $("#"+id).html('0.00') : $("#"+id).html(value);
+}
+
+//设备图标状态
+
+$(function(){
+
+	$('.Alert_close,.guanbi').click(function(){
+		$('.dl_alert_out').hide().remove();
+		$('.dl_alert_in').hide().remove();
+		
+	
+	})
+})
+</script></head>
+
+
+
+<body>
+<!--动力系统顶部开始-->
+<div class="AlertUps">
+<!--动力系统顶部开始-->
+<a href="javascript:void(0);" class="Alert_close"></a>
+<!--配电开始---->
+<div class="dl_info_pd">
+	<table class="pd_info_tab" style="background-color:#FFF">
+    	<tbody><tr>
+        	<td width="20%" rowspan="3" align="center" valign="middle" bgcolor="#dfdfdf">
+            	<a href="javascript:;"><img style="height:249px;" id="pd_5_2" border="0" src="../images/sz_pd.gif"></a><br>
+                三相总配电     <a class="ttscs xd_next a_btn1" style=" background:url(../images/btn_bg.jpg) repeat-x;color:#fff; display:block; font-size:14px; color:#fff; margin-right:auto; margin-left:auto; margin-top:10px; height:31px; line-height:28px; text-align:center; width:80px;" onclick="parent.show_scs()">设备信息</a>       </td>
+            <td valign="top" style="padding-left:30px;">
+            	<table class="pd_info_tab_1">
+                	<tbody><tr>
+                    	<td rowspan="4" align="left"><img src="../images/pd_value1.jpg" border="0"></td>
+                        <td align="left">三相平均相电压:<span class="green" id="dis_8301">237.2V</span></td>
+                        <td align="left">电压输入范围:<span class="green" id="dis_8316">150</span></td>
+                        <td align="left">光亮强度:<span class="green" id="dis_8319">N/A</span></td>
+                    </tr>                                                      
+                    <tr>
+                        <td align="left">三相平均相电流:<span class="green" id="dis_8303">0.00A</span></td>
+                        <td align="left">本机地址:<span class="green" id="dis_8313">192.168.0.1</span></td>
+                        <td align="left">频率:<span class="green" id="dis_8304">50.04HZ</span></td>
+                    </tr>
+                    <tr>
+                    	 <td align="left">接线模式:<span class="green" id="dis_8314">3相4线程</span></td>
+                        <td align="left">设备连线:<img id="dis_80031" src="../images/ico_gre.png"></td>
+                       
+                       
+                        <td align="left"></td>
+                    </tr>
+                    
+                    
+                   
+                </tbody></table>
+          </td>
+      </tr>
+      	
+        <tr>
+        	<td style="padding-left:30px;">
+           	  <table class="pd_info_tab_2">
+                	<tbody><tr class="tab_header_bg">
+                    	<th align="left"><strong></strong></th>
+                        <th align="left"><strong>A相</strong></th>
+                        <th align="left"><strong>B相</strong></th>
+                        <th align="left"><strong>C相</strong></th>
+                        <th align="left"><strong>三相</strong></th>
+                    </tr>
+                <tr>
+                   	  <td align="left">电压(V)</td>
+                    	<td align="left"><span class="green" id="dis_8277">410.76</span></td>
+                        <td align="left"><span class="green" id="dis_8285">410.57</span></td>
+                        <td align="left"><span class="green" id="dis_8293">411.60</span></td>
+                        <td align="left"><span class="green"></span></td>
+                    </tr>
+                     <tr>
+                   	  <td align="left">电流(A)</td>
+                    	<td align="left"><span class="green" id="dis_8279">0.00</span></td>
+                        <td align="left"><span class="green" id="dis_8287">0.00</span></td>
+                        <td align="left"><span class="green" id="dis_8295">0.00</span></td>
+                        <td align="left"><span class="green">0.00</span></td>
+                    </tr>
+                    
+                	<tr>
+                   	  <td align="left">有功功率(KW)</td>
+                    	<td align="left"><span class="green" id="dis_8281">443.79</span></td>
+                        <td align="left"><span class="green" id="dis_8289">476.89</span></td>
+                        <td align="left"><span class="green" id="dis_8297">457.00</span></td>
+                        <td align="left"><span class="green" id="dis_8305">1377.80</span></td>
+                    </tr>
+                    <tr>
+                        <td align="left">无功功率(KVar)</td>
+                        <td align="left"><span class="green" id="dis_8283">-80.90</span></td>
+                        <td align="left"><span class="green" id="dis_8291">-83</span></td>
+                        <td align="left"><span class="green" id="dis_8299">-87.19</span></td>
+                        <td align="left"><span class="green" id="dis_8307">-251.19</span></td>
+                    </tr>
+                    <tr>
+                        <td align="left">视在功率(KVA)</td>
+                        <td align="left"><span class="green" id="dis_8284">0.98</span></td>
+                        <td align="left"><span class="green" id="dis_8292">0.98</span></td>
+                        <td align="left"><span class="green" id="dis_8300">0.98</span></td>
+                        <td align="left"><span class="green" id="dis_8308"></span></td>
+                    </tr>
+                    <tr>
+                        <td align="left">功率因数</td>
+                        <td align="left"><span class="green" id="dis_8282">N/A</span></td>
+                        <td align="left"><span class="green" id="dis_8290">N/A</span></td>
+                        <td align="left"><span class="green" id="dis_8298">N/A</span></td>
+                        <td align="left"></td>
+                    </tr>
+                  
+                    <tr>
+                        <td align="left">线电压(V)</td>
+                        <td align="left">Uca <span class="green" id="dis_8278">410.76</span> </td>
+                        <td align="left">Uab <span class="green" id="dis_8286">410.57</span></td>
+                        <td align="left">Ubc <span class="green" id="dis_8294">411.60</span></td>
+                        <td align="left"></td>
+                    </tr>
+              </tbody></table>
+		  </td>
+        </tr>
+        <tr>
+        	<td valign="bottom" style="padding-left:30px;">
+           	  <table class="pd_info_tab_3">
+                	<tbody><tr>
+                    	<td align="left">三相总功率因数:<span class="green" id="dis_8306">0.98</span></td>
+                        <td align="left">正向有功电能:<span class="green" id="dis_8309">14007.79KWh</span></td>
+                        <td align="left">负向有功电能:<span class="green" id="dis_8310">0.00KWh</span></td>
+                        <td align="left">PT:<span class="green" id="dis_8317">1</span></td>
+                    </tr>
+                    <tr>
+                    	<td align="left">三相平均线电压:<span class="green" id="dis_8302">410.98 V</span></td>
+                        <td align="left">正向无功电能:<span class="green" id="dis_8311">0.00Kvarh</span></td>
+                        <td align="left">负向无功电能:<span class="green" id="dis_8312">2136.30Kvarh</span></td>
+                        <td align="left">CT:<span class="green" id="dis_8318">1</span></td>
+                    </tr>
+                </tbody></table>
+            </td>
+        </tr>
+                <tr>
+        	<td colspan="2">
+            <table class="pd_info_tab_2">
+            		<tbody><tr>
+                    	<td colspan="6" align="center">支路开关1至8</td>
+                    </tr>
+                	<tr>
+                    
+                        <td width="16%" align="left">连线状态:</td>
+                        <td width="16%" align="left"><img id="dis_95263" src="../images/ico_gre.png"></td>
+                    	                          <td width="16%" align="left">开关1:</td>
+                       	 <td width="16%" align="left"><img id="dis_95232" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关2:</td>
+                       	 <td width="16%" align="left"><img id="dis_95233" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关3:</td>
+                       	 <td width="16%" align="left"><img id="dis_95234" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关4:</td>
+                       	 <td width="16%" align="left"><img id="dis_95235" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关5:</td>
+                       	 <td width="16%" align="left"><img id="dis_95236" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关6:</td>
+                       	 <td width="16%" align="left"><img id="dis_95237" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关7:</td>
+                       	 <td width="16%" align="left"><img id="dis_95238" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关8:</td>
+                       	 <td width="16%" align="left"><img id="dis_95239" src="../images/ico_gre.png"></td>
+                                            
+                 
+                    </tr>
+                    
+                    
+                   
+                </tbody></table>
+            </td>
+        </tr>
+                <tr>
+        	<td colspan="2">
+            <table class="pd_info_tab_2">
+            		<tbody><tr>
+                    	<td colspan="6" align="center">开关支路9至16</td>
+                    </tr>
+                	<tr>
+                    
+                        <td width="16%" align="left">连线状态:</td>
+                        <td width="16%" align="left"><img id="dis_95295" src="../images/ico_gre.png"></td>
+                    	                          <td width="16%" align="left">开关9:</td>
+                       	 <td width="16%" align="left"><img id="dis_95264" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关10:</td>
+                       	 <td width="16%" align="left"><img id="dis_95265" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关11:</td>
+                       	 <td width="16%" align="left"><img id="dis_95266" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关12:</td>
+                       	 <td width="16%" align="left"><img id="dis_95267" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关13:</td>
+                       	 <td width="16%" align="left"><img id="dis_95268" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关14:</td>
+                       	 <td width="16%" align="left"><img id="dis_95269" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关15:</td>
+                       	 <td width="16%" align="left"><img id="dis_95270" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关16:</td>
+                       	 <td width="16%" align="left"><img id="dis_95271" src="../images/ico_gre.png"></td>
+                                            
+                 
+                    </tr>
+                    
+                    
+                   
+                </tbody></table>
+            </td>
+        </tr>
+                <tr>
+        	<td colspan="2">
+            <table class="pd_info_tab_2">
+            		<tbody><tr>
+                    	<td colspan="6" align="center">开关支路17至24</td>
+                    </tr>
+                	<tr>
+                    
+                        <td width="16%" align="left">连线状态:</td>
+                        <td width="16%" align="left"><img id="dis_95327" src="../images/ico_gre.png"></td>
+                    	                          <td width="16%" align="left">开关17:</td>
+                       	 <td width="16%" align="left"><img id="dis_95296" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关18:</td>
+                       	 <td width="16%" align="left"><img id="dis_95297" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关19:</td>
+                       	 <td width="16%" align="left"><img id="dis_95298" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关20:</td>
+                       	 <td width="16%" align="left"><img id="dis_95299" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关21:</td>
+                       	 <td width="16%" align="left"><img id="dis_95300" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关22:</td>
+                       	 <td width="16%" align="left"><img id="dis_95301" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关23:</td>
+                       	 <td width="16%" align="left"><img id="dis_95302" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关24:</td>
+                       	 <td width="16%" align="left"><img id="dis_95303" src="../images/ico_gre.png"></td>
+                                            
+                 
+                    </tr>
+                    
+                    
+                   
+                </tbody></table>
+            </td>
+        </tr>
+                <tr>
+        	<td colspan="2">
+            <table class="pd_info_tab_2">
+            		<tbody><tr>
+                    	<td colspan="6" align="center">开关支路25至32</td>
+                    </tr>
+                	<tr>
+                    
+                        <td width="16%" align="left">连线状态:</td>
+                        <td width="16%" align="left"><img id="dis_95359" src="../images/ico_gre.png"></td>
+                    	                          <td width="16%" align="left">开关25:</td>
+                       	 <td width="16%" align="left"><img id="dis_95328" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关26:</td>
+                       	 <td width="16%" align="left"><img id="dis_95329" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关27:</td>
+                       	 <td width="16%" align="left"><img id="dis_95330" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关28:</td>
+                       	 <td width="16%" align="left"><img id="dis_95331" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关29:</td>
+                       	 <td width="16%" align="left"><img id="dis_95332" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关30:</td>
+                       	 <td width="16%" align="left"><img id="dis_95333" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关31:</td>
+                       	 <td width="16%" align="left"><img id="dis_95334" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关32:</td>
+                       	 <td width="16%" align="left"><img id="dis_95335" src="../images/ico_gre.png"></td>
+                                            
+                 
+                    </tr>
+                    
+                    
+                   
+                </tbody></table>
+            </td>
+        </tr>
+                <tr>
+        	<td colspan="2">
+            <table class="pd_info_tab_2">
+            		<tbody><tr>
+                    	<td colspan="6" align="center">开关支路33至40</td>
+                    </tr>
+                	<tr>
+                    
+                        <td width="16%" align="left">连线状态:</td>
+                        <td width="16%" align="left"><img id="dis_95391" src="../images/ico_gre.png"></td>
+                    	                          <td width="16%" align="left">开关33:</td>
+                       	 <td width="16%" align="left"><img id="dis_95360" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关34:</td>
+                       	 <td width="16%" align="left"><img id="dis_95361" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关35:</td>
+                       	 <td width="16%" align="left"><img id="dis_95362" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关36:</td>
+                       	 <td width="16%" align="left"><img id="dis_95363" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关37:</td>
+                       	 <td width="16%" align="left"><img id="dis_95364" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关38:</td>
+                       	 <td width="16%" align="left"><img id="dis_95365" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关39:</td>
+                       	 <td width="16%" align="left"><img id="dis_95366" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关40:</td>
+                       	 <td width="16%" align="left"><img id="dis_95367" src="../images/ico_gre.png"></td>
+                                            
+                 
+                    </tr>
+                    
+                    
+                   
+                </tbody></table>
+            </td>
+        </tr>
+                <tr>
+        	<td colspan="2">
+            <table class="pd_info_tab_2">
+            		<tbody><tr>
+                    	<td colspan="6" align="center">开关支路41至48</td>
+                    </tr>
+                	<tr>
+                    
+                        <td width="16%" align="left">连线状态:</td>
+                        <td width="16%" align="left"><img id="dis_95423" src="../images/ico_gre.png"></td>
+                    	                          <td width="16%" align="left">开关41:</td>
+                       	 <td width="16%" align="left"><img id="dis_95392" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关42:</td>
+                       	 <td width="16%" align="left"><img id="dis_95393" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关43:</td>
+                       	 <td width="16%" align="left"><img id="dis_95394" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关44:</td>
+                       	 <td width="16%" align="left"><img id="dis_95395" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关45:</td>
+                       	 <td width="16%" align="left"><img id="dis_95396" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关46:</td>
+                       	 <td width="16%" align="left"><img id="dis_95397" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关47:</td>
+                       	 <td width="16%" align="left"><img id="dis_95398" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关48:</td>
+                       	 <td width="16%" align="left"><img id="dis_95399" src="../images/ico_gre.png"></td>
+                                            
+                 
+                    </tr>
+                    
+                    
+                   
+                </tbody></table>
+            </td>
+        </tr>
+                <tr>
+        	<td colspan="2">
+            <table class="pd_info_tab_2">
+            		<tbody><tr>
+                    	<td colspan="6" align="center">开关支路49至56</td>
+                    </tr>
+                	<tr>
+                    
+                        <td width="16%" align="left">连线状态:</td>
+                        <td width="16%" align="left"><img id="dis_95455" src="../images/ico_gre.png"></td>
+                    	                          <td width="16%" align="left">开关49:</td>
+                       	 <td width="16%" align="left"><img id="dis_95424" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关50:</td>
+                       	 <td width="16%" align="left"><img id="dis_95425" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关51:</td>
+                       	 <td width="16%" align="left"><img id="dis_95426" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关52:</td>
+                       	 <td width="16%" align="left"><img id="dis_95427" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关53:</td>
+                       	 <td width="16%" align="left"><img id="dis_95428" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关54:</td>
+                       	 <td width="16%" align="left"><img id="dis_95429" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关55:</td>
+                       	 <td width="16%" align="left"><img id="dis_95430" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关56:</td>
+                       	 <td width="16%" align="left"><img id="dis_95431" src="../images/ico_gre.png"></td>
+                                            
+                 
+                    </tr>
+                    
+                    
+                   
+                </tbody></table>
+            </td>
+        </tr>
+                <tr>
+        	<td colspan="2">
+            <table class="pd_info_tab_2">
+            		<tbody><tr>
+                    	<td colspan="6" align="center">开关支路57至64</td>
+                    </tr>
+                	<tr>
+                    
+                        <td width="16%" align="left">连线状态:</td>
+                        <td width="16%" align="left"><img id="dis_95487" src="../images/ico_gre.png"></td>
+                    	                          <td width="16%" align="left">开关57:</td>
+                       	 <td width="16%" align="left"><img id="dis_95456" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关58:</td>
+                       	 <td width="16%" align="left"><img id="dis_95457" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关59:</td>
+                       	 <td width="16%" align="left"><img id="dis_95458" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关60:</td>
+                       	 <td width="16%" align="left"><img id="dis_95459" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关61:</td>
+                       	 <td width="16%" align="left"><img id="dis_95460" src="../images/ico_gre.png"></td>
+                        </tr><tr>                          <td width="16%" align="left">开关62:</td>
+                       	 <td width="16%" align="left"><img id="dis_95461" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关63:</td>
+                       	 <td width="16%" align="left"><img id="dis_95462" src="../images/ico_gre.png"></td>
+                                                  <td width="16%" align="left">开关64:</td>
+                       	 <td width="16%" align="left"><img id="dis_95463" src="../images/ico_gre.png"></td>
+                                            
+                 
+                    </tr>
+                    
+                    
+                   
+                </tbody></table>
+            </td>
+        </tr>
+            </tbody></table>
+</div>
+<!--配电结束---->
+</div>
+
+
+</body></html>

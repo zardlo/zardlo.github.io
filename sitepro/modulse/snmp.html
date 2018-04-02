@@ -1,0 +1,520 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>历史数据报表</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css">
+<script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+<script type="text/javascript" src="../js/WdatePicker.js"></script>
+<link href="../css/WdatePicker.css" rel="stylesheet" type="text/css">
+<!--<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script><!--JQ包-->
+
+<style type="text/css">
+body {
+	overflow-y: auto;
+}
+.ls_tab_infosear{ border:#ccc solid 1px; width:100%}
+.tj_tb_tit{ border:#ccc solid 1px; padding-left:1px}
+.tab_info_tr th,.tab_info_tr td{ border-bottom:#ccc solid 1px;}
+</style>
+</head>
+
+<body>
+
+<!--顶部开始-->
+<div class="xd_top"> <a class="xd_bnt" href="Integrated_interface.html" target="container_iframe">返回</a> <a class="xd_tit" >SMMP</a> </div>
+<!--顶部结束--> 
+<!---内容开始--->
+<div class="xd_content">
+<form action="" enctype="multipart/form-data" method="post" id="formid">
+<input id="hid" type="hidden">
+  <div class="xd_snmp xd_sz_content">
+    <table class="snmp_tab ls_tab_info_sj " style="width:100%" id="liebiao">
+      <tbody><tr>
+        <th colspan="2" align="left">&nbsp;基本设置</th>
+      </tr>
+      <tr>
+        <td align="center" width="50%">系统名称</td>
+        <td align="left">&nbsp;&nbsp;<input value="" maxlength="15" class="dx_txt4" id="sysName" name="sysName" onblur="saveSnmp(this,/^([\w]|[\u4e00-\u9fa5])+$/,'只能输入字母，数字，下划线，汉字')" type="text">&nbsp;
+    <span id="text_sysName" style="font-size:12px;"></span></td>
+      </tr>
+      <tr>
+        <td align="center">系统管理员</td>
+        <td align="left">&nbsp;&nbsp;<input value="" class="dx_txt4" maxlength="15" id="sysAdmin" name="sysAdmin" onblur="saveSnmp(this,/^([\w]|[\u4e00-\u9fa5])+$/,'只能输入字母，数字，下划线，汉字')" type="text">&nbsp;
+    <span id="text_sysAdmin" style="font-size:12px;"></span></td>
+      </tr>
+      <tr>
+        <td align="center">系统安装位置</td>
+        <td align="left">&nbsp;&nbsp;<input value="" class="dx_txt4" maxlength="100" id="sysPath" name="sysPath" onblur="saveSnmp(this,/^([\w]|[\u4e00-\u9fa5])+$/,'格式不正确!')" type="text"> &nbsp;
+        <span id="text_sysPath" style="font-size:12px;"></span></td>
+      </tr>
+    </tbody></table>
+  </div>
+  <div class="xd_snmp xd_sz_content">
+    <table class="snmp_tab ls_tab_info_sj " id="liebiao" style="width:100%">
+      <tbody><tr>
+        <th colspan="9" align="left">&nbsp;权限设置</th>
+      </tr>
+      <tr>
+      	<td style="display:none" align="center">用户名</td>
+        <td align="center">被授权IP地址</td>
+        <td align="center">共同体</td>
+        <td align="center">权限</td>
+        <td style="display:none" align="center">安全级别</td>
+        <td style="display:none" align="center">认证协议</td>
+        <td style="display:none" align="center">认证密码</td>
+        <td style="display:none" align="center">加密协议</td>
+        <td style="display:none" align="center">加密密码</td>
+      </tr>
+            <tr>
+      	  <td style="display:none" align="center"><input value="" class="dx_txt4" id="UserName1" name="UserName1" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip1" name="sms_ip1" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community1" maxlength="62" name="sms_community1" type="text"></td>
+        <td><select size="1" name="permision1" id="permision1" class="select">
+            <option value="0" selected="selected">无权限</option>
+            <option value="1">可读</option>
+            <option value="2">可读可写</option>
+          </select></td>
+          
+           <td style="display:none" align="center">
+           <select size="1" name="safe_type1" id="safe_type1" class="select" onchange="change_safe(this.value,1)">
+          <!--<option value="1" selected="selected">noAuthNoPriv</option>-->
+                <option value="2">authNoPriv</option>
+                <option value="3">authPriv</option>
+          </select></td>
+          <td style="display:none" align="center">
+          <select name="auth_protocol1">
+            	<option value="MD5" selected="selected">MD5</option>
+                <option value="SHA">SHA</option>
+            </select>
+          </td>
+           <td style="display:none" align="center">
+            <input name="authPass1" id="authPass1" value="" maxlength="16" type="password">&nbsp;
+          
+           </td>
+            <td style="display:none" align="center">
+           <select class="txt_1_3" name="priv_protocol1" style="display:none">
+            	<option value="DES" selected="selected">DES</option>
+                <option value="AES">AES</option>
+            </select>
+            </td>
+             <td style="display:none" align="center">
+               <input class="txt_1_4" name="privPass1" id="privPass1" value="" maxlength="16" style="display:none" type="password">
+             </td>
+            
+      </tr>
+          <tr>
+      	  <td style="display:none" align="center"><input value="" class="dx_txt4" id="UserName2" name="UserName2" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip2" name="sms_ip2" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community2" maxlength="62" name="sms_community2" type="text"></td>
+        <td><select size="1" name="permision2" id="permision2" class="select">
+            <option value="0" selected="selected">无权限</option>
+            <option value="1">可读</option>
+            <option value="2">可读可写</option>
+          </select></td>
+          
+           <td style="display:none" align="center">
+           <select size="1" name="safe_type2" id="safe_type2" class="select" onchange="change_safe(this.value,2)">
+          <!--<option value="1" selected="selected">noAuthNoPriv</option>-->
+                <option value="2">authNoPriv</option>
+                <option value="3">authPriv</option>
+          </select></td>
+          <td style="display:none" align="center">
+          <select name="auth_protocol2">
+            	<option value="MD5" selected="selected">MD5</option>
+                <option value="SHA">SHA</option>
+            </select>
+          </td>
+           <td style="display:none" align="center">
+            <input name="authPass2" id="authPass2" value="" maxlength="16" type="password">&nbsp;
+          
+           </td>
+            <td style="display:none" align="center">
+           <select class="txt_2_3" name="priv_protocol2" style="display:none">
+            	<option value="DES" selected="selected">DES</option>
+                <option value="AES">AES</option>
+            </select>
+            </td>
+             <td style="display:none" align="center">
+               <input class="txt_2_4" name="privPass2" id="privPass2" value="" maxlength="16" style="display:none" type="password">
+             </td>
+            
+      </tr>
+          <tr>
+      	  <td style="display:none" align="center"><input value="" class="dx_txt4" id="UserName3" name="UserName3" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip3" name="sms_ip3" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community3" maxlength="62" name="sms_community3" type="text"></td>
+        <td><select size="1" name="permision3" id="permision3" class="select">
+            <option value="0" selected="selected">无权限</option>
+            <option value="1">可读</option>
+            <option value="2">可读可写</option>
+          </select></td>
+          
+           <td style="display:none" align="center">
+           <select size="1" name="safe_type3" id="safe_type3" class="select" onchange="change_safe(this.value,3)">
+          <!--<option value="1" selected="selected">noAuthNoPriv</option>-->
+                <option value="2">authNoPriv</option>
+                <option value="3">authPriv</option>
+          </select></td>
+          <td style="display:none" align="center">
+          <select name="auth_protocol3">
+            	<option value="MD5" selected="selected">MD5</option>
+                <option value="SHA">SHA</option>
+            </select>
+          </td>
+           <td style="display:none" align="center">
+            <input name="authPass3" id="authPass3" value="" maxlength="16" type="password">&nbsp;
+          
+           </td>
+            <td style="display:none" align="center">
+           <select class="txt_3_3" name="priv_protocol3" style="display:none">
+            	<option value="DES" selected="selected">DES</option>
+                <option value="AES">AES</option>
+            </select>
+            </td>
+             <td style="display:none" align="center">
+               <input class="txt_3_4" name="privPass3" id="privPass3" value="" maxlength="16" style="display:none" type="password">
+             </td>
+            
+      </tr>
+          <tr>
+      	  <td style="display:none" align="center"><input value="" class="dx_txt4" id="UserName4" name="UserName4" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip4" name="sms_ip4" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community4" maxlength="62" name="sms_community4" type="text"></td>
+        <td><select size="1" name="permision4" id="permision4" class="select">
+            <option value="0" selected="selected">无权限</option>
+            <option value="1">可读</option>
+            <option value="2">可读可写</option>
+          </select></td>
+          
+           <td style="display:none" align="center">
+           <select size="1" name="safe_type4" id="safe_type4" class="select" onchange="change_safe(this.value,4)">
+          <!--<option value="1" selected="selected">noAuthNoPriv</option>-->
+                <option value="2">authNoPriv</option>
+                <option value="3">authPriv</option>
+          </select></td>
+          <td style="display:none" align="center">
+          <select name="auth_protocol4">
+            	<option value="MD5" selected="selected">MD5</option>
+                <option value="SHA">SHA</option>
+            </select>
+          </td>
+           <td style="display:none" align="center">
+            <input name="authPass4" id="authPass4" value="" maxlength="16" type="password">&nbsp;
+          
+           </td>
+            <td style="display:none" align="center">
+           <select class="txt_4_3" name="priv_protocol4" style="display:none">
+            	<option value="DES" selected="selected">DES</option>
+                <option value="AES">AES</option>
+            </select>
+            </td>
+             <td style="display:none" align="center">
+               <input class="txt_4_4" name="privPass4" id="privPass4" value="" maxlength="16" style="display:none" type="password">
+             </td>
+            
+      </tr>
+          <tr>
+      	  <td style="display:none" align="center"><input value="" class="dx_txt4" id="UserName5" name="UserName5" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip5" name="sms_ip5" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community5" maxlength="62" name="sms_community5" type="text"></td>
+        <td><select size="1" name="permision5" id="permision5" class="select">
+            <option value="0" selected="selected">无权限</option>
+            <option value="1">可读</option>
+            <option value="2">可读可写</option>
+          </select></td>
+          
+           <td style="display:none" align="center">
+           <select size="1" name="safe_type5" id="safe_type5" class="select" onchange="change_safe(this.value,5)">
+          <!--<option value="1" selected="selected">noAuthNoPriv</option>-->
+                <option value="2">authNoPriv</option>
+                <option value="3">authPriv</option>
+          </select></td>
+          <td style="display:none" align="center">
+          <select name="auth_protocol5">
+            	<option value="MD5" selected="selected">MD5</option>
+                <option value="SHA">SHA</option>
+            </select>
+          </td>
+           <td style="display:none" align="center">
+            <input name="authPass5" id="authPass5" value="" maxlength="16" type="password">&nbsp;
+          
+           </td>
+            <td style="display:none" align="center">
+           <select class="txt_5_3" name="priv_protocol5" style="display:none">
+            	<option value="DES" selected="selected">DES</option>
+                <option value="AES">AES</option>
+            </select>
+            </td>
+             <td style="display:none" align="center">
+               <input class="txt_5_4" name="privPass5" id="privPass5" value="" maxlength="16" style="display:none" type="password">
+             </td>
+            
+      </tr>
+          <tr>
+      	  <td style="display:none" align="center"><input value="" class="dx_txt4" id="UserName6" name="UserName6" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip6" name="sms_ip6" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community6" maxlength="62" name="sms_community6" type="text"></td>
+        <td><select size="1" name="permision6" id="permision6" class="select">
+            <option value="0" selected="selected">无权限</option>
+            <option value="1">可读</option>
+            <option value="2">可读可写</option>
+          </select></td>
+          
+           <td style="display:none" align="center">
+           <select size="1" name="safe_type6" id="safe_type6" class="select" onchange="change_safe(this.value,6)">
+          <!--<option value="1" selected="selected">noAuthNoPriv</option>-->
+                <option value="2">authNoPriv</option>
+                <option value="3">authPriv</option>
+          </select></td>
+          <td style="display:none" align="center">
+          <select name="auth_protocol6">
+            	<option value="MD5" selected="selected">MD5</option>
+                <option value="SHA">SHA</option>
+            </select>
+          </td>
+           <td style="display:none" align="center">
+            <input name="authPass6" id="authPass6" value="" maxlength="16" type="password">&nbsp;
+          
+           </td>
+            <td style="display:none" align="center">
+           <select class="txt_6_3" name="priv_protocol6" style="display:none">
+            	<option value="DES" selected="selected">DES</option>
+                <option value="AES">AES</option>
+            </select>
+            </td>
+             <td style="display:none" align="center">
+               <input class="txt_6_4" name="privPass6" id="privPass6" value="" maxlength="16" style="display:none" type="password">
+             </td>
+            
+      </tr>
+          <tr>
+      	  <td style="display:none" align="center"><input value="" class="dx_txt4" id="UserName7" name="UserName7" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip7" name="sms_ip7" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community7" maxlength="62" name="sms_community7" type="text"></td>
+        <td><select size="1" name="permision7" id="permision7" class="select">
+            <option value="0" selected="selected">无权限</option>
+            <option value="1">可读</option>
+            <option value="2">可读可写</option>
+          </select></td>
+          
+           <td style="display:none" align="center">
+           <select size="1" name="safe_type7" id="safe_type7" class="select" onchange="change_safe(this.value,7)">
+          <!--<option value="1" selected="selected">noAuthNoPriv</option>-->
+                <option value="2">authNoPriv</option>
+                <option value="3">authPriv</option>
+          </select></td>
+          <td style="display:none" align="center">
+          <select name="auth_protocol7">
+            	<option value="MD5" selected="selected">MD5</option>
+                <option value="SHA">SHA</option>
+            </select>
+          </td>
+           <td style="display:none" align="center">
+            <input name="authPass7" id="authPass7" value="" maxlength="16" type="password">&nbsp;
+          
+           </td>
+            <td style="display:none" align="center">
+           <select class="txt_7_3" name="priv_protocol7" style="display:none">
+            	<option value="DES" selected="selected">DES</option>
+                <option value="AES">AES</option>
+            </select>
+            </td>
+             <td style="display:none" align="center">
+               <input class="txt_7_4" name="privPass7" id="privPass7" value="" maxlength="16" style="display:none" type="password">
+             </td>
+            
+      </tr>
+          <tr>
+      	  <td style="display:none" align="center"><input value="" class="dx_txt4" id="UserName8" name="UserName8" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip8" name="sms_ip8" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community8" maxlength="62" name="sms_community8" type="text"></td>
+        <td><select size="1" name="permision8" id="permision8" class="select">
+            <option value="0" selected="selected">无权限</option>
+            <option value="1">可读</option>
+            <option value="2">可读可写</option>
+          </select></td>
+          
+           <td style="display:none" align="center">
+           <select size="1" name="safe_type8" id="safe_type8" class="select" onchange="change_safe(this.value,8)">
+          <!--<option value="1" selected="selected">noAuthNoPriv</option>-->
+                <option value="2">authNoPriv</option>
+                <option value="3">authPriv</option>
+          </select></td>
+          <td style="display:none" align="center">
+          <select name="auth_protocol8">
+            	<option value="MD5" selected="selected">MD5</option>
+                <option value="SHA">SHA</option>
+            </select>
+          </td>
+           <td style="display:none" align="center">
+            <input name="authPass8" id="authPass8" value="" maxlength="16" type="password">&nbsp;
+          
+           </td>
+            <td style="display:none" align="center">
+           <select class="txt_8_3" name="priv_protocol8" style="display:none">
+            	<option value="DES" selected="selected">DES</option>
+                <option value="AES">AES</option>
+            </select>
+            </td>
+             <td style="display:none" align="center">
+               <input class="txt_8_4" name="privPass8" id="privPass8" value="" maxlength="16" style="display:none" type="password">
+             </td>
+            
+      </tr>
+          <tr>
+      	  <td style="display:none" align="center"><input value="" class="dx_txt4" id="UserName9" name="UserName9" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip9" name="sms_ip9" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community9" maxlength="62" name="sms_community9" type="text"></td>
+        <td><select size="1" name="permision9" id="permision9" class="select">
+            <option value="0" selected="selected">无权限</option>
+            <option value="1">可读</option>
+            <option value="2">可读可写</option>
+          </select></td>
+          
+           <td style="display:none" align="center">
+           <select size="1" name="safe_type9" id="safe_type9" class="select" onchange="change_safe(this.value,9)">
+          <!--<option value="1" selected="selected">noAuthNoPriv</option>-->
+                <option value="2">authNoPriv</option>
+                <option value="3">authPriv</option>
+          </select></td>
+          <td style="display:none" align="center">
+          <select name="auth_protocol9">
+            	<option value="MD5" selected="selected">MD5</option>
+                <option value="SHA">SHA</option>
+            </select>
+          </td>
+           <td style="display:none" align="center">
+            <input name="authPass9" id="authPass9" value="" maxlength="16" type="password">&nbsp;
+          
+           </td>
+            <td style="display:none" align="center">
+           <select class="txt_9_3" name="priv_protocol9" style="display:none">
+            	<option value="DES" selected="selected">DES</option>
+                <option value="AES">AES</option>
+            </select>
+            </td>
+             <td style="display:none" align="center">
+               <input class="txt_9_4" name="privPass9" id="privPass9" value="" maxlength="16" style="display:none" type="password">
+             </td>
+            
+      </tr>
+          <tr>
+      	  <td style="display:none" align="center"><input value="" class="dx_txt4" id="UserName10" name="UserName10" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip10" name="sms_ip10" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community10" maxlength="62" name="sms_community10" type="text"></td>
+        <td><select size="1" name="permision10" id="permision10" class="select">
+            <option value="0" selected="selected">无权限</option>
+            <option value="1">可读</option>
+            <option value="2">可读可写</option>
+          </select></td>
+          
+           <td style="display:none" align="center">
+           <select size="1" name="safe_type10" id="safe_type10" class="select" onchange="change_safe(this.value,10)">
+          <!--<option value="1" selected="selected">noAuthNoPriv</option>-->
+                <option value="2">authNoPriv</option>
+                <option value="3">authPriv</option>
+          </select></td>
+          <td style="display:none" align="center">
+          <select name="auth_protocol10">
+            	<option value="MD5" selected="selected">MD5</option>
+                <option value="SHA">SHA</option>
+            </select>
+          </td>
+           <td style="display:none" align="center">
+            <input name="authPass10" id="authPass10" value="" maxlength="16" type="password">&nbsp;
+          
+           </td>
+            <td style="display:none" align="center">
+           <select class="txt_10_3" name="priv_protocol10" style="display:none">
+            	<option value="DES" selected="selected">DES</option>
+                <option value="AES">AES</option>
+            </select>
+            </td>
+             <td style="display:none" align="center">
+               <input class="txt_10_4" name="privPass10" id="privPass10" value="" maxlength="16" style="display:none" type="password">
+             </td>
+            
+      </tr>
+          <tr>
+      	<td colspan="9" align="center"><a href="javascript:void(0);" onclick="return add_from()" class="a_btn3 confirm">添加</a></td>
+      </tr>
+    </tbody></table>
+  </div>
+  </form>
+  <form action="" enctype="multipart/form-data" method="post" id="formid2">
+  <div class="xd_snmp xd_sz_content" style="padding-bottom:20px;">
+    <table class="snmp_tab ls_tab_info_sj " id="liebiao" style="width:100%">
+      <tbody><tr>
+        <th colspan="5" align="left">&nbsp;TRAP设置</th>
+      </tr>
+      <tr>
+        <td align="center" width="20%">接收者IP地址</td>
+        <td align="center" width="20%">共同体</td>
+        <td align="center" width="20%">接收</td>
+        <td align="center" width="20%">事件</td>
+        <td align="center" width="20%">TRAP类型</td>
+      </tr>
+            <tr>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip11" name="sms_ip11" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community11" maxlength="62" name="sms_community11" type="text"></td>
+        <td><select name="is_receive11" id="is_receive11" class="select">
+            <option value="1" selected="selected">是</option>
+            <option value="0">否</option>
+          </select></td>
+        <td><a class="ls_btn2" onclick="showdetail('4000|11')" href="javascript:void(0);">选择</a></td>
+        <td><select name="mib_type11" id="mib_type11" class="select">
+            <option value="1" selected="selected">PPC</option> 	<!--<option value="2" >RFC1628</option> -->
+          </select> 
+        </td>
+      </tr>
+	      <tr>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip12" name="sms_ip12" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community12" maxlength="62" name="sms_community12" type="text"></td>
+        <td><select name="is_receive12" id="is_receive12" class="select">
+            <option value="1" selected="selected">是</option>
+            <option value="0">否</option>
+          </select></td>
+        <td><a class="ls_btn2" onclick="showdetail('4000|12')" href="javascript:void(0);">选择</a></td>
+        <td><select name="mib_type12" id="mib_type12" class="select">
+            <option value="1" selected="selected">PPC</option> 	<!--<option value="2" >RFC1628</option> -->
+          </select> 
+        </td>
+      </tr>
+	      <tr>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip13" name="sms_ip13" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community13" maxlength="62" name="sms_community13" type="text"></td>
+        <td><select name="is_receive13" id="is_receive13" class="select">
+            <option value="1" selected="selected">是</option>
+            <option value="0">否</option>
+          </select></td>
+        <td><a class="ls_btn2" onclick="showdetail('4000|13')" href="javascript:void(0);">选择</a></td>
+        <td><select name="mib_type13" id="mib_type13" class="select">
+            <option value="1" selected="selected">PPC</option> 	<!--<option value="2" >RFC1628</option> -->
+          </select> 
+        </td>
+      </tr>
+	      <tr>
+        <td align="center"><input value="" class="dx_txt4" id="sms_ip14" name="sms_ip14" type="text"></td>
+        <td align="center"><input value="" class="dx_txt4" id="sms_community14" maxlength="62" name="sms_community14" type="text"></td>
+        <td><select name="is_receive14" id="is_receive14" class="select">
+            <option value="1" selected="selected">是</option>
+            <option value="0">否</option>
+          </select></td>
+        <td><a class="ls_btn2" onclick="showdetail('4000|14')" href="javascript:void(0);">选择</a></td>
+        <td><select name="mib_type14" id="mib_type14" class="select">
+            <option value="1" selected="selected">PPC</option> 	<!--<option value="2" >RFC1628</option> -->
+          </select> 
+        </td>
+      </tr>
+	      <tr>
+      	<td colspan="9" align="center"><a href="javascript:void(0);" onclick="return add_from2()" class="a_btn3 confirm">添加</a></td>
+      </tr>
+    </tbody></table>
+    
+  </div>
+  </form>
+</div>
+</body>
+</html>

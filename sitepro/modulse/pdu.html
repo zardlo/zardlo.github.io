@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>无标题文档</title>
+    <link href="../css/index.css" rel="stylesheet" type="text/css" />
+    <link href="../css/static.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <style>
+        .pdu-wrap {
+            width: 95%;
+            margin: 25px auto;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+        }
+        
+        .c-table {
+            width: 98%;
+            margin: 10px auto;
+            border-collapse: collapse;
+            border: 1px solid #c6cfd6;
+        }
+        
+        .c-table-pdu thead th {
+            font-weight: normal;
+            background: #f2f5f8;
+            height: 38px;
+            border: 1px solid #c6cfd6;
+        }
+        
+        .c-table-pdu tbody td {
+            border: 1px solid #c6cfd6;
+            font-size: 13px;
+        }
+        
+        .pdu__red {
+            color: #F00;
+        }
+        
+        .pdu__green {
+            color: #06b206;
+        }
+        
+        .pdu-image {
+            height: 25px;
+            margin-top: 10px;
+            background-color: #FFF;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+        
+        .pdu-name {
+            margin-bottom: 10px;
+            font-weight: normal;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pdu-wrap">
+        <table class="c-table c-table-pdu">
+            <thead>
+                <tr>
+                    <th>支路名称</th>
+                    <th>通讯状态</th>
+                    <th>输入电压(V)</th>
+                    <th>输入电流(A)</th>
+                    <th>有功功率(KW)</th>
+                    <th>有功电能(KWh)</th>
+                    <th>功率因数</th>
+                    <th>电流告警阈值(A)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class="pdu-image" style="background-image:url(../images/device/pdu.png);"></div>
+                        <h5 class="pdu-name">01 PDU</h5>
+                    </td>
+                    <td><span class="pdu__green">正常</span></td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="pdu-image" style="background-image:url(../images/device/pdu3.gif);"></div>
+                        <h5 class="pdu-name">02 PDU</h5>
+                    </td>
+                    <td><span class="pdu__red">异常</span></td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

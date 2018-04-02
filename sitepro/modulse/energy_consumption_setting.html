@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>历史数据报表</title>
+    <link href="../css/style.css" rel="stylesheet" type="text/css">
+    <link href="../css/NavBtm.css" rel="stylesheet" type="text/css">
+    <script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+    <script type="text/javascript" src="../js/WdatePicker.js"></script>
+    <link href="../css/WdatePicker.css" rel="stylesheet" type="text/css">
+    <!--<script src="js/jquery-1.5.2.min.js" type="text/javascript"></script><!--JQ包-->
+
+    <style type="text/css">
+        body {
+            overflow-y: auto;
+        }
+        
+        .ls_tab_infosear {
+            border: #ccc solid 1px;
+            width: 100%
+        }
+        
+        .tj_tb_tit {
+            border: #ccc solid 1px;
+            padding-left: 1px
+        }
+        
+        .tab_info_tr th,
+        .tab_info_tr td {
+            border-bottom: #ccc solid 1px;
+        }
+        
+        .zh_setl {
+            float: left;
+            overflow: hidden;
+        }
+        
+        .zh_setr {
+            border-left: 1px solid #ccc;
+            margin-left: 300px;
+        }
+        
+        .boxleft {
+            float: left;
+            width: 200px;
+            border: 1px solid #ccc;
+            height: 400px;
+            overflow: auto;
+        }
+        
+        .boxcen {
+            float: left;
+            margin: 100px 30px 0 30px;
+        }
+        
+        .boxright {
+            float: left;
+            width: 200px;
+            border: 1px solid #ccc;
+            height: 400px;
+            overflow: auto;
+        }
+        
+        .dn-part {}
+        
+        .dn-part h2 {
+            padding: 10px;
+            background-color: #cee4ef;
+            font-size: 14px;
+            text-align: left;
+        }
+        
+        .KD input {
+            margin-top: -2px;
+            vertical-align: middle;
+        }
+        
+        .KD label {
+            margin-right: 20px;
+        }
+        
+        .ntitab--tbd {}
+        
+        .ntitab--tbd select {
+            width: 250px;
+        }
+        
+        .gbtn {
+            display: inline-block;
+            background: #06b206;
+            border-radius: 3px;
+            color: #fff;
+            padding: 1px 10px;
+            text-align: center;
+            margin-top: 10px;
+            margin-left: 5px;
+            cursor: pointer;
+            border-bottom: 2px solid #037a03;
+        }
+        
+        .setbom {
+            text-align: center;
+            padding-bottom: 20px;
+        }
+        
+        .con {
+            width: 540px;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 顶部开始 -->
+    <div class="xd_top"> <a class="xd_bnt" href="setgj.html">返回</a> <a class="xd_tit">能耗设置 </a> </div>
+    <!-- 顶部结束 -->
+
+    <!-- 内容开始 -->
+    <div class="xd_content" style='margin-top: 20px;'>
+        <div style='width: 70%; min-width:1000px;margin: 0 auto; border:1px solid #ccc;'>
+            <div class='dn-part'>
+                <h2>总电能设置</h2>
+                <div>
+                    <table>
+                        <tbody>
+                            <tr style=''>
+                                <th style='width: 300px;border-right:1px solid #ccc;padding: 13px 0;'>总电能</th>
+                                <td class='KD'>
+                                    <label><input type='checkbox' />多路精密配电</label>
+                                    <label><input type='checkbox' />多路精密配电2</label>
+                                    <label><input type='checkbox' />多路精密配电3</label>
+                                    <label><input type='checkbox' />多路精密配电4</label>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class='dn-part'>
+                <h2>IT电能设置</h2>
+            </div>
+            <div class="zh_setl" style='width: 300px;border-right:1px solid #ccc;'>
+                <table class="ntitab">
+                    <tbody class='ntitab--tbd'>
+                        <tr>
+                            <td align="left" class="ittd" width="110"><input class="energy" type="radio" name="energy_enable" value="0"><a class="it">IT电能：</a></td>
+                            <td align="left">
+                                <select style="width:130px;" class="sbsel energy" id="sbse0">
+                                    <option value="3" rel="82">多路精密配电</option>
+                                    <option value="1" rel="5">sxpt01</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="left" class="noittd"><input class="energy" type="radio" name="energy_enable" checked="checked" value="1"><a class="noit">其他：</a></td>
+                            <td align="left">
+                                <select style="width:130px;" class="sbsel energy" id="sbse1">
+                                    <option value="3" rel="82">多路精密配电</option>
+                                    <option value="1" rel="5">sxpt01</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="zh_setr">
+                <div class="con fixed">
+                    <div class="boxleft">
+                        <table class="lechtab chtab">
+                            <tbody style='text-align:left;'>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4807">源1支路8输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4808">源1支路9输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" name="cu_id" value="4809">源1支路10输出电能</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="boxcen"><a class="gbtn" style="margin-top:40px;">添加 》</a><br/><a class="gbtn">《 删除</a></div>
+                    <div class="boxright">
+                        <table class="richtab chtab"></table>
+                    </div>
+                </div>
+                <div class="setbom"><a class="submit gbtn" style='width: 80px;margin-left:414px;' onclick="set_data()">提交</a></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function Myconfirm2() {
+        alert("未配置")
+    }
+</script>
+
+</html>

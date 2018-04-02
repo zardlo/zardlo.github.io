@@ -1,0 +1,10 @@
+1、输出关闭、UPS关闭、系统关闭、立即关机告警任何一个参数为1时显示 UPS_power.gif
+                        rd_OutCloseWarn rd_UPSShutWarn rd_SystemShutWarn rd_ShutNowWarn
+2、输入故障为1时显示 ups_ac_fail.gif    rd_InFailWarn
+3、关机延时告警、立即关机告警、一般故障任何一个为1时显示  ups_stop.gif
+                                        rd_ShutLastWarn rd_ShutNowWarn rd_GenericFailWarn
+4、旁路指示为1时显示 ups_bypass.gif     rd_PassFailWarn
+5、设备离线为1时显示	ups_dis.gif     rd_DevDisWarn
+6、当如上状态数据都为0时显示 ups_online.gif
+
+优先级如下： 5   \ 4    \3    \2   \1

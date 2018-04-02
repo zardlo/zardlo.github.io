@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../css/SetInfo.css" rel="stylesheet" type="text/css" />
+<script src="../js/jquery.js" type="text/javascript"></script>
+<title>无标题文档</title>
+</head>
+<style>
+.name{ padding-bottom:9px; padding-top:10px; font-size:14px;}
+.pdtab td{ height:25px; line-height:25px; font-size:13px;}
+</style>
+<body>
+<script>
+$(function(){
+ 	$(".Alert_close,.a_btn1").click(function(){
+		
+ 		$(".alert_in,.alert_out").remove();
+ })
+})
+</script>
+<div class="AlertUps"> <a href="javascript:void(0);" class="Alert_close"></a>
+  <div class="Alert_title">高级设置</div>
+  <span id="config_1">
+  <form action="" enctype="multipart/form-data" method="post" id="formid">
+  	<div class="name">精密配电阈值设置</div>
+    <table class="pdtab" width="100%">
+      <tbody>
+        <tr>
+        	<td width="70"></td><td width="70"></td><td>A相</td><td>B相</td><td>C相</td>
+        </tr>
+        <tr>
+        	<td rowspan="2">电流（A）</td><td>上限</td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td>
+        </tr>
+        <tr>
+        	<td>上限</td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td>
+        </tr>
+        <tr>
+        	<td rowspan="2">电压（V）</td><td>上限</td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td>
+        </tr>
+        <tr>
+        	<td>上限</td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td><td><input name="name" class="UpsName" value="0.00" type="text" style="width:30%"></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <div class="name">支路自定义命名</div>
+    <table class="pdtab" width="100%">
+      <tbody>
+        <tr>
+        	<td>支路</td><td>名称</td><td>支路</td><td>名称</td>
+        </tr>
+        <tr>
+        	<td>1</td><td><input name="name" class="UpsName" value="防雷" type="text"></td>
+            <td>2</td><td><input name="name" class="UpsName" value="照明" type="text"></td>
+            
+        </tr>
+        <tr>
+        	<td>3</td><td><input name="name" class="UpsName" value="普通空调" type="text"></td>
+        	<td>4</td><td><input name="name" class="UpsName" value="精密空调" type="text"></td>
+        </tr>
+        <tr>
+        	<td>5</td><td><input name="name" class="UpsName" value="联想服务器" type="text"></td>
+            <td>6</td><td><input name="name" class="UpsName" value="戴尔服务器" type="text"></td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <table>
+    <tr>
+               	<td align="right" height="60"><a href="javascript:void(0);" onclick="btn_form()" class="a_btn1">保存</a></td>
+                <td align="center" height="60"><a href="javascript:void(0);" class="a_btn1 guanbi">取消</a></td>
+            </tr>
+    </table>
+    <input type="hidden" name="btform" value="other">
+    <input type="hidden" name="index" value="1">
+  </form>
+  </span> </div>
+<iframe style="widht:0px; height:0px; border:0px;" name="hidden_frame2" id="hidden_frame2"></iframe>
+</body>
+</html>

@@ -1,0 +1,117 @@
+.AlertUps {
+	background: rgb(255, 255, 255); margin: 35px auto; padding: 25px 10px; border-radius: 4px; border: 1px solid rgb(216, 216, 216); width: 500px; color: rgb(149, 149, 149); position: relative;
+}
+.Alert_close {
+	background: url("../IMAGES/Alert_close.png") no-repeat; top: -50px; width: 29px; height: 28px; right: -36px; display: block; position: absolute;
+}
+.Alert_title {
+	background: rgb(255, 255, 255); padding: 2px 10px; left: 35px; top: -13px; position: absolute;
+}
+.Alert_txxy {
+	padding-top: 16px;
+}
+.Alert_txxy_info {
+	padding: 5px 0px; text-align: left;
+}
+.Alert_txxy_left {
+	padding-right: 30px;
+}
+.Alert_txxy_left1 {
+	float: left;
+}
+.Alert_txxy_right {
+	padding-right: 20px; float: left;
+}
+.c_dx {
+	padding: 0px 20px 0px 10px;
+}
+input.UpsName {
+	padding: 2px 10px; border-radius: 4px; border: 1px solid rgb(204, 204, 204); width: 70%; height: 1.2em; text-align: center; color: rgb(149, 149, 149); line-height: 1.2em; -ms-radius-border: 4px;
+}
+input[type=text]:focus {
+	border: 1px solid rgb(144, 207, 249);
+}
+.checkbox {
+	width: 22px; height: 22px; line-height: 0px; overflow: hidden; float: left; display: block;
+}
+.uncheckbox {
+	background: url("../IMAGES/Alert_uncheckbox.png") no-repeat center;
+}
+.active_checkbox {
+	background: url("../IMAGES/Alert_checkbox.png") no-repeat center;
+}
+.checkbox input[type=checkbox] {
+	left: -9999px; position: absolute; z-index: -10;
+}
+.Alert_bjld li {
+	width: 44%; height: 22px; padding-bottom: 5px; float: left;
+}
+span.c_bj {
+	line-height: 22px; padding-left: 10px; float: left; display: block;
+}
+.sd_sxsjd_txt {
+	padding: 2px 4px; border-radius: 4px; border: 1px solid rgb(204, 204, 204); width: 60%; height: 1.2em; color: rgb(149, 149, 149); line-height: 1.2em; margin-left: 1px; -ms-radius-border: 4px;
+}
+a.sz_btn {
+	background: url("../images/btn_bg.jpg") repeat-x; padding: 0px 10px; width: 80px; height: 31px; text-align: center; color: rgb(255, 255, 255); line-height: 28px; font-size: 15px; display: block;
+}
+.alert_out {
+	background: url("../images/OpenWinbg.png"); left: 0px; top: 0px; width: 100%; height: 100%; display: none; position: absolute; z-index: 1000; -ms-overflow-y: hidden;
+}
+.alert_in {
+	background: rgb(255, 255, 255); left: 50%; top: 50%; width: 560px; height: auto; margin-left: -280px; display: none; position: absolute; z-index: 1001; box-shadow: 0px 0px 10px #666;
+}
+.Alert_gjsz {
+	padding-left: 20px;
+}
+.Alert_gjsz li {
+	height: 22px; padding-bottom: 5px; float: left;
+}
+span.c_gj {
+	padding: 0px 25px 0px 10px; line-height: 22px; float: left; display: block;
+}
+span.glgj {
+	line-height: 30px;
+}
+input.CX_Name {
+	padding: 2px 10px; border-radius: 4px; border: 1px solid rgb(204, 204, 204); width: 60%; height: 1.2em; color: rgb(149, 149, 149); line-height: 1.2em; margin-right: 8px; -ms-radius-border: 4px;
+}
+span.sz_danwei {
+	
+}
+.dcz_fz {
+	padding-right: 4px;
+}
+.fz_txt {
+	padding: 2px 10px; border-radius: 4px; border: 1px solid rgb(204, 204, 204); width: 45%; height: 1.2em; color: rgb(149, 149, 149); line-height: 1.2em; -ms-radius-border: 4px;
+}
+.BJ_Name {
+	padding: 2px 10px; border-radius: 4px; border: 1px solid rgb(204, 204, 204); width: 30%; height: 1.2em; color: rgb(149, 149, 149); line-height: 1.2em; margin-left: 21px; -ms-radius-border: 4px;
+}
+.title_Name {
+	padding: 2px 10px; border-radius: 4px; border: 1px solid rgb(204, 204, 204); width: 45%; height: 1.2em; text-align: center; color: rgb(149, 149, 149); line-height: 1.2em; margin-right: 8px; -ms-radius-border: 4px;
+}
+.btn {
+	background: url("../images/Open_Close_bg.png") no-repeat center; width: 89px; height: 26px; position: relative;
+}
+.close_btn {
+	background: url("../images/Open_bg.png") no-repeat left; left: 0px; top: 0px; width: 89px; height: 26px; overflow: hidden; font-size: 0px; margin-right: auto; margin-left: 0px; position: absolute; line-heithg: 0px;
+}
+.ico_btn {
+	background: url("../images/Open_Close_btn.png") no-repeat center; left: 64px; top: 3px; width: 20px; height: 20px; position: absolute; _background: url(../images/Open_Close_btn.gif) center center no-repeat;
+}
+.close_btn span {
+	color: rgb(255, 255, 255); line-height: 26px; letter-spacing: 3px; padding-right: 10px; font-size: 15px; cursor: default;
+}
+.close_size {
+	color: rgb(7, 178, 7); line-height: 26px; letter-spacing: 3px; padding-left: 12px; font-size: 15px; cursor: default;
+}
+.wendu_set {
+	background: url("../images/kt_wd_bg.png") no-repeat center; padding: 5px 13px; width: 59px; height: 17px; line-height: 27px;
+}
+.left_btn {
+	background: url("../images/kt_wd_minus.png") no-repeat 0px 0px; width: 16px; height: 16px; float: left; display: inline; cursor: pointer;
+}
+.right_btn {
+	background: url("../images/kt_wd_plus.png") no-repeat 1px 0px; width: 16px; height: 16px; float: right; display: inline; cursor: pointer;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>无标题文档</title>
+</head>
+<body>
+<div>
+<div class="map" style="overflow:hidden; width: 300px; height: 200px;">
+
+</div>
+</div>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="../js/echarts-all.js"></script>
+<script>
+    $(function () {
+        $('.map').css({
+            width: '500px',
+            height: '500px',
+            border: '1px dashed #aaa'
+        });
+        var myChart3 = echarts.init(document.querySelector('.map'));
+        var colors2 = [
+            [0.05, '#004BFF'],
+            [0.1, '#007CFF'],
+            [0.15, '#0095FF'],
+            [0.2, '#00B7FF'],
+            [0.25, '#00FFF0'],
+            [0.3, '#00FFC9'],
+            [0.35, '#00FFA0'],
+            [0.4, '#00FF62'],
+            [0.45, '#00FF0D'],
+            [0.5, '#1AFF00'],
+            [0.55, '#40FF00'],
+            [0.6, '#7CFF00'],
+            [0.65, '#FFFC00'],
+            [0.7, '#FFE800'],
+            [0.75, '#FFCE00'],
+            [0.8, '#FFAA00'],
+            [0.85, '#FFAF00'],
+            [0.9, '#FF8E00'],
+            [0.95, '#FF5200'],
+            [1, '#FF0000'],
+        ];
+        var option6 = {
+            tooltip : {
+                formatter: "{a} :<br/>{b} {c}°C"
+            },
+            toolbox: {
+                feature: {
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            series: [
+                {
+                    name: '当前值',
+                    type: 'gauge',
+                    min: 0,
+                    max: 40,
+                    startAngle: 190,
+                    endAngle: -10,
+                    splitNumber: 4,
+                    data: [{value: 35, name: ''}],
+                    axisLine: {            // 坐标轴线
+                        lineStyle: {       // 属性lineStyle控制线条样式
+                            color: colors2,
+                            width: 10
+                        },
+                    },
+                    splitLine: {
+                        length: 12
+                    },
+                    detail: {
+                        offsetCenter: [0, '10%'],
+                        formatter:'{value}°C'
+                    },
+                    axisTick: {
+                        splitNumber: 1
+                    },
+                }
+            ]
+        };
+        myChart3.setOption(option6);
+    })
+
+</script>
+</body>
+</html>

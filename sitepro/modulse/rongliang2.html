@@ -1,0 +1,309 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>容量管理</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css">
+<link href="../css/rongliang.css" rel="stylesheet" type="text/css" />
+<script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+</head>
+
+<body style=" padding-top:90px;">
+<script>
+	//下拉
+	$("body").delegate(".dnbtn","click",function(){
+		
+		$(this).next(".dropdown-menu").toggle();
+		
+		})
+	$("body").delegate(".dropdown-menu li:not(.off)","click",function(e){
+		$(this).parent().prev(".dnbtn").children("span").text($(this).text());
+		$("#zc_end .dnbtn span").text($(this).text())		
+		$(this).parent().hide();
+		})
+	//下拉结束
+</script>
+<!--基本向导顶部开始-->
+<div class="xd_top">
+<a class="xd_bnt" href="mapindex.html" target="container_iframe">返回</a>
+<a class="xd_tit" >容量管理</a>
+</div>
+<!--基本向导顶部结束-->
+<!--内容开始-->
+<div class="rl_tab ">
+	<table class="gsfw"><!--16个-->
+    	<tr>
+        	<td class="col2"><span>分公司交易服务器</span><div class="tip">1-2</div></td>
+        </tr>
+        <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+         <tr>
+        	<td class="col1">&nbsp;</td>
+        </tr>
+    </table>
+    <div class="gslist">
+    	<div class="tool">
+        	<div class="right_bar"><input type="text" class="search" /><a href="#"class="ls_btn" >搜&nbsp;索</a><a href="#" class="ls_btn btn_bulue"><img class="r_icon" src="../images/in_03.png" />导&nbsp;入</a><a href="#" class="ls_btn btn_yel"><img class="r_icon" src="../images/out_03.png" />导&nbsp;出</a><a href="#"class="ls_btn" id="add_zc" >添加资产</a>	</div>
+        	机柜容量列表
+        </div>
+        <table class="gs_tb">
+        	<tr>
+            	<th>资产编号</th>
+                <th>设备类型</th>
+                <th>设备名称</th>
+                <th>型号</th>
+                <th>生产厂家</th>
+                <th>设备位置</th>
+                <th>IP地址</th>
+                <th>MAC地址</th>
+                <th>责任人</th>
+                <th>操作</th>
+            </tr>
+            <tr data-site="1-2">
+            	<td>00001</td>
+                <td>服务器</td>
+            	<td>分公司交易服务器</td>
+                <td>IBM X3650S</td>
+                <td>IBM</td>
+                <td>1-2</td>
+                <td>192.168.1.1</td>
+                <td>255.255.255.0</td>
+                <td>小明</td>
+                <td><a href="#"  class="edit_ico"><img src="../images/icon_edit.png" /></a><a href="#" class="remove_gz" class="icon"><img src="../images/icon_del.png" /></a>
+               </td>
+            </tr>
+        </table>
+    </div>
+	
+</div>
+<!--内容结束-->
+<script>
+var tjzc='<div class="alert_warp">'+
+    '<div class="alert_box">'+
+      '  <a href="#" class="icon_colse"><img src="images/Alert_close2.png" /></a>'+
+      '  <h2>添加设备</h2>'+
+     '   <table>'+
+     '       <tr>'+
+     '           <td align="right">机柜：</td>'+
+      '          <td><input type="text"  placeholder="机柜名称" id="jg_name" class="myinput" /></td>'+
+       '     </tr>'+
+	      '       <tr>'+
+     '           <td align="right">机柜颜色：</td>'+
+      '          <td><input id="bn" type="button" class="myinput" style="width:80px;" ></td>'+
+       '     </tr>'+
+       '     <tr>'+
+       '         <td align="right">设备位置：</td>'+
+       '         <td>'+
+       '          <div class="dropdown" id="zc_bg">'+
+       '         <button class="dnbtn" type="button">'+
+      '          	<img class="icon" src="images/iconfont-sanjiaoxia.png">'+
+        '            <span> 0</span>'+
+       '         </button>'+
+         '       <ul class="dropdown-menu"  >'+
+        '        	<li> 1</li>'+
+        '            <li> 2</li>'+
+        '        </ul>'+
+        '   		 </div>'+
+        '         <span class="zi">至</span>'+
+       '         <div class="dropdown" id="zc_end" >'+
+       '         <button class="dnbtn" type="button">'+
+      '          	<img class="icon" src="images/iconfont-sanjiaoxia.png">'+
+      '              <span> 0</span>'+
+      '          </button>'+
+      '          <ul class="dropdown-menu" >'+
+       '         	<li> 0</li>'+
+         '           <li> 1</li>'+
+          '      </ul>'+
+           	'	 </div>  '+
+           '     </td>'+
+          '  </tr>'+
+         '    <tr>'+
+        '        <td align="right">资产：</td>'+
+       '         <td><input type="text" class="myinput" /></td>'+
+      '      </tr>'+
+      '  </table>'+
+     '  <input type="button" class="ls_btn" style="margin-left:147px;float:left;" id="zc_addbtb" value="添&nbsp;加" />'+
+      '  <input type="button" class="ls_btn" id="jg_colse" style="margin-left:20px;float:left;" value="取&nbsp;消" />'+
+   ' </div>'+
+'</div>';
+
+
+$(function(){	
+	$("#add_zc").click(function(){//点击添加资产按钮
+		$("body",window.parent.document).append(tjzc)
+       parent.pick_color();
+		$(".icon_colse,#jg_colse",window.parent.document).click(function(){$(this).parent().parent().remove();})
+		$("#zc_bg ul",window.parent.document).html(set_begin());	
+		$("#zc_bg .dnbtn",window.parent.document).click(function(){$("#zc_bg ul",window.parent.document).html(set_begin());	})
+		$("#zc_end .dnbtn",window.parent.document).click(function(){$("#zc_end ul",window.parent.document).html(set_end());});
+$("#zc_addbtb",window.parent.document).click(function(){//点击 弹出框的添加按钮
+		var count=0,td_count=-1;//计数
+		var bg_td=-1,end_td=-1; //真实列表的序号
+		var old_bg_td=+$("#zc_bg .dnbtn span",window.parent.document).text()-1; //选的序号
+		var old_end_td=$("#zc_end .dnbtn span",window.parent.document).text()-1;  //选的序号
+		if($("#jg_name",window.parent.document).val()==""||$("#jg_name",window.parent.document).val().length==0){
+			alert("机柜名称必须填");
+			}
+		else  if(old_bg_td<=-1||old_end_td<=-1){
+			alert("请选位置(大于0)");
+			}
+		else if(old_bg_td>-1||old_end_td>-1){
+			$(".gsfw td").each(function(index, element) {		
+				td_count+=parseInt($(this).attr("class").replace(/\D/g,""));
+				var _this_index=$(this).parent().index();
+				if(td_count==old_bg_td){
+					bg_td=_this_index;
+					console.log(bg_td+"---end")
+					}
+				if(td_count==old_end_td){
+					end_td=_this_index;
+					console.log(end_td+"---end")
+					}
+			});	
+		$(".gsfw tr:not(:lt("+bg_td+"),:gt("+end_td+"))").remove();
+		var tb_height=28*(end_td-bg_td+1)+1*(end_td-bg_td)+"px";
+		var itn=bg_td-1;
+		var class_num="col"+(end_td-bg_td+1);
+		var jg_name=$("#jg_name",window.parent.document).val();//柜子名称
+		var count=0;
+		if(bg_td==end_td){count=old_end_td+1;}else{count=(old_bg_td+1)+"-"+(old_end_td+1);} //右上角序号
+		var bgco=$("#bn",window.parent.document).val().length>0?$("#bn",window.parent.document).val():"#d8d8d8";
+		if(bg_td==0){
+		$('<tr><td class="'+class_num+'" style="height:'+tb_height+';background:'+bgco+'"><span>'+jg_name+'</span><div class="tip">'+count+'</div></td></tr>').insertBefore(".gsfw tr:eq(0)");//插入内容
+			}
+			else{
+		$('<tr><td class="'+class_num+'" style="height:'+tb_height+';background:'+bgco+'"><span>'+jg_name+'</span><div class="tip">'+count+'</div></td></tr>').insertAfter(".gsfw tr:eq("+itn+")");//插入内容
+			}
+
+		$(".gs_tb").append(//列表加入内容
+		'<tr data-site="'+count+'"><td>00001</td><td>服务器</td><td>'+jg_name+'</td><td>IBM X3650S</td><td>IBM</td> <td>'+count+'</td><td>192.168.1.1</td> <td>255.255.255.0</td><td>小明</td><td><a href="#" class="edit_ico"><img src="../images/icon_edit.png"></a><a href="#"  class="remove_gz"><img src="../images/icon_del.png"></a></td></tr>')
+		$(this).parent().parent().remove();
+				}
+		})
+})
+
+$("body .gs_tb").delegate(".edit_ico","click",function(){ //点击编辑按钮
+var data=$(this).parent().parent().attr("data-site");
+	var _this_click=$(this);
+		$(".gsfw td .tip").each(function(index, element) {
+	if($(this).text()==data){
+		$(this).parent().append('<input class="edit_input" value="'+$(this).siblings("span").text()+'" type="text">');
+		$(".edit_input").focus();
+		$(".edit_input").blur(function(){$(this).siblings("span").text($(this).val());
+		_this_click.parent().parent().children().eq(2).text($(this).val());
+		$(this).remove();
+		})
+           }
+		});
+ 
+});
+$("body .gs_tb").delegate(".remove_gz","click",function(){ //点击删除
+
+	var data=$(this).parent().parent().attr("data-site");
+	var _this_click=$(this);
+	$(".gsfw td .tip").each(function(index, element) {
+        if($(this).text()==data){
+		    var count=$(this).parent().attr("class").replace(/\D/g,"");
+			var tds="";
+			for(var i=0;i<count;i++){
+				tds+='<tr><td class="col1">&nbsp;</td></tr>';
+				}
+			$(tds).insertAfter(".gsfw tr:eq("+$(this).parent().parent().index()+")");
+			$(this).parents("tr").remove();
+			_this_click.parents("tr").remove();
+			}
+  	  });
+	})	
+<!--开始-->	
+function set_begin(){
+	var mums="";
+	var count=1;
+
+	$(".gsfw td").each(function(index, element) {
+        for(var i=0;i<parseInt($(this).attr("class").replace(/\D/g,""));i++){
+			
+			  var result=$(this).text().replace(/(^\s+)|(\s+$)/g,"");//去掉前后空格
+        		result=result.replace(/\s/g,"");//去除文章中间空格
+			
+			
+			if(result!=null&&result.length>0){
+				
+				mums+='<li class="off">'+count+'</li>';
+				}
+				else{
+				mums+='<li>'+count+'</li>';	
+			   }
+			   count++;
+			}
+			
+  	  });
+	  return mums;
+	}
+<!--结束-->
+<!--开始-->
+function set_end(){
+	var mums="";
+	var count=1;
+	$(".gsfw td").each(function(index, element) {
+        for(var i=0;i<parseInt($(this).attr("class").replace(/\D/g,""));i++){
+			 var result=$(this).text().replace(/(^\s+)|(\s+$)/g,"");//去掉前后空格
+        		result=result.replace(/\s/g,"");//去除文章中间空格
+			if(result!=null&&result.length>0){
+				mums+='<li class="off">'+count+'</li>';
+				}
+				else{
+				
+					if(+$("#zc_bg .dnbtn span",window.parent.document).text()>count)
+						mums+='<li class="off">'+count+'</li>';
+					else
+						mums+='<li>'+count+'</li>';	
+			   }
+			   count++;
+			}
+			
+  	  });
+	  return mums;
+	}
+<!--结束-->
+})
+</script>
+</body>
+</html>

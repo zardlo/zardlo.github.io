@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../css/SetInfo.css" rel="stylesheet" type="text/css" />
+ <script src="../js/jquery.js" type="text/javascript"></script>
+<title>无标题文档</title>
+</head>
+
+<body>
+
+
+<style>
+body{
+	font-family:"Times New Roman", Times, serif;
+}
+</style>
+
+
+<script>
+$(function(){
+ 	$(".Alert_close,.a_btn1").click(function(){
+		
+ 		$(".alert_in,.alert_out").remove();
+ })
+})
+</script>
+<div class="AlertUps">
+	<a href="javascript:void(0);" class="Alert_close"></a>
+    <div class="Alert_title">485扩展设备设置选项</div>
+    <span id="config_1">
+    <form action="" enctype="multipart/form-data" method="post" id="formid">
+    <table class="Alert_content" width="100%">
+       <tbody><tr>
+           	<td width="35%" height="30">使&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;能:</td>
+         	 <td height="30" align="left">
+               			
+                                <input checked="checked" type="checkbox" class="Alert_dx" id="enable" name="enable" value="enb">
+                           
+                            <span class="c_bj">&nbsp;</span>
+             </td>
+       	 </tr>
+       	<tr>
+           	<td width="35%" height="30">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:</td>
+          <td height="30" align="left"><input id="name" name="name" type="text" class="UpsName" value="视频监控"></td>
+        </tr>
+        	<tr>
+           	<td width="35%" height="30">I&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P:</td>
+          <td height="30" align="left"><input id="ip" name="ip" type="text" class="UpsName" value="192.168.0.88"></td>
+        </tr>
+       <tr>
+           	<td width="35%" height="30">端&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;口:</td>
+          <td height="30" align="left"><input id="socket" name="socket" type="text" class="UpsName" value="80"></td>
+        </tr>
+        
+         <tr><td colspan="2">
+           
+            <table>
+            <tr><td></td><td height="30">生产商</td><td style="padding-left:25px; text-align:left">供应商</td></tr>
+           <tr><td style="width:133px; text-align:right">名称：</td><td height="30"><select><option>选择生产商</option><option>科士达</option><option>山特</option></select></td><td style=" text-align:left"><select><option>选择供应商</option><option>科士达</option><option>山特</option></select></td></tr>
+          
+           <tr><td  height="30" style="text-align:right">联系人：</td><td  align="right" style="width:125px; padding-right:8px;"><input id="name" name="name" type="text" class="UpsName" value="" style=" width:77px;"></td><td align="left"><input id="name" name="name" type="text" class="UpsName" value="" style=" width:77px;"></td></tr>
+           <tr><td  height="30" style="text-align:right">联系方式：</td><td align="right" style="width:125px; padding-right:8px;"><input id="name" name="name" type="text" class="UpsName" value="" style=" width:77px;"></td><td align="left"><input id="name" name="name" type="text" class="UpsName" value="" style=" width:77px;"></td></tr>
+           
+           </table>
+           
+           
+           
+           </td></tr>
+        <tr>
+            <td  height="30">联系方式：</td>
+          	<td height="30" align="left"><input id="name" name="name" type="text" class="UpsName" value="" style=" width:77px;"><input id="name" name="name" type="text" class="UpsName" value="" style=" width:77px; margin-left:5px;"></td>
+       	</tr>           
+       <tr>
+            <td  height="30">设备维保到期日期：</td>
+          	<td height="30" align="left"><input id="name" name="name" type="text" class="UpsName" value=""  onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'%y-%M-%d'})"></td>
+       	</tr>
+                
+             <tr>
+               	<td height="60" align="right"><a href="javascript:void(0);" onclick="btn_form()" class="a_btn1">确认</a></td>
+                <td height="60" align="center"><a href="javascript:void(0);" class="a_btn1 guanbi">关闭</a></td>
+            </tr>
+            
+        
+         
+    </tbody></table>
+    	 <input type="hidden" name="btform" value="other">
+          <input type="hidden" name="index" value="1">
+    </form>
+  
+  </span>
+    </div>
+      <iframe style="widht:0px; height:0px; border:0px;" name="hidden_frame2" id="hidden_frame2"></iframe>
+</body>
+</html>

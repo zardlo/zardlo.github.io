@@ -1,0 +1,955 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>无标题文档</title>
+<link rel="stylesheet" href="../css/jmpd.css">
+<script src="../js/jquery.js"></script>
+<style>
+.gpic{ float:right; width:14px;}
+
+table{
+	width:100%;
+}
+.mn_div{
+	float:right; display:inline;
+}
+.jmpd table span{ float:right; color:#6C6}
+.jmpd_box .toptr td{ border-bottom:3px solid #686868;}
+</style>
+<script>
+$(function(){
+		lastjpmd="";
+		$(".jmpd_top").hover(
+			function(){var child=$(this).children("img");child.attr("src",child.attr("src").replace("_1","_2")); $(this).parent().css("border-bottom","3px solid #6C6")},
+			function(){
+				if($(this).parent().index()!=lastjpmd.parent().index()){var child=$(this).children("img");child.attr("src",child.attr("src").replace("_2","_1"));$(this).parent().css("border-bottom","3px solid #686868") }}	
+		);
+		$(".jmpd_top").click(function(){
+			if(lastjpmd!=""){
+			
+				lastjpmd.children("img").attr("src",lastjpmd.children("img").attr("src").replace("_2","_1"));
+				
+			}
+			lastjpmd=$(this);
+			
+			$(this).css("color","#65cb6f").children("img").attr("src",$(this).children("img").attr("src").replace("_1","_2"))
+			var $table=$(".jmpd_box table:eq("+$(this).parent().index()+")");
+			$table.siblings().hide();
+			$table.show();
+			$(this).parent().siblings().css({"border-bottom":"3px solid #686868"}).children().children("span").css({"color":"#686868"})
+			$(this).parent().css({"border-bottom":"3px solid #6C6"}).children().children("span").css({"color":"#6c6"})
+			})
+		$(".jmpd_top:eq(0)").click();
+})
+$(function(){
+	
+	$('.Alert_close,.guanbi').click(function(){
+		$('.dl_alert_out').hide().remove();
+		$('.dl_alert_in').hide().remove();
+	})
+	// data_update();
+});
+
+var time_inteval = 8000;
+var xmlDoc;
+var index="4";
+sys="0";
+function RefurbishTextDis()
+{
+	nAlarm = GetXmlTextByTagName(xmlDoc,'CurRunData');
+	var arr=nAlarm.split("|");
+	var array=new Array();
+
+	for(var i=0;i<arr.length;i++)
+	{
+		var start =arr[i].split(":");
+		start[0]  =start[0].replace(/(^\s*)|(\s*$)/g, "");
+		array[start[0]]=start[1];	
+	}
+	for(var i in array)
+	{
+		if(i>=80031 && i<=84133)
+		{
+			
+			 Setimg(i,array[i]);
+		}else if(i>=4096 && i<=4272)
+		{
+			 setSpan(i,array[i]);
+		}
+	}
+	
+}
+ var XMLDOM = ["MSXML4.DOMDocument", "MSXML3.DOMDocument", "MSXML2.DOMDocument", "MSXML.DOMDocument", "Microsoft.XmlDom"];
+
+// funcAsync: 回调函数. function onload(xmlDoc, isError){ ... }
+function GetMsXml()
+{
+    var mGetData = null;
+   // 创建XML对象
+    for(var i=0; i < XMLDOM.length; i++)
+	{
+		if(window.ActiveXObject)
+		{
+			//alert("window!");
+			try
+			{
+				mGetData = new ActiveXObject("Microsoft.XmlDom");    // Support IE
+				mGetData.async = true;
+				break;
+			}catch(ex){}
+			
+		}
+		else
+		{
+			//alert("not window!");
+			try
+			{
+				// Support Firefox, Mozilla, Opera, etc
+				mGetData = document.implementation.createDocument("", "", null);    // 创建一个空的 XML 文档对象。
+				break;
+			}catch(ex){}
+		}
+	}
+    return mGetData;
+}
+
+function GetXmlTextByTagName(xml,id)
+{
+	var Obj, szTxt = "";
+	try
+	{
+		Obj = xml.getElementsByTagName(id);
+		
+		if (typeof(Obj) == "undefined")
+		{
+			return szTxt;
+		}
+		else if ((Obj = Obj.item(0)) == null)
+		{
+			return szTxt;
+		}
+		else
+		{
+			
+				if(window.ActiveXObject)
+			{
+				szTxt = Obj.text;
+			}
+			else
+			{
+				szTxt = Obj.textContent;
+			}
+		}
+	}
+	catch (objException)
+	{
+	}
+	
+	return szTxt;
+}
+
+
+function Gett(str)
+{
+	var i,nMsk,nStatus;
+     var agent = navigator.userAgent.toLowerCase();
+	
+	if(agent.indexOf("chrome") > -1)
+	{
+		//alert("chrome browser!");
+		try{
+               var xmlhttp = new window.XMLHttpRequest();
+			   var ret = xmlhttp.open("GET","30_4.xml",false);
+        		xmlhttp.send(null);
+				if(xmlhttp.readyState == 4)
+				{
+					xmlDoc = xmlhttp.responseXML.documentElement;
+					RefurbishTextDis();
+				}
+				
+				
+       
+            }
+			catch(e)
+			{
+            	//alert("your chrome browser do not surport present!");
+			}
+	}
+	else
+	{
+		xmlDoc = GetMsXml();
+		
+		if(xmlDoc == null )
+		{
+			alert("Sorry, xml Error!");
+			return;
+		}
+		xmlDoc.async= false;
+	
+		if ((xmlDoc.load("30_4.xml") == true))
+		{
+			RefurbishTextDis();
+		}
+	
+		
+	}
+
+	//RefurbishTextDis();
+	
+    extupid=setTimeout(function(){Gett()},time_inteval);
+}
+function MM_callJS(jsStr)
+{
+	return eval(jsStr);
+}
+function Setimg(imgname,value)
+{
+	if(value==0)
+	{
+		$("#"+imgname).attr("src",'../images/ico_gre.png');
+	}else if(value==1)
+	{
+		$("#"+imgname).attr("src",'../images/ico_red.png');
+	}else if(value!=undefined)
+	{
+		$("#"+imgname).attr("src",'../images/ico_hui.png');
+	}
+	
+}
+function setSpan(id,value)
+{
+	if(String(value).indexOf('.')<0 && value!=undefined)
+	{
+		value=value+'.00';
+	}
+	value==0 ? $("#"+id).html('0.00') : $("#"+id).html(value);
+}
+
+</script>
+</head>
+<body>
+<div class="AlertUps">
+<!--动力系统顶部开始-->
+<a href="javascript:void(0);" class="Alert_close"></a>
+<!--左右移动层开始-->
+<div class="dl_content_info">
+	<ul>
+		<!-- 
+        	<li class="cur"></li>
+         --->
+        <li>
+        	<div class="cen_div">
+<!--padding div开始-->
+<div class="padding_div">
+<div class="content">
+<div class="jmpd fixed">
+	<div class="jmpd_left">
+		<img id="pd_30_4" src="../images/sz_jmpd.gif"><br>
+		 <h3>精密配电</h3>
+         <div style="text-align:center; padding-bottom:15px; padding-top:10px;"><a onClick="parent.show_scs()" class="ttscs xd_next a_btn1" style=" background:url(../images/btn_bg.jpg) repeat-x;color:#fff; display:block; font-size:14px; color:#fff; margin-right:auto; margin-left:auto; height:31px; line-height:28px; text-align:center; width:80px;">设备信息</a></div>
+	</div>
+	<table class="jmpd_box">
+		<tbody><tr class="toptr">
+        	<td style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: rgb(102, 204, 102);"><div class="jmpd_top" style="color: rgb(101, 203, 111);"><img src="../images/jmpd2_2.png"><br><span style="color: rgb(102, 204, 102);">主路</span></div></td>
+			<td style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: rgb(104, 104, 104);"><div class="jmpd_top" style="color: rgb(101, 203, 111);"><img src="../images/jmpd2_1.png"><br><span style="color: rgb(104, 104, 104);">电流</span></div></td>
+			<td style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: rgb(104, 104, 104);"><div class="jmpd_top" style="color: rgb(101, 203, 111);"><img src="../images/jmpd5_1.png"><br><span style="color: rgb(104, 104, 104);">电压</span></div></td>
+			<td style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: rgb(104, 104, 104);"><div class="jmpd_top" style="color: rgb(101, 203, 111);"><img src="../images/jmpd4_1.png"><br><span style="color: rgb(104, 104, 104);">电能</span></div></td>
+			<td style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: rgb(104, 104, 104);"><div class="jmpd_top" style="color: rgb(101, 203, 111);"><img src="../images/jmpd3_1.png"><br><span style="color: rgb(104, 104, 104);">功率</span></div></td>
+			<td style="border-bottom-width: 3px; border-bottom-style: solid; border-bottom-color: rgb(104, 104, 104);"><div class="jmpd_top" style="color: rgb(101, 203, 111);"><img src="../images/jmpd1_1.png"><br><span style="color: rgb(104, 104, 104);">开关</span></div></td>
+		</tr>
+		<tr>
+	<td colspan="6" style="border:none">
+    		<!--主路-->
+	<table style="display: table;">	
+		<tbody><tr class="kh_title"><td colspan="5">主路参数</td></tr>	
+	 	 <tr>		
+       </tr><tr>	
+        <td><span>A</span><span id="4096">23.00</span>额定电流:</td>
+      
+        	 	
+        <td><span></span><span id="4097">28.00</span>电流变比 CT:</td>
+      
+        	 	
+        <td><span></span><span id="4098">32.50</span>电压变比 PT:</td>
+      
+        	        
+      </tr>
+	  <tr class="kh_title"><td colspan="5">主路数据</td></tr>	
+	 <tr>		
+        </tr><tr>	
+        <td><span>A</span><span id="4099">26.00</span>A相电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4100">24.50</span>B相电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4101">35.08</span>C相电流:</td>
+      
+        	 	
+        <td><span>V</span><span id="4102">19.00</span>A相电压:</td>
+      
+        	 </tr><tr>	
+        <td><span>V</span><span id="4103">24.02</span>B相电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4104">22.50</span>C相电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4105">24.04</span>线电压Uab:</td>
+      
+        	 	
+        <td><span>V</span><span id="4106">32.00</span>线电压Ubc:</td>
+      
+        	 </tr><tr>	
+        <td><span>V</span><span id="4107">29.50</span>线电压Uca:</td>
+      
+        	 	
+        <td><span></span><span id="4108">27.20</span>A相功率因数:</td>
+      
+        	 	
+        <td><span></span><span id="4109">33.50</span>B相功率因数:</td>
+      
+        	 	
+        <td><span></span><span id="4110">55.10</span>C相功率因数:</td>
+      
+        	 </tr><tr>	
+        <td><span>W</span><span id="4111">27.00</span>A相有功功率:</td>
+      
+        	 	
+        <td><span>W</span><span id="4112">28.02</span>B相有功功率:</td>
+      
+        	 	
+        <td><span>W</span><span id="4113">24.00</span>C相有功功率:</td>
+      
+        	 	
+        <td><span>var</span><span id="4114">26.00</span>A相无功功率:</td>
+      
+        	 </tr><tr>	
+        <td><span>var</span><span id="4115">32.22</span>B相无功功率:</td>
+      
+        	 	
+        <td><span>var</span><span id="4116">34.02</span>C相无功功率:</td>
+      
+        	 	
+        <td><span>Hz</span><span id="4117">34.50</span>频率:</td>
+      
+        	 	
+        <td><span>Wh</span><span id="4118">32.08</span>有功电能:</td>
+      
+        	       </tr>
+	<tr class="kh_title"><td colspan="5">主路谐波</td></tr>	
+	 <tr>		
+        </tr><tr>	
+        <td><span>%</span><span id="4119">36.70</span>THD I1:</td>
+      
+        	 	
+        <td><span>%</span><span id="4120">31.00</span>THD I2:</td>
+      
+        	 	
+        <td><span>%</span><span id="4121">28.00</span>THD I3:</td>
+      
+        	 	
+        <td><span>%</span><span id="4122">24.70</span>THD V1:</td>
+      
+        	 </tr><tr>	
+        <td><span>%</span><span id="4123">26.40</span>THD V2:</td>
+      
+        	 	
+        <td><span>%</span><span id="4124">26.10</span>THD V3:</td>
+      
+        	       </tr>
+	 
+	 </tbody></table>
+	 	<!--end主路-->
+		<!--开关-->
+	<table style="display: none;">	
+		<tbody><tr class="kh_title"><td colspan="4">支路2QF</td></tr>
+      
+	  <tr>	
+      	  </tr><tr>	
+        <td><span>A</span><span id="4125">23.30</span>2QF-支路03 A相电流 :</td>
+      
+        	 	
+        <td><span>A</span><span id="4126">22.44</span>2QF-支路03 B相电流 :</td>
+      
+        	 	
+        <td><span>A</span><span id="4127">22.50</span>2QF-支路03 C相电流 :</td>
+      
+        	 	
+        <td><span>A</span><span id="4128">22.90</span>2QF-支路04 A相电流:</td>
+      
+        	 </tr><tr>	
+        <td><span>A</span><span id="4129">25.50</span>2QF-支路04 B相电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4130">29.60</span>2QF-支路04 C相电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4131">32.05</span>2QF-支路05 A相电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4132">40.50</span>2QF-支路05 B相电流:</td>
+      
+        	 </tr><tr>	
+        <td><span>A</span><span id="4133">63.05</span>2QF-支路05 C相电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4134">42.02</span>2QF-支路06 A相电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4135">26.00</span>2QF-支路06 B相电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4136">48.00</span>2QF-支路06 C相电流:</td>
+      
+        	 </tr><tr>	
+        <td><span>A</span><span id="4137">29.20</span>2QF-支路07 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4138">31.00</span>2QF-支路08 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4139">20.00</span>2QF-支路09 电流:</td>
+      
+        	       </tr>
+    
+     
+     <tr class="kh_title"><td colspan="4">支路4QF</td></tr>
+	       <tr>
+        </tr><tr>	
+        <td><span>A</span><span id="4140">19.00</span>4QF-支路01 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4141">28.00</span>4QF-支路02 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4142">32.00</span>4QF-支路03 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4143">35.50</span>4QF-支路04 电流:</td>
+      
+        	 </tr><tr>	
+        <td><span>A</span><span id="4144">36.05</span>4QF-支路05 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4145">17.98</span>4QF-支路06 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4146">44.20</span>4QF-支路07 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4147">43.02</span>4QF-支路08 电流:</td>
+      
+        	 </tr><tr>	
+        <td><span>A</span><span id="4148">36.00</span>4QF-支路09 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4149">32.00</span>4QF-支路10 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4150">34.05</span>4QF-支路11 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4151">61.20</span>4QF-支路12 电流:</td>
+      
+        	 </tr><tr>	
+        <td><span>A</span><span id="4152">24.50</span>4QF-支路13 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4153">29.00</span>4QF-支路14 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4154">32.00</span>4QF-支路15 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4155">27.00</span>4QF-支路16 电流:</td>
+      
+        	 </tr><tr>	
+        <td><span>A</span><span id="4156">42.20</span>4QF-支路17 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4157">36.00</span>4QF-支路18 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4158">24.40</span>4QF-支路19 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4159">26.60</span>4QF-支路20 电流:</td>
+      
+        	 </tr><tr>	
+        <td><span>A</span><span id="4160">24.30</span>4QF-支路21 电流:</td>
+      
+        	 	
+        <td><span>A</span><span id="4161">24.50</span>4QF-支路22 电流:</td>
+      
+        	       </tr>
+	</tbody></table>
+	<!--end开关-->
+	
+		<!--电压-->
+	<table style="display: none;">
+	  <tbody><tr class="kh_title"><td colspan="4">支路2QF</td></tr>
+	 	<tr>		
+         </tr><tr>	
+        <td><span>V</span><span id="4236">43.20</span>2QF-支路03 A相电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4237">24.25</span>2QF-支路03 B相电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4238">44.20</span>2QF-支路03 C相电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4239">14.60</span>2QF-支路04 A相电压:</td>
+      
+        	 </tr><tr>	
+        <td><span>V</span><span id="4240">26.40</span>2QF-支路04 B相电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4241">51.05</span>2QF-支路04 C相电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4242">36.36</span>2QF-支路05 A相电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4243">18.98</span>2QF-支路05 B相电压:</td>
+      
+        	 </tr><tr>	
+        <td><span>V</span><span id="4244">29.40</span>2QF-支路05 C相电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4245">36.60</span>2QF-支路06 A相电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4246">34.05</span>2QF-支路06 B相电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4247">34.40</span>2QF-支路06 C相电压:</td>
+      
+        	 </tr><tr>	
+        <td><span>V</span><span id="4248">28.60</span>2QF-支路07 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4249">27.66</span>2QF-支路08 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4250">42.30</span>2QF-支路09 电压:</td>
+      
+        	       </tr>
+	   <tr class="kh_title"><td colspan="4">支路4QF</td></tr>
+	       <tr>
+         </tr><tr>	
+        <td><span>V</span><span id="4251">41.20</span>4QF-支路01 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4252">35.54</span>4QF-支路02 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4253">55.20</span>4QF-支路03 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4254">42.55</span>4QF-支路04 电压:</td>
+      
+        	 </tr><tr>	
+        <td><span>V</span><span id="4255">22.55</span>4QF-支路05 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4256">23.45</span>4QF-支路06 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4257">77.22</span>4QF-支路07 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4258">45.20</span>4QF-支路08 电压:</td>
+      
+        	 </tr><tr>	
+        <td><span>V</span><span id="4259">32.25</span>4QF-支路09 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4260">33.33</span>4QF-支路10 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4261">22.45</span>4QF-支路11 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4262">47.55</span>4QF-支路12 电压:</td>
+      
+        	 </tr><tr>	
+        <td><span>V</span><span id="4263">25.00</span>4QF-支路13 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4264">33.00</span>4QF-支路14 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4265">36.00</span>4QF-支路15 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4266">34.50</span>4QF-支路16 电压:</td>
+      
+        	 </tr><tr>	
+        <td><span>V</span><span id="4267">28.00</span>4QF-支路17 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4268">36.00</span>4QF-支路18 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4269">34.05</span>4QF-支路19 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4270">22.50</span>4QF-支路20 电压:</td>
+      
+        	 </tr><tr>	
+        <td><span>V</span><span id="4271">34.00</span>4QF-支路21 电压:</td>
+      
+        	 	
+        <td><span>V</span><span id="4272">36.30</span>4QF-支路22 电压:</td>
+      
+        	       </tr>
+	</tbody></table>
+	<!--end电压-->
+	<!--电能-->
+	<table style="display: none;">	
+	 <tbody><tr class="kh_title"><td colspan="4">支路2QF</td></tr>
+	 	<tr>		
+       </tr><tr>	
+        <td><span>kWh</span><span id="4199">41.20</span>2QF-支路03 A相电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4200">23.00</span>2QF-支路03 B相电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4201">44.00</span>2QF-支路03 C相电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4202">22.65</span>2QF-支路04 A相电能:</td>
+      
+        	 </tr><tr>	
+        <td><span>kWh</span><span id="4203">28.60</span>2QF-支路04 B相电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4204">38.20</span>2QF-支路04 C相电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4205">37.25</span>2QF-支路05 A相电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4206">40.00</span>2QF-支路05 B相电能:</td>
+      
+        	 </tr><tr>	
+        <td><span>kWh</span><span id="4207">28.30</span>2QF-支路05 C相电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4208">55.25</span>2QF-支路06 A相电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4209">44.40</span>2QF-支路06 B相电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4210">22.00</span>2QF-支路06 C相电能:</td>
+      
+        	 </tr><tr>	
+        <td><span>kWh</span><span id="4211">26.00</span>2QF-支路07 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4212">44.40</span>2QF-支路08 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4213">28.69</span>2QF-支路09 电能:</td>
+      
+        	       </tr>
+	 <tr class="kh_title"><td colspan="4">支路4QF</td></tr>
+	 <tr>
+        </tr><tr>	
+        <td><span>kWh</span><span id="4214">19.98</span>4QF-支路01 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4215">42.30</span>4QF-支路02 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4216">29.00</span>4QF-支路03 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4217">32.00</span>4QF-支路04 电能:</td>
+      
+        	 </tr><tr>	
+        <td><span>kWh</span><span id="4218">32.20</span>4QF-支路05 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4219">33.74</span>4QF-支路06 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4220">63.00</span>4QF-支路07 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4221">26.00</span>4QF-支路08 电能:</td>
+      
+        	 </tr><tr>	
+        <td><span>kWh</span><span id="4222">44.20</span>4QF-支路09 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4223">22.50</span>4QF-支路10 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4224">44.60</span>4QF-支路11 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4225">25.00</span>4QF-支路12 电能:</td>
+      
+        	 </tr><tr>	
+        <td><span>kWh</span><span id="4226">44.30</span>4QF-支路13 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4227">33.40</span>4QF-支路14 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4228">28.50</span>4QF-支路15 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4229">24.20</span>4QF-支路16 电能:</td>
+      
+        	 </tr><tr>	
+        <td><span>kWh</span><span id="4230">22.05</span>4QF-支路17 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4231">33.33</span>4QF-支路18 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4232">42.05</span>4QF-支路19 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4233">44.20</span>4QF-支路20 电能:</td>
+      
+        	 </tr><tr>	
+        <td><span>kWh</span><span id="4234">33.48</span>4QF-支路21 电能:</td>
+      
+        	 	
+        <td><span>kWh</span><span id="4235">32.40</span>4QF-支路22 电能:</td>
+      
+        	       </tr>
+	</tbody></table>
+	<!--end电能-->
+	<!--功率-->
+	<table style="display: none;">	
+		<tbody><tr class="kh_title"><td colspan="4">支路2QF</td></tr>
+		<tr>		
+       </tr><tr>	
+        <td><span>kW </span><span id="4162">12.85</span>2QF-支路03 A相有功功率 :</td>
+      
+        	 	
+        <td><span>kW </span><span id="4163">28.50</span>2QF-支路03 B相有功功率 :</td>
+      
+        	 	
+        <td><span>kW </span><span id="4164">44.20</span>2QF-支路03 C相有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4165">22.80</span>2QF-支路04 A相有功功率:</td>
+      
+        	 </tr><tr>	
+        <td><span>kW </span><span id="4166">44.20</span>2QF-支路04 B相有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4167">40.05</span>2QF-支路04 C相有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4168">19.98</span>2QF-支路05 A相有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4169">19.99</span>2QF-支路05 B相有功功率:</td>
+      
+        	 </tr><tr>	
+        <td><span>kW </span><span id="4170">28.00</span>2QF-支路05 C相有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4171">38.00</span>2QF-支路06 A相有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4172">34.50</span>2QF-支路06 B相有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4173">32.05</span>2QF-支路06 C相有功功率:</td>
+      
+        	 </tr><tr>	
+        <td><span>kW </span><span id="4174">31.05</span>2QF-支路07 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4175">23.05</span>2QF-支路08 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4176">32.05</span>2QF-支路09 有功功率:</td>
+      
+        	       </tr>
+	<tr class="kh_title"><td colspan="4">支路4QF</td></tr>
+	   <tr>
+        </tr><tr>	
+        <td><span>kW </span><span id="4177">32.15</span>4QF-支路01 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4178">32.35</span>4QF-支路02 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4179">38.05</span>4QF-支路03 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4180">62.04</span>4QF-支路04 有功功率:</td>
+      
+        	 </tr><tr>	
+        <td><span>kW </span><span id="4181">32.05</span>4QF-支路05 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4182">42.25</span>4QF-支路06 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4183">22.05</span>4QF-支路07 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4184">32.35</span>4QF-支路08 有功功率:</td>
+      
+        	 </tr><tr>	
+        <td><span>kW </span><span id="4185">33.05</span>4QF-支路09 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4186">22.05</span>4QF-支路10 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4187">32.08</span>4QF-支路11 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4188">35.05</span>4QF-支路12 有功功率:</td>
+      
+        	 </tr><tr>	
+        <td><span>kW </span><span id="4189">42.05</span>4QF-支路13 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4190">40.00</span>4QF-支路14 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4191">23.05</span>4QF-支路15 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4192">22.05</span>4QF-支路16 有功功率:</td>
+      
+        	 </tr><tr>	
+        <td><span>kW </span><span id="4193">22.55</span>4QF-支路17 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4194">46.05</span>4QF-支路18 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4195">22.00</span>4QF-支路19 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4196">26.00</span>4QF-支路20 有功功率:</td>
+      
+        	 </tr><tr>	
+        <td><span>kW </span><span id="4197">28.90</span>4QF-支路21 有功功率:</td>
+      
+        	 	
+        <td><span>kW </span><span id="4198">28.10</span>4QF-支路22 有功功率:</td>
+      
+        	       </tr>
+	</tbody></table>
+	<!--end功率-->
+<!--开关-->
+	 <table style="display: none;">
+	 	 <tbody><tr class="kh_title"><td colspan="5">开关状态</td></tr>
+		<tr>
+			</tr><tr>	
+			<td><img id="80031" src="../images/ico_red.png" class="gpic">通讯状态:</td>
+			 	
+			<td><img id="84096" src="../images/ico_gre.png" class="gpic">1QF1:</td>
+			 	
+			<td><img id="84097" src="../images/ico_gre.png" class="gpic">1QF2:</td>
+			 	
+			<td><img id="84098" src="../images/ico_gre.png" class="gpic">ATS主:</td>
+			 	
+			<td><img id="84099" src="../images/ico_gre.png" class="gpic">ATS备:</td>
+			 </tr><tr>	
+			<td><img id="84100" src="../images/ico_gre.png" class="gpic">防雷开关:</td>
+			 	
+			<td><img id="84101" src="../images/ico_gre.png" class="gpic">防雷器故障:</td>
+			 	
+			<td><img id="84102" src="../images/ico_gre.png" class="gpic">UPS旁路2QF1:</td>
+			 	
+			<td><img id="84103" src="../images/ico_gre.png" class="gpic">UPS输入2QF2:</td>
+			 	
+			<td><img id="84104" src="../images/ico_gre.png" class="gpic">UPS输出3QF1:</td>
+			 		</tr>
+		 <tr class="kh_title"><td colspan="5">支路开关状态</td></tr>
+		<tr>
+			</tr><tr>	
+			<td><img id="84105" src="../images/ico_gre.png" class="gpic">2QF-支路03 开关状态:</td>
+			 	
+			<td><img id="84106" src="../images/ico_gre.png" class="gpic">2QF-支路04 开关状态:</td>
+			 	
+			<td><img id="84107" src="../images/ico_gre.png" class="gpic">2QF-支路05 开关状态:</td>
+			 	
+			<td><img id="84108" src="../images/ico_gre.png" class="gpic">2QF-支路06 开关状态:</td>
+			 	
+			<td><img id="84109" src="../images/ico_gre.png" class="gpic">2QF-支路07 开关状态:</td>
+			 </tr><tr>	
+			<td><img id="84110" src="../images/ico_gre.png" class="gpic">2QF-支路08 开关状态:</td>
+			 	
+			<td><img id="84111" src="../images/ico_gre.png" class="gpic">2QF-支路09 开关状态:</td>
+			 	
+			<td><img id="84112" src="../images/ico_gre.png" class="gpic">4QF-支路01 开关状态:</td>
+			 	
+			<td><img id="84113" src="../images/ico_gre.png" class="gpic">4QF-支路02 开关状态:</td>
+			 	
+			<td><img id="84114" src="../images/ico_gre.png" class="gpic">4QF-支路03 开关状态:</td>
+			 </tr><tr>	
+			<td><img id="84115" src="../images/ico_gre.png" class="gpic">4QF-支路04 开关状态:</td>
+			 	
+			<td><img id="84116" src="../images/ico_gre.png" class="gpic">4QF-支路05 开关状态:</td>
+			 	
+			<td><img id="84117" src="../images/ico_gre.png" class="gpic">4QF-支路06 开关状态:</td>
+			 	
+			<td><img id="84118" src="../images/ico_gre.png" class="gpic">4QF-支路07 开关状态:</td>
+			 	
+			<td><img id="84119" src="../images/ico_gre.png" class="gpic">4QF-支路08 开关状态:</td>
+			 </tr><tr>	
+			<td><img id="84120" src="../images/ico_gre.png" class="gpic">4QF-支路09 开关状态:</td>
+			 	
+			<td><img id="84121" src="../images/ico_gre.png" class="gpic">4QF-支路10 开关状态:</td>
+			 	
+			<td><img id="84122" src="../images/ico_gre.png" class="gpic">4QF-支路11 开关状态:</td>
+			 	
+			<td><img id="84123" src="../images/ico_gre.png" class="gpic">4QF-支路12 开关状态:</td>
+			 	
+			<td><img id="84124" src="../images/ico_gre.png" class="gpic">4QF-支路13 开关状态:</td>
+			 </tr><tr>	
+			<td><img id="84125" src="../images/ico_gre.png" class="gpic">4QF-支路14 开关状态:</td>
+			 	
+			<td><img id="84126" src="../images/ico_gre.png" class="gpic">4QF-支路15 开关状态:</td>
+			 	
+			<td><img id="84127" src="../images/ico_gre.png" class="gpic">4QF-支路16 开关状态:</td>
+			 	
+			<td><img id="84128" src="../images/ico_gre.png" class="gpic">4QF-支路17 开关状态:</td>
+			 	
+			<td><img id="84129" src="../images/ico_gre.png" class="gpic">4QF-支路18 开关状态:</td>
+			 </tr><tr>	
+			<td><img id="84130" src="../images/ico_gre.png" class="gpic">4QF-支路19 开关状态:</td>
+			 	
+			<td><img id="84131" src="../images/ico_gre.png" class="gpic">4QF-支路20 开关状态:</td>
+			 	
+			<td><img id="84132" src="../images/ico_gre.png" class="gpic">4QF-支路21 开关状态:</td>
+			 	
+			<td><img id="84133" src="../images/ico_gre.png" class="gpic">4QF-支路22 开关状态:</td>
+			 		</tr>
+		
+		</tbody></table>
+		<!--end开关-->
+		</td>
+		</tr>
+	</tbody></table>
+</div>
+
+<!--padding div开始-->
+</div>
+</div>
+  </div>
+        <!--eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee---></li>
+	</ul>
+</div>
+</div>
+
+
+</body></html>

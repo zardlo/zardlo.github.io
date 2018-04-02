@@ -1,0 +1,521 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>环境监测</title>
+<link href="../css/huanjing.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/alarm_dev.js"></script>
+</head>
+<body>
+<!---内容开始--->
+<div class="hj_content">
+  <table class="hj_info_tab">
+    <tbody>
+      <tr>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd3.gif" id="4002_1" style="height:99px;"><br>
+                  <a class="img_name">温湿度1</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="127" class="hj_red">0.00</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="128" class="hj_red">0.00</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="80111" class="hj_red">断线</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd3.gif" id="4002_2" style="height:99px;"><br>
+                  <a class="img_name">温湿度2</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="125" class="hj_red" >35.10</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="126" class="hj_green">30.02</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="80110" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td  style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_3" style="height:99px;"><br>
+                  <a class="img_name">温湿度3</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="123" class="hj_green">22.7</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="124" class="hj_green">40.10</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="80109" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+      </tr>
+      <tr>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_4" style="height:99px;"><br>
+                  <a class="img_name">温湿度4</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="121" class="hj_green">28.03</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="122" class="hj_green">35.08</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="80108" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_5" style="height:99px;"><br>
+                  <a class="img_name">温湿度5</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="119" class="hj_green">30.10</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="120" class="hj_green">44.30</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="80107" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_6" style="height:99px;"><br>
+                  <a class="img_name">温湿度6</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="117" class="hj_green">24.02</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="118" class="hj_green" >42.14</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="80106" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+      </tr>
+      <tr>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_7" style="height:99px;"><br>
+                  <a class="img_name">温湿度7</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="115" class="hj_green" >23.50</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="116" class="hj_green">33.30</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="80105" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_8" style="height:99px;"><br>
+                  <a class="img_name">温湿度8</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="113" class="hj_green" >27.06</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="114" class="hj_green">35.05</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="80104" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_9" style="height:99px;"><br>
+                  <a class="img_name">温湿度9</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15231" class="hj_green" >22.30</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15232" class="hj_green">33.48</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="95231" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+      </tr>
+      <tr>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_10" style="height:99px;"><br>
+                  <a class="img_name">温湿度10</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15229" class="hj_green">28.60</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15230" class="hj_green" >37.75</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="95230" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_11" style="height:99px;"><br>
+                  <a class="img_name">温湿度11</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15227" class="hj_green" >21.12</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15228" class="hj_green">45.20</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="95229" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_12" style="height:99px;"><br>
+                  <a class="img_name">温湿度12</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15225" class="hj_green">24.05</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15226" class="hj_green" >34.00</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="95228" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+      </tr>
+      <tr>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_13" style="height:99px;"><br>
+                  <a class="img_name">温湿度13</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15223" class="hj_green" >21.90</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15224" class="hj_green">35.50</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="95227" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_14" style="height:99px;"><br>
+                  <a class="img_name">温湿度14</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15221" class="hj_green" >23.30</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15222" class="hj_green" >40.05</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="95226" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_15" style="height:99px;"><br>
+                  <a class="img_name">温湿度15</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15219" class="hj_green" >25.60</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15220" class="hj_green" >42.50</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="95225" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+      </tr>
+      <tr>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/wsd.png" id="4002_16" style="height:99px;"><br>
+                  <a class="img_name">温湿度16</a></td>
+                <td colspan="2"><table width="100%" height="60%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">温&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15217" class="hj_green" >22.15</span>°C</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">湿&#12288;&#12288;度：</td>
+                        <td width="50%" align="left"><span id="15218" class="hj_green">40.50</span>%</td>
+                      </tr>
+                      <tr>
+                        <td width="50%">连接状态：</td>
+                        <td width="50%" align="left"><span id="95224" class="hj_green">正常</span></td>
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/yg.png" id="4001_83968" style="width:96px; height:99px;"><br>
+                  <a class="img_name">烟雾检测</a></td>
+                <td colspan="2"><table width="100%" height="40%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">检测状态：</td>
+                        <td width="50%" align="left"><span id="83968" class="hj_green"><font color="#06b206">正常</font></span></td>
+                        <!--  </tr>
+                            	<td width="50%">连接状态：</td>
+                                <td width="50%" align="left"><span class="hj_green" id="83999">连线</span></td>
+                            </tr>--> 
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/xfj.png" id="4001_83970" style="width:96px; height:99px;"><br>
+                  <a class="img_name">新风机检测</a></td>
+                <td colspan="2"><table width="100%" height="40%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">检测状态：</td>
+                        <td width="50%" align="left"><span id="83970" class="hj_green"><font color="#06b206">正常</font></span></td>
+                        <!--  </tr>
+                            	<td width="50%">连接状态：</td>
+                                <td width="50%" align="left"><span class="hj_green" id="83999">连线</span></td>
+                            </tr>--> 
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+      </tr>
+      <tr></tr>
+      <tr></tr>
+      <tr>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" src="../images/device/ls.png" id="4001_83973" style="width:96px; height:99px;"><br>
+                  <a class="img_name">漏水检测</a></td>
+                <td colspan="2"><table width="100%" height="40%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">检测状态：</td>
+                        <td width="50%" align="left"><span id="83973" class="hj_green"><font color="#06b206">正常</font></span></td>
+                        <!--  </tr>
+                            	<td width="50%">连接状态：</td>
+                                <td width="50%" align="left"><span class="hj_green" id="83999">连线</span></td>
+                            </tr>--> 
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td width="32%" style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" onClick="Onhref('9_5')" src="../images/device/dwls.png" id="9_5" style="width:96px; height:99px; cursor:pointer"><br>
+                  <a class="img_name">定位漏水1</a></td>
+                <td colspan="2"><table width="100%" height="40%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">检测状态：</td>
+                        <td width="50%" align="left"><span id="83973" class="hj_green"><font color="#06b206">正常</font></span></td>
+                        <!--  </tr>
+                            	<td width="50%">连接状态：</td>
+                                <td width="50%" align="left"><span class="hj_green" id="83999">连线</span></td>
+                            </tr>--> 
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+        <td style="padding-right:20px; padding-bottom:20px;"><table class="hj_info_tab1">
+            <tbody>
+              <tr>
+                <td width="40%"><img border="0" onClick="Onhref('9_6')" src="../images/device/dwls.png" id="9_6" style="width:96px; height:99px; cursor:pointer"><br>
+                  <a class="img_name">定位漏水2</a></td>
+                <td colspan="2"><table width="100%" height="40%">
+                    <tbody>
+                      <tr>
+                        <td width="50%">检测状态：</td>
+                        <td width="50%" align="left"><span id="83973" class="hj_green"><font color="#06b206">正常</font></span></td>
+                        <!--  </tr>
+                            	<td width="50%">连接状态：</td>
+                                <td width="50%" align="left"><span class="hj_green" id="83999">连线</span></td>
+                            </tr>--> 
+                      </tr>
+                    </tbody>
+                  </table></td>
+              </tr>
+            </tbody>
+          </table></td>
+      </tr>
+    </tbody>
+  </table>
+  <!----第四行结束----> 
+</div>
+<!---内容结束--->
+
+</body>
+</html>

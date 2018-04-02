@@ -1,0 +1,153 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+<title>无标题文档</title>
+<link type="text/css" rel="stylesheet" href="../css/style.css">
+<link type="text/css" rel="stylesheet" href="../css/index.css">
+<style>
+body{
+	background:#FFF;
+}
+</style></head>
+
+<body>
+<!--动力系统顶部开始-->
+<div class="dl_top">
+<a target="container_iframe" href="mapindex.html" class="dl_bnt">返回</a>
+<a class="dl_tit">设备详情</a>
+</div><br><br><br>
+<div class="AlertUps">
+<!--动力系统顶部开始-->
+
+<!--左右移动层开始-->
+<div class="dl_content_info">
+	<ul>
+		<!-- 
+        	<li class="cur"></li>
+         --->
+        <li>
+        	<div class="cen_div">
+            	<table class="cur_son_tab">
+            	<tbody><tr>
+                	<td style="vertical-align:top; padding-top:10px; width:70px; font-size:16px; color:#b6b6b6; border-right:0"></td>
+                    <td style="border-left:0;"><h4>输入</h4><br>
+                    	<table class="part2_tab">
+                          <tbody><tr>
+                            <td><a href="javascript:void(0)"><img src="../images/ups_img1.png"></a><br><a class="part_tit" href="javascript:void(0)">电压：<span id="in_vol">0.00</span>V</a></td>
+                            <td><a href="javascript:void(0)"><img src="../images/ups_img2.png"></a><br><a class="part_tit" href="javascript:void(0)">频率：<span id="pinglv">0.00</span>Hz</a></td>
+                            <td><a href="javascript:void(0)"><img src="../images/ups_img3.png"></a><br><a class="part_tit" href="javascript:void(0)">机内温度：<span id="upstem">0.00</span>°C</a></td>
+                          </tr>
+                      <!--    <tr>
+                             <td><a href="javascript:void(0)"><img src="../images/ups_img4.png" /></a><br><a class="part_tit"  href="javascript:void(0)">负载：<span>95%</span></a></td>
+                             <td><a href="javascript:void(0)"><img src="../images/ups_img4.png" /></a><br><a class="part_tit"  href="javascript:void(0)">负载：<span>95%</span></a></td>
+                             <td><a href="javascript:void(0)"><img src="../images/ups_img4.png" /></a><br><a class="part_tit"  href="javascript:void(0)">负载：<span>95%</span></a></td>
+                          </tr> -->
+                        </tbody></table>
+                    </td>
+                    <td style="width:130px; height:310px;" colspan="4">
+                    	<div class="center_bg">
+                            <a><img style="height:190px" id="ups_img" src="../images/ups_stop.gif"></a><br>
+                            <a class="ups_name">单相UPS</a>
+                        </div>
+                    </td>
+                    <td style="border-left:0;"><h4>输出</h4><br>
+                    	<table class="part2_tab">
+                          <tbody><tr>
+                            <td><a href="javascript:void(0)"><img src="../images/ups_img1.png"></a><br><a class="part_tit" href="javascript:void(0)">电压：<span id="out_vol">220.00</span>V</a></td>
+                            <td><a href="javascript:void(0)"><img src="../images/ups_img2.png"></a><br><a class="part_tit" href="javascript:void(0)">负载：<span id="upsfz">30.8</span>%</a></td>
+                           <td>&nbsp;<!--<a href="javascript:void(0)"><img src="../images/ups_img3.png" /></a><br><a class="part_tit"  href="javascript:void(0)">机内温度：<span>32.5°C</span></a>--></td>
+                            
+                          </tr>
+                        <!--  <tr>
+                             <td><a href="javascript:void(0)"><img src="../images/ups_img4.png" /></a><br><a class="part_tit"  href="javascript:void(0)">负载：<span>95%</span></a></td>
+                             <td><a href="javascript:void(0)"><img src="../images/ups_img4.png" /></a><br><a class="part_tit"  href="javascript:void(0)">负载：<span>95%</span></a></td>
+                             <td></td>
+                          </tr>-->
+                        </tbody></table>
+                    </td>
+                    <td align="left" style="vertical-align:top; padding-top:10px; width:120px; font-size:16px; color:#b6b6b6; border-right:0; font-family:'微软雅黑'; text-align:left; padding-left:15px; border-right:0"></td>
+                </tr>
+                <tr class="cur_son_tab_btm" style="border-bottom:1px solid #f9f9f9;">
+                	<td style="vertical-align:top; padding-top:10px; width:60px; font-size:16px; color:#b6b6b6; border-right:0;"><h4>状态</h4></td>
+                   	<td colspan="3"></td>
+             
+                  	<td></td>
+                    <td></td>
+                    <td></td>
+					<td style="border-right:1px solid #d8d8d8; "></td>
+                </tr>
+                <tr class="cur_son_tab_btm">
+                	<td></td>
+                	<td colspan="7" style="border-right:1px solid #d8d8d8; ">
+                    	<!--输出开始-->
+                       <table class="part2_out">
+                          <tbody><tr>
+                            <td><span><img id="ups_acfalse" src="../images/ico_red.png"></span>市电状态</td>
+                            <td><span><img id="ups_work" src="../images/ico_gre.png"></span>旁路</td>
+                            <td><span><img id="ups_batlow" src="../images/ico_gre.png"></span>电池电压</td>
+							 <td><span><img id="ups_stats" src="../images/ico_gre.png"></span>故障状态</td>
+                            <td><span><img id="ups_shutdown" src="../images/ico_gre.png"></span>关机状态</td>
+                            <td><span><img id="ups_test" src="../images/ico_gre.png"></span>测试状态</td>
+							 <td><span><img id="ups_con" src="../images/ico_gre.png"></span>通讯状态</td>
+                          </tr>
+                        </tbody></table>
+                <!--输出结束-->
+                    </td>
+                </tr>
+				
+				  <tr class="cur_son_tab_btm" style="border-bottom:1px solid #f9f9f9;">
+                    <td colspan="10" style="border-left:1px solid #d8d8d8;">
+                   		<a class="ups_name" style="font-family:'微软雅黑'; font-size:16px; color:#b6b6b6;"><h4>单相电池</h4></a>
+                    </td>
+                   
+                </tr>
+			 <tr class="cur_son_tab_btm" style="  ">
+                	<td><img style="height:99px; margin:10px;" id="ups_4005_1" src="../images/sz_dc.gif"></td>
+                	<td colspan="7" style="border-right:1px solid #d8d8d8; ">
+                    		<!--电池状态开始-->
+                        <table class="part2_dc">
+                          <tbody><tr>
+                            <td align="right"><a><img src="../images/dcz_img1.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">电池电压</span><br><span class="p2_num"><span id="dcdl_81">22.05</span>V</span></td>
+                          <td align="right"><a><img src="../images/dcz_img2.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">电池温度</span><br><span class="p2_num"><span id="dcdl_83">28.45</span>°C</span></td>
+                         <td align="right"><a><img src="../images/dcz_img3.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">后备时间</span><br>
+                              <span class="p2_num">50分钟</span></td>
+                           <!-- 、*********》-->
+                           <td align="right"><span><img id="dcdl_80082" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">电压上限</td>
+                             <td align="right"><span><img id="dcdl_80083" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">电压下限</td>
+                             <td align="right"><span><img id="dcdl_80081" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">放电时间下限</td>
+                            <!---------------->
+                          </tr>
+                          <tr>
+                            <td align="right"><a><img src="../images/dcz_img4.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">总电流</span><br><span class="p2_num"><span id="dcdl_82">32.05</span>A</span></td>
+                          <td align="right"><a><img src="../images/dcz_img2.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">工作状态</span><br><span class="p2_num"><span id="dcdl_86">正常</span></span></td>
+                            <td align="right"><a><img src="../images/dcz_img3.png"></a></td>
+                            <td style="text-align:left; padding-left:5px;"><span class="p2_tit">剩余电量</span><br><span class="p2_num"><span id="dcdl_84">28.05</span>%</span></td>
+                            <!------------>
+                            <td align="right"><span><img id="dcdl_80085" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">电流上限</td>
+                            <td align="right"><span><img id="dcdl_80086" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">电流下限</td>
+                            <td align="right"><span><img id="dcdl_80084" src="../images/ico_gre.png"></span></td>
+                            <td style="text-align:left; padding-left:5px;">电池电量断线</td>
+                          </tr>
+                        </tbody></table>
+            
+                <!--电池状太结束-->
+                    </td>
+                </tr>
+            </tbody></table>
+            </div>
+        <!--eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee---></li>
+	</ul>
+</div>
+</div>
+
+
+</body></html>

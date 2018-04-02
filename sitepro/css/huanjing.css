@@ -1,0 +1,36 @@
+body{ background:#fff;}
+.fixed:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.fixed{display:block;}
+.fixed{min-height:1%;}
+* html .fixed{height:1%;}
+
+body{font-size:12px;line-height:22px;font-family:"微软雅黑"; text-align:center; min-width:1001px;margin:0;padding:0 0 0 0}
+body a{outline:none;blr:expression(this.onFocus=this.blur());text-decoration:none;}
+form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;line-height:16px;}img{border:0;}ul,li{list-style-type:none;}
+table,table tr td{ border-collapse:collapse; padding:0; margin:0; color:#959595;}
+
+.dl_top{ position:fixed; top:0; left:0; height:50px; background:url(../images/ny_tbg.gif) center top repeat-x;  width:100%; z-index:10;}
+.dl_bnt{ float:right; padding:6px 25px; color:#fff; margin-top:8px; background:#29a5f9; border-radius:3px; font-size:14px; margin-right:25px; }
+.dl_tit{ float:left; font-size:20px; color:#fff; background:url(../images/hj_top_bg.png) left center no-repeat; line-height:50px; padding-left:60px; margin-left:25px; }
+.hj_content{padding:25px;}
+.hj_info_tab{width:100%; font-size:12px;}
+.hj_info_tab tr td{font-size:12px; }
+.hj_info_tab1{width:100%; height:180px; border:1px solid #d8d8d8; background:#f9f9f9; text-align:center; font-size:12px;}
+
+span.hj_green{color:#06b206; }
+span.hj_red{color:#F00}
+a.img_name{display:block; color:#959595; padding-top:10px;}
+.dl_alert_out{background:url(../images/OpenWinbg.png); width:100%; overflow-y:hidden; height:100%; display:none; position:absolute; left:0; top:0; z-index:1000;}
+.dl_alert_in{width:100%; height:100%; display:none; position:absolute; z-index:1001; background:#fff; box-shadow:0 0 10px #666;}
+
+
+/*第二次修改的样式*/
+.hj{width:100%;border-collapse: collapse;background-color:#FFF;}
+.hj tr td{padding:8px 11px;border:1px solid #ccc;font-size:13px;}
+
+.half-part{float: left;width:49%;}
+.part-right{float:right;}
+/*第二次修改的样式*/
+
+
+

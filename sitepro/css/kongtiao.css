@@ -1,0 +1,48 @@
+@import url(static.css);
+.fixed:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.fixed{display:block;}
+.fixed{min-height:1%;}
+* html .fixed{height:1%;}
+
+body{;font-size:12px;line-height:22px;font-family:"微软雅黑"; text-align:center; min-width:1001px;margin:0;padding:0 0 0 0}
+body a{outline:none;blr:expression(this.onFocus=this.blur());text-decoration:none;}
+form,ul,li,p,h1,h2,h3,h4,h5,h6{margin:0;padding:0;}input,select{font-size:12px;line-height:16px;}img{border:0;}ul,li{list-style-type:none;}
+table,table tr td{ border-collapse:collapse; padding:0; margin:0; color:#959595;}
+
+.dl_top{ position:fixed; top:0; left:0; height:50px; background:url(../images/ny_tbg.gif) center top repeat-x;  width:100%; z-index:10;}
+.dl_bnt{ float:right; padding:6px 25px; color:#fff; margin-top:8px; background:#29a5f9; border-radius:3px; font-size:14px; margin-right:25px; }
+.dl_tit{ float:left; font-size:20px; color:#fff; background:url(../images/kt_titbg.png) left center no-repeat; line-height:50px; padding-left:45px; margin-left:25px; }
+.kt_content{padding:25px;}
+.settings_1{width:100%;}
+.settings_1{border:1px solid #d8d8d8; background:#f9f9f9;}
+.settings_1_close{width:80%;}
+
+.kt_info1_tab{border:1px solid #d8d8d8; background:#f9f9f9; height:260px; margin-top:25px; text-align:center;}
+
+.kt_green{color:#06b206; font-weight:bold; padding-left:25px;}
+.kt_red{color:#f00; font-weight:bold; padding-left:25px;}
+.kt_gay{color:#919191; font-weight:bold; font-size:12px;}
+.txt_val{color: #06b206; width:30px; text-align:center; color:#959595; margin-right:6px; padding:2px; border-radius:4px; border:0px; background-color:#f9f9f9; -ms-radius-border:4px;}
+/*.txt_val:focus{outline:none!important;outline:1px solid #90cff9; border:1px solid #90cff9;}*/
+/*IE6 7*/
+.jingmi_img{_padding-top:20px; *padding-top:20px;}
+.kt_wendu tr{ *height:45px;_height:45px;}
+/*end IE6 7*/
+.kt_baojing tr td{padding:8px 20px 8px 0; }
+.kt_baojing tr td span{ padding-left:30px;  left center no-repeat; color:#959595; font-size:14px;}
+.kt_baojing tr td span.kt_red{ padding-left:30px; background:url(../images/ico_red.png) left center no-repeat; color:#959595; font-size:14px;}
+.kt_baojing span img{ padding-right:10px;}
+a.img_name{display:block; color:#959595; padding-top:10px;}
+a.kt_close,a.kt_open{display:block;}/* padding:20px 0;*/
+/*按钮样式*/
+.btn{ width: 89px; height: 26px; background: url(../images/Open_Close_bg.png) center center no-repeat; position: relative;}
+.close_btn{width: 89px; height: 26px; background: url(../images/Open_bg.png) left center no-repeat;line-heithg:0px; font-size: 0; margin-left: 0; margin-right: auto;}
+.ico_btn{ height: 20px; width: 20px; background: url(../images/Open_Close_btn.png) center center no-repeat; _background: url(../images/Open_Close_btn.gif) center center no-repeat; position: absolute; left: 64px; top: 3px}
+
+.wendu_set{width:59px; padding:5px 13px; height:17px; line-height:27px; background:url(../images/kt_wd_bg.png) no-repeat center center ;}
+.left_btn{display:inline; cursor:pointer; width:16px; height:16px; background:url(../images/kt_wd_minus.png) no-repeat 0 0 ; float:left;}
+.right_btn{display:inline; cursor:pointer; width:16px; height:16px; background:url(../images/kt_wd_plus.png) no-repeat 1px 0 ; float:right;}
+
+/*按钮样式结束*/
+
+.font_green{ color:#07b207; font-size:14px;}

@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>动力系统</title>
+    <link href="../css/index.css" rel="stylesheet" type="text/css">
+    <link href="../css/static.css" rel="stylesheet" type="text/css">
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <style>
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+        }
+        
+        .navcon2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navcon navcon2">
+        <a class="active" href="Single_three_UPS.1.html" target="power_iframe">UPS</a>
+        <a href="battery.html" target="power_iframe">电池</a>
+    </div>
+    <!--顶部结束-->
+    <div class="container" style="box-sizing:border-box; padding-top: 45px; height: 99%; width: 100%;">
+        <iframe name="power_iframe" width="100%" height="100%" id="container_iframe" src="Single_three_UPS.1.html" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+    <script>
+        $(function() {
+            //
+            $(".navcon>a").click(function() {
+                $(this).addClass("active").siblings("a").removeClass("active")
+                $(".kt_info").hide().eq($(this).index()).show();
+            })
+        })
+    </script>
+</body>
+
+</html>

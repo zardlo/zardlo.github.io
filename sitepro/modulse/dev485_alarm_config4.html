@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../css/SetInfo.css" rel="stylesheet" type="text/css" />
+ <script src="../js/jquery.js" type="text/javascript"></script>
+<title>无标题文档</title>
+</head>
+
+<body>
+
+
+<style>
+body{
+	font-family:"Times New Roman", Times, serif;
+}
+</style>
+
+
+<script>
+$(function(){
+ 	$(".Alert_close,.a_btn1").click(function(){
+		
+ 		$(".alert_in,.alert_out").remove();
+ })
+})
+</script>
+<div class="AlertUps">
+	<a class="Alert_close" href="javascript:void(0);"></a>
+    <div class="Alert_title">扩展设备设置选项</div>
+        <span id="config_1">
+    <form id="formid" method="post" enctype="multipart/form-data" action="">
+    <table width="100%" class="Alert_content">
+    	     	 <tbody><tr>
+           	<td width="35%" height="30">使&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;能：</td>
+         	 <td height="30" align="left">
+               			
+                                <input type="checkbox" value="enb" name="gjEnable3" id="gjEnable" class="Alert_dx" checked="checked">
+                           
+                            <span class="c_bj">&nbsp;</span>
+             </td>
+       	 </tr>
+       	<tr>
+           	<td width="35%" height="30">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</td>
+          <td height="30" align="left"><input type="text" value="市电1" class="UpsName" name="mn_name3" id="name"></td>
+        </tr>
+          
+        	   <tr style="display:none">
+               
+             
+           	<td width="35%" height="30">量&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;程：</td>
+         	 <td height="30" align="left">
+                      <input type="text" value="500" id="mn_Measuring3" name="mn_Measuring3" style="width:60px;" class="UpsName">
+                           
+                            <span class="c_bj">&nbsp;V</span>
+             </td>
+       	 </tr>
+            <tr style="display:none">
+           	<td width="35%" height="30">告&nbsp;&nbsp;警&nbsp;&nbsp;上&nbsp;&nbsp;限：</td>
+         	 <td height="30" align="left">
+               			
+                               <input type="text" value="100" id="mn_gjtop3" name="mn_gjtop3" style="width:60px;" class="UpsName">
+                           
+                            <span class="c_bj">&nbsp;V</span>
+             </td>
+       	 </tr>
+           <tr style="display:none">
+           	<td width="35%" height="30">滞&nbsp;&nbsp;回&nbsp;&nbsp;值：</td>
+         	 <td height="30" align="left">
+                              <input type="text" value="0" id="mn_Hysteresisvalue3" name="mn_Hysteresisvalue3" style="width:60px;" class="UpsName">
+                           
+                            <span class="c_bj">&nbsp;V</span>
+             </td>
+          
+       	 </tr>
+        	             
+         
+          	            <tr>
+               	<td valign="top">
+                市电1中断               
+				</td>
+                <td align="left">
+                   
+                                <input type="checkbox" value="1" id="checke_1" name="Alert_dx164[]" class="Alert_dx">
+                           
+                            <span class="c_bj">短信</span>
+                     
+                           
+                                <input type="checkbox" value="4" id="checke_4" name="Alert_dx164[]" class="Alert_dx">
+                           
+                            <span class="c_bj">声光</span>
+                      
+                          
+                                <input type="checkbox" value="8" id="checke_8" name="Alert_dx164[]" class="Alert_sx">
+                           
+                            <span class="c_bj">电话语音</span>
+                        
+                   
+                     
+                    
+                </td>
+            </tr>
+         	          <!---------------普通空调屏蔽失效时间设置 ------------>
+            <tr>
+           	<td> 
+            <input type="checkbox" value="alarm" id="alarm_time" name="alarm_time" class="Alert_dx">           
+           <span class="c_bj">失效时间段</span></td>
+            <td> 起始：<input type="text" value="" class="sd_sxsjd_txt" name="start_time" id="start_time" style="width:60px;">&nbsp; 结束：<input type="text" value="" class="sd_sxsjd_txt" style="width:60px;" id="overs_time" name="overs_time">&nbsp;(hh:mm)</td>
+           </tr>
+             <tr>
+               	<td height="60" align="right"><a class="a_btn1" onclick="btn_form()" href="javascript:void(0);">确认</a></td>
+                <td height="60" align="center"><a class="a_btn1 guanbi" href="javascript:void(0);">关闭</a></td>
+            </tr>
+            
+        
+    </tbody></table>
+    	 <!-- 告警方式配置--->
+    	<input type="hidden" value="0" name="alarm_way" id="alarm_way">
+         <!-- 设备索引 --->
+        <input type="hidden" value="3" name="index" id="index">
+      	 <!-- 设备名称 --->
+        <input type="hidden" value="4001" name="upsradio" id="type">
+         <!-- 描述 --->
+        <input type="hidden" value="mn" name="485type" id="485type">
+        <!-- 用于判断是哪个表单提交的数据 --->
+        <input type="hidden" value="485" name="btform">
+    </form>
+    </span>
+   
+   
+      <!------------   管理员账号验证     ---------->
+      <span style="display:none" id="config_4">
+     	<form id="formid4" method="post" enctype="multipart/form-data" action="">
+         	<table width="100%" style="line-height:30px;">
+            	<tbody><tr>
+                	<td colspan="2"> 警告：您现在准备进入的是控制功能页面，可能将会对运行设备造成影响！</td>
+                </tr>
+                <tr>
+                	<td> 账号：</td><td><input type="text" value="admin" name="username" id="username" class="select_set"></td>
+                </tr>
+                 <tr>
+                	<td> 密&nbsp;&nbsp;码：</td><td><input type="password" name="pwd" id="pwd" class="select_set"></td>
+                </tr>
+                <tr> 
+               	<td height="60" align="right"><a class="a_btn1" onclick="senior_form(4)" href="javascript:void(0);">确认</a></td>
+				
+                <td height="60" align="center"><a class="a_btn1" onclick="close_senior(1)" href="javascript:void(0);">返回</a></td>
+            </tr>
+            </tbody></table>
+           <!-- 用于判断是哪个表单提交的数据 --->
+        	<input type="hidden" value="4" name="btform">
+         </form>
+     </span>
+      <!------------   空调控制    ---------->
+      <span style="display:none" id="config_5">
+      	<form id="formid5" method="post" enctype="multipart/form-data" action="">
+     		<table width="100%" style="line-height:30px;">
+            	<tbody><tr>
+                	
+                	<td> 开启空调时间</td>
+                    <td><input type="text" name="kq_kongtiao" id="kq_kongtiao" value="" class="UpsName" style="width:60px">&nbsp;(hh:mm)</td>
+                </tr>
+                <tr>
+                	
+                	<td> 关闭空调时间</td>
+                    <td><input type="text" name="gb_kongtiao" id="gb_kongtiao" value="" class="UpsName" style="width:60px">&nbsp;(hh:mm)</td>
+                </tr>
+                 <tr> 
+            	<td><a class="a_btn1" onclick="senior_form(5)" href="javascript:void(0);">确认</a></td>
+                <td height="60" align="center"><a class="a_btn1" onclick="close_senior(1)" href="javascript:void(0);">返回</a></td>
+            </tr>
+              </tbody></table>
+              	 <!-- 设备索引 --->
+                <input type="hidden" value="3" name="index" id="index">
+                 <!-- 设备名称 --->
+                <input type="hidden" value="4001" name="upsradio" id="type">
+            	<input type="hidden" value="5" name="btform">
+         </form>
+     </span>
+      <!------------   UPS控制显示    ---------->
+      <span style="display:none" id="config_6">
+      </span>
+      <span style="display:none" id="config_7">
+      </span>
+    </div>
+      <iframe style="widht:0px; height:0px; border:0px;" name="hidden_frame2" id="hidden_frame2"></iframe>
+</body>
+</html>

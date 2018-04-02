@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="../css/SetInfo.css" rel="stylesheet" type="text/css" />
+    <script src="../js/jquery.js" type="text/javascript"></script>
+    <title>无标题文档</title>
+</head>
+
+<body>
+
+
+    <style>
+        body {
+            font-family: "Times New Roman", Times, serif;
+        }
+    </style>
+
+
+    <script>
+        $(function() {
+            $(".Alert_close,.a_btn1").click(function() {
+
+                $(".alert_in,.alert_out").remove();
+            })
+        })
+    </script>
+    <div class="AlertUps">
+        <a class="Alert_close" href="javascript:void(0);"></a>
+        <div class="Alert_title">扩展设备设置选项</div>
+        <span id="config_1">
+    <form id="formid" method="post" enctype="multipart/form-data" action="">
+    <table width="100%" class="Alert_content">
+    	     	 <tbody><tr>
+           	<td width="35%" height="30">使&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;能：</td>
+         	 <td height="30" align="left">
+               			
+                                <input type="checkbox" value="enb" name="gjEnable1" id="gjEnable" class="Alert_dx" checked="checked">
+                           
+                            <span class="c_bj">&nbsp;</span>
+        </td>
+        </tr>
+        <tr>
+            <td width="35%" height="30">名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称：</td>
+            <td height="30" align="left"><input type="text" value="海信空调" class="UpsName" name="mn_name1" id="name"></td>
+        </tr>
+        <tr style="line-height:30px;">
+            <td height="80" align="center" colspan="2">
+                <a class="a_btn2" onclick="senior_set(4,'4004_1')" href="javascript:void(0);">控制</a>
+            </td>
+        </tr>
+        <tr style="line-height:30px;display:none">
+            <td width="35%" height="30">温&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度：</td>
+            <td height="30" align="left">上限阀值：<input type="text" value="0" class="UpsName" name="thdev_temp_top1" id="thdev_temp_top1" style="width:60px">℃<br>下限阀值：<input type="text" value="0" class="UpsName" name="thdev_temp_bottom1" id="thdev_temp_bottom1" style="width:60px">℃
+            </td>
+        </tr>
+        <tr style="line-height:30px;display:none">
+            <td width="35%" height="30">湿&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;度：</td>
+            <td height="30" align="left">上限阀值：<input type="text" value="0" class="UpsName" name="Dehumidifier_txt1" id="Dehumidifier_txt1" style="width:60px">%<br>下限阀值：<input type="text" value="0" class="UpsName" name="Humidification_txt1" id="Humidification_txt1" style="width:60px">%
+            </td>
+        </tr>
+
+
+
+        <!---------------普通空调屏蔽失效时间设置 ------------>
+        <tr style="display:none">
+            <td>
+                <input type="checkbox" value="alarm" id="alarm_time" name="alarm_time" class="Alert_dx">
+                <span class="c_bj">失效时间段</span></td>
+            <td> 起始：<input type="text" value="" class="sd_sxsjd_txt" name="start_time" id="start_time" style="width:60px;">&nbsp; 结束：<input type="text" value="" class="sd_sxsjd_txt" style="width:60px;" id="overs_time" name="overs_time">&nbsp;(hh:mm)</td>
+        </tr>
+        <tr>
+            <td height="60" align="right"><a class="a_btn1" onclick="btn_form()" href="javascript:void(0);">确认</a></td>
+            <td height="60" align="center"><a class="a_btn1 guanbi" href="javascript:void(0);">关闭</a></td>
+        </tr>
+
+
+        </tbody>
+        </table>
+        <!-- 告警方式配置--->
+        <input type="hidden" value="0" name="alarm_way" id="alarm_way">
+        <!-- 设备索引 --->
+        <input type="hidden" value="1" name="index" id="index">
+        <!-- 设备名称 --->
+        <input type="hidden" value="4004" name="upsradio" id="type">
+        <!-- 描述 --->
+        <input type="hidden" value="4004" name="485type" id="485type">
+        <!-- 用于判断是哪个表单提交的数据 --->
+        <input type="hidden" value="485" name="btform">
+        </form>
+        </span>
+
+
+        <!------------   管理员账号验证     ---------->
+        <span style="display:none" id="config_4">
+     	<form id="formid4" method="post" enctype="multipart/form-data" action="">
+         	<table width="100%" style="line-height:30px;">
+            	<tbody><tr>
+                	<td colspan="2"> 警告：您现在准备进入的是控制功能页面，可能将会对运行设备造成影响！</td>
+                </tr>
+                <tr>
+                	<td> 账号：</td><td><input type="text" value="admin" name="username" id="username" class="select_set"></td>
+                </tr>
+                 <tr>
+                	<td> 密&nbsp;&nbsp;码：</td><td><input type="password" name="pwd" id="pwd" class="select_set"></td>
+                </tr>
+                <tr> 
+               	<td height="60" align="right"><a class="a_btn1" onclick="senior_form(4)" href="javascript:void(0);">确认</a></td>
+				
+                <td height="60" align="center"><a class="a_btn1" onclick="close_senior(1)" href="javascript:void(0);">返回</a></td>
+            </tr>
+            </tbody></table>
+           <!-- 用于判断是哪个表单提交的数据 --->
+        	<input type="hidden" value="4" name="btform">
+         </form>
+     </span>
+        <!------------   空调控制    ---------->
+        <span style="display:none" id="config_5">
+      	<form id="formid5" method="post" enctype="multipart/form-data" action="">
+     		<table width="100%" style="line-height:30px;">
+            	<tbody><tr>
+                	
+                	<td> 开启空调时间</td>
+                    <td><input type="text" name="kq_kongtiao" id="kq_kongtiao" value="" class="UpsName" style="width:60px">&nbsp;(hh:mm)</td>
+                </tr>
+                <tr>
+                	
+                	<td> 关闭空调时间</td>
+                    <td><input type="text" name="gb_kongtiao" id="gb_kongtiao" value="" class="UpsName" style="width:60px">&nbsp;(hh:mm)</td>
+                </tr>
+                 <tr> 
+            	<td><a class="a_btn1" onclick="senior_form(5)" href="javascript:void(0);">确认</a></td>
+                <td height="60" align="center"><a class="a_btn1" onclick="close_senior(1)" href="javascript:void(0);">返回</a></td>
+            </tr>
+              </tbody></table>
+              	 <!-- 设备索引 --->
+                <input type="hidden" value="1" name="index" id="index">
+                 <!-- 设备名称 --->
+                <input type="hidden" value="4004" name="upsradio" id="type">
+            	<input type="hidden" value="5" name="btform">
+         </form>
+     </span>
+        <!------------   UPS控制显示    ---------->
+        <span style="display:none" id="config_6">
+      </span>
+        <span style="display:none" id="config_7">
+      </span>
+    </div>
+    <iframe style="widht:0px; height:0px; border:0px;" name="hidden_frame2" id="hidden_frame2"></iframe>
+</body>
+
+</html>

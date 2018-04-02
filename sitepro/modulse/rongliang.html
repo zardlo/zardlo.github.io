@@ -1,0 +1,325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>容量管理</title>
+<link href="../css/style.css" rel="stylesheet" type="text/css">
+<link href="../css/NavBtm.css" rel="stylesheet" type="text/css">
+<link href="../css/rongliang.css" rel="stylesheet" type="text/css" />
+<script src="../js/jquery.js" language="javascript" type="text/javascript"></script>
+
+</head>
+
+<script>
+
+$(function(){
+	(function ($) {	
+		$.fn.arcBox= function(options){
+			$(this).each(function() {		//多重用，所以要遍历
+				var _this=$(this);
+				var num=_this.attr('num');		/*数字：百分比*/
+				//var color=_this.attr('color');	/*得到圆圈背景颜色2*/
+				if(num<50){
+				_this.find('.bg').css("background","#5cc276");	/*设置背景颜色2*/
+					_this.find("#count").css("color","#5cc276")
+					}
+				else if(50<=num&&num<70){
+				_this.find('.bg').css("background","#ffb93e");	/*设置背景颜色2*/
+					_this.find("#count").css("color","#ffb93e")
+					}
+				else if(num>=70){
+					_this.find("#count").css("color","#f75f5f")
+					_this.find('.bg').css("background","#f75f5f");	/*设置背景颜色2*/
+					}
+				var deg =num*3.6;	/*角度*/
+				var deg2=0;			
+				if(deg>=0 && deg<=180){			//0=<deg=<180
+				var pe2=_this.find(".pie2");
+					if(pe2.attr("style")!=null)
+					{
+						setTimeout(function(){_this.find(".pie1").css("transform","rotate(" + deg + "deg)");},500);
+					_this.find(".pie2").css("transform","rotate(0deg)")
+					
+					}else{
+					_this.find(".pie1").css("transform","rotate(" + deg + "deg)");
+					}
+					
+				}else if(deg>180 && deg<=360){ //180<deg=<360
+					_this.find(".pie1").css("transform","rotate(" +180 + "deg)");	
+					deg2=deg-180;	
+					setTimeout( function(){	
+						_this.find(".pie2").css("transform","rotate(" + deg2 + "deg)");
+					},1000)
+				}else{
+					deg=0;	
+				}
+				_this.find("#count").text(parseInt((deg + 0.6)/3.6)+'%');
+			});	
+		}
+	})(jQuery);	
+	$(".arc-box").arcBox();
+	
+	//选卡
+	$(".tab_contetn").children().hide();
+	$(".rl_tab>ul li").click(function(){
+$(this).siblings().removeClass("active").end().addClass("active").parents(".rl_tab").children(".tab_contetn").children().hide().eq($(this).index()).show();	
+
+		})
+	$(".d_title span").each(function(index, element) {
+        $(this).parent().next().children().children(".fill_bar").animate({width:$(this).text()},500);
+    });
+	$(".rl_tab>ul li:eq(0)").click();
+	//选卡
+
+	
+})
+</script>
+<style>
+
+.arc-box .bg{ width:100px; height:100px;border-radius:50%;background:#f00;behavior:url(pie.htc);}
+.arc-box .center{ position:absolute; left:2px; top:2px; width:96px; height:76px;border-radius:50%;font-size:15px; text-align:center; color:#b9b9b9; line-height:20px; padding-top:20px; background:#fff;behavior:url(pie.htc);}
+#count{ font-size:30px; color:#ffb93e; line-height:35px;}
+</style>
+<body style=" padding-top:90px;">
+
+<!--基本向导顶部开始-->
+<div class="xd_top">
+<a class="xd_bnt" href="javascript:history.go(-1)">返回</a>
+<a class="xd_tit">容量管理</a>
+</div>
+<!--基本向导顶部结束-->
+  
+<!--内容开始-->
+<div class="rl_tab ">
+	<ul class="tab_til fixed">
+    	<li class="active">空调容量管理</li>
+        <li>电力容量管理</li>
+        <li>空间容量管理</li>
+    </ul>
+    
+    <div class="tab_contetn">
+    	<div class="dianli">
+            <table>
+                <tr class="gre" >
+                	<td class="d_title">A相负载：<span>45%</span></td>
+                    <td >
+                    	<div class="bar">
+                       		<div class="fill_bar"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="yel">
+                	<td class="d_title">B相负载：<span>65%</span></td>
+                    <td >
+                    	<div class="bar">
+                       		<div class="fill_bar"></div>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="red">
+                	<td class="d_title">B相负载：<span>100%</span></td>
+                    <td >
+                    	<div class="bar">
+                       		<div class="fill_bar"></div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+       <!--空调-->
+    <div class="kongtiao" style="overflow:hidden;">
+       	<div class="set_warp">
+      		<table class="kt_set">	
+            	<tr>
+                	<td  class="kt_title pl" colspan="2">手动设置</td>
+                </tr>	
+                <tr>
+                	<td class="pl">手动值:</td>
+                    <td><input type="text" class="myinput" id="v1" /></td>
+                </tr>
+                 <tr>
+                	<td class="pl">自动值:</td>
+                    <td><input type="text" class="myinput" /></td>
+                </tr>
+                <tr>
+                	<td colspan="2" class="t_foot">
+                    <input type="button" class="mls_btn" id="mls_qd" value="确定" /><input type="button" class="mls_btn" value="取消" id="mls_qx" /></td>
+                </tr>
+            </table>
+        </div>
+       		<img class="jf_img"  src="../images/jft2.png" /><!--jft0,jft1,jft2  -->
+            <!--圆环-->
+  <div class="arc-box" num="50"  id="hand_set"><!--num设置完成的百分比-->
+    <div class="arc arc1">
+        <div class="pie pie1"></div>	
+    </div>
+    <div class="arc arc2">
+        <div class="pie pie2" ></div>	
+    </div>
+    <div class="center">健康度<Br /><span id="count">50%</span></div>
+    <div class="bg" style="background: rgb(106, 241, 107);"></div>
+</div>
+           <!--圆环结束-->
+       </div>
+        <!--空调结束-->
+        <!--空间-->
+        <div class="kongjian">
+       	   <!--头部-->
+        	<div class="kj_top"><a href="#" id="add_zc" class="ls_btn" >添加机柜</a>
+           <span class="kj_ttile"> 机柜：</span>
+           <div class="dropdown">
+                <button class="dnbtn" type="button">
+                	<img class="icon" src="../images/iconfont-sanjiaoxia.png">
+                    <span> 机柜</span>
+                </button>
+                <ul class="dropdown-menu">
+                	<li> 机柜1</li>
+                    <li> 机柜2</li>
+                </ul>
+            </div>
+            </div>
+            <!--头部结束-->
+            <div class="kj_content fixed">
+            	<div class="jg_box">
+                	<a href="rongliang2.html" class="jg_inner">
+                    	剩余容量<span class="jg_red">100%</span>
+                    </a>
+                    机柜1
+                </div>
+                <div class="jg_box">
+                	<a href="rongliang2.html" class="jg_inner">
+                    	剩余容量<span class="jg_gre">100%</span>
+                    </a>
+                    机柜1
+                </div>
+                <div class="jg_box">
+                	<a href="rongliang2.html" class="jg_inner">
+                    	剩余容量<span class="jg_red">10/30</span>
+                    </a>
+                    机柜1
+                </div>
+                <div class="jg_box">
+                	<div class="jg_inner">
+                    	剩余容量<span class="jg_yel">50%</span>
+                    </div>
+                    机柜1
+                </div>
+                <div class="jg_box">
+                	<a href="rongliang2.html" class="jg_inner">
+                    	剩余容量<span class="jg_red">100%</span>
+                    </a>
+                    机柜1
+                </div>
+                <div class="jg_box">
+                	<div class="jg_inner">
+                    	剩余容量<span class="jg_red">100%</span>
+                    </div>
+                    机柜1
+                </div>
+                 <div class="jg_box">
+                	<a href="rongliang2.html" class="jg_inner">
+                    	剩余容量<span class="jg_red">100%</span>
+                    </a>
+                    机柜1
+                </div>
+                 <div class="jg_box">
+                	<div class="jg_inner">
+                    	剩余容量<span class="jg_red">100%</span>
+                    </div>
+                    机柜1
+                </div>
+            </div>
+        </div>
+         <!--空间结束-->
+    </div>
+</div>
+<!--内容结束-->
+<script>
+var tjzc='<div class="alert_warp">'+
+    '<div class="alert_box">'+
+      '  <a href="#" class="icon_colse"><img src="images/Alert_close2.png" /></a>'+
+      '  <h2>添加机柜</h2>'+
+     '   <table>'+
+     '       <tr>'+
+     '           <td align="right">机柜：</td>'+
+      '          <td><input type="text" id="jg_name"  class="myinput" /></td>'+
+       '     </tr>'+
+       '     <tr>'+
+       '         <td align="right">添加设备：</td>'+
+       '         <td>'+
+       '          <div class="dropdown"style="float:left"  >'+
+       '         <button class="dnbtn"  type="button">'+
+      '          	<img class="icon" src="images/iconfont-sanjiaoxia.png">'+
+        '            <span> 机柜</span>'+
+       '         </button>'+
+         '       <ul class="dropdown-menu" >'+
+        '        	<li> 机柜1</li>'+
+        '            <li> 机柜2</li>'+
+        '        </ul>'+
+        '   		 </div>'+
+        '         <span class="zi">至</span>'+
+       '         <div class="dropdown" style="float:left"  >'+
+       '         <button class="dnbtn" type="button">'+
+      '          	<img class="icon" src="images/iconfont-sanjiaoxia.png">'+
+      '              <span> 机柜</span>'+
+      '          </button>'+
+      '          <ul class="dropdown-menu" >'+
+       '         	<li> 机柜1</li>'+
+         '           <li> 机柜2</li>'+
+          '      </ul>'+
+           	'	 </div>  '+
+           '     </td>'+
+          '  </tr>'+
+         '    <tr>'+
+        '        <td align="right">资产：</td>'+
+       '         <td><input type="text" class="myinput" /></td>'+
+      '      </tr>'+
+      '  </table>'+
+      '  <input type="button" class="ls_btn" style="margin-left:147px;float:left;" id="jg_add" value="添&nbsp;加" />'+
+      '  <input type="button" class="ls_btn" style="margin-left:20px;float:left;" id="jg_esx" value="取&nbsp;消" />'+
+   ' </div>'+
+'</div>';
+function add_jg(name){
+	return '<div class="jg_box">'+
+        '        	<a href="rongliang2.html" class="jg_inner">'+
+         '           	剩余容量<span class="jg_red">100%</span>'+
+          '          </a>'+name+ ' </div>';
+}
+$(function(){
+	
+	$("#hand_set").click(function(){
+		
+	if(parseInt($(".kt_set").css("margin-left"))<0){
+			$(".kt_set").animate({"margin-left":"0px"},300);
+			}else{
+				$(".kt_set").animate({"margin-left":"-250px"},300);
+				}
+		})
+	$("#mls_qd").click(function(){//确定
+		$("#hand_set").attr("num",$("#v1").val());
+		
+			$(".arc-box").arcBox();
+		//$(".kt_set").animate({"margin-left":"-250px"},300);
+		});
+	$("#mls_qx").click(function(){//取消
+			$(".kt_set").animate({"margin-left":"-250px"},300);
+		});
+	$("#add_zc").click(function(){
+		$("body",window.parent.document).append(tjzc)  
+		$(".icon_colse,#jg_esx",window.parent.document).click(function(){$(this).parent().parent().remove();})
+		
+		$("#jg_add",window.parent.document).click(function(){
+			var name=$("#jg_name",window.parent.document).val()
+			
+		if(name!=null&&name!=""){
+			$(".kj_content ").append(add_jg(name));
+				$(this).parent().parent().remove();
+					}else{
+				alert("机柜名不能为空")
+				}
+				})
+		})
+})
+</script>
+</body>
+</html>
