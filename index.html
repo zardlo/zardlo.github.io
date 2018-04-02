@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<HTML xmlns="http://www.w3.org/1999/xhtml">
+
+<HEAD>
+    <META content="IE=10.000" http-equiv="X-UA-Compatible">
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <TITLE>Sitepro</TITLE>
+    <SCRIPT src="js/jquery.js" type="text/javascript"></SCRIPT>
+    <STYLE></STYLE>
+    <META name="GENERATOR" content="MSHTML 10.00.9200.17028">
+</HEAD>
+
+<BODY scroll="no" style="overflow: hidden;">
+    <!--顶部开始-->
+    <div class="top2">
+        <A class="logo">
+            <IMG src="images/logo.png">
+        </A>
+
+
+        <div class="headnav">
+            <a class="nav2" href="modulse/chars.html" target="container_iframe">温度曲线图</a>
+            <a class="nav3  shiping">视频监控</a>
+            <a class="nav4" href="modulse/real_alarm.html" target="container_iframe">实时告警</a>
+            <a class="nav5" href="modulse/history_event.html" target="container_iframe">历史记录</a>
+            <a class="nav6 advanced-setting">高级设置</a>
+            <!--href="modulse/setgj.html" target="container_iframe"-->
+        </div>
+    </div>
+    <!--顶部结束-->
+    <div class="container">
+        <iframe name="container_iframe" width="100%" height="100%" id="container_iframe" src="index_frame.html" frameborder="0" allowtransparency="true"></iframe>
+    </div>
+    <INPUT id="now_time" type="hidden" value="2016-09-02 11:40:27">
+    <!---弹出层--->
+
+    <div class="tcmin" style="width:0px; height:0px; left:50%; top:50%; position:absolute"></div>
+
+    <!---弹出层结束--->
+
+    <!--高级设置--输入账号密码-->
+    <div class="ad-setting-modal" style="width: 340px; display: none; opacity: 0; position: absolute; z-index: 1000; left: 50%; top: -100px; margin-left: -150px; background-color: #FFF; padding: 20px;">
+        <h4 style="text-align:center;margin-bottom:15px;">高级设置</h4>
+        <p style="margin-bottom: 20px;"><input type="text" placeholder="用户名" style="border: 1px solid #CCC; padding: 3px 5px;" /></p>
+        <p style="margin-bottom: 20px;"><input type="password" placeholder="密码" style="border: 1px solid #CCC; padding: 3px 5px;" /></p>
+        <p style="text-align:center;"><button type="button" class="ads-submit">提交</button>&nbsp;<button type="button" class="ads-cancel">取消</button></p>
+    </div>
+    <div class="ad-setting-modal--bg" style="position: absolute; top:0; left: 0; width: 100%; display: none; height:100%; background-color: #000; opacity: 0.45; filter: 'alpha(opacity=45)';z-index: 999;"></div>
+    <!--高级设置--输入账号密码-->
+    <SCRIPT>
+        //弹框开始
+		$(function(){
+			alert(123);
+		})
+    </SCRIPT>
+</BODY>
+
+</HTML>
