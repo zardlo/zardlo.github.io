@@ -1,3 +1,3 @@
 <?php 
-echo 12342313;
+echo niubi;
 ?>
